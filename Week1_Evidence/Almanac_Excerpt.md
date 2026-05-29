@@ -1,5 +1,5 @@
 # Almanac Exerpt: Memorial Day Week
-**Source**:
+**Source**: <br>
 **Extracted**:
 
 ## May Key Historical Performance
@@ -8,5 +8,13 @@
 3. SPX performance 5 trading days around Memorial Day:
    - 2025: 
    - 2024:
+   - ...
 
 ## Seasonal Notes for This Week
+1. Quote key points from PDF about Memorial Day week
+2. ...
+
+## Implications for This Week's Forecast
+1. Directional bias from history: Bullish / Bearish / Neutral
+2. Key date:
+3. ...
