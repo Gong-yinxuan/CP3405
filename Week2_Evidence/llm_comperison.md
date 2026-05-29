@@ -1,14 +1,19 @@
 # Multi‑LLM Comparison
 **SPX/NDX/IWM Predictions** <br>
 
-| Dimension | Claude | ChatGPT | Gemini | DeepSeek | Team Consensus |
-|-----------|--------|---------|--------|----------|----------------|
-| **Direction** (up/down/flat) |  |  |  |  |  |
-| **Move magnitude** (percentage range) |  |  |  |  |  |
-| **Confidence level** (H/M/L) |  |  |  |  |  |
-| **Main bullish arguments** |  |  |  |  |  |
-| **Main downside risks** |  |  |  |  |  |
-| **Most watched data point** |  |  |  |  |  |
+| Dimension | Claude | ChatGPT | Gemini | DeepSeek |
+|-----------|--------|---------|--------|----------|
+| **Weekly Regime** |  |  |  |  |
+| **Confidence Score** |  |  |  |  |  
+| **SPX% estimate** |  |  |  |  |  
+| **NDX% estimate**|  |  |  |  |  
+| **IWM% estimate**|  |  |  |  |  
+| **Top supportingg reason**|  |  |  |  |  
+| **Top contradiction cited reason**|  |  |  |  |  
+| **Invalidation condition**|  |  |  |  |  
+| **Tone / cabeat language**|  |  |  |  |  
+
+
 
 ## Consistency Among Models
 - Fully aligned points: ____
