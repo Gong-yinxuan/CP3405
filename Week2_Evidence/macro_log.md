@@ -1,5 +1,5 @@
 # Macro Log 
-**Date**: May 26–30, 2026 <br>
+**Time period**: May 26–30, 2026 <br>
 
 ## 2026-05-27 (Tuesday)
 1. **CME FedWatch**: Next meeting hike/cut probability ____%
