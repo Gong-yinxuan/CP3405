@@ -9,8 +9,8 @@
 5. **Macro sentiment**: Hawkish / Dovish / Neutral
 
 ## 2026-05-28 (Wednesday)
-6. New Home Sales: ____
-7. Earnings impact: MRVL / CRM / SNOW after-hours
+1. New Home Sales: ____
+2. Earnings impact: MRVL / CRM / SNOW after-hours
 ...
 
 ## 2026-05-29 (Thursday) – PCE + GDP
