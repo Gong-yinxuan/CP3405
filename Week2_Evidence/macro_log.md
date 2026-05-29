@@ -1,27 +1,33 @@
 # Macro Log 
-**Time period**: May 26–30, 2026 <br>
+## FED & RATES (CME FedWatch + Treasury.gov):
+ - Current Fed rate: [X.XX–X.XX%]
+ - Next FOMC date: [date]. Hold probability: [XX%]. Cut probability: [XX%]. Direction vs last week: [unchanged / shifted dovish / shifted hawkish]
+ - 2-year yield: [X.XX%]   10-year yield: [X.XX%]   30-year yield: [X.XX%]
+ - Yield curve: [normal / inverted / flat]. 10-year direction this week: [rising / falling / flat]
+   
 
-## 2026-05-27 (Tuesday)
-1. **CME FedWatch**: Next meeting hike/cut probability ____%
-2. **10Y Treasury yield**: Open ____% / Close ____%
-3. **Key data/event**: Consumer Confidence = ____ (exp ____)
-4. **Market reaction**: SPX daily change ____%
-5. **Macro sentiment**: Hawkish / Dovish / Neutral
+## COMMODITIES & DOLLAR (Finviz Futures 1W):
+ - WTI Crude Oil: [close price], weekly change: [+/−X.X%], direction: [rising / falling / flat]
+ - Gold: [close price], weekly change: [+/−X.X%], direction: [rising / falling]
+ - DXY (Dollar): [level], direction: [strengthening / weakening]
+ - [Cross-asset implication: oil rising + yields rising = stagflation risk. Oil falling = inflation relief.]
 
-## 2026-05-28 (Wednesday)
-1. New Home Sales: ____
-2. Earnings impact: MRVL / CRM / SNOW after-hours
-...
+## WEEK-AHEAD CALENDAR (TradingEconomics):
+ - [Day, Date]: [Event name] — Expected: [X.X%], Previous: [X.X%] — IMPORTANCE: [High/Med/Low]
+ - [Day, Date]: [Event name] — Expected: [...], Previous: [...] — IMPORTANCE: [...]
+ - [Repeat for each major event this week. Maximum 5 entries. Rank by market-moving potential.]
 
-## 2026-05-29 (Thursday) – PCE + GDP
-1. GDP second estimate: ____% (prior ____%)
-2. PCE inflation: YoY ____% / MoM ____% (exp ____%)
-3. Yield curve change: 2y/10y spread ____bps
-4. Real-time market reaction: ...
+## KEY EARNINGS THIS WEEK (Earnings Whispers):
+ - Company (TICKER)] — Day — Sector: [XLX] — What to watch: [one sentence]
+ - [2–3 entries maximum. Only include earnings that could move an entire sector.]
 
-## 2026-05-30 (Friday)
-1. Chicago PMI: ____
-2. Month-end rebalancing estimated flow: ±$___bn
-3. Final macro judgment summary:
+## CONFIRMED NEWS EVENTS (Reuters / AP):
+ - [Event description] — Source: Reuters/AP — Date — Market implication: [one sentence]
+ - [Confirmed facts only. No rumours. No social media. If you cannot cite Reuters or AP, leave it out.]
+
+**MACRO BIAS**: [Hawkish / Dovish / Neutral / Binary-risk]<br>
+**PRIMARY DRIVER THIS WEEK**: [The single most important macro event — in one sentence]<br>
+**CONFIDENCE**: [Low / Medium / High] — [Brief justification]<br>
+**INVALIDATION**: [What macro event would reverse your bias completely]<br>
    ...
    
