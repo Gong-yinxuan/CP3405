@@ -4,14 +4,12 @@
 | Dimension | Claude | ChatGPT | Gemini | DeepSeek |
 |-----------|--------|---------|--------|----------|
 | **Weekly Regime** |  |  |  |  |
-| **Confidence Score** |  |  |  |  |  
-| **SPX% estimate** |  |  |  |  |  
-| **NDX% estimate**|  |  |  |  |  
-| **IWM% estimate**|  |  |  |  |  
+| **Confidence** |  |  |  |  |  
+| **S&P estimate** |  |  |  |  |  
 | **Top supportingg reason**|  |  |  |  |  
-| **Top contradiction cited reason**|  |  |  |  |  
+| **Top contradiction**|  |  |  |  |  
 | **Invalidation condition**|  |  |  |  |  
-| **Tone / cabeat language**|  |  |  |  |  
+| **Tone**|  |  |  |  |  
 
 
 
