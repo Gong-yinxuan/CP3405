@@ -36,6 +36,7 @@ Does price continue respecting the 8 EMA during pullbacks?
 Does Russell 2000 confirm the breakout with relative strength?
 Watch for any compression between the 8 EMA and 21 EMA, which would be an early warning sign of momentum slowing.]<br>
 
+---
 
 
 **INSTRUMENT**: NASDAQ 100 (NDX), Daily Chart <br>
@@ -74,6 +75,7 @@ Watch whether pullbacks continue finding support at the 8 EMA.
 Monitor Russell 2000 participation for broader market confirmation.
 Any compression between the 8 EMA and 21 EMA would be an early warning sign of slowing momentum.]<br>
 
+---
 
 
 **INSTRUMENT**: S&P 500 (SPX), Daily Chart <br>
@@ -111,3 +113,5 @@ Any compression between the 8 EMA and 21 EMA would be an early warning sign of s
 Does price continue respecting the 8 EMA during pullbacks?
 Watch whether small-cap participation improves relative to the Nasdaq and S&P 500.
 Strong relative performance from Russell 2000 would support the case for a broader market advance.?]<br>
+
+Charts annotated and committed: evidence/charts_2026-W2/spx_daily.png, ndx_daily.png, iwm_daily.png
