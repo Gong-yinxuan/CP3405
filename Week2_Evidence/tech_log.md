@@ -114,4 +114,4 @@ Does price continue respecting the 8 EMA during pullbacks?
 Watch whether small-cap participation improves relative to the Nasdaq and S&P 500.
 Strong relative performance from Russell 2000 would support the case for a broader market advance.?]<br>
 
-Charts annotated and committed: evidence/charts_2026-W2/spx_daily.png, ndx_daily.png, iwm_daily.png
+Charts annotated and committed: Week2_evidence/chart_2026_W2/spx_daily.png, ndx_daily.png, iwm_daily.png
