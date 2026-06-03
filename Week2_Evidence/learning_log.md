@@ -8,7 +8,7 @@
 - What could be improved: ____
 
 ## Individual Learnings
-- 
+- Ho Yuet Hei: Site interface can be a bit tricky to navigate since each site shows their data differently, also if done well the actuals can be more detailed with pricings and such. Will start bookmarking pages as well for speedy delivery
 -
 - ...
 
