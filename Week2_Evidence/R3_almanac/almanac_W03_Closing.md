@@ -42,82 +42,72 @@
 
 ---
 
-## 3. Structured Almanac Agent Output for LLM Synthesis
+### 3. Structured Almanac Agent Output for LLM Synthesis
 
 ### MONTH
-
-**June 2026** — approaching mid-month, deeply embedded within the "Worst Six Months" structural window.
+**June 2026** — embedded within the "Worst Six Months" structural seasonal block.
 
 ### CYCLE CONTEXT
-
-2026 is a **midterm election year**. The seasonal framework treats **Q2–Q3 as the 4-Year Presidential Cycle “Weak Spot”**. 
+2026 is a **midterm election year**. The Almanac framework treats **Q2–Q3 of a midterm year as the 4-Year Presidential Cycle “Weak Spot.”** The course Almanac documentation highlights this specific timeline:
 
 
 | Cycle Window | Historical Context | R3 Use |
 |---|---|---|
-| Q2–Q3 2026 | Midterm-year “Weak Spot” (S&P avg −2.5%, NASDAQ avg −6.6%) | Active headwind now |
-| Q4 2026 | “Sweet Spot” begins after midterm weakness | Not active yet |
-| Q1–Q2 2027 | Pre-election-year structural strength | Future tailwind |
+| Q2–Q3 2026 | Midterm-year “Weak Spot” (S&P 500 avg −2.5%, NASDAQ avg −6.6%) | Active structural headwind |
+| Q4 2026 | “Sweet Spot” begins after midterm bottoming | Not active yet |
+| Q1–Q2 2027 | Pre-election-year structural acceleration | Future tailwind |
 
-**Interpretation:** The macro seasonal regime is a defined headwind. This validates the aggressive market breakdown observed at the end of Week 22.
+**Interpretation:** The active cycle regime functions as a major headwind. This historical profile perfectly validates the aggressive market breakdown witnessed during the June 5 close.
 
 ### MONTHLY STATS
 
 
-| Index / Asset | June Normal Seasonal Context | Midterm-Year Context | R3 Interpretation |
-|---|---:|---:|---|
-| **S&P 500** | Rank **#11**, avg **−0.02%** | Negative historical lean | Deep structural caution |
-| **NASDAQ** | Rank **#10**, avg **+0.5%** | Historical midterm underperformance | Tech long window buffers, but lacks safety |
-| **Russell 2000 / IWM** | Rank **#6**, avg **+1.0%** | History of steep midterm retreats | High small-cap beta risk is active |
-| **Dow Jones (DJIA)** | Rank **#8**, avg **+0.1%** | Multi-month consolidation trend | Confirms broad-market deceleration |
+| Index / Asset | June Normal Seasonal Rank | June Normal Avg % Return | Midterm-Year June Rank | Midterm-Year Avg % Return | R3 Interpretation |
+|---|:---:|:---:|:---:|:---:|---|
+| **S&P 500** | **#9** | **+0.2%** | **#12** | **−2.1%** | Major historical correction regime |
+| **DJIA / Dow** | **#11** | **−0.2%** | **#12** | **−1.9%** | Severe broad market historical drag |
+| **NASDAQ** | **#6** | **+1.0%** | **#12** | **−1.9%** | Best Eight Months cycle officially terminates |
+| **Russell 2000 / IWM** | **#7** | **+0.8%** | — | **−2.1%** | Severe small-cap beta risk realized |
 
-**Net monthly signal:** **Bearish / caution.** 
+**Net monthly signal:** **Strongly Bearish / Caution.** June drops to the absolute worst month of the year (**#12**) across all core indices during a midterm election cycle.
 
 ### SPECIFIC WEEK / DAY PATTERN
 
 
 | Pattern | Direction | Strength | R3 Treatment |
 |---|---|---|---|
-| Mid-Month June Flow | Choppy / Variable | Moderate | Expect erratic positioning |
-| Worst Six Months Regime | Bearish / Caution | High | Dominant seasonal frame for W23 |
-| Pre-Triple-Witching Week | Volatility building | Moderate | Options positioning adds friction |
+| First Trading Day of June | Positive lean (Dow up 28 of last 37) | Moderate | Narrow early-week noise; completely exhausted now |
+| Friday, June 5 Calendar Probability | Bearish (S&P 500 up only 38.1% of time) | High | Provided mathematical baseline for the Friday flush |
+| Week After June Triple-Witching | Bearish (Dow down 29 of last 35 since 1990) | High | Impending downstream risk profile for mid-month |
+| End-of-Quarter Portfolio Pumping | Bearish (Dow down 19 of last 34 on last day) | Moderate | Adds terminal-month friction to any relief rallies |
 
-**Week 23 implication:** Seasonal indicators suggest that the current market pullback is structurally aligned with long-term cycle data.
+**Week 23 implication:** With early-month buffers expired, the market is now fully exposed to the summer market doldrums and late-June volatility metrics.
 
 ### SECTOR SEASONALITY SIGNALS
 
 
 | Sector / ETF Proxy | Almanac Seasonal Window | Signal | R3 Use in Prediction |
 |---|---|---|---|
-| **Technology / XLK** | Long active through mid-July | Bullish outlier | Only remaining structural long buffer |
-| **Financials / XLF** | Short active May–July | Bearish | Avoid buying banks; expect systemic drag |
-| **Oil / Energy / XLE** | Short window opens early June | Bearish | Newly active short; signals commodity decay |
-| **Materials / XLB** | Short active May–October | Bearish | Points to global industrial softening |
-| **Gold / Silver / XAU** | Short active mid-May to late June | Bearish | Note contradiction if spot gold remains elevated |
+| **Technology / XLK** | Long active from mid-March to mid-July | Bullish Outlier | Terminal weeks of long window; prone to sharp liquidation shocks |
+| **Oil / Energy / XLE** | Short window opens early June | Bearish | Newly active seasonal short; validates commodity degradation |
+| **Financials / XLF** | Short active from early May to early July | Bearish | Aligns with macro banking friction; persistent structural weight |
+| **Materials / XLB** | Short active from mid-May to mid-October | Bearish | Validated by severe 5D index distribution (−4.90%) |
+| **Gold / Silver / XAU** | Short active from mid-May to late June | Bearish | Aligns with sudden multi-asset margin liquidation events |
 
-**Net sector signal:** Strongly negative across cyclical and value sectors; Technology stands alone.
+**Net sector signal:** Deeply restricted breadth. Cyclical, value, and commodity asset fields are locked inside active seasonal short windows, leaving technology isolated.
 
 ### ALMANAC SEASONAL BIAS
-
 **Bearish / Caution.**
 
-The R3 seasonal leg strongly supports the ongoing technical correction. Chasing rapid dip-buying is historically dangerous during a midterm June.
-
 ### CONFIDENCE
-
-**Medium.**
-
-Reasoning:
-1. Midterm election year June stats are reliably weak across the board.
-2. Multiple major sector short windows (XLE, XLF, XLB) are simultaneously active.
-3. The structural market breakdown aligns seamlessly with the historical multi-quarter "Weak Spot" guidelines.
+**High.**  
+Reasoning: The historical midterm June **#12 ranking** across S&P 500, Dow, and NASDAQ functions in perfect structural alignment with the technical daily Zone 3 breakdown.
 
 ### ALMANAC THESIS
-
-Seasonality dictates **bearish / caution with Medium confidence** as the market enters the core of the midterm cycle "Weak Spot". June is historically the second-weakest month of the year for the S&P 500. With the fresh opening of the XLE seasonal short window adding to active shorts in Financials and Materials, broad market participation is expected to remain highly restricted. While the XLK long window remains active for a few more weeks, it is insufficient to overcome broader cycle pressures.
+Seasonality dictates **bearish / caution with High confidence** as the market navigates the core of the midterm cycle "Weak Spot." June historically devolves into the worst-performing month of the year (**#12 rank**) during midterm election cycles, averaging a brutal **−2.1% drawdown for the S&P 500**. This macro calendar drag is further exacerbated by the fresh opening of the XLE seasonal short window alongside active shorts in Financials and Materials. While the NASDAQ Best Eight Months cycle concludes this month, it offers no near-term safety as growth sectors face late-stage seasonal liquidation.
 
 ### KEY OUTPUT SENTENCE
-**Seasonality suggests bearish / caution, with Medium confidence, because June midterm-year statistics and expanding sector short windows (XLE, XLF) structurally reinforce broad equity market downside.**
+**Seasonality suggests bearish / caution, with High confidence, because June midterm-year cycle statistics drop indices to their absolute worst annual ranking (#12 across SPX, NDX, DJIA) while expanding sector seasonal short windows (XLE, XLF, XLB) amplify systemic broad market downside.**
 
 ---
 
