@@ -1,0 +1,247 @@
+
+<style>
+  .brief-root { font-family: var(--font-sans); padding: 1.5rem 0; }
+  .section-header { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--color-text-tertiary); margin: 0 0 10px; }
+  .card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; margin-bottom: 12px; }
+  .card-accent-red { border-left: 3px solid #E24B4A; border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0; }
+  .card-accent-amber { border-left: 3px solid #BA7517; border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0; }
+  .card-accent-blue { border-left: 3px solid #185FA5; border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0; }
+  .card-accent-green { border-left: 3px solid #3B6D11; border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0; }
+  .card-title { font-size: 14px; font-weight: 500; color: var(--color-text-primary); margin: 0 0 8px; }
+  .card-body { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; margin: 0; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 4px; margin-left: 6px; vertical-align: middle; }
+  .badge-hit { background: #EAF3DE; color: #27500A; }
+  .badge-miss { background: #FCEBEB; color: #791F1F; }
+  .badge-partial { background: #FAEEDA; color: #633806; }
+  .badge-warn { background: #FAEEDA; color: #633806; }
+  .badge-danger { background: #FCEBEB; color: #791F1F; }
+  .badge-neutral { background: var(--color-background-secondary); color: var(--color-text-secondary); }
+  .matrix-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .matrix-table th { text-align: left; font-weight: 500; font-size: 11px; color: var(--color-text-tertiary); padding: 4px 8px; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .matrix-table td { padding: 7px 8px; border-bottom: 0.5px solid var(--color-border-tertiary); color: var(--color-text-secondary); vertical-align: top; }
+  .matrix-table tr:last-child td { border-bottom: none; }
+  .matrix-table .asset { font-weight: 500; color: var(--color-text-primary); white-space: nowrap; }
+  .actual-neg { color: #A32D2D; font-weight: 500; }
+  .actual-pos { color: #3B6D11; font-weight: 500; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .metric-card { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 10px 12px; }
+  .metric-label { font-size: 11px; color: var(--color-text-tertiary); margin: 0 0 3px; }
+  .metric-val { font-size: 20px; font-weight: 500; color: var(--color-text-primary); margin: 0; }
+  .metric-sub { font-size: 11px; color: var(--color-text-secondary); margin: 2px 0 0; }
+  .rule-row { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; font-size: 13px; color: var(--color-text-secondary); line-height: 1.5; }
+  .rule-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+  .divider { border: none; border-top: 0.5px solid var(--color-border-tertiary); margin: 20px 0; }
+  .section-num { font-size: 11px; font-weight: 500; color: var(--color-text-tertiary); }
+  .inline-tag { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 1px 7px; border-radius: 4px; border: 0.5px solid var(--color-border-secondary); color: var(--color-text-secondary); margin: 0 2px; }
+</style>
+
+<div class="brief-root">
+  <h2 class="sr-only">CP3405 DT3 Week 3 Multi-LLM Consensus Synthesis Brief</h2>
+
+  <div style="margin-bottom: 20px;">
+    <p style="font-size: 11px; color: var(--color-text-tertiary); margin: 0 0 4px;">CP3405 · DT3 · Week 3 Post-Mortem</p>
+    <h1 style="font-size: 20px; font-weight: 500; color: var(--color-text-primary); margin: 0 0 4px;">Multi-LLM Consensus Synthesis Engine</h1>
+    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 0;">Verification against R8 Master Actuals · Regime threat assessment · Calibration guidance</p>
+  </div>
+
+  <div class="grid3" style="margin-bottom: 20px;">
+    <div class="metric-card">
+      <p class="metric-label">SPX weekly</p>
+      <p class="metric-val" style="color:#A32D2D;">−2.57%</p>
+      <p class="metric-sub">Close 7,368 · Fri −2.64%</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">NDX weekly</p>
+      <p class="metric-val" style="color:#A32D2D;">−4.53%</p>
+      <p class="metric-sub">Close 28,829 · Fri −4.79%</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">VIX weekly</p>
+      <p class="metric-val" style="color:#A32D2D;">+8.99%</p>
+      <p class="metric-sub">Close 19.65 · Fri +12.78%</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SECTION 1: CORE SYNTHESIS MATRIX -->
+  <p class="section-header"><span class="section-num">01 ·</span> Core synthesis matrix</p>
+
+  <div class="card" style="margin-bottom: 10px;">
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th style="width:90px;">Leg</th>
+          <th>Pre-week bias</th>
+          <th>Key call</th>
+          <th style="width:88px;">Alignment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="asset">Technical (R5)</td>
+          <td>Neutral-to-Bearish</td>
+          <td>SPX failing 7600, NDX rejected 30,500, support zones aggressively tested</td>
+          <td><span class="badge badge-hit">✓ HIT</span></td>
+        </tr>
+        <tr>
+          <td class="asset">Macro (R4)</td>
+          <td>Neutral-to-Cautious / Binary</td>
+          <td>Fed hold near-certain; CPI / PPI as binary catalysts; risk of tail move</td>
+          <td><span class="badge badge-partial">~ PARTIAL</span></td>
+        </tr>
+        <tr>
+          <td class="asset">Almanac (R3)</td>
+          <td>Bearish / High Confidence</td>
+          <td>June Midterm Year weak spot, SPX avg −2.1%; seasonal shorts open for XLE, XLF, XLB</td>
+          <td><span class="badge badge-hit">✓ HIT</span></td>
+        </tr>
+        <tr>
+          <td class="asset">Faculty baseline</td>
+          <td>Flat to modest UP</td>
+          <td>Lower-confidence starting posture ahead of CPI week</td>
+          <td><span class="badge badge-miss">✗ MISS</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card card-accent-blue">
+    <p class="card-title">Consensus verdict</p>
+    <p class="card-body">Two of three independent legs — Technical (R5) and Almanac (R3) — successfully anticipated the bearish weekly resolution. R4 Macro earns a partial: the binary-risk framing was structurally correct, but the leg did not assign sufficient probability weight to the downside scenario materialising before CPI. The faculty's "Flat to modest UP" baseline was the sole directionally incorrect anchor. <strong style="color:var(--color-text-primary);">2/3 legs aligned. Structural consensus was bearish. Engine produced the correct signal; positional sizing was the gap.</strong></p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SECTION 2: ENGINE FAILURE EXPLANATION -->
+  <p class="section-header"><span class="section-num">02 ·</span> Engine failure — mid-week insulation collapse</p>
+
+  <div class="card card-accent-red">
+    <p class="card-title">The mid-week technology bounce trap (+7.40%) and crude spike ($95.88)</p>
+    <p class="card-body">Mid-week strength in Technology and the WTI spike to ~$95.88 were both classic <strong style="color:var(--color-text-primary);">bear-market countertrend relief events</strong>, not regime-change signals. Four structural failure modes converged simultaneously on Friday:</p>
+  </div>
+
+  <div style="margin-bottom: 10px;">
+    <div class="rule-row"><span class="rule-icon" style="color:#E24B4A;"><i class="ti ti-alert-triangle" aria-hidden="true"></i></span><div><strong style="color:var(--color-text-primary);">Positioning overhang liquidation.</strong> Mid-week tech buyers were primarily short-covering and momentum-chasing, not new strategic longs. When Friday offered no fresh catalyst for continuation, that overhang unwound violently — NDX −4.79% in a single session explains the positioning, not the fundamentals.</div></div>
+    <div class="rule-row"><span class="rule-icon" style="color:#E24B4A;"><i class="ti ti-alert-triangle" aria-hidden="true"></i></span><div><strong style="color:var(--color-text-primary);">CPI pre-positioning pressure.</strong> Institutional desks systematically de-risked into the weekend ahead of Wednesday's CPI print — a known, predictable behavioural pattern in binary-event weeks. The macro leg flagged the binary risk; the team failed to operationalise it as a Friday unwind signal.</div></div>
+    <div class="rule-row"><span class="rule-icon" style="color:#E24B4A;"><i class="ti ti-alert-triangle" aria-hidden="true"></i></span><div><strong style="color:var(--color-text-primary);">Crude oil reversal confirmation.</strong> WTI closing at $90.25 (−2.69% Friday, after the $95.88 spike) confirmed the crude run as a false breakout. Energy's seasonal short window had already opened per R3. The spike was a headfake that trapped late longs — the reversal added risk-off fuel to Friday's liquidation.</div></div>
+    <div class="rule-row"><span class="rule-icon" style="color:#E24B4A;"><i class="ti ti-alert-triangle" aria-hidden="true"></i></span><div><strong style="color:var(--color-text-primary);">Bitcoin corroboration ignored (−16.08% weekly).</strong> Bitcoin's severe weekly loss was a real-time leading indicator of broad risk appetite deterioration. The team had no explicit BTC risk-filter integrated into equity posture — a structural gap in the synthesis engine that amplified the surprise factor on Friday.</div></div>
+  </div>
+
+  <div class="card card-accent-amber">
+    <p class="card-title">Root cause summary</p>
+    <p class="card-body">The engine correctly identified the directional bias but lacked a <em>time-of-week</em> filter for pre-CPI Friday de-risking. Mid-week insulation masked the underlying bearish structure, creating a false sense of resilience. The rule to add: <strong style="color:var(--color-text-primary);">in high-stakes binary-event weeks, Friday positioning compression is predictable, not coincidental. Treat it as a structural trade, not noise.</strong></p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SECTION 3: INCOMING REGIME THREATS -->
+  <p class="section-header"><span class="section-num">03 ·</span> Incoming regime threats — defensive rotation impact</p>
+
+  <div class="grid2" style="margin-bottom: 10px;">
+    <div class="metric-card">
+      <p class="metric-label">Leading sectors (weekly)</p>
+      <p style="font-size: 13px; font-weight: 500; color: #3B6D11; margin: 4px 0 2px;">Real Estate +1.10%</p>
+      <p style="font-size: 13px; font-weight: 500; color: #3B6D11; margin: 2px 0 2px;">Healthcare +1.00%</p>
+      <p style="font-size: 13px; font-weight: 500; color: #3B6D11; margin: 2px 0 0;">Utilities +0.70%</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Lagging sectors (weekly)</p>
+      <p style="font-size: 13px; font-weight: 500; color: #A32D2D; margin: 4px 0 2px;">Cons. Disc. −5.50%</p>
+      <p style="font-size: 13px; font-weight: 500; color: #A32D2D; margin: 2px 0 2px;">Technology −5.20%</p>
+      <p style="font-size: 13px; font-weight: 500; color: #A32D2D; margin: 2px 0 0;">Comm. Services −3.30%</p>
+    </div>
+  </div>
+
+  <div class="card card-accent-red">
+    <p class="card-title">Threat assessment — what the rotation tells us</p>
+    <p class="card-body">The clean sweep into classic non-cyclicals (Real Estate, Healthcare, Utilities — all positive in a −2.57% SPX week) is a <strong style="color:var(--color-text-primary);">textbook flight-to-safety rotation</strong>, not a sector-rotation opportunity. Three threat dimensions the team must price in ahead of CPI:</p>
+  </div>
+
+  <div class="card card-accent-amber">
+    <p class="card-title"><i class="ti ti-trending-down" aria-hidden="true" style="font-size:15px; vertical-align:-1px; margin-right:4px;"></i>Threat 1 — beta compression is already underway</p>
+    <p class="card-body">When Utilities and Real Estate outperform in a down week, institutional capital is actively reducing beta exposure, not rotating for alpha. The spread between Consumer Discretionary (−5.50%) and Utilities (+0.70%) is a 620bps single-week dispersion — this is a <strong style="color:var(--color-text-primary);">risk-off regime signal, not a noise event.</strong> Any long book still concentrated in high-beta cyclicals is structurally misaligned with current institutional flow.</p>
+  </div>
+
+  <div class="card card-accent-amber">
+    <p class="card-title"><i class="ti ti-calendar-event" aria-hidden="true" style="font-size:15px; vertical-align:-1px; margin-right:4px;"></i>Threat 2 — CPI binary is now asymmetric to the downside</p>
+    <p class="card-body">With VIX at 19.65 (+8.99% weekly, +12.78% Friday), markets are pricing elevated uncertainty — but not full panic. A <strong style="color:var(--color-text-primary);">hot CPI print (above consensus)</strong> closes the Fed cutting narrative for June entirely, threatens the 95.4% hold probability, and could compress risk assets sharply. A cool print provides relief but faces a high bar to reverse the defensive positioning already in motion. Asymmetry favours: flat-to-short on cyclicals, reduce size across the board before Wednesday's print.</p>
+  </div>
+
+  <div class="card card-accent-amber">
+    <p class="card-title"><i class="ti ti-building-bank" aria-hidden="true" style="font-size:15px; vertical-align:-1px; margin-right:4px;"></i>Threat 3 — ECB decision cross-risk (Thursday)</p>
+    <p class="card-body">The ECB rate decision on Thursday compounds the binary stack. A surprise hawkish ECB repositions European rate expectations, strengthens the EUR, and could amplify USD risk-off dynamics already pressuring US equity multiples. Gold's −4.96% weekly print suggests real-rate anxiety is already repricing — unusual in a risk-off week and a warning sign that the defensive rotation may be incomplete or unstable.</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SECTION 4: CALIBRATION GUIDANCE -->
+  <p class="section-header"><span class="section-num">04 ·</span> Calibration &amp; reconciliation guidance</p>
+
+  <div class="card card-accent-blue" style="margin-bottom: 10px;">
+    <p class="card-title">Why "Flat to modest UP" failed and how to recalibrate</p>
+    <p class="card-body">The faculty starting posture underweighted the <strong style="color:var(--color-text-primary);">seasonal consensus</strong> (R3 Almanac was at high confidence) and over-indexed on the mid-week tech bid as evidence of resilience. Corrective calibration requires integrating four parameter sets:</p>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+    <div class="card" style="margin-bottom: 0;">
+      <p class="card-title" style="font-size:13px;"><i class="ti ti-chart-line" aria-hidden="true" style="font-size:14px; vertical-align:-1px; margin-right:4px;"></i>Technical anchors to use</p>
+      <div class="rule-row" style="margin-bottom:5px;"><span style="font-size:11px; color:var(--color-text-tertiary); min-width:28px;">SPX</span><span>7350–7400 = now <strong style="color:var(--color-text-primary);">Resistance 1</strong>, not support. Bull case requires reclaim of 7600.</span></div>
+      <div class="rule-row" style="margin-bottom:5px;"><span style="font-size:11px; color:var(--color-text-tertiary); min-width:28px;">NDX</span><span>28,829 close is precarious — 28,000 is the next structural support. 30,500 was a failed breakout, now hard resistance.</span></div>
+      <div class="rule-row" style="margin-bottom:0;"><span style="font-size:11px; color:var(--color-text-tertiary); min-width:28px;">IWM</span><span>280 breakdown watch. IWM sub-280 on a weekly close confirms broad de-risking.</span></div>
+    </div>
+    <div class="card" style="margin-bottom: 0;">
+      <p class="card-title" style="font-size:13px;"><i class="ti ti-calendar" aria-hidden="true" style="font-size:14px; vertical-align:-1px; margin-right:4px;"></i>Seasonal parameters to hold</p>
+      <div class="rule-row" style="margin-bottom:5px;"><span style="font-size:11px; color:var(--color-text-tertiary); min-width:28px;">June</span><span>Midterm Q2–Q3 weakness is structural. R3 Almanac remains valid. Do not fight the seasonal window.</span></div>
+      <div class="rule-row" style="margin-bottom:5px;"><span style="font-size:11px; color:var(--color-text-tertiary); min-width:28px;">Shorts</span><span>XLE, XLF, XLB seasonal short windows remain open — crude reversal confirms XLE validity.</span></div>
+      <div class="rule-row" style="margin-bottom:0;"><span style="font-size:11px; color:var(--color-text-tertiary); min-width:28px;">Avg</span><span>Historical SPX avg −2.1% for June; we've moved −2.57% in week 3 alone. Seasonal drag may extend.</span></div>
+    </div>
+  </div>
+
+  <div class="card card-accent-green">
+    <p class="card-title">Revised confidence scoring framework for upcoming block</p>
+    <table class="matrix-table" style="margin-top: 4px;">
+      <thead>
+        <tr>
+          <th>Scenario</th>
+          <th>Trigger condition</th>
+          <th>Posture</th>
+          <th>Confidence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="asset">Bear continuation</td>
+          <td>CPI hot / VIX sustains above 20</td>
+          <td>Short cyclicals, flat / short SPX</td>
+          <td><span class="badge badge-hit">High</span></td>
+        </tr>
+        <tr>
+          <td class="asset">Relief bounce</td>
+          <td>CPI in-line or cool, NDX holds 28,000</td>
+          <td>Tactical long NDX; tight stops</td>
+          <td><span class="badge badge-partial">Medium</span></td>
+        </tr>
+        <tr>
+          <td class="asset">Volatility spike</td>
+          <td>CPI surprise + ECB hawkish</td>
+          <td>VIX long / reduce all equity</td>
+          <td><span class="badge badge-warn">Elevated</span></td>
+        </tr>
+        <tr>
+          <td class="asset">Bull reversal</td>
+          <td>SPX reclaims 7600, BTC stabilises</td>
+          <td>Cautiously re-enter growth</td>
+          <td><span class="badge badge-miss">Low</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="background: var(--color-background-secondary); border: 0.5px solid var(--color-border-secondary);">
+    <p class="card-title" style="font-size: 12px; color: var(--color-text-tertiary); margin-bottom: 6px;">Engine directive — Week 4 block</p>
+    <p class="card-body" style="font-size: 12px;">Elevate R3 Almanac leg weighting when seasonal confidence is High. Integrate BTC weekly performance as a real-time risk-appetite filter. Flag mid-week bounces as countertrend until confirmed by a daily close above prior resistance. Default to reduced sizing in binary-event weeks; treat Friday compression as a structural setup, not a flaw.</p>
+  </div>
+
+</div>

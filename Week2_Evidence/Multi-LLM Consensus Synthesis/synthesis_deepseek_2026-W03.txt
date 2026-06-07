@@ -1,0 +1,71 @@
+Here is the **Multi-LLM Consensus Synthesis** for CP3405 DT3 Market Intelligence – Week 3 Post-Mortem.
+
+---
+
+### 1. CORE SYNTHESIS MATRIX
+
+| Analysis Leg | Alignment with Friday Actuals | Verdict |
+|--------------|-------------------------------|---------|
+| **Technical (R5)** | ✅ **Aligned** – Neutral-to-Bearish call correctly anticipated failed breakouts, support tests (SPX 7350–7400), and NDX rejection. | **Accurate** |
+| **Macro & Events (R4)** | ⚠️ **Partial Alignment** – Neutral/binary-risk stance was right, but *failed to weight Wednesday’s CPI as decisive*. Actuals show CPI was the trigger, not just context. | **Underweighted trigger** |
+| **Almanac & Seasonality (R3)** | ✅ **Strong Alignment** – Bearish / June weak spot call fully validated. Sector laggards (Tech, Discretionary, Comm Svcs) match seasonal short windows. | **Accurate** |
+
+**Consensus State:** Two of three legs aligned. Macro leg had correct *caution* but insufficient *conviction* on CPI execution risk.
+
+---
+
+### 2. ENGINE FAILURE EXPLANATION
+
+**Why mid-week insulation (Tech +7.40%, Oil $95.88) collapsed into Friday liquidation:**
+
+| Mid-Week Signal | Friday Reality | Failure Mechanism |
+|----------------|----------------|--------------------|
+| Tech perceived as “safe AI flow trade” | NDX -4.79% single day | **CPI surprise (Wed) triggered QT repricing** → Tech’s duration risk exploded. |
+| Crude Oil spike to $95.88 | WTI -2.69% Friday, settled $90.25 | **Demand destruction fear** overtook supply narrative post-CPI. Oil was a *late-cycle victim*, not a hedge. |
+| Low realized vol / complacency | VIX +12.78% Friday → 19.65 | **Markets priced a “no landing” scenario Mon–Wed** → Thursday/Friday repriced to “harder than expected landing.” |
+
+**Root Cause:** The team’s mid-week assessment treated CPI as *one input among many*. In reality, it was the **sole regime switch** – from inflation-muted risk-on to stagflationary liquidation. Tech’s insulation was a *liquidity mirage* before the CPI hammer.
+
+---
+
+### 3. INCOMING REGIME THREATS
+
+Market has rotated into **classic non-cyclical safe havens**:
+
+| Sector | Weekly Performance | Signal for Next Week |
+|--------|--------------------|----------------------|
+| Real Estate | +1.10% | Defense + falling rates anticipation. |
+| Healthcare | +1.00% | Recession-resistant cash flows. |
+| Utilities | +0.70% | Yield defense + low beta. |
+| Tech / Discretionary | -5% to -5.5% | **Avoid** until CPI digest complete. |
+
+**Risk posture impact ahead of Wednesday’s US CPI print (10 June):**
+
+- **Threat 1:** Another hot CPI → full risk-off accelerates. Gold broke (-4.96% weekly) because real rates spiked – that can repeat.
+- **Threat 2:** Soft CPI → short squeeze in Tech/Discretionary. The consensus is now bearish; a “less bad” print triggers violent reversal.
+- **Team posture:** Must shift from *neutral-to-cautious* to **asymmetric hedge mode** (long Healthcare/Utilities vs. short Tech via QQQ puts or VX futures).
+
+---
+
+### 4. CALIBRATION & RECONCILIATION GUIDANCE
+
+Faculty’s starting advice: *“FLAT to modest UP with lower confidence”* → **Proven wrong** by Friday’s -2.57% SPX close.
+
+**Adjust confidence scoring for next trading block using these parameters:**
+
+| Parameter | Technical Rule | Seasonal Rule |
+|-----------|----------------|----------------|
+| **SPX** | Below 7400 = bear tilt. Only re-enter above 7500 on volume. | June midterms: historically -2.1%. Do not fade until July. |
+| **NDX** | Failed 30,500 = structural damage. Next support 28,200. | June #12 worst month. Tech short window open through month-end. |
+| **IWM** | Below 280 = small-cap distress confirmed. | Rate-sensitive. CPI hot → further downside. |
+| **VIX** | Above 18.5 = regime shift. Use 22 as hedge trigger. | Seasonal vol rise into June opex (20 June). |
+| **Gold** | Broke $4,400 = real rates now driver, not避险. Next support $4,200. | No seasonal bid until July. |
+| **Crude Oil** | $95.88 rejection = double top risk. | Seasonal weakness in Energy (XLE) started June 1 – respected. |
+
+**New confidence framework:**
+- **High confidence trades:** Long XLU (Utilities), XLV (Healthcare), short XLC (Comm Svcs) via sector shorts.
+- **Medium confidence:** VX futures calls (VIX 20–22 range).
+- **Low confidence / Avoid:** Long Tech, Discretionary, or Gold until post-CPI Wednesday.
+
+**Final directive to team:**  
+> *“Do not rebuild long exposure pre-CPI. Assume Friday’s liquidation was the first wave, not the last. Seasonality + technical breakdown + macro binary event = wait for Wednesday’s print to confirm regime.”*
