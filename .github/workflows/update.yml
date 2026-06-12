@@ -2,9 +2,12 @@ name: Update Market Data
 
 on:
   schedule:
-    # Runs every Monday at 10:00 UTC (after US market close on Friday)
+    # Runs every Monday at 10:00 UTC
     - cron: "0 10 * * 1"
-  workflow_dispatch:   # allows manual trigger from GitHub UI
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   fetch-and-commit:
@@ -20,15 +23,18 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install -r prism/requirement.txt
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r prism/requirements.txt
 
       - name: Run data pipeline
-        run: python src/data_collector.py
+        run: |
+          python prism/src/data_collector.py
 
       - name: Commit and push output.json
         run: |
-          git config user.name  "github-actions[bot]"
+          git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add output.json
+          git add prism/data/output.json
           git diff --cached --quiet || git commit -m "chore: update market data $(date +'%Y-%m-%d')"
           git push
