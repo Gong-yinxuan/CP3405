@@ -1,85 +1,84 @@
 """
-Market Data Collector - Level 2 → 3 Pipeline
-Fetches closing prices for SPY, QQQ, IWM from Yahoo Finance
-and saves the result as output.json
+Market Data Pipeline - Level 2 → 3
+Fetches closing prices + weekly change % from Yahoo Finance
+for SPY, QQQ, IWM, XLK, XLU, XLV and saves to data/output.json
 """
 
 import json
-import datetime
+from pathlib import Path
+from datetime import datetime
+
 import yfinance as yf
 
 
-def fetch_market_data(tickers: list[str]) -> dict:
+TICKERS = ["SPY", "QQQ", "IWM", "XLK", "XLU", "XLV"]
+
+
+def fetch_prices() -> dict:
     """
-    Fetch the latest available closing price for each ticker.
-
-    Args:
-        tickers: List of ticker symbols to retrieve.
-
-    Returns:
-        Dictionary mapping each ticker to its latest closing price.
+    Fetch close price and weekly change % for all tickers.
+    Uses 10 days of history so there are always enough points
+    to calculate a 5-trading-day (≈ 1 week) return.
     """
     prices = {}
-    for ticker in tickers:
-        try:
-            data = yf.Ticker(ticker)
-            # 'history' with period='1d' returns today's bar (or latest available)
-            hist = data.history(period="1d")
-            if hist.empty:
-                # Fall back to the most recent available session
-                hist = data.history(period="5d")
-            if hist.empty:
-                raise ValueError(f"No price data returned for {ticker}")
-            closing_price = round(float(hist["Close"].iloc[-1]), 2)
-            prices[ticker] = closing_price
-        except Exception as exc:
-            print(f"[ERROR] Could not retrieve data for {ticker}: {exc}")
-            raise
+
+    for ticker in TICKERS:
+        data = yf.Ticker(ticker)
+        hist = data.history(period="10d")
+
+        if len(hist) < 2:
+            raise ValueError(f"Not enough data returned for {ticker}")
+
+        latest_close   = round(float(hist["Close"].iloc[-1]), 2)
+        # go back 5 trading days (or as far as available)
+        lookback       = min(5, len(hist) - 1)
+        prev_close     = round(float(hist["Close"].iloc[-1 - lookback]), 2)
+        weekly_change  = round(((latest_close - prev_close) / prev_close) * 100, 1)
+
+        prices[ticker] = {
+            "close": latest_close,
+            "weekly_change_pct": weekly_change,
+        }
+        print(f"  {ticker}: close={latest_close}  weekly_change={weekly_change:+.1f}%")
 
     return prices
 
 
 def build_output(prices: dict) -> dict:
-    """
-    Combine today's date with the retrieved prices into the output schema.
-
-    Args:
-        prices: Mapping of ticker → closing price.
-
-    Returns:
-        Structured output dictionary matching the JSON specification.
-    """
-    today = datetime.date.today().strftime("%Y-%m-%d")
-    return {
-        "date": today,
-        **prices,
-    }
+    """Attach today's date and return the final output object."""
+    today = datetime.today().strftime("%Y-%m-%d")
+    return {"date": today, **prices}
 
 
-def save_output(data: dict, filepath: str = "output.json") -> None:
+def save_output(data: dict, filepath: str = None) -> None:
     """
     Write the output dictionary to a JSON file.
 
     Args:
         data:     Data to serialise.
         filepath: Destination file path (overwritten on each run).
+                  Defaults to <project_root>/data/output.json
     """
+    if filepath is None:
+        src_dir  = Path(__file__).resolve().parent   # .../src/
+        filepath = src_dir.parent / "data" / "output.json"
+
+    filepath = Path(filepath)
+    filepath.parent.mkdir(parents=True, exist_ok=True)  # create data/ if needed
+
     with open(filepath, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)
-    print(f"[OK] output written to '{filepath}'")
+    print(f"\n Output written to '{filepath}'")
 
 
-def main() -> None:
-    tickers = ["SPY", "QQQ", "IWM"]
-
-    print("Fetching market data …")
-    prices = fetch_market_data(tickers)
-
+def main():
+    print("Fetching market data...")
+    prices = fetch_prices()
     output = build_output(prices)
-    print(f"Data collected: {output}")
-
     save_output(output)
+    print(f"Output:\n{json.dumps(output, indent=2)}")
 
 
 if __name__ == "__main__":
     main()
+
