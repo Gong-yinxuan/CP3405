@@ -5,8 +5,8 @@ and saves the result as output.json
 """
 
 import json
-import datetime
 import yfinance as yf
+from datetime import datetime
 
 
 def fetch_market_data(tickers: list[str]) -> dict:
