@@ -2,8 +2,8 @@ name: Update Market Data
 
 on:
   schedule:
-    # Runs every Monday at 10:00 UTC
-    - cron: "0 10 * * 1"
+    # Runs every Saturday at 9:00 AM Singapore time
+    - cron: "0 1 * * 6"
   workflow_dispatch:
 
 permissions:
