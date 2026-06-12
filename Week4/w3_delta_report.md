@@ -61,7 +61,6 @@ Each execution generates (or overwrites) `output.json` with the following struct
 ```bash
 # Clone the repository
 git clone https://github.com/<your-org>/<your-repo>.git
-cd <your-repo>
 
 # Install the only dependency
 pip install yfinance
@@ -77,7 +76,33 @@ After the script completes you will see:
 
 ```
 Fetching market data …
-Data collected: {'date': '2025-06-12', 'SPY': 538.72, 'QQQ': 462.15, 'IWM': 201.34}
+Data collected: {
+  "date": "2026-06-12",
+  "SPY": {
+    "close": 737.76,
+    "weekly_change_pct": -2.6
+  },
+  "QQQ": {
+    "close": 717.12,
+    "weekly_change_pct": -3.2
+  },
+  "IWM": {
+    "close": 290.41,
+    "weekly_change_pct": -0.5
+  },
+  "XLK": {
+    "close": 183.21,
+    "weekly_change_pct": -5.2
+  },
+  "XLU": {
+    "close": 44.05,
+    "weekly_change_pct": 0.3
+  },
+  "XLV": {
+    "close": 154.09,
+    "weekly_change_pct": 1.3
+  }
+}
 [OK] output written to 'output.json'
 ```
 
