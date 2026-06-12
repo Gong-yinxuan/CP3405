@@ -23,7 +23,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run data pipeline
-        run: python fetch_market_data.py
+        run: python src/data_collector.py
 
       - name: Commit and push output.json
         run: |
