@@ -1,0 +1,50 @@
+# Week 4 Market Prediction Brief
+
+## 1. WEEKLY REGIME
+
+**Risk-on recovery with elevated volatility.**
+
+The dominant regime is still bullish, but not cleanly aggressive. Technicals and macro support risk assets, while almanac factors warn of volatility.
+
+## 2. INDEX OUTLOOK
+
+| Index   |            Direction |    Estimated Range | Key Reason                                                      |
+| ------- | -------------------: | -----------------: | --------------------------------------------------------------- |
+| **SPX** |     Slightly bullish | **+0.3% to +1.2%** | Bullish structure remains intact above key moving averages.     |
+| **NDX** |              Bullish | **+0.8% to +2.0%** | Strong momentum and Technology leadership support continuation. |
+| **IWM** | Bullish but volatile | **+0.5% to +2.5%** | Small-cap outperformance suggests improving breadth.            |
+
+## 3. SECTOR LEADERSHIP
+
+**Leading sector:** Technology
+**Lagging sector:** Utilities
+
+Technology leadership matters because XLK outperformed strongly at **+2.50%**, supporting the Nasdaq-led risk-on thesis. Utilities lagging at **+0.40%** suggests the market is not rotating defensively yet.
+
+## 4. CORE SYNTHESIS MATRIX
+
+| Evidence Leg  | Signal           | Alignment                                   |
+| ------------- | ---------------- | ------------------------------------------- |
+| **Technical** | Bullish          | Strongly supports thesis                    |
+| **Macro**     | Slightly bullish | Supports thesis, but with event risk        |
+| **Almanac**   | Volatile risk-on | Partially supports, but warns of turbulence |
+
+**Convergence:** Technical strength, falling yields, weaker USD, declining oil, and stronger IWM breadth all support risk-on continuation.
+
+**Conflict:** Almanac seasonality, FOMC, options expiry, and compressed trading week create volatility risk.
+
+## 5. TOP SUPPORTING REASON
+
+The strongest evidence is **technical breadth improvement**, especially IWM outperforming at **+4.00%**, while SPX and NDX remain structurally bullish.
+
+## 6. TOP CONTRADICTION / RISK
+
+The biggest threat is **event-driven volatility** from Retail Sales, FOMC, BoE, BoJ, and options expiry.
+
+## 7. INVALIDATION CONDITION
+
+The thesis is invalidated if major support zones fail, especially if SPX loses its bullish EMA structure or NDX breaks below the stated **29,200 trendline support**.
+
+## 8. TONE / CAVEAT LANGUAGE
+
+Positioning should be **constructively bullish but not aggressive**. The evidence supports upside continuation, but the week should be treated as a headline-sensitive volatility window.

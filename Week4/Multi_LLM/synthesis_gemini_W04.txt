@@ -1,0 +1,110 @@
+===============================================================================
+               CP3405 DT3 MARKET INTELLIGENCE: WEEK 4 PREDICTION BRIEF
+===============================================================================
+
+[WEEKLY REGIME]
+Dominant Regime: Risk-On Recovery with High-Volatility Overhead
+Characteristics: Expanding market breadth and significant small-cap 
+                 outperformance operating under an environment of heightened 
+                 headline/liquidity risk due to heavy central bank scheduling 
+                 and concentrated derivatives expiration.
+
+-------------------------------------------------------------------------------
+[INDEX OUTLOOK]
+-------------------------------------------------------------------------------
+* S&P 500 (SPX)
+  - Direction:         Bullish Continuation / Upside
+  - Estimated % Move:  +0.50% to +1.20%
+  - Key Reason:        Structural preservation of the Zone 1 Bullish layout, 
+                       with price action sustaining above the short-term 
+                       8 EMA and 21 EMA support lines.
+
+* Nasdaq 100 (NDX)
+  - Direction:         Bullish Continuation / Upside
+  - Estimated % Move:  +1.00% to +2.00%
+  - Key Reason:        Strong underlying momentum backed by a +2.30% weekly 
+                       gain in the QQQ proxy while maintaining structural 
+                       integrity above the 29,200 trendline support.
+
+* Russell 2000 (IWM)
+  - Direction:         Bullish Outperformance
+  - Estimated % Move:  +2.00% to +3.50%
+  - Key Reason:        Distinct leading momentum established by a +4.00% surge 
+                       this week, demonstrating an aggressive expansion in 
+                       broad market participation and capital rotation.
+
+-------------------------------------------------------------------------------
+[SECTOR LEADERSHIP]
+-------------------------------------------------------------------------------
+* Leading Sector: Technology (XLK) [+2.50%]
+  - Driven by robust tech-heavy index momentum (QQQ +2.30%) and a structurally 
+    intact NDX backdrop.
+    
+* Lagging Sector: Utilities (XLU) [+0.40%]
+  - Muted relative performance as capital rotates out of defensive sectors and 
+    pours into high-beta equities and small-caps.
+    
+* Why Leadership Matters This Week:
+  - The leadership profile confirms genuine risk appetite. Capital is not 
+    seeking shelter in defensive sectors like Utilities (+0.40%) or Healthcare 
+    (+0.50%); instead, it is actively pushing into Tech and Small-caps. This 
+    proves the technical structure is backed by structural risk-on allocation 
+    rather than passive short-covering.
+
+-------------------------------------------------------------------------------
+[CORE SYNTHESIS MATRIX]
+-------------------------------------------------------------------------------
+* Technical (R5) | Bias: Bullish (High Confidence)
+  - Alignment Validation: ALIGNED / CONVERGENT. Serves as the primary anchor 
+    for the weekly outlook. Price action stays securely above key EMAs and 
+    trendlines with accelerating broad-market breadth.
+
+* Macro (R4)      | Bias: Slightly Bullish (Medium-High Confidence)
+  - Alignment Validation: PARTIALLY ALIGNED. Macro tailwinds from a weakening 
+    USD, declining oil prices, easing US-Iran geopolitical tensions, and a 
+    97.4% Fed hold probability support risk assets, but heavy calendar clustering 
+    introduces headline risk.
+
+* Almanac (R3)    | Bias: Volatile but Risk-On (Medium Confidence)
+  - Alignment Validation: CONTRADICTORY / FRICTION POINT. June midterm seasonal 
+    weakness introduces historical headwinds, while a compressed holiday trading 
+    week (Juneteenth) and options expiry heighten mechanical volatility.
+
+* Evidence Convergence & Conflict:
+  - Convergence: Technical and Macro structures are highly aligned. Structural 
+    uptrends and key support lines are supported fundamentally by easing macro 
+    pressures (falling yields, weaker USD, lower oil, stable rate policy).
+  - Conflict: Historical Almanac seasonality and structural calendar constraints 
+    clash with immediate price strength. Midterm seasonal drag and a compressed, 
+    headline-dense week threaten to inject sharp, short-term volatility that 
+    temporarily challenges the technical bull layout.
+
+-------------------------------------------------------------------------------
+[RISK & VALIDATION METRICS]
+-------------------------------------------------------------------------------
+* Top Supporting Reason:
+  - Improving Market Breadth via Small-Cap Expansion: The Russell 2000 (IWM) 
+    significantly outperformed other major tracking assets this week with a 
+    +4.00% gain. This aggressive participation of small-caps demonstrates that 
+    the market rally is diversifying beyond mega-cap tech, building a more 
+    resilient, broad-based foundation for recovery.
+
+* Top Contradiction / Risk:
+  - Central Bank & Liquidity Event Clustering: The macroeconomic calendar 
+    presents severe headline and liquidity risks, with US Retail Sales (Wed), 
+    the FOMC Meeting (Thu), Bank of England decision, and Bank of Japan decision 
+    all packed into a single, shortened trading week alongside major options expiry.
+
+* Invalidation Condition:
+  - The bullish thesis is instantly invalidated if the market breaks key technical 
+    baselines: specifically, a structural failure of the S&P 500 below its 8/21 
+    EMA support zones or a clear breach of the 29,200 trendline support on the NDX.
+
+* Tone / Caveat Language:
+  - Positioning should be CALCULATEDLY AGGRESSIVE BUT DEFENSIVELY STRUCTURED. 
+    While the underlying technical current is indisputably bullish, the 
+    convergence of mid-June seasonal weakness and massive central bank execution 
+    parameters means traders must expect sudden, erratic intraday volatility. 
+    Protect trailing profits on equity longs and do not chase overextended legs 
+    ahead of Thursday's FOMC decision.
+===============================================================================
