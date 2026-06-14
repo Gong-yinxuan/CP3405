@@ -21,17 +21,19 @@ Week 4 introduces the team's **first software increment**, automating market dat
 
 ### Implemented Features
 
-✅ Automated market data collection
+Automated market data collection
 
-✅ GitHub Actions workflow
+GitHub Actions workflow
 
-✅ JSON structured output
+JSON structured output
 
-✅ W3 Delta Report (prediction vs actual)
+W3 Delta Report (prediction vs actual)
 
-✅ Multi-model LLM synthesis
+3 Agents Output
 
-✅ Sector expansion (minimum 3 S&P sectors)
+4 LLM Model
+
+Prediction file
 
 
 ## Week 4 Automation
