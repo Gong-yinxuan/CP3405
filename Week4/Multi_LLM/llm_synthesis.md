@@ -4,17 +4,17 @@
 
 ## Comparison Table
 
-| Dimension          | Claude           | ChatGPT          | Gemini                | DeepSeek             |
-| ------------------ | ---------------- | ---------------- | --------------------- | -------------------- |
-| **Weekly Regime**  | Risk-On Recovery | Risk-On Recovery | Bullish w/ Volatility | Risk-On Recovery     |
-| **Confidence**     | Medium-High      | Medium-High      | Medium-High           | High                 |
-| **SPX Range**      | +0.3% → +1.0%    | +0.3% → +1.2%    | +1.0% → +2.0%         | +0.5% → +1.2%        |
-| **NDX Range**      | +0.8% → +2.5%    | +0.8% → +2.0%    | +1.5% → +3.0%         | +1.0% → +2.0%        |
-| **IWM Range**      | +3.0% → +5.0%    | +0.5% → +2.5%    | +2.0% → +4.0%         | +2.0% → +3.5%        |
-| **Leading Sector** | XLK              | XLK              | XLK                   | XLK                  |
-| **Lagging Sector** | XLU              | XLU              | XLU                   | XLU                  |
-| **Key Risk**       | FOMC             | Event Risk       | Hawkish Fed           | Central Banks        |
-| **Tone**           | Cautious         | Constructive     | Aggressive-Hedged     | Defensive-Aggressive |
+| Dimension | Claude | ChatGPT | Gemini | DeepSeek |
+|---|---|---|---|---|
+| **Weekly Regime** | Risk-On Recovery<br>with Heightened Volatility | Risk-On Recovery<br>with Elevated Volatility | High-Volatility Regime<br>with Bullish Bias | Risk-On Recovery<br>with High-Volatility |
+| **Confidence Score** | Medium–High | Medium–High | Medium–High | High |
+| **SPX % estimate** | +0.3% to +1.0% | +0.3% to +1.2% | +1.0% to +2.0% | +0.5% to +1.2% |
+| **NDX % estimate** | +0.8% to +2.5% | +0.8% to +2.0% | +1.5% to +3.0% | +1.0% to +2.0% |
+| **IWM % estimate** | +3.0% to +5.0% | +0.5% to +2.5% | +2.0% to +4.0% | +2.0% to +3.5% |
+| **Top supporting reason** | Strong technical structure<br>and breadth improvement | Technical breadth improvement<br>via IWM outperformance | Technicals and<br>breadth expansion | Small-cap breadth expansion<br>and market participation |
+| **Top contradiction cited** | Central-bank and<br>FOMC volatility | Event-driven volatility<br>from major catalysts | Hawkish Federal Reserve<br>surprise | Central-bank event clustering<br>and liquidity risk |
+| **Invalidation condition** | Breakdown below<br>key EMA support | Major SPX/NDX<br>support failure | SPX below 8 EMA<br>and IWM below 285 | NDX below 29,200<br>or SPX EMA failure |
+| **Tone / caveat language** | Constructively cautious | Constructively bullish<br>but not aggressive | Aggressive<br>but hedged | Calculatedly aggressive<br>but defensively structured |
 
 ---
 
