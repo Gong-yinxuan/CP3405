@@ -1,84 +1,52 @@
-> Score each dimension independently as a team **before** writing the override paragraph.
-> Scale: −2 (strongly bearish) → 0 (neutral) → +2 (strongly bullish)
+## Five-Dimension Scoring
+
+| Dimension                     | Team Score | AI Consensus | Difference |
+| ----------------------------- | ---------: | -----------: | ---------: |
+| Macro / News Weight           |         +1 |           +1 |          0 |
+| Technical Structure           |         +2 |           +2 |          0 |
+| Almanac Seasonal Weight       |         -1 |           -1 |          0 |
+| AI Model Agreement Quality    |         +2 |           +2 |          0 |
+| Wild Card / Human Observation |         -1 |            0 |         -1 |
+| **TOTAL**                     |     **+3** |       **+4** |     **-1** |
 
 ---
 
-## Five-Dimension Scoring
-
-| Dimension | Team Score | AI Consensus | Difference |
-|---|---|---|---|
-| Macro / News Weight | ___ | ___ | ___ |
-| Technical Structure | ___ | ___ | ___ |
-| Almanac Seasonal Weight | ___ | ___ | ___ |
-| AI Model Agreement Quality | ___ | ___ | ___ |
-| Wild Card / Human Observation | ___ | ___ | ___ |
-| **TOTAL** | **___** | **___** | |
-
 ## Score → Final Direction
 
-| Range | Call |
-|---|---|
-| +6 to +10 | Bullish Override |
-| +2 to +5 | Leans Neutral-Bullish |
-| −1 to +1 | Neutral / Uncertain |
-| −5 to −2 | Leans Neutral-Bearish |
-| −10 to −6 | Bearish Override |
+| Range     | Call                  |
+| --------- | --------------------- |
+| +6 to +10 | Bullish Override      |
+| +2 to +5  | Leans Neutral-Bullish |
+| −1 to +1  | Neutral / Uncertain   |
+| −5 to −2  | Leans Neutral-Bearish |
+| −10 to −6 | Bearish Override      |
 
-**Our total: ___ → _______________**
+**Our total: +3 → Leans Neutral-Bullish**
 
 ---
 
 ## Dimension Justifications
-*(Only required where team score differs from AI consensus)*
 
-**Macro / News Weight (Team: ___ vs AI: ___):**
-_______________
+### Wild Card — Human Observation
 
-**Technical Structure (Team: ___ vs AI: ___):**
-_______________
+**(Team: -1 vs AI: 0)**
 
-**Almanac Seasonal Weight (Team: ___ vs AI: ___):**
-_______________
-
-**AI Model Agreement Quality (Team: ___ vs AI: ___):**
-_______________
-
-**Wild Card — what did our team observe that no AI raised?**
-_______________
-
----
-
-## Override Paragraph
-
-> Write this only if the team's final call differs from AI consensus.
-
-The AI models collectively underweighted three factors our team considers significant this week:
-
-1. _______________
-
-2. _______________
-
-3. *(Wild Card)* _______________
-
-For these reasons, our team adjusts the final regime call from **[AI consensus]** to **[Team call]**, and our S&P 500 % range from **[AI range]** to **[Team range]**.
-
-*Note: This override may be wrong. We document our reasoning so we can learn from the outcome either way.*
+The team observed a meaningful contradiction between broad market strength and Technology sector weakness. While overall indices recovered strongly, XLK (Technology) underperformed the broader market during the closing week. Since Nasdaq leadership is normally supported by strong technology participation, the team applied a small caution penalty to reduce overconfidence in the bullish thesis.
 
 ---
 
 ## Final Prediction
 
-| Asset | Direction | % Range | Confidence |
-|---|---|---|---|
-| SPX (S&P 500) | Up / Down / Flat | ___% to ___% | Low / Medium / High |
-| NDX (Nasdaq 100) | Up / Down / Flat | ___% to ___% | Low / Medium / High |
-| IWM (Russell 2000) | Up / Down / Flat | ___% to ___% | Low / Medium / High |
+| Asset                  | Direction |        % Range | Confidence  |
+| ---------------------- | --------- | -------------: | ----------- |
+| **SPX (S&P 500)**      | Up        | +0.3% to +1.2% | Medium      |
+| **NDX (Nasdaq 100)**   | Up        | +0.8% to +2.0% | Medium      |
+| **IWM (Russell 2000)** | Up        | +1.5% to +3.5% | Medium–High |
 
-**Leading sector this week:** _______________
+**Leading sector this week:** Financials (XLF)
 
-**Lagging sector this week:** _______________
+**Lagging sector this week:** Communication Services (XLC)
 
----
 
 ## Pre-Submission Checklist
 
