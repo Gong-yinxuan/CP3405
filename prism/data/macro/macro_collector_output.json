@@ -1,0 +1,93 @@
+{
+    "generated_at": "2026-06-19T01:33:16Z",
+    "collector": "Macro Collector",
+    "agent_input_for": "Macro Agent",
+    "data_source": "Yahoo Finance via yfinance",
+    "note": "This collector only gathers automatic macro market data. Fed probability, earnings, economic calendar, and news are not collected here.",
+    "macro_market_data": {
+        "US_10Y_YIELD": {
+            "symbol": "US_10Y_YIELD",
+            "yahoo_ticker": "^TNX",
+            "name": "US 10-Year Treasury Yield",
+            "category": "yield",
+            "latest_trading_date": "2026-06-18",
+            "close": 0.4451,
+            "weekly_change_pct": -2.22,
+            "change_5d": -0.0101,
+            "direction_5d": "Down",
+            "history_file": "macro/history/US_10Y_YIELD.json"
+        },
+        "US_30Y_YIELD": {
+            "symbol": "US_30Y_YIELD",
+            "yahoo_ticker": "^TYX",
+            "name": "US 30-Year Treasury Yield",
+            "category": "yield",
+            "latest_trading_date": "2026-06-18",
+            "close": 0.4901,
+            "weekly_change_pct": -2.45,
+            "change_5d": -0.0123,
+            "direction_5d": "Down",
+            "history_file": "macro/history/US_30Y_YIELD.json"
+        },
+        "WTI": {
+            "symbol": "WTI",
+            "yahoo_ticker": "CL=F",
+            "name": "Crude Oil WTI Futures",
+            "category": "commodity",
+            "latest_trading_date": "2026-06-18",
+            "close": 75.33,
+            "weekly_change_pct": -14.11,
+            "change_5d": -12.38,
+            "direction_5d": "Down",
+            "history_file": "macro/history/WTI.json"
+        },
+        "GOLD": {
+            "symbol": "GOLD",
+            "yahoo_ticker": "GC=F",
+            "name": "Gold Futures",
+            "category": "commodity",
+            "latest_trading_date": "2026-06-18",
+            "close": 4206.0,
+            "weekly_change_pct": 2.83,
+            "change_5d": 115.7,
+            "direction_5d": "Up",
+            "history_file": "macro/history/GOLD.json"
+        },
+        "DXY": {
+            "symbol": "DXY",
+            "yahoo_ticker": "DX-Y.NYB",
+            "name": "US Dollar Index",
+            "category": "currency_index",
+            "latest_trading_date": "2026-06-18",
+            "close": 100.793,
+            "weekly_change_pct": 0.93,
+            "change_5d": 0.933,
+            "direction_5d": "Up",
+            "history_file": "macro/history/DXY.json"
+        },
+        "VIX": {
+            "symbol": "VIX",
+            "yahoo_ticker": "^VIX",
+            "name": "CBOE Volatility Index",
+            "category": "volatility",
+            "latest_trading_date": "2026-06-18",
+            "close": 16.4,
+            "weekly_change_pct": -15.64,
+            "change_5d": -3.04,
+            "direction_5d": "Down",
+            "history_file": "macro/history/VIX.json"
+        },
+        "BTC": {
+            "symbol": "BTC",
+            "yahoo_ticker": "BTC-USD",
+            "name": "Bitcoin USD",
+            "category": "crypto",
+            "latest_trading_date": "2026-06-19",
+            "close": 62836.0898,
+            "weekly_change_pct": -1.11,
+            "change_5d": -707.1094,
+            "direction_5d": "Down",
+            "history_file": "macro/history/BTC.json"
+        }
+    }
+}
