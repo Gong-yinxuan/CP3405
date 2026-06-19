@@ -2,8 +2,9 @@ name: Update Market Data
 
 on:
   schedule:
-    # Runs every Friday at 22:00 AM Singapore time
-    - cron: "0 14 * * 5"
+    # Saturday 5:00 AM Singapore time
+    - cron: "0 21 * * 5"
+
   workflow_dispatch:
 
 permissions:
@@ -27,14 +28,26 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r prism/requirements.txt
 
-      - name: Run data pipeline
+      - name: Run main market data collector
         run: |
           python prism/src/data_collector.py
 
-      - name: Commit and push output.json
+      - name: Run technical collector
+        run: |
+          python prism/src/collectors/technical_collector.py
+
+      - name: Run macro collector
+        run: |
+          python prism/src/collectors/macro_collector.py
+
+      - name: Run almanac collector
+        run: |
+          python prism/src/collectors/almanac_collector.py
+
+      - name: Commit and push generated data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add prism/data/output.json
-          git diff --cached --quiet || git commit -m "chore: update market data $(date +'%Y-%m-%d')"
+          git add prism/data
+          git diff --cached --quiet || git commit -m "chore: update Prism agent data $(date +'%Y-%m-%d')"
           git push
