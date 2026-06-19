@@ -1,0 +1,27 @@
+{
+  "date": "2026-06-20",
+  "SPY": {
+    "close": 746.74,
+    "weekly_change_pct": 1.5
+  },
+  "QQQ": {
+    "close": 740.62,
+    "weekly_change_pct": 3.3
+  },
+  "IWM": {
+    "close": 295.59,
+    "weekly_change_pct": 2.0
+  },
+  "XLK": {
+    "close": 191.44,
+    "weekly_change_pct": 4.5
+  },
+  "XLU": {
+    "close": 44.76,
+    "weekly_change_pct": 1.6
+  },
+  "XLV": {
+    "close": 149.4,
+    "weekly_change_pct": -3.0
+  }
+}
