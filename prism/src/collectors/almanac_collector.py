@@ -11,6 +11,7 @@ No config file.
 No manual calendar/news interpretation.
 """
 
+import math
 import json
 from datetime import date, datetime, timezone, timedelta
 from pathlib import Path
@@ -45,6 +46,12 @@ def save_json(data: dict | list, path: Path) -> None:
 
     print(f"[OK] Saved {path}")
 
+def is_valid_number(value) -> bool:
+    try:
+        value = float(value)
+        return not math.isnan(value) and not math.isinf(value)
+    except Exception:
+        return False
 
 def fetch_history(ticker: str, period: str = "1mo") -> list[dict]:
     asset = yf.Ticker(ticker)
@@ -56,10 +63,19 @@ def fetch_history(ticker: str, period: str = "1mo") -> list[dict]:
     records = []
 
     for date_index, row in hist.iterrows():
+        close = row["Close"]
+
+        if not is_valid_number(close):
+            print(f"[WARN] Skipping invalid row for {ticker} on {date_index.strftime('%Y-%m-%d')}")
+            continue
+
         records.append({
             "date": date_index.strftime("%Y-%m-%d"),
-            "close": round(float(row["Close"]), 4)
+            "close": round(float(close), 4)
         })
+
+    if not records:
+        raise ValueError(f"No valid price rows returned for {ticker}")
 
     return records
 
@@ -70,6 +86,9 @@ def calculate_weekly_change(history: list[dict]) -> float | None:
 
     latest_close = history[-1]["close"]
     previous_close = history[-6]["close"]
+
+    if not is_valid_number(latest_close) or not is_valid_number(previous_close):
+        return None
 
     if previous_close == 0:
         return None
@@ -206,11 +225,11 @@ def rank_sectors(sectors: dict) -> dict:
     for ticker, data in sectors.items():
         change = data.get("weekly_change_pct")
 
-        if isinstance(change, (int, float)):
+        if is_valid_number(change):
             valid.append({
                 "ticker": ticker,
                 "sector": data["sector"],
-                "weekly_change_pct": change
+                "weekly_change_pct": float(change)
             })
 
     sorted_sectors = sorted(
