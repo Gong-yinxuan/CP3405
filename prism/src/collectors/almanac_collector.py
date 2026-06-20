@@ -42,7 +42,7 @@ def save_json(data: dict | list, path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
 
     with open(path, "w", encoding="utf-8") as file:
-        json.dump(data, file, indent=4)
+        json.dump(data, file, indent=4, allow_nan=False)
 
     print(f"[OK] Saved {path}")
 
