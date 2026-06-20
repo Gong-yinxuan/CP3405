@@ -13,6 +13,7 @@ Output:
 - prism/data/technical/history/IWM.json
 """
 
+import math
 import json
 from datetime import datetime, timezone
 from pathlib import Path
@@ -49,6 +50,14 @@ def save_json(data: dict | list, path: Path) -> None:
     print(f"[OK] Saved {path}")
 
 
+def is_valid_number(value) -> bool:
+    try:
+        value = float(value)
+        return not math.isnan(value) and not math.isinf(value)
+    except Exception:
+        return False
+
+
 def fetch_history(ticker: str, period: str = "6mo") -> list[dict]:
     asset = yf.Ticker(ticker)
     hist = asset.history(period=period, interval="1d")
@@ -59,6 +68,21 @@ def fetch_history(ticker: str, period: str = "6mo") -> list[dict]:
     records = []
 
     for date_index, row in hist.iterrows():
+        open_price = row["Open"]
+        high = row["High"]
+        low = row["Low"]
+        close = row["Close"]
+
+        # Skip broken Yahoo rows
+        if not (
+            is_valid_number(open_price)
+            and is_valid_number(high)
+            and is_valid_number(low)
+            and is_valid_number(close)
+        ):
+            print(f"[WARN] Skipping invalid row for {ticker} on {date_index.strftime('%Y-%m-%d')}")
+            continue
+
         volume = row.get("Volume", 0)
 
         try:
@@ -68,12 +92,15 @@ def fetch_history(ticker: str, period: str = "6mo") -> list[dict]:
 
         records.append({
             "date": date_index.strftime("%Y-%m-%d"),
-            "open": round(float(row["Open"]), 2),
-            "high": round(float(row["High"]), 2),
-            "low": round(float(row["Low"]), 2),
-            "close": round(float(row["Close"]), 2),
+            "open": round(float(open_price), 2),
+            "high": round(float(high), 2),
+            "low": round(float(low), 2),
+            "close": round(float(close), 2),
             "volume": volume
         })
+
+    if not records:
+        raise ValueError(f"No valid price rows returned for {ticker}")
 
     return records
 
