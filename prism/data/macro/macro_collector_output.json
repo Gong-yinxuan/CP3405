@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-06-19T22:04:39Z",
+    "generated_at": "2026-06-20T02:43:52Z",
     "collector": "Macro Collector",
     "agent_input_for": "Macro Agent",
     "data_source": "Yahoo Finance via yfinance",
@@ -60,8 +60,8 @@
             "category": "currency_index",
             "latest_trading_date": "2026-06-19",
             "close": 100.849,
-            "weekly_change_pct": 1.1,
-            "change_5d": 1.099,
+            "weekly_change_pct": 0.99,
+            "change_5d": 0.989,
             "direction_5d": "Up",
             "history_file": "macro/history/DXY.json"
         },
@@ -72,8 +72,8 @@
             "category": "volatility",
             "latest_trading_date": "2026-06-19",
             "close": 16.78,
-            "weekly_change_pct": -5.09,
-            "change_5d": -0.9,
+            "weekly_change_pct": -13.68,
+            "change_5d": -2.66,
             "direction_5d": "Down",
             "history_file": "macro/history/VIX.json"
         },
@@ -82,10 +82,10 @@
             "yahoo_ticker": "BTC-USD",
             "name": "Bitcoin USD",
             "category": "crypto",
-            "latest_trading_date": "2026-06-19",
-            "close": 62998.2891,
-            "weekly_change_pct": -2.21,
-            "change_5d": -1423.0351,
+            "latest_trading_date": "2026-06-20",
+            "close": 63331.6797,
+            "weekly_change_pct": -1.69,
+            "change_5d": -1089.6445,
             "direction_5d": "Down",
             "history_file": "macro/history/BTC.json"
         }
