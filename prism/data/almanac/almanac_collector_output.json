@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-06-20T02:43:55Z",
+    "generated_at": "2026-06-20T09:19:19Z",
     "collector": "Almanac Collector",
     "agent_input_for": "Almanac Agent",
     "data_source": "Yahoo Finance via yfinance + automatic date rules",
@@ -71,17 +71,17 @@
         "XLY": {
             "ticker": "XLY",
             "sector": "Consumer Discretionary",
-            "latest_trading_date": "2026-06-18",
-            "close": NaN,
-            "weekly_change_pct": NaN,
+            "latest_trading_date": "2026-06-17",
+            "close": 115.49,
+            "weekly_change_pct": 1.76,
             "history_file": "almanac/sector_history/XLY.json"
         },
         "XLP": {
             "ticker": "XLP",
             "sector": "Consumer Staples",
-            "latest_trading_date": "2026-06-18",
-            "close": NaN,
-            "weekly_change_pct": NaN,
+            "latest_trading_date": "2026-06-17",
+            "close": 83.68,
+            "weekly_change_pct": -2.12,
             "history_file": "almanac/sector_history/XLP.json"
         },
         "XLU": {
@@ -95,17 +95,17 @@
         "XLC": {
             "ticker": "XLC",
             "sector": "Communication Services",
-            "latest_trading_date": "2026-06-18",
-            "close": NaN,
-            "weekly_change_pct": NaN,
+            "latest_trading_date": "2026-06-17",
+            "close": 109.2,
+            "weekly_change_pct": -1.63,
             "history_file": "almanac/sector_history/XLC.json"
         },
         "XLRE": {
             "ticker": "XLRE",
             "sector": "Real Estate",
-            "latest_trading_date": "2026-06-18",
-            "close": NaN,
-            "weekly_change_pct": NaN,
+            "latest_trading_date": "2026-06-17",
+            "close": 43.97,
+            "weekly_change_pct": -2.27,
             "history_file": "almanac/sector_history/XLRE.json"
         }
     },
@@ -129,19 +129,19 @@
         ],
         "lagging_sectors": [
             {
+                "ticker": "XLE",
+                "sector": "Energy",
+                "weekly_change_pct": -5.86
+            },
+            {
+                "ticker": "XLV",
+                "sector": "Healthcare",
+                "weekly_change_pct": -3.04
+            },
+            {
                 "ticker": "XLRE",
                 "sector": "Real Estate",
-                "weekly_change_pct": NaN
-            },
-            {
-                "ticker": "XLC",
-                "sector": "Communication Services",
-                "weekly_change_pct": NaN
-            },
-            {
-                "ticker": "XLU",
-                "sector": "Utilities",
-                "weekly_change_pct": 1.61
+                "weekly_change_pct": -2.27
             }
         ]
     }
