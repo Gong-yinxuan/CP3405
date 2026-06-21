@@ -74,7 +74,7 @@
 
 > Must be concrete and actionable — not "communicate better." Pick exactly one.
 
-**The change:** Automate the prediction pipeline — build a single script/workflow (triggered via GitHub Actions) that pulls the committed Almanac, Macro, and Technical outputs, calls the LLM synthesis step automatically, accepts the Human Score / Wild Card values as a structured input file (instead of a manual paste-in), and generates `prediction_WXX.json` automatically with minimal manual steps.
+**The change:** Reduce the automation scope for Sprint 6 to a single, achievable step: define and implement the structured input schema that lets Human Score / Wild Card values feed into prediction_WXX.json, rather than attempting full end-to-end pipeline automation in one sprint. Given exam schedules and reduced availability of the members working on this part, Sprint 6 will treat automation as an incremental rollout — starting with this one connection point — instead of a single big push.
 
 **Owner of this change:** R9 (with support from R6 and R7 on defining the Human Score input schema)
 
