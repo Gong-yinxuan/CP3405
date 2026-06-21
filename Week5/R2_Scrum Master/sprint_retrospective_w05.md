@@ -16,8 +16,8 @@
 
 | # | Criteria | Status |
 |---|---|---|
-| 1 | Market data collected and stored in structured format | Met / Partial / Not Met |
-| 2 | Almanac (R3), Macro (R4), Technical (R5) outputs committed before LLM synthesis begins | Met / Partial / Not Met |
+| 1 | Market data collected and stored in structured format | Met |
+| 2 | Almanac (R3), Macro (R4), Technical (R5) outputs committed before LLM synthesis begins | Met |
 | 3 | ChatGPT, Gemini, DeepSeek responses saved and committed by R8 | Met / Partial / Not Met |
 | 4 | Human Score / Wild Card analysis included in final prediction process | Met / Partial / Not Met |
 | 5 | `prediction_W25.json` generated successfully with directional predictions, confidence, and Human Score input | Met / Partial / Not Met |
