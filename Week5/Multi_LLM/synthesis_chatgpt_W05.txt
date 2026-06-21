@@ -1,1 +1,53 @@
+# Week 5 Market Prediction Brief
+
+## 1. WEEKLY REGIME
+
+**Constructively bullish with elevated volatility.**
+
+The dominant regime remains bullish, although the rally is becoming more selective. Technical strength and improving market breadth support risk assets, while higher-rate expectations and crowded technology positioning increase volatility risk.
+
+## 2. INDEX OUTLOOK
+
+| Index   |            Direction |    Estimated Range | Key Reason                                                                  |
+| ------- | -------------------: | -----------------: | --------------------------------------------------------------------------- |
+| **SPX** |     Slightly bullish | **-0.5% to +1.5%** | Uptrend remains intact above key moving averages despite macro uncertainty. |
+| **NDX** |              Bullish |  **0.0% to +2.5%** | AI and Technology leadership continue to attract institutional flows.       |
+| **IWM** | Bullish but volatile | **-1.0% to +3.0%** | Improving breadth and cyclical participation support small caps.            |
+
+## 3. SECTOR LEADERSHIP
+
+**Leading sector:** Technology
+
+**Lagging sector:** Utilities
+
+Technology leadership remains important because AI-related stocks continue to drive index performance and investor risk appetite. Utilities lagging suggests investors are still favoring growth and cyclical exposure rather than rotating aggressively into defensive assets.
+
+## 4. CORE SYNTHESIS MATRIX
+
+| Evidence Leg  | Signal           | Alignment                                   |
+| ------------- | ---------------- | ------------------------------------------- |
+| **Technical** | Bullish          | Strongly supports thesis                    |
+| **Macro**     | Slightly bullish | Supports thesis, but with rate risk         |
+| **Sentiment** | Bullish          | Supports continued risk appetite            |
+| **Almanac**   | Volatile risk-on | Partially supports, but warns of turbulence |
+
+**Convergence:** Positive market breadth, resilient economic data, continued technology leadership, and stable volatility conditions support further upside.
+
+**Conflict:** Higher Treasury yields, hawkish central-bank messaging, and stretched technology valuations increase the probability of pullbacks and rotation.
+
+## 5. TOP SUPPORTING REASON
+
+The strongest evidence is **broadening participation beyond mega-cap technology**, with improving small-cap and cyclical sector performance supporting a healthier bullish structure.
+
+## 6. TOP CONTRADICTION / RISK
+
+The biggest threat is **higher-for-longer interest-rate expectations**, which could pressure equity valuations if bond yields move materially higher.
+
+## 7. INVALIDATION CONDITION
+
+The thesis is invalidated if major support levels fail, particularly if SPX closes below its 50-day moving average, market breadth deteriorates significantly, or NDX loses its primary trend support structure.
+
+## 8. TONE / CAVEAT LANGUAGE
+
+Positioning should be **constructively bullish but selective**. The evidence continues to support upside continuation, but the market should be treated as a volatility-sensitive environment where sharp rotations and headline-driven pullbacks remain possible.
 
