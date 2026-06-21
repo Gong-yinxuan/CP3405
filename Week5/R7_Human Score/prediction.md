@@ -1,4 +1,4 @@
-# Team [__] – Weekly Prediction Submission
+# Team [05] – Weekly Prediction Submission
 
 **Submission time**: 2026-06-21 17:30
 **Forecast week**: 2026-06-22 to 2026-06-26

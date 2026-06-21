@@ -12,7 +12,7 @@
 | Almanac Seasonal Weight | 0 | 0 | 0 |
 | AI Model Agreement Quality | +1 | +1 | 0 |
 | Wild Card / Human Observation | +2 | -1 | +3 |
-| **TOTAL** | **+6** | **+1** | |
+| **TOTAL** | **+6** | **+1** | **+5** |
 
 ## Score → Final Direction
 
