@@ -49,3 +49,25 @@ This thesis will be proven wrong if Micron misses forward outlook metrics on Wed
 
 **PLAIN ENGLISH**: <br>
 We expect big tech and the general stock market to climb this week because of excitement over AI chip sales and healthy shipping numbers. However, small companies and bonds will likely hold still or struggle because everyone is waiting to see the big official inflation report coming out on Friday morning.
+
+## Repo evidence sources checked
+
+### External Market Intelligence Inputs
+* **Broad Market Outlook & Financial News Feed:**
+    * [IG Market News Analysis (22 June 2026)](https://www.ig.com/sg/news-and-trade-ideas/week-ahead--22-june-2026-260619)
+* **Global Economic Calendar Data:**
+    * [LiteFinance Macro Event Calendar](https://www.litefinance.org/blog/analysts-opinions/weekly-economic-calendar-for-22062026-28062026/)
+* **Corporate Earnings & Institutional Community Stream:**
+    * [Moomoo Earnings Dashboard](https://www.moomoo.com/community/feed/next-week-s-earnings-and-economic-calendar-june-22-26-116776849833990)
+
+### Institutional Architecture & Technical Constraints
+* **Course Assignment Engineering Guidelines:**
+    * [CP3405 Course Roadmap](https://dt3-tr2-26-market-intelligence.pages.dev/roadmap/)
+* **System Operations Role Alignment:**
+    * [R7: Human Score Core Manual](https://dt3-tr2-26-market-intelligence.pages.dev/roles/)
+* **Friday Closing Data:**
+    * [W05 Friday Closing Data Log](https://github.com/Gong-yinxuan/CP3405/tree/main/Week5/output.json)
+
+### 👥 Internal Scrum Operational Data (R7 Qualitative Baseline)
+* **Team Consensus & Participation Metrics:**
+    * [Discord Poll Image](https://github.com/Gong-yinxuan/CP3405/tree/main/Week5/R7_Human_Score/Discord_Poll.png)
