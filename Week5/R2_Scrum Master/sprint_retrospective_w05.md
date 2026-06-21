@@ -52,6 +52,7 @@
 | `prediction_W25.json` generation | R6 / R7 | This week, due to exam preparation and some staff's personal reasons, the number of team members responsible for completing the automation task was fewer than the previous week, which resulted in this part not being fully completed.| Yes |
 | Human Score / Wild Card feeding into final JSON | R7 | Manual hand-off between R7's scoring and R6's synthesis step — no defined schema yet for how Human Score values get written into the pipeline output | Yes |
 | End-to-end run with minimal human intervention | R9 | Pipeline still requires manual triggering and manual paste-in of LLM prompts between R3/R4/R5 → R6 → R7 stages — no single script ties the stages together | Yes |
+| Pipeline automation progress slower than planned | R9 | Reduced bandwidth — upcoming exams + fewer members available for this part of the work | Yes (partially - carrying into Sprint 6)
 
 
 ---
@@ -60,6 +61,7 @@
 
 **What went well this sprint?**
 - Individual agent outputs (Almanac, Macro, Technical) are now consistently committed in the agreed format before synthesis starts
+- Team capacity for the automation workstream was lower than expected this sprint due to exam schedules and personal availability — flagged early so Sprint 6 planning can adjust scope accordingly
 
 **What was frustrating or slow?**
 - Connecting Human Score (a team discussion + manual scoring step) into a machine-readable JSON output was harder than expected — it's a human judgment step sitting in the middle of an otherwise automatable pipeline
