@@ -1,6 +1,6 @@
 # Sprint Retrospective — Sprint 5 (Week 05)
 
-**Date:** 21th June 
+**Date:** 21th June <br>
 **Facilitator (R2):** Gong Yinxuan  
 **Present:** R1 ___ · R2 Gong Yinxuan · R3 Noah Jiang · R4 Darwin · R5 ChenJunfei · R6 Eha · R7 Yuet Hei · R9 Ben · R10 Jinrui Wu  
 
