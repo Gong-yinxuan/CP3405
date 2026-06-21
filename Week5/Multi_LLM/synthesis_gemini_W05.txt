@@ -1,1 +1,100 @@
+===============================================================================
+               CP3405 DT3 MARKET INTELLIGENCE: WEEK 5 PREDICTION BRIEF
+===============================================================================
 
+[WEEKLY REGIME]
+Dominant Regime: Low-Volatility Bull / High Dispersion
+Characteristics: Index-level calm driven by aggressive mega-cap tech leadership 
+                 operating under extreme underlying sector dispersion, while 
+                 higher-for-longer Fed policy shifts strain small-cap credit.
+
+-------------------------------------------------------------------------------
+[INDEX OUTLOOK]
+-------------------------------------------------------------------------------
+* S&P 500 (SPX)
+  - Direction:         Moderately Bullish / Consolidation
+  - Estimated % Move:  +0.20% to +1.00%
+  - Key Reason:        Sustained technical structure above the 50-day moving 
+                       average. Expect a consolidation bias between 7,450 and 
+                       7,580 as the market absorbs the hawkish Fed policy shifts.
+
+* Nasdaq 100 (NDX)
+  - Direction:         Bullish Continuation / Tech Leadership
+  - Estimated % Move:  +1.20% to +2.50%
+  - Key Reason:        Accelerating AI infrastructure buildout, structural 
+                       momentum from the Intel/Apple partnership, and strong 
+                       CapEx backing insulate mega-caps from immediate yield pressure.
+
+* Russell 2000 (IWM)
+  - Direction:         Bearish to Neutral Underperformance
+  - Estimated % Move:  -1.50% to +0.50%
+  - Key Reason:        Severe vulnerability to shifting central bank dynamics. 
+                       With Fed officials signaling potential late-2026 rate hikes, 
+                       elevated financing costs cap small-cap structural upside.
+
+-------------------------------------------------------------------------------
+[SECTOR LEADERSHIP]
+-------------------------------------------------------------------------------
+* Leading Sector: Technology (XLK) / Semiconductors
+  - Fuelled by heavy high-beta tech demand, structural corporate execution, 
+    and accelerating corporate infrastructure spending.
+    
+* Lagging Sector: Small-Cap Financials / Regional Banks
+  - Highly compressed by a hawkishly shifting interest rate dot plot and a 
+    surging 2-year US Treasury yield testing fresh multi-month highs.
+    
+* Why Leadership Matters This Week:
+  - Extreme dispersion means the market is behaving as a pure "stock-picker's 
+    arena" (DSPX up to 41.93). Index-level stability is being maintained 
+    almost entirely by concentrated mega-cap tech capital allocation, masking 
+    the systemic margin compression happening in lower-tier, rate-sensitive equities.
+
+-------------------------------------------------------------------------------
+[CORE SYNTHESIS MATRIX]
+-------------------------------------------------------------------------------
+* Technical (R5) | Bias: Bullish (Medium-High Confidence)
+  - Alignment Validation: ALIGNED. Large-cap index price action stays structurally 
+    secure above core moving averages. NDX technical momentum remains the primary 
+    anchor holding the broader macro equity layout intact.
+
+* Macro (R4)      | Bias: Neutral to Bearish (Medium Confidence)
+  - Alignment Validation: FRICTION POINT. The hawkish "Warsh Pivot" completely 
+    removed loose forward guidance, pushing the 2-year yield higher. While mega-cap 
+    balance sheets endure, small-cap borrowing constraints present a macroeconomic drag.
+
+* Almanac (R3)    | Bias: Consolidating / Late-June Neutral (Medium Confidence)
+  - Alignment Validation: PARTIALLY ALIGNED. Late-June historical price action 
+    typically displays digesting behavior following major mid-month options 
+    expirations, tracking closely with the predicted index-level consolidation.
+
+* Evidence Convergence & Conflict:
+  - Convergence: Technical multi-month trends and mega-cap earnings delivery 
+    remain highly convergent, keeping the structural tech bull market safely alive.
+  - Conflict: Fundamental macro interest rate pressures are in severe conflict 
+    with broad equity valuations. High yields and hawkish Fed signaling are directly 
+    clashing with small-cap liquidity, creating a visible fracture in market breadth.
+
+-------------------------------------------------------------------------------
+[RISK & VALIDATION METRICS]
+-------------------------------------------------------------------------------
+* Top Supporting Reason:
+  - Insulated Mega-Cap Balance Sheets: Severe sector dispersion is directing 
+    global liquidity into cash-rich tech monopolies. This thematic safety bid 
+    acts as an effective index cushion, keeping SPX and NDX structurally insulated.
+
+* Top Contradiction / Risk:
+  - Yield-Driven Equity Compression: The 2-year and 10-year Treasury yields 
+    surging on the back of rising PCE expectations threaten to compress equity 
+    risk premiums, potentially triggering sudden multiple contraction if unmitigated.
+
+* Invalidation Condition:
+  - The bullish consolidation thesis is completely invalidated if the S&P 500 
+    registers a weekly close below 7,420, breaking its 50-day moving average, 
+    or if the VIX surges cleanly past 20.00 amid heavy institutional distribution.
+
+* Tone / Caveat Language:
+  - Allocation strategy must be EXTREMELY SELECTIVE AND THEMATICALLY CONCENTRATED. 
+    Do not mistake index-level safety for systemic market health. Prioritize secular 
+    AI/tech leadership with strong balance sheets, hedge against macro rate exposure, 
+    and avoid over-allocating to small-cap indices sensitive to credit tightening.
+===============================================================================
