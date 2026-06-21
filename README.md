@@ -1,4 +1,4 @@
-# PRISM — Week 4 First Software Increment
+# PRISM — Week 5 First Software Increment
 
 ## Project Overview
 
@@ -13,21 +13,17 @@ The system focuses on predicting:
 * **Russell 2000 (IWM)**
 * **S&P 500 sector performance**
 
-Week 4 introduces the team's **first software increment**, automating market data collection and integrating structured AI synthesis.
-
 ---
 
-## Week 4 Deliverables
+## Week 5 Deliverables
 
 ### Implemented Features
 
-Automated market data collection
+Automated market data collection for 3 agent
 
 GitHub Actions workflow
 
 JSON structured output
-
-W3 Delta Report (prediction vs actual)
 
 3 Agents Output
 
@@ -35,61 +31,74 @@ W3 Delta Report (prediction vs actual)
 
 Prediction file
 
-
-## Week 4 Automation
+## Week 5 Automation
 
 ### Automated Market Data Pipeline
 
-The Week 4 automation uses **Yahoo Finance (`yfinance`)** to retrieve market data automatically.
+# Week 5 README — Prism Agent Data Automation
 
-Currently collected assets include:
+## Project
 
-### Index Proxies
+**Prism Market Intelligence System**
+**Sprint:** Week 5 / W05
+**Team:** Team 5
+**Focus:** Agent data automation for Technical, Macro, and Almanac roles
 
-* **SPY** → S&P 500
-* **QQQ** → Nasdaq 100
-* **IWM** → Russell 2000
+---
+
+## 2. What Was Automated This Week
+
+This week, the team added three new automated collectors:
+
+| Collector                | Purpose                                                                           | Output                            |
+| ------------------------ | --------------------------------------------------------------------------------- | --------------------------------- |
+| `technical_collector.py` | Collects historical index data and calculates technical indicators                | `technical_collector_output.json` |
+| `macro_collector.py`     | Collects automatic macro market data such as yields, oil, gold, DXY, VIX, and BTC | `macro_collector_output.json`     |
+| `almanac_collector.py`   | Collects calendar flags and sector ranking data                                   | `almanac_collector_output.json`   |
+
 
 ---
 
 ## Running the Pipeline Locally
 
-### Install dependencies
+From the repository root, run:
 
-```bash
-pip install -r prism/requirements.txt
-```
+py prism/src/data_collector.py
+py prism/src/collectors/technical_collector.py
+py prism/src/collectors/macro_collector.py
+py prism/src/collectors/almanac_collector.py
 
-### Run the market data collector
+On systems where python is used instead of py, run:
 
-```bash
 python prism/src/data_collector.py
-```
+python prism/src/collectors/technical_collector.py
+python prism/src/collectors/macro_collector.py
+python prism/src/collectors/almanac_collector.py
 
 ---
 
 ## GitHub Actions Automation
 
-The repository includes an automated workflow:
+The GitHub Actions workflow automatically runs the collectors and commits generated data files.
 
-```txt
+Workflow file:
+
 .github/workflows/update.yml
-```
 
-The workflow:
+Current automation schedule:
 
-1. Sets up Python
-2. Installs dependencies
-3. Runs the market data collector
-4. Updates structured market outputs
+Saturday 5:00 AM Singapore Time
 
-The workflow can be triggered:
+Cron expression:
 
-* **Manually**
-* **Scheduled execution**
+- cron: "0 21 * * 5"
 
----
+This time was selected because US markets normally close before Saturday morning Singapore time, allowing the workflow to collect updated weekly market data after the trading week ends.
 
-## Team Goal
+The workflow runs:
 
-The long-term goal is to transform PRISM from a manual workflow into a reproducible and partially autonomous prediction system using structured agents, automation, and AI-assisted reasoning.
+Main market data collector
+Technical collector
+Macro collector
+Almanac collector
+Commit generated data under prism/data
