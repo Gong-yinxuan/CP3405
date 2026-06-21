@@ -96,8 +96,8 @@ Human Score should focus on reconciling the Technical leg's bullish read with th
 
 ---
 
-*Raw responses saved as:
-synthesis_chatgpt_W05.txt
-synthesis_claude_W05.txt
-synthesis_gemini_W05.txt
-synthesis_deepseek_W05.txt*
+### Raw responses saved as:
+* `synthesis_chatgpt_W05.txt`
+* `synthesis_claude_W05.txt`
+* `synthesis_gemini_W05.txt`
+* `synthesis_deepseek_W05.txt`
