@@ -86,8 +86,8 @@
 
 | Item | From sprint | New owner | Due |
 |---|---|---|---|
-| Define structured schema for Human Score input → `prediction.json` | Sprint 5 | R7 / R9 | _______________ |
-| Reduce manual hand-off steps between R3/R4/R5 → R6 | Sprint 5 | R9 | _______________ |
+| Define structured schema for Human Score input → `prediction.json` | Sprint 5 | R7 / R9 | 19th June |
+| Reduce manual hand-off steps between R3/R4/R5 → R6 | Sprint 5 | R9 | 20th June 11am. |
 
 ---
 
@@ -95,9 +95,9 @@
 
 | # | Task | Owner | Due |
 |---|---|---|---|
-| 1 | Design Human Score → JSON input schema | R7 + R9 | ___ |
-| 2 | Build/extend GitHub Actions workflow to automate prediction generation | R9 | ___ |
-| 3 | Document new automated pipeline in README | R9 | ___ |
+| 1 | Design Human Score → JSON input schema | R7 + R9 | 18th June |
+| 2 | Build/extend GitHub Actions workflow to automate prediction generation | R9 | 19th June |
+| 3 | Document new automated pipeline in README | R9 | 20th June |
 
 ---
 
