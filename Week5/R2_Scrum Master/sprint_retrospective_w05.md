@@ -18,16 +18,16 @@
 |---|---|---|
 | 1 | Market data collected and stored in structured format | Met |
 | 2 | Almanac (R3), Macro (R4), Technical (R5) outputs committed before LLM synthesis begins | Met |
-| 3 | ChatGPT, Gemini, DeepSeek responses saved and committed by R8 | Met / Partial / Not Met |
-| 4 | Human Score / Wild Card analysis included in final prediction process | Met / Partial / Not Met |
-| 5 | `prediction_W25.json` generated successfully with directional predictions, confidence, and Human Score input | Met / Partial / Not Met |
-| 6 | Automated fetch evidence available via GitHub Actions or equivalent | Met / Partial / Not Met |
-| 7 | README / pipeline docs clearly show end-to-end workflow from market close to prediction seal | Met / Partial / Not Met |
-| 8 | All role outputs contribute to the final prediction file | Met / Partial / Not Met |
-| 9 | Pipeline runs end-to-end with minimal human intervention | Met / Partial / Not Met |
-| 10 | Repository ready for `vW25` release tagging | Met / Partial / Not Met |
+| 3 | ChatGPT, Gemini, DeepSeek responses saved and committed by R8 | Met |
+| 4 | Human Score / Wild Card analysis included in final prediction process | Met |
+| 5 | `prediction_W25.json` generated successfully with directional predictions, confidence, and Human Score input | Partial |
+| 6 | Automated fetch evidence available via GitHub Actions or equivalent | Met |
+| 7 | README / pipeline docs clearly show end-to-end workflow from market close to prediction seal | Met |
+| 8 | All role outputs contribute to the final prediction file | Met |
+| 9 | Pipeline runs end-to-end with minimal human intervention | Partial |
+| 10 | Repository ready for `vW25` release tagging | Met |
 
-**Did we meet the sprint goal?** Yes / Partially / No
+**Did we meet the sprint goal?** Partially 
 
 ---
 
@@ -36,12 +36,12 @@
 | Item | Owner | Notes |
 |---|---|---|
 | Market data collection & storage (structured format) | R8 |Fully automated — data fetch and structured storage run without manual steps|
-| Almanac Agent output committed before synthesis | R3 | _______________ |
-| Macro Agent output committed before synthesis | R4 | _______________ |
-| Technical Agent output committed before synthesis | R5 | _______________ |
+| Almanac Agent output committed before synthesis | R3 | / |
+| Macro Agent output committed before synthesis | R4 | / |
+| Technical Agent output committed before synthesis | R5 | / |
 | ChatGPT / Gemini / DeepSeek responses saved & committed | R8 | Fully automated — responses fetched, saved, and committed automatically |
-| GitHub Actions fetch automation | R9 | _______________ |
-| README pipeline documentation (close → seal) | R9 | _______________ |
+| GitHub Actions fetch automation | R9 | / |
+| README pipeline documentation (close → seal) | R9 | / |
 
 ---
 
@@ -49,9 +49,9 @@
 
 | Blocked item | Owner | Root cause | Still blocked? |
 |---|---|---|---|
-| `prediction_W25.json` generation | R6 / R7 | _______________ | Yes / Resolved |
-| Human Score / Wild Card feeding into final JSON | R7 | Manual hand-off between R7's scoring and R6's synthesis step — no defined schema yet for how Human Score values get written into the pipeline output | Yes / Resolved |
-| End-to-end run with minimal human intervention | R9 | Pipeline still requires manual triggering and manual paste-in of LLM prompts between R3/R4/R5 → R6 → R7 stages — no single script ties the stages together | Yes / Resolved |
+| `prediction_W25.json` generation | R6 / R7 | This week, due to exam preparation and some staff's personal reasons, the number of team members responsible for completing the automation task was fewer than the previous week, which resulted in this part not being fully completed.| Yes |
+| Human Score / Wild Card feeding into final JSON | R7 | Manual hand-off between R7's scoring and R6's synthesis step — no defined schema yet for how Human Score values get written into the pipeline output | Yes |
+| End-to-end run with minimal human intervention | R9 | Pipeline still requires manual triggering and manual paste-in of LLM prompts between R3/R4/R5 → R6 → R7 stages — no single script ties the stages together | Yes |
 
 
 ---
