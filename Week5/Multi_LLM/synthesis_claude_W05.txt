@@ -1,1 +1,60 @@
+# Week 5 Market Intelligence Synthesis Brief
+---
 
+## 1. WEEKLY REGIME  
+**Hawkish-Fed recovery with rate-path sensitivity**
+The market absorbed a hawkish FOMC outcome under new Chair Kevin Warsh and recovered into the back half of the week on chip/AI strength, but the rate path has now replaced recession fear as the dominant swing factor. Technicals remain constructive, yet the macro backdrop has structurally shifted — rate-cut hopes are now pushed to 2027–2028, not 2026.
+
+---
+
+## 2. INDEX OUTLOOK
+
+| Index         | Direction   | Estimated % Move (Range) | Key Reason                                       |
+|---------------|-------------|--------------------------|-------------------------------------------------|
+| S&P 500 (SPX) | Mildly Up   | +0.3% to +1.0%           | Structural bullish technicals above EMAs, supported by stable macro, tempered by seasonal uncertainties  |
+| Nasdaq 100 (NDX) | Moderate Up | +0.8% to +2.5%           | Strong momentum with trendline support intact and tech sector strength driving leadership            |
+| Russell 2000 (IWM) | Strong Up   | +3.0% to +5.0%           | Outperformance signals improving breadth and small-cap participation, a positive risk appetite proxy |
+
+---
+
+## 3. SECTOR LEADERSHIP  
+- **Leading Sector:** Technology (XLK) +2.5% this week, driven by robust technical momentum and Nasdaq strength  
+- **Lagging Sector:** Utilities (XLU) +0.4%, minimal upside reflecting defensive positioning  
+**Why It Matters:** Technology leadership confirms a growth/risk-on tilt consistent with bullish technicals and macro conditions, while Utilities’ lag illustrates limited defensive rotation, reinforcing an overall constructive risk-on environment.
+
+---
+
+## 4. CORE SYNTHESIS MATRIX  
+
+| Dimension   | Bias           | Alignment/Conflict                    | Notes                                         |
+|-------------|----------------|-------------------------------------|-----------------------------------------------|
+| Technical   | Bullish        | Aligns with Macro & Almanac cautiously | Price above key EMAs and trendlines; breadth improving |
+| Macro       | Slightly Bullish | Aligns with Technical; Partial caution with event risk | Fed hold odds high; easing geopolitical risks but central bank events add headline risk |
+| Almanac     | Volatile/Risk-On | Partial alignment; adds caution for volatility | Seasonal midterm weakness flagged, but recovery possible if technicals hold |
+
+**Summary:**  
+Strong alignment on a bullish to risk-on market stance, with almanac providing important caution on volatility risk that tempers full conviction.
+
+---
+
+## 5. TOP SUPPORTING REASON  
+Technical structure remains robust with key moving averages holding and broad market breadth improving (notably via Russell 2000), signaling sustained bullish momentum.
+
+---
+
+## 6. TOP CONTRADICTION / RISK  
+Upcoming central bank announcements (FOMC, BOE, BOJ) and compressed trading week events amplify headline risk and volatility, potentially disrupting the modest bullish trend.
+
+---
+
+## 7. INVALIDATION CONDITION  
+A decisive breakdown below SPX’s 21 EMA or Russell 2000 losing trendline support would invalidate the bullish thesis and signal technical deterioration.
+
+---
+
+## 8. TONE / CAVEAT LANGUAGE  
+Positioning should be **constructively cautious**: favoring exposure to growth/risk-on segments while preparing for episodic volatility spikes due to seasonal and event-driven factors. Capitalize on technical strength but retain hedges or buffers for potential headline shocks.
+
+---
+
+*End of Week 4 Prediction Brief*
