@@ -11,8 +11,25 @@ from datetime import datetime
 import yfinance as yf
 
 
-TICKERS = ["SPY", "QQQ", "IWM", "XLK", "XLU", "XLV"]
+TICKERS = {
+    # Prediction assets
+    "SPX": "^GSPC",
+    "NDX": "^NDX",
+    "IWM": "IWM",
+    "GOLD": "GC=F",
+    "WTI": "CL=F",
+    "US10Y": "^TNX",
+    "TLT": "TLT",
+    "VIX": "^VIX",
+    "BTC": "BTC-USD",
 
+    # Sector assets
+    "XLK": "XLK",
+    "XLF": "XLF",
+    "XLV": "XLV",
+    "XLE": "XLE",
+    "XLU": "XLU"
+}
 
 def fetch_prices() -> dict:
     """
@@ -22,8 +39,8 @@ def fetch_prices() -> dict:
     """
     prices = {}
 
-    for ticker in TICKERS:
-        data = yf.Ticker(ticker)
+    for ticker, yahoo_ticker in TICKERS.items():
+        data = yf.Ticker(yahoo_ticker)
         hist = data.history(period="10d")
 
         if len(hist) < 2:
@@ -33,6 +50,9 @@ def fetch_prices() -> dict:
         # go back 5 trading days (or as far as available)
         lookback       = min(5, len(hist) - 1)
         prev_close     = round(float(hist["Close"].iloc[-1 - lookback]), 2)
+        if ticker == "US10Y":
+            latest_close = round(latest_close / 10, 2)
+            prev_close = round(prev_close / 10, 2)
         weekly_change  = round(((latest_close - prev_close) / prev_close) * 100, 1)
 
         prices[ticker] = {
