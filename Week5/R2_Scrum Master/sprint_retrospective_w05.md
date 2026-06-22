@@ -39,7 +39,7 @@
 | Almanac Agent output committed before synthesis | R3 | / |
 | Macro Agent output committed before synthesis | R4 | / |
 | Technical Agent output committed before synthesis | R5 | / |
-| ChatGPT / Gemini / DeepSeek responses saved & committed | R8 | Fully automated — responses fetched, saved, and committed automatically |
+| ChatGPT / Gemini / DeepSeek responses saved & committed | R8 | / |
 | GitHub Actions fetch automation | R9 | / |
 | README pipeline documentation (close → seal) | R9 | / |
 
