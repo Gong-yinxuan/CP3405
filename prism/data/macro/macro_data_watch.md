@@ -1,9 +1,15 @@
 # R4 Macro Agent — Fed + Data Watch
 
-**Week commencing:** 2026-06-22
-**Week ending:** 2026-06-28
+**Week commencing:** 2026-06-29
+**Week ending:** 2026-07-05
 
 ## Fed Speakers
+
+- **Speaker hint:** Cook
+  - Title: Cook, Welcome Remarks
+  - Published: 2026-06-24T18:00:00+00:00
+  - Tone hint: neutral_or_unclear_keyword_hint
+  - Source: https://www.federalreserve.gov/newsevents/speech/cook20260624a.htm
 
 - **Speaker hint:** Waller
   - Title: Waller, Welcoming Remarks on the International Role of the U.S. Dollar
