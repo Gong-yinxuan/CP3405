@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-06-22T15:26:20Z",
+    "generated_at": "2026-07-06T06:22:13Z",
     "collector": "Macro Collector",
     "agent_input_for": "Macro Agent",
     "data_source": {
@@ -14,10 +14,10 @@
             "yahoo_ticker": "^TNX",
             "name": "US 10-Year Treasury Yield",
             "category": "yield",
-            "latest_trading_date": "2026-06-22",
-            "close": 0.4495,
-            "weekly_change_pct": 0.18,
-            "change_5d": 0.0008,
+            "latest_trading_date": "2026-07-02",
+            "close": 0.4485,
+            "weekly_change_pct": 2.12,
+            "change_5d": 0.0093,
             "direction_5d": "Up",
             "history_file": "macro/history/US_10Y_YIELD.json"
         },
@@ -26,11 +26,11 @@
             "yahoo_ticker": "^TYX",
             "name": "US 30-Year Treasury Yield",
             "category": "yield",
-            "latest_trading_date": "2026-06-22",
-            "close": 0.4936,
-            "weekly_change_pct": -0.78,
-            "change_5d": -0.0039,
-            "direction_5d": "Down",
+            "latest_trading_date": "2026-07-02",
+            "close": 0.4985,
+            "weekly_change_pct": 2.61,
+            "change_5d": 0.0127,
+            "direction_5d": "Up",
             "history_file": "macro/history/US_30Y_YIELD.json"
         },
         "WTI": {
@@ -38,10 +38,10 @@
             "yahoo_ticker": "CL=F",
             "name": "Crude Oil WTI Futures",
             "category": "commodity",
-            "latest_trading_date": "2026-06-22",
-            "close": 73.42,
-            "weekly_change_pct": -13.5,
-            "change_5d": -11.46,
+            "latest_trading_date": "2026-07-06",
+            "close": 69.18,
+            "weekly_change_pct": -0.07,
+            "change_5d": -0.05,
             "direction_5d": "Down",
             "history_file": "macro/history/WTI.json"
         },
@@ -50,11 +50,11 @@
             "yahoo_ticker": "GC=F",
             "name": "Gold Futures",
             "category": "commodity",
-            "latest_trading_date": "2026-06-22",
-            "close": 4214.5,
-            "weekly_change_pct": -0.01,
-            "change_5d": -0.5,
-            "direction_5d": "Down",
+            "latest_trading_date": "2026-07-06",
+            "close": 4163.0,
+            "weekly_change_pct": 2.07,
+            "change_5d": 84.3,
+            "direction_5d": "Up",
             "history_file": "macro/history/GOLD.json"
         },
         "DXY": {
@@ -62,11 +62,11 @@
             "yahoo_ticker": "DX-Y.NYB",
             "name": "US Dollar Index",
             "category": "currency_index",
-            "latest_trading_date": "2026-06-22",
-            "close": 100.849,
-            "weekly_change_pct": 1.1,
-            "change_5d": 1.099,
-            "direction_5d": "Up",
+            "latest_trading_date": "2026-07-06",
+            "close": 101.003,
+            "weekly_change_pct": -0.35,
+            "change_5d": -0.357,
+            "direction_5d": "Down",
             "history_file": "macro/history/DXY.json"
         },
         "VIX": {
@@ -74,11 +74,11 @@
             "yahoo_ticker": "^VIX",
             "name": "CBOE Volatility Index",
             "category": "volatility",
-            "latest_trading_date": "2026-06-22",
-            "close": 17.68,
-            "weekly_change_pct": 0.0,
-            "change_5d": 0.0,
-            "direction_5d": "Flat",
+            "latest_trading_date": "2026-07-02",
+            "close": 16.15,
+            "weekly_change_pct": -14.51,
+            "change_5d": -2.74,
+            "direction_5d": "Down",
             "history_file": "macro/history/VIX.json"
         },
         "BTC": {
@@ -86,29 +86,19 @@
             "yahoo_ticker": "BTC-USD",
             "name": "Bitcoin USD",
             "category": "crypto",
-            "latest_trading_date": "2026-06-22",
-            "close": 64931.5586,
-            "weekly_change_pct": 0.8,
-            "change_5d": 513.1133,
+            "latest_trading_date": "2026-07-06",
+            "close": 62962.5,
+            "weekly_change_pct": 7.52,
+            "change_5d": 4403.6406,
             "direction_5d": "Up",
             "history_file": "macro/history/BTC.json"
         }
     },
     "fed_and_data_watch": {
-        "week_commencing": "2026-06-22",
-        "week_ending": "2026-06-28",
-        "fed_speakers": [
-            {
-                "speaker_hint": "Waller",
-                "title": "Waller, Welcoming Remarks on the International Role of the U.S. Dollar",
-                "published_at": "2026-06-22T13:00:00+00:00",
-                "source_url": "https://www.federalreserve.gov/newsevents/speech/waller20260622a.htm",
-                "summary": "Speech At the Fifth Conference on the International Roles of the Dollar, Board of Governors of the Federal Reserve System, Washington, D.C.",
-                "tone_hint": "neutral_or_unclear_keyword_hint",
-                "r4_note": "Keyword hint only. R4 should verify the actual Fed speaker message."
-            }
-        ],
-        "fed_speaker_count": 1,
+        "week_commencing": "2026-07-06",
+        "week_ending": "2026-07-12",
+        "fed_speakers": [],
+        "fed_speaker_count": 0,
         "inflation_data": [],
         "major_data_releases": [],
         "data_release_errors": {
