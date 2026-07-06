@@ -23,12 +23,18 @@ TICKERS = {
     "VIX": "^VIX",
     "BTC": "BTC-USD",
 
-    # Sector assets
-    "XLK": "XLK",
-    "XLF": "XLF",
-    "XLV": "XLV",
-    "XLE": "XLE",
-    "XLU": "XLU"
+    # All 11 S&P sector ETFs
+    "XLK": "XLK",    # Technology
+    "XLF": "XLF",    # Financials
+    "XLV": "XLV",    # Healthcare
+    "XLE": "XLE",    # Energy
+    "XLY": "XLY",    # Consumer Discretionary
+    "XLP": "XLP",    # Consumer Staples
+    "XLI": "XLI",    # Industrials
+    "XLU": "XLU",    # Utilities
+    "XLB": "XLB",    # Materials
+    "XLRE": "XLRE",  # Real Estate
+    "XLC": "XLC"     # Communication Services
 }
 
 def fetch_prices() -> dict:
