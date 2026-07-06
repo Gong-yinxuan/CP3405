@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-07-06T06:02:06Z",
+    "generated_at": "2026-07-06T06:22:13Z",
     "collector": "Macro Collector",
     "agent_input_for": "Macro Agent",
     "data_source": {
@@ -39,9 +39,9 @@
             "name": "Crude Oil WTI Futures",
             "category": "commodity",
             "latest_trading_date": "2026-07-06",
-            "close": 68.86,
-            "weekly_change_pct": -0.53,
-            "change_5d": -0.37,
+            "close": 69.18,
+            "weekly_change_pct": -0.07,
+            "change_5d": -0.05,
             "direction_5d": "Down",
             "history_file": "macro/history/WTI.json"
         },
@@ -51,9 +51,9 @@
             "name": "Gold Futures",
             "category": "commodity",
             "latest_trading_date": "2026-07-06",
-            "close": 4167.3999,
-            "weekly_change_pct": 2.17,
-            "change_5d": 88.6999,
+            "close": 4163.0,
+            "weekly_change_pct": 2.07,
+            "change_5d": 84.3,
             "direction_5d": "Up",
             "history_file": "macro/history/GOLD.json"
         },
@@ -63,9 +63,9 @@
             "name": "US Dollar Index",
             "category": "currency_index",
             "latest_trading_date": "2026-07-06",
-            "close": 100.975,
-            "weekly_change_pct": -0.38,
-            "change_5d": -0.385,
+            "close": 101.003,
+            "weekly_change_pct": -0.35,
+            "change_5d": -0.357,
             "direction_5d": "Down",
             "history_file": "macro/history/DXY.json"
         },
@@ -87,9 +87,9 @@
             "name": "Bitcoin USD",
             "category": "crypto",
             "latest_trading_date": "2026-07-06",
-            "close": 63021.1602,
-            "weekly_change_pct": 7.62,
-            "change_5d": 4462.3008,
+            "close": 62962.5,
+            "weekly_change_pct": 7.52,
+            "change_5d": 4403.6406,
             "direction_5d": "Up",
             "history_file": "macro/history/BTC.json"
         }
