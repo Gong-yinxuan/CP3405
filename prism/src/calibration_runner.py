@@ -9,9 +9,9 @@ Reads:
 Actuals:
 - prism/data/output.json
 
-Automatically detects latest prediction file:
-- vW25_prediction.json
-- vW28_prediction.json
+Automatically creates actuals snapshot:
+- prism/data/actuals/vW25_actuals.json
+- prism/data/actuals/vW28_actuals.json
 - etc.
 
 Generates:
@@ -25,6 +25,7 @@ import json
 import sys
 from pathlib import Path
 from datetime import datetime
+from shutil import copy2
 
 
 def get_prism_root() -> Path:
@@ -105,6 +106,29 @@ def get_prediction_path(prism_root: Path, release: str) -> Path:
         raise FileNotFoundError(f"Missing prediction file: {prediction_path}")
 
     return prediction_path
+
+
+def save_actuals_snapshot(prism_root: Path, release: str, output_path: Path) -> Path:
+    """
+    Copy prism/data/output.json into a release-specific actuals file.
+
+    Example:
+    prism/data/output.json
+    -> prism/data/actuals/vW28_actuals.json
+    """
+    if not output_path.exists():
+        raise FileNotFoundError(f"Missing actuals output file: {output_path}")
+
+    actuals_dir = prism_root / "data" / "actuals"
+    actuals_dir.mkdir(parents=True, exist_ok=True)
+
+    snapshot_path = actuals_dir / f"{release}_actuals.json"
+
+    copy2(output_path, snapshot_path)
+
+    print(f"[OK] Saved actuals snapshot: {snapshot_path}")
+
+    return snapshot_path
 
 
 def normalise_direction(direction: str) -> str:
@@ -266,7 +290,7 @@ def compare_prediction_to_actuals(
             "source_type",
             "official_prediction_json"
         ),
-        "actuals_source": "prism/data/output.json",
+        "actuals_source": f"prism/data/actuals/{release}_actuals.json",
         "total_assets_scored": total_scored,
         "direction_correct_count": correct_count,
         "direction_accuracy_pct": direction_accuracy_pct,
@@ -473,14 +497,22 @@ def main() -> None:
         release = detect_latest_release(prism_root)
 
     prediction_path = get_prediction_path(prism_root, release)
-    actuals_path = prism_root / "data" / "output.json"
+    output_path = prism_root / "data" / "output.json"
 
     print(f"[INFO] Release: {release}")
     print(f"[INFO] Prediction file: {prediction_path}")
-    print(f"[INFO] Actuals file: {actuals_path}")
+    print(f"[INFO] Latest output file: {output_path}")
+
+    actuals_snapshot_path = save_actuals_snapshot(
+        prism_root=prism_root,
+        release=release,
+        output_path=output_path
+    )
+
+    print(f"[INFO] Actuals snapshot file: {actuals_snapshot_path}")
 
     prediction_data = load_json(prediction_path)
-    actual_data = load_json(actuals_path)
+    actual_data = load_json(actuals_snapshot_path)
 
     result = compare_prediction_to_actuals(
         release=release,
