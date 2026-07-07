@@ -1,19 +1,39 @@
-# Week 4 Automation Decision
-### Objective
+# Week 6 Automation Decision
 
-For Week 4, the team was required to move from a manual workflow toward an automated software increment. Rather than attempting to automate the entire Almanac Agent system at once, the team selected a single high-value and low-risk automation step to establish a reliable foundation for future development.
+## Objective
 
-### What We Chose to Automate
+The objective for Week 6 was to improve Prism from a partial automation tool into a more complete market intelligence pipeline. The team needed the system to support the vW28 prediction by collecting market data, covering all 11 S&P sectors, running automated LLM synthesis, and producing delta score / calibration outputs with less manual work.
 
-The team chose to automate the market data collection stage of the pipeline.
+## What We Chose to Automate
 
-A Python script was developed to automatically retrieve market data using Yahoo Finance (yfinance) and generate structured output in JSON format.
+The team chose to automate two main parts of the workflow:
 
-### The automated collector currently gathers:
+1. **LLM synthesis**
+   - Instead of manually asking multiple LLMs and copying their answers into a table, Prism will call at least two LLMs through API.
+   - The responses will be saved automatically.
+   - The system will compare the responses so the team can review agreement, disagreement, and confidence.
 
-S&P 500 proxy (SPY)
-Nasdaq 100 proxy (QQQ)
-Russell 2000 proxy (IWM)
-Selected S&P 500 sector ETFs
+2. **Delta score and calibration**
+   - Instead of manually comparing the previous prediction against actual market results, Prism will read the prediction JSON and actual market data.
+   - The system will calculate direction accuracy, range accuracy, average error size, and calibration bias.
+   - The result will be saved as a delta report and added to cumulative accuracy history.
 
-The output is saved into a structured file (output.json) for downstream analysis.
+## Why We Chose These Steps
+
+We chose these steps because they are repeated every sprint and are easy to make mistakes on when done manually. LLM comparison requires consistent prompts and saved responses, while delta scoring requires accurate comparison between predicted direction and actual weekly movement. Automating these parts makes the pipeline more reliable, easier to demonstrate, and easier to audit in GitHub.
+
+## Automated Market Data Coverage
+
+The automated collector currently gathers data for the main prediction assets:
+
+```python
+# Prediction assets
+"SPX": "^GSPC",
+"NDX": "^NDX",
+"IWM": "IWM",
+"GOLD": "GC=F",
+"WTI": "CL=F",
+"US10Y": "^TNX",
+"TLT": "TLT",
+"VIX": "^VIX",
+"BTC": "BTC-USD",
