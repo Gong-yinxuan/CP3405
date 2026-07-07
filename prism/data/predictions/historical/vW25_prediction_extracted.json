@@ -1,0 +1,72 @@
+{
+  "release": "vW25",
+  "week": "W25",
+  "forecast_week": "2026-06-22 to 2026-06-26",
+  "source_type": "manual_backfill_from_sealed_markdown_prediction",
+  "note": "This JSON was created after the original vW25 prediction was sealed. It is used only for R6/R10 delta scoring and does not replace the original submitted prediction.",
+  "assets": {
+    "SPX": {
+      "predicted_direction": "Up",
+      "expected_change_pct": 1.35,
+      "range_low_pct": 0.5,
+      "range_high_pct": 2.2,
+      "confidence": 75
+    },
+    "NDX": {
+      "predicted_direction": "Up",
+      "expected_change_pct": 2.0,
+      "range_low_pct": 1.0,
+      "range_high_pct": 3.0,
+      "confidence": 80
+    },
+    "IWM": {
+      "predicted_direction": "Neutral",
+      "expected_change_pct": 0.0,
+      "range_low_pct": -1.0,
+      "range_high_pct": 1.0,
+      "confidence": 60
+    },
+    "GOLD": {
+      "predicted_direction": "Neutral",
+      "expected_change_pct": 0.0,
+      "range_low_pct": -1.5,
+      "range_high_pct": 1.5,
+      "confidence": 65
+    },
+    "WTI": {
+      "predicted_direction": "Down",
+      "expected_change_pct": -1.25,
+      "range_low_pct": -3.0,
+      "range_high_pct": 0.5,
+      "confidence": 70
+    },
+    "US10Y": {
+      "predicted_direction": "Up",
+      "expected_change_pct": 1.25,
+      "range_low_pct": 0.5,
+      "range_high_pct": 2.0,
+      "confidence": 65
+    },
+    "TLT": {
+      "predicted_direction": "Down",
+      "expected_change_pct": -1.0,
+      "range_low_pct": -2.0,
+      "range_high_pct": 0.0,
+      "confidence": 65
+    },
+    "VIX": {
+      "predicted_direction": "Down",
+      "expected_change_pct": -3.0,
+      "range_low_pct": -8.0,
+      "range_high_pct": 2.0,
+      "confidence": 70
+    },
+    "BTC": {
+      "predicted_direction": "Neutral",
+      "expected_change_pct": 0.0,
+      "range_low_pct": -3.0,
+      "range_high_pct": 3.0,
+      "confidence": 60
+    }
+  }
+}
