@@ -82,6 +82,9 @@ jobs:
         run: |
           python prism/src/llm_synthesis.py
 
+      # -----------------------------
+      # DYNAMIC COMMIT AND PUSH ENGINE
+      # -----------------------------
       - name: Commit and push generated data
         run: |
           git config user.name "github-actions[bot]"
@@ -92,8 +95,8 @@ jobs:
           if git diff --cached --quiet; then
             echo "No generated data changes to commit"
           else
-            git commit -m "chore: update Prism data $(date +'%Y-%m-%d')"
+            git commit -m "chore: update Prism market data & synthesis $(date +'%Y-%m-%d')"
+            # Fixed: Rebase and push directly using the current active branch token variable
+            git pull --rebase origin ${GITHUB_REF_NAME}
+            git push origin ${GITHUB_REF_NAME}
           fi
-
-          git pull --rebase origin main
-          git push origin main
