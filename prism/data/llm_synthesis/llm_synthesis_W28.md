@@ -8,15 +8,15 @@
 
 | Dimension                   | Claude     | ChatGPT    | Gemini     | DeepSeek   |
 | --------------------------- | ---------- | ---------- | ---------- | ---------- |
-| **Weekly Regime**           | Error loading Claude value | Error loading ChatGPT value | Error loading Gemini value | Error loading DeepSeek value |
-| **Confidence Score**        | Error loading Claude value | Error loading ChatGPT value | Error loading Gemini value | Error loading DeepSeek value |
-| **SPX % estimate**          | Error loading Claude value | Error loading ChatGPT value | Error loading Gemini value | Error loading DeepSeek value |
-| **NDX % estimate**          | Error loading Claude value | Error loading ChatGPT value | Error loading Gemini value | Error loading DeepSeek value |
-| **IWM % estimate**          | Error loading Claude value | Error loading ChatGPT value | Error loading Gemini value | Error loading DeepSeek value |
-| **Top supporting reason**   | Error loading Claude value | Error loading ChatGPT value | Error loading Gemini value | Error loading DeepSeek value |
-| **Top contradiction cited** | Error loading Claude value | Error loading ChatGPT value | Error loading Gemini value | Error loading DeepSeek value |
-| **Invalidation condition**  | Error loading Claude value | Error loading ChatGPT value | Error loading Gemini value | Error loading DeepSeek value |
-| **Tone / caveat language**  | Error loading Claude value | Error loading ChatGPT value | Error loading Gemini value | Error loading DeepSeek value |
+| **Weekly Regime**           | Error loading Claude value | Error loading ChatGPT value | Bifurcated Market with Large-Cap Resilience and Defensive Sector Rotation | Error loading DeepSeek value |
+| **Confidence Score**        | Error loading Claude value | Error loading ChatGPT value | Medium | Error loading DeepSeek value |
+| **SPX % estimate**          | Error loading Claude value | Error loading ChatGPT value | +0.5% to +1.0% | Error loading DeepSeek value |
+| **NDX % estimate**          | Error loading Claude value | Error loading ChatGPT value | -0.5% to +0.5% | Error loading DeepSeek value |
+| **IWM % estimate**          | Error loading Claude value | Error loading ChatGPT value | -1.0% to 0.0% | Error loading DeepSeek value |
+| **Top supporting reason**   | Error loading Claude value | Error loading ChatGPT value | The S&P 500 maintains a 'Zone 1 Bullish' EMA condition and 'Bullish' technical bias, indicating underlying strength in large-cap equities. | Error loading DeepSeek value |
+| **Top contradiction cited** | Error loading Claude value | Error loading ChatGPT value | Rising US Treasury yields and WTI oil prices, coupled with underperformance in growth/cyclical sectors like Consumer Discretionary and Communication Services, present a macro headwind for broader market expansion. | Error loading DeepSeek value |
+| **Invalidation condition**  | Error loading Claude value | Error loading ChatGPT value | SPX closing below its 21-day EMA of 7459.96. | Error loading DeepSeek value |
+| **Tone / caveat language**  | Error loading Claude value | Error loading ChatGPT value | Investors should prioritize defensive positioning and large-cap quality over high-growth speculative plays, with awareness of potential options expiry volatility. | Error loading DeepSeek value |
 
 ## Consensus Read
 

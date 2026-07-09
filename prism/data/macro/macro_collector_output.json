@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-07-09T13:45:40Z",
+    "generated_at": "2026-07-09T13:53:27Z",
     "collector": "Macro Collector",
     "agent_input_for": "Macro Agent",
     "data_source": {
@@ -39,9 +39,9 @@
             "name": "Crude Oil WTI Futures",
             "category": "commodity",
             "latest_trading_date": "2026-07-09",
-            "close": 72.98,
-            "weekly_change_pct": 6.42,
-            "change_5d": 4.4,
+            "close": 72.83,
+            "weekly_change_pct": 6.2,
+            "change_5d": 4.25,
             "direction_5d": "Up",
             "history_file": "macro/history/WTI.json"
         },
@@ -51,9 +51,9 @@
             "name": "Gold Futures",
             "category": "commodity",
             "latest_trading_date": "2026-07-09",
-            "close": 4134.2998,
+            "close": 4134.3999,
             "weekly_change_pct": 1.62,
-            "change_5d": 65.9998,
+            "change_5d": 66.0999,
             "direction_5d": "Up",
             "history_file": "macro/history/GOLD.json"
         },
@@ -63,9 +63,9 @@
             "name": "US Dollar Index",
             "category": "currency_index",
             "latest_trading_date": "2026-07-09",
-            "close": 100.941,
-            "weekly_change_pct": -0.44,
-            "change_5d": -0.449,
+            "close": 100.919,
+            "weekly_change_pct": -0.46,
+            "change_5d": -0.471,
             "direction_5d": "Down",
             "history_file": "macro/history/DXY.json"
         },
@@ -75,9 +75,9 @@
             "name": "CBOE Volatility Index",
             "category": "volatility",
             "latest_trading_date": "2026-07-09",
-            "close": 16.71,
-            "weekly_change_pct": 0.72,
-            "change_5d": 0.12,
+            "close": 16.61,
+            "weekly_change_pct": 0.12,
+            "change_5d": 0.02,
             "direction_5d": "Up",
             "history_file": "macro/history/VIX.json"
         },
@@ -87,10 +87,10 @@
             "name": "Bitcoin USD",
             "category": "crypto",
             "latest_trading_date": "2026-07-09",
-            "close": 62888.6484,
-            "weekly_change_pct": -0.32,
-            "change_5d": -199.6563,
-            "direction_5d": "Down",
+            "close": 63159.5508,
+            "weekly_change_pct": 0.11,
+            "change_5d": 71.2461,
+            "direction_5d": "Up",
             "history_file": "macro/history/BTC.json"
         }
     },
