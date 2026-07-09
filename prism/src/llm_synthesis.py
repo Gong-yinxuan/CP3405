@@ -1,6 +1,7 @@
 import os
 import json
 import re
+import time
 import requests
 from datetime import datetime
 import concurrent.futures
@@ -8,7 +9,6 @@ from openai import OpenAI
 from anthropic import Anthropic
 from google import genai
 from google.genai import types
-import time
 
 
 def clean_json_string(raw_text):
@@ -124,53 +124,78 @@ def call_claude(prompt):
 
 
 def call_chatgpt(prompt):
-    """Hits the permanently free Hugging Face API via HTTP POST with automatic 503 retry handling."""
+    """
+    Hits the permanently free Hugging Face API via HTTP POST with an aggressive,
+    self-cleaning text decoder to safely capture valid JSON objects from conversational text.
+    """
     api_key = os.getenv("HUGGINGFACE_API_KEY")
     if not api_key:
         return fallback_metrics("ChatGPT")
 
-    # Fixed: Official direct serverless chat API route address
     url = "https://huggingface.co"
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json"
     }
+
+    # We tweak the prompt instructions within the payload to heavily demand raw text object notation
     payload = {
         "model": "meta-llama/Meta-Llama-3-8B-Instruct",
-        "messages": [{"role": "user", "content": prompt}],
+        "messages": [
+            {
+                "role": "system",
+                "content": "You are a rigid automation server. You must output ONLY a valid raw JSON object. Do not include any conversational introduction, notes, or markdown code blocks."
+            },
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ],
         "temperature": 0.1,
-        "max_tokens": 1000,
-        "response_format": {"type": "json_object"}
+        "max_tokens": 1000
     }
 
     max_retries = 3
-    delay = 5  # Seconds to wait between attempts
+    delay = 5
 
     for attempt in range(max_retries):
         try:
             response = requests.post(url, headers=headers, json=payload, timeout=45)
 
-            # If the shared server is swamped (503), print a log status, pause, and loop back to try again
+            # Catch server capacity issues cleanly
             if response.status_code == 503:
                 print(
-                    f"[PRISM] Hugging Face model under high demand (Attempt {attempt + 1}/{max_retries}). Retrying in {delay}s...")
+                    f"[PRISM] Hugging Face server busy (Attempt {attempt + 1}/{max_retries}). Retrying in {delay}s...")
                 time.sleep(delay)
-                delay *= 2  # Exponential backoff
+                delay *= 2
                 continue
 
             response.raise_for_status()
             res_json = response.json()
-            raw_content = res_json["choices"]["message"]["content"]
-            return json.loads(clean_json_string(raw_content))
+            raw_content = res_json["choices"]["message"]["content"].strip()
+
+            # --- AGGRESSIVE SELF-CLEANING EXTRACTION MATRIX ---
+            # 1. Strip out basic backticks if the model used markdown code blocks
+            cleaned_text = clean_json_string(raw_content)
+
+            # 2. Heavy-duty Regex: Find the very first '{' and the very last '}'
+            # This completely cuts out conversational text like "Here is the data:"
+            json_match = re.search(r'\{.*\}', cleaned_text, re.DOTALL)
+            if json_match:
+                cleaned_text = json_match.group(0)
+
+            # 3. Clean up any trailing broken commas right before a closing brace that break json.loads
+            cleaned_text = re.sub(r',\s*\}', '}', cleaned_text)
+            cleaned_text = re.sub(r',\s*\]', ']', cleaned_text)
+
+            return json.loads(cleaned_text)
 
         except Exception as e:
-            print(f"[PRISM] Hugging Face attempt failed due to an execution error: {e}")
+            print(f"[PRISM] Hugging Face processing attempt {attempt + 1} failed: {e}")
             time.sleep(2)
 
-    # If all live retrieval attempts fail due to external network constraints, fall back to rubric metrics
-    print("[PRISM] Hugging Face completely swamped. Engaging clean assignment mock fallback payload.")
+    print("[PRISM] Hugging Face node completely swamped. Engaging clean fallback metrics.")
     return fallback_metrics("ChatGPT")
-
 
 def call_gemini(prompt):
     """Hits the permanently free Google Gemini API with an automatic retry loop for 503/high-demand spikes."""
