@@ -8,15 +8,15 @@
 
 | Dimension                   | Claude     | ChatGPT    | Gemini     | DeepSeek   |
 | --------------------------- | ---------- | ---------- | ---------- | ---------- |
-| **Weekly Regime**           | Error loading Claude value | Error loading ChatGPT value | Risk-off rotation with elevated volatility and defensive asset preference. | Error loading DeepSeek value |
+| **Weekly Regime**           | Error loading Claude value | Error loading ChatGPT value | Defensive Rotation with Increased Volatility | Error loading DeepSeek value |
 | **Confidence Score**        | Error loading Claude value | Error loading ChatGPT value | Medium | Error loading DeepSeek value |
-| **SPX % estimate**          | Error loading Claude value | Error loading ChatGPT value | -1.5% to -0.5% | Error loading DeepSeek value |
-| **NDX % estimate**          | Error loading Claude value | Error loading ChatGPT value | -4.0% to -2.0% | Error loading DeepSeek value |
-| **IWM % estimate**          | Error loading Claude value | Error loading ChatGPT value | -3.0% to -1.0% | Error loading DeepSeek value |
-| **Top supporting reason**   | Error loading Claude value | Error loading ChatGPT value | Broad market weakness, particularly in technology, is coupled with rising bond yields and increased volatility, signaling a clear risk-off environment. | Error loading DeepSeek value |
-| **Top contradiction cited** | Error loading Claude value | Error loading ChatGPT value | The S&P 500 maintains a 'Zone 1 Bullish' EMA condition, suggesting a degree of underlying resilience amidst general market weakness. | Error loading DeepSeek value |
-| **Invalidation condition**  | Error loading Claude value | Error loading ChatGPT value | SPX closing meaningfully above its 20-day high of 7577.92 or NDX reclaiming its 21-day EMA of 29554.33. | Error loading DeepSeek value |
-| **Tone / caveat language**  | Error loading Claude value | Error loading ChatGPT value | Favors defensive positioning and value over growth, with an emphasis on capital preservation and cautious risk management. | Error loading DeepSeek value |
+| **SPX % estimate**          | Error loading Claude value | Error loading ChatGPT value | -0.5% to +0.5% | Error loading DeepSeek value |
+| **NDX % estimate**          | Error loading Claude value | Error loading ChatGPT value | -2.0% to 0% | Error loading DeepSeek value |
+| **IWM % estimate**          | Error loading Claude value | Error loading ChatGPT value | -1.5% to +0.5% | Error loading DeepSeek value |
+| **Top supporting reason**   | Error loading Claude value | Error loading ChatGPT value | Strong rotation from growth/tech into defensive/value sectors, affirmed by rising yields and commodity prices. | Error loading DeepSeek value |
+| **Top contradiction cited** | Error loading Claude value | Error loading ChatGPT value | Divergent technical biases between SPX (Neutral/Bullish) and NDX (Bearish) amidst rising volatility. | Error loading DeepSeek value |
+| **Invalidation condition**  | Error loading Claude value | Error loading ChatGPT value | SPX closing below 7454.33 (21-EMA) | Error loading DeepSeek value |
+| **Tone / caveat language**  | Error loading Claude value | Error loading ChatGPT value | Exposure should prioritize defensive and value sectors, hedging against growth and tech underperformance. | Error loading DeepSeek value |
 
 ## Consensus Read
 
