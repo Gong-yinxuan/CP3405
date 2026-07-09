@@ -1,0 +1,104 @@
+# Sprint Retrospective — Sprint 5 (Week 05)
+
+**Date:** 21th June <br>
+**Facilitator (R2):** Gong Yinxuan  
+**Present:** R1 ___ · R2 Gong Yinxuan · R3 Noah Jiang · R4 Darwin · R5 ChenJunfei · R6 Eha · R7 Yuet Hei · R9 Ben · R10 Jinrui Wu  
+
+
+---
+
+## 1. Sprint Goal Recap
+
+**This sprint's goal (set by R1):**
+> Integrate all agent outputs into a coherent end-to-end prediction pipeline from Friday market close to the sealed `prediction_W25.json` file. The goal is to ensure that market data collection, Almanac analysis, Macro analysis, Technical analysis, LLM synthesis, Human Score, and the final prediction output are connected and reproducible with minimal human intervention. Sprint 5 focuses on system integration rather than individual components, ensuring the pipeline functions as one complete workflow.
+
+**Acceptance Criteria:**
+
+| # | Criteria | Status |
+|---|---|---|
+| 1 | Market data collected and stored in structured format | Met |
+| 2 | Almanac (R3), Macro (R4), Technical (R5) outputs committed before LLM synthesis begins | Met |
+| 3 | ChatGPT, Gemini, DeepSeek responses saved and committed by R8 | Met |
+| 4 | Human Score / Wild Card analysis included in final prediction process | Met |
+| 5 | `prediction_W25.json` generated successfully with directional predictions, confidence, and Human Score input | Partial |
+| 6 | Automated fetch evidence available via GitHub Actions or equivalent | Met |
+| 7 | README / pipeline docs clearly show end-to-end workflow from market close to prediction seal | Met |
+| 8 | All role outputs contribute to the final prediction file | Met |
+| 9 | Pipeline runs end-to-end with minimal human intervention | Partial |
+| 10 | Repository ready for `vW25` release tagging | Met |
+
+**Did we meet the sprint goal?** Partially 
+
+---
+
+## 2. What Integrated
+
+| Item | Owner | Notes |
+|---|---|---|
+| Market data collection & storage (structured format) | R8 |Fully automated — data fetch and structured storage run without manual steps|
+| Almanac Agent output committed before synthesis | R3 | / |
+| Macro Agent output committed before synthesis | R4 | / |
+| Technical Agent output committed before synthesis | R5 | / |
+| ChatGPT / Gemini / DeepSeek responses saved & committed | R8 | / |
+| GitHub Actions fetch automation | R9 | / |
+| README pipeline documentation (close → seal) | R9 | / |
+
+---
+
+## 3. What Was Blocked
+
+| Blocked item | Owner | Root cause | Still blocked? |
+|---|---|---|---|
+| `prediction_W25.json` generation | R6 / R7 | This week, due to exam preparation and some staff's personal reasons, the number of team members responsible for completing the automation task was fewer than the previous week, which resulted in this part not being fully completed.| Yes |
+| Human Score / Wild Card feeding into final JSON | R7 | Manual hand-off between R7's scoring and R6's synthesis step — no defined schema yet for how Human Score values get written into the pipeline output | Yes |
+| End-to-end run with minimal human intervention | R9 | Pipeline still requires manual triggering and manual paste-in of LLM prompts between R3/R4/R5 → R6 → R7 stages — no single script ties the stages together | Yes |
+| Pipeline automation progress slower than planned | R9 | Reduced bandwidth — upcoming exams + fewer members available for this part of the work | Yes (partially - carrying into Sprint 6)
+
+
+---
+
+## 4. Open Discussion
+
+**What went well this sprint?**
+- Individual agent outputs (Almanac, Macro, Technical) are now consistently committed in the agreed format before synthesis starts
+- Team capacity for the automation workstream was lower than expected this sprint due to exam schedules and personal availability — flagged early so Sprint 6 planning can adjust scope accordingly
+
+**What was frustrating or slow?**
+- Connecting Human Score (a team discussion + manual scoring step) into a machine-readable JSON output was harder than expected — it's a human judgment step sitting in the middle of an otherwise automatable pipeline
+- Multiple manual hand-offs between roles (R3/R4/R5 → R6 → R7 → final file) introduce delay and risk of missed/late commits
+
+
+---
+
+## 5. One Specific Change for Next Sprint
+
+> Must be concrete and actionable — not "communicate better." Pick exactly one.
+
+**The change:** Reduce the automation scope for Sprint 6 to a single, achievable step: define and implement the structured input schema that lets Human Score / Wild Card values feed into prediction_WXX.json, rather than attempting full end-to-end pipeline automation in one sprint. Given exam schedules and reduced availability of the members working on this part, Sprint 6 will treat automation as an incremental rollout — starting with this one connection point — instead of a single big push.
+
+**Owner of this change:** R9 (with support from R6 and R7 on defining the Human Score input schema)
+
+**How we'll know it worked:** Next sprint's `prediction_WXX.json` is generated by running one command / one triggered workflow — not by manually copy-pasting agent outputs and Human Score numbers into a file by hand.
+
+---
+
+## 6. Carry-Over Items
+
+| Item | From sprint | New owner | Due |
+|---|---|---|---|
+| Define structured schema for Human Score input → `prediction.json` | Sprint 5 | R7 / R9 | 19th June |
+| Reduce manual hand-off steps between R3/R4/R5 → R6 | Sprint 5 | R9 | 20th June 11am. |
+
+---
+
+## 7. Action Items
+
+| # | Task | Owner | Due |
+|---|---|---|---|
+| 1 | Design Human Score → JSON input schema | R7 + R9 | 18th June |
+| 2 | Build/extend GitHub Actions workflow to automate prediction generation | R9 | 19th June |
+| 3 | Document new automated pipeline in README | R9 | 20th June |
+
+---
+
+*Retrospective recorded by: R2 Gong Yinxuan*

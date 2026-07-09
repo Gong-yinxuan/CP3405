@@ -1,0 +1,57 @@
+[
+  {
+    "Sector": "Communication Services",
+    "Ticker": "XLC",
+    "Weekly_Change_Pct": "-1.9"
+  },
+  {
+    "Sector": "Technology",
+    "Ticker": "XLK",
+    "Weekly_Change_Pct": "-0.3"
+  },
+  {
+    "Sector": "Basic Materials",
+    "Ticker": "XLB",
+    "Weekly_Change_Pct": "2.4"
+  },
+  {
+    "Sector": "Consumer Cyclical",
+    "Ticker": "XLY",
+    "Weekly_Change_Pct": "0.9"
+  },
+  {
+    "Sector": "Consumer Defensive",
+    "Ticker": "XLP",
+    "Weekly_Change_Pct": "1.7"
+  },
+  {
+    "Sector": "Energy",
+    "Ticker": "XLE",
+    "Weekly_Change_Pct": "0.1"
+  },
+  {
+    "Sector": "Financial Services",
+    "Ticker": "XLF",
+    "Weekly_Change_Pct": "2.3"
+  },
+  {
+    "Sector": "Healthcare",
+    "Ticker": "XLV",
+    "Weekly_Change_Pct": "1.1"
+  },
+  {
+    "Sector": "Industrials",
+    "Ticker": "XLI",
+    "Weekly_Change_Pct": "1.3"
+  },
+  {
+    "Sector": "Real Estate",
+    "Ticker": "XLRE",
+    "Weekly_Change_Pct": "1.4"
+  },
+  {
+    "Sector": "Utilities",
+    "Ticker": "XLU",
+    "Weekly_Change_Pct": "-0.1"
+  }
+]

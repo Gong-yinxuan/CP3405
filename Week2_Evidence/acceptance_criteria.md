@@ -1,23 +1,33 @@
-# Acceptance Criteria — Week 02
+# Acceptance Criteria — Week 03
 
-A sprint is considered COMPLETE only if ALL criteria below are met.
+Definition of Done (DoD)
 
 ## Evidence Collection
-- Finviz Futures Performance screenshot (1W) collected
-- Yahoo Finance Sectors screenshot (5D) collected
-- Evidence uploaded to GitHub repository
+- Finviz 1W screenshot collected
+- Yahoo Sectors 5D screenshot collected
+- Chart evidence uploaded
 
 ## Agent Outputs
-- Almanac Agent output completed
-- Macro Agent output completed
-- Technical Agent output completed
+- Almanac output completed
+- Macro output completed
+- Technical output completed
 - Outputs follow the required templates
 
 ## AI Analysis
-- Four AI models queried
-- Raw AI responses saved
-- Multi-LLM comparison table completed
+- ChatGPT response saved
+- Claude response saved
+- Gemini response saved
+- DeepSeek response saved
+- Comparison table completed
 
-## Human Reasoning
+## Human Score
 - Human Score discussion completed
-- Final prediction justified with evidence
+- Final prediction agreed upon
+- Confidence level included
+- Invalidation condition written
+
+## GitHub & Submission
+- Files committed to GitHub
+- README updated
+- Release tag vW23 created
+- Discord submission posted before Sunday 23:59 SGT

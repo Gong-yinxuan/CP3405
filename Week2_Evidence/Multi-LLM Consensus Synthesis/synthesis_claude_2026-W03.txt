@@ -1,0 +1,19 @@
+Here is the full synthesis across all four required dimensions.
+
+---
+
+**01 — Core synthesis matrix**
+
+The engine produced a 2/3 hit rate on independent legs. R5 Technical and R3 Almanac both aligned cleanly with the bearish weekly resolution — SPX failed 7600 exactly as flagged, NDX's violent rejection from 30,500 was called, and the June Midterm Year weak spot played out with the actual weekly loss already exceeding the historical average. R4 Macro earns a partial: the binary-event framing was structurally correct, but the leg stopped short of assigning directional weight to the downside scenario materialising before CPI. The faculty's "Flat to modest UP" baseline was the lone directionally incorrect anchor and is the primary calibration target going into Week 4.
+
+**02 — Engine failure explanation**
+
+The mid-week Technology surge and crude spike were both textbook bear-market countertrend events — short-covering and momentum chasing, not regime change. The Friday collapse had four identifiable structural causes: positioning overhang liquidation as mid-week tech buyers exited with no fresh catalyst; systematic institutional de-risking ahead of CPI (a known, repeatable Friday pattern in binary-event weeks the team did not operationalise); crude's reversal from $95.88 to $90.25 confirming the energy spike as a headfake with the seasonal short window already open; and Bitcoin's −16.08% weekly loss, which was a real-time leading indicator of deteriorating risk appetite that had no integration point in the synthesis engine. The root failure was the absence of a time-of-week filter for pre-CPI Friday compression.
+
+**03 — Incoming regime threats**
+
+The 620bps dispersion between Utilities (+0.70%) and Consumer Discretionary (−5.50%) in a single week is a regime-level signal, not noise — institutional capital is reducing beta, not rotating for alpha. VIX at 19.65 with a +12.78% single-day Friday print means the market is pricing uncertainty but not yet full panic, which creates asymmetric CPI risk: a hot print slams the door on June cuts, while a cool print faces a high bar to reverse defensive positioning already in motion. Gold's −4.96% weekly loss in a risk-off week is a notable anomaly suggesting real-rate repricing, and the Thursday ECB decision stacks a second binary on top, adding EUR/USD cross-risk to an already fragile tape.
+
+**04 — Calibration guidance**
+
+The core correction is to stop treating R3 Almanac as a secondary leg when its confidence rating is High — it should move to co-equal weighting alongside Technical. SPX 7350–7400 is now resistance, not support. NDX 28,000 is the next structural level to watch. BTC weekly performance must be integrated as a risk-appetite pre-filter. And in any week containing a high-impact binary event, the team should default to reduced size with a standing rule: Friday compression before a major catalyst is a structural setup, not coincidence.

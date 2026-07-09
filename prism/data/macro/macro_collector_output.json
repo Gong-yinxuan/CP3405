@@ -1,0 +1,112 @@
+{
+    "generated_at": "2026-07-06T06:22:13Z",
+    "collector": "Macro Collector",
+    "agent_input_for": "Macro Agent",
+    "data_source": {
+        "market_data": "Yahoo Finance via yfinance",
+        "fed_speakers": "Federal Reserve speeches RSS feed",
+        "economic_data_releases": "BLS RSS feeds"
+    },
+    "note": "This collector gathers automatic macro market data and Fed + Data Watch metadata. FedWatch probability is not collected here.",
+    "macro_market_data": {
+        "US_10Y_YIELD": {
+            "symbol": "US_10Y_YIELD",
+            "yahoo_ticker": "^TNX",
+            "name": "US 10-Year Treasury Yield",
+            "category": "yield",
+            "latest_trading_date": "2026-07-02",
+            "close": 0.4485,
+            "weekly_change_pct": 2.12,
+            "change_5d": 0.0093,
+            "direction_5d": "Up",
+            "history_file": "macro/history/US_10Y_YIELD.json"
+        },
+        "US_30Y_YIELD": {
+            "symbol": "US_30Y_YIELD",
+            "yahoo_ticker": "^TYX",
+            "name": "US 30-Year Treasury Yield",
+            "category": "yield",
+            "latest_trading_date": "2026-07-02",
+            "close": 0.4985,
+            "weekly_change_pct": 2.61,
+            "change_5d": 0.0127,
+            "direction_5d": "Up",
+            "history_file": "macro/history/US_30Y_YIELD.json"
+        },
+        "WTI": {
+            "symbol": "WTI",
+            "yahoo_ticker": "CL=F",
+            "name": "Crude Oil WTI Futures",
+            "category": "commodity",
+            "latest_trading_date": "2026-07-06",
+            "close": 69.18,
+            "weekly_change_pct": -0.07,
+            "change_5d": -0.05,
+            "direction_5d": "Down",
+            "history_file": "macro/history/WTI.json"
+        },
+        "GOLD": {
+            "symbol": "GOLD",
+            "yahoo_ticker": "GC=F",
+            "name": "Gold Futures",
+            "category": "commodity",
+            "latest_trading_date": "2026-07-06",
+            "close": 4163.0,
+            "weekly_change_pct": 2.07,
+            "change_5d": 84.3,
+            "direction_5d": "Up",
+            "history_file": "macro/history/GOLD.json"
+        },
+        "DXY": {
+            "symbol": "DXY",
+            "yahoo_ticker": "DX-Y.NYB",
+            "name": "US Dollar Index",
+            "category": "currency_index",
+            "latest_trading_date": "2026-07-06",
+            "close": 101.003,
+            "weekly_change_pct": -0.35,
+            "change_5d": -0.357,
+            "direction_5d": "Down",
+            "history_file": "macro/history/DXY.json"
+        },
+        "VIX": {
+            "symbol": "VIX",
+            "yahoo_ticker": "^VIX",
+            "name": "CBOE Volatility Index",
+            "category": "volatility",
+            "latest_trading_date": "2026-07-02",
+            "close": 16.15,
+            "weekly_change_pct": -14.51,
+            "change_5d": -2.74,
+            "direction_5d": "Down",
+            "history_file": "macro/history/VIX.json"
+        },
+        "BTC": {
+            "symbol": "BTC",
+            "yahoo_ticker": "BTC-USD",
+            "name": "Bitcoin USD",
+            "category": "crypto",
+            "latest_trading_date": "2026-07-06",
+            "close": 62962.5,
+            "weekly_change_pct": 7.52,
+            "change_5d": 4403.6406,
+            "direction_5d": "Up",
+            "history_file": "macro/history/BTC.json"
+        }
+    },
+    "fed_and_data_watch": {
+        "week_commencing": "2026-07-06",
+        "week_ending": "2026-07-12",
+        "fed_speakers": [],
+        "fed_speaker_count": 0,
+        "inflation_data": [],
+        "major_data_releases": [],
+        "data_release_errors": {
+            "CPI": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/cpi.rss",
+            "PPI": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/ppi.rss",
+            "IMPORT_EXPORT_PRICES": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/ximpim.rss",
+            "REAL_EARNINGS": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/realer.rss",
+            "EMPLOYMENT_SITUATION": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/empsit.rss"
+        }
+    }
+}

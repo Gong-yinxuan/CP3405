@@ -1,0 +1,50 @@
+CP3405 DT3 WEEK 4 PREDICTION BRIEF
+Synthesis Date: June 13, 2026
+Data Window: Week 3 → Week 4
+
+1. WEEKLY REGIME
+High-volatility regime with bullish bias
+Central bank decisions + compressed trading week + strong technicals create episodic risk, but underlying trend supports upside.
+
+2. INDEX OUTLOOK
+
+Index: S&P 500 (SPX)
+Direction: Bullish
+Estimated % Move: +1.0% → +2.0%
+Key Reason: Technically in Zone 1 above 8/21 EMA; macro support from falling yields and USD weakness.
+
+Index: Nasdaq 100 (NDX)
+Direction: Bullish
+Estimated % Move: +1.5% → +3.0%
+Key Reason: Momentum intact above 29,200 trendline; tech sector strength (+2.5% last week) likely continues.
+
+Index: Russell 2000 (IWM)
+Direction: Bullish, more volatile
+Estimated % Move: +2.0% → +4.0%
+Key Reason: Small-cap outperformance (+4% last week) signals breadth improvement, but sensitive to FOMC headline risk.
+
+3. SECTOR LEADERSHIP
+Leading sector: Technology (XLK) – momentum, trend alignment, macro-friendly lower yields.
+Lagging sector: Utilities (XLU) – defensive, only +0.40% last week, likely underperforms in risk-on environment.
+Why leadership matters this week: Tech leading confirms the broad rally is growth-driven, not defensive. If Tech stalls before FOMC, regime shifts to caution.
+
+4. CORE SYNTHESIS MATRIX
+Leg: Technical | Bias: Bullish | Confidence: High
+Leg: Macro | Bias: Slightly Bullish | Confidence: Medium-High
+Leg: Almanac | Bias: Volatile but Risk-On | Confidence: Medium
+
+Convergence: All three allow upside if no central-bank hawkish surprise.
+Conflict: Almanac warns of midterm seasonal weakness & FOMC volatility vs. Technical’s clean bullish structure.
+Resolution: Technicals dominate until support breaks; macro events are the only credible near-term threat.
+
+5. TOP SUPPORTING REASON
+Technicals + breadth expansion – SPX above bull-market EMAs, IWM surging +4% last week confirms participation beyond mega-caps. This is not a narrow rally.
+
+6. TOP CONTRADICTION / RISK
+FOMC meeting (Thursday) – 97.4% hold priced in, but any hawkish forward guidance or dot-plot shift could trigger sharp reversal despite strong technicals.
+
+7. INVALIDATION CONDITION
+SPX closes below 8 EMA (currently ~733) AND IWM fails below 285 within 48 hours post-FOMC. That would break bullish trendline and signal technical failure.
+
+8. TONE / CAVEAT LANGUAGE
+Aggressive but hedged – Position for upside early week, but reduce risk heading into Wednesday. Do not add leverage before FOMC. Volatility compression pre-meeting is a trap.
