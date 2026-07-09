@@ -122,20 +122,21 @@ def call_claude(prompt):
 
 
 def call_chatgpt(prompt):
-    """Hits the permanently free Groq API using the pre-installed OpenAI client framework."""
-    if not os.getenv("GROQ_API_KEY"):
+    """Hits the permanently free Hugging Face Inference API using your pre-installed OpenAI wrapper."""
+    if not os.getenv("HUGGINGFACE_API_KEY"):
         return fallback_metrics("ChatGPT")
     try:
-        # Groq seamlessly adapts directly to the OpenAI client wrapper
+        # Hugging Face serverless endpoints map perfectly directly into your OpenAI SDK structure
         client = OpenAI(
-            api_key=os.getenv("GROQ_API_KEY"),
-            base_url="https://groq.com"
+            base_url="https://huggingface.co",
+            api_key=os.getenv("HUGGINGFACE_API_KEY")
         )
         res = client.chat.completions.create(
-            model="llama3-8b-8192", # Free model tier option
+            model="meta-llama/Meta-Llama-3-8B-Instruct", # Permanently free serverless inference model tier
             response_format={"type": "json_object"},
             messages=[{"role": "user", "content": prompt}],
-            temperature=0.1
+            temperature=0.1,
+            max_tokens=1000
         )
         return json.loads(clean_json_string(res.choices.message.content))
     except Exception as e:
