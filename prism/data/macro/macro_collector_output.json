@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-07-06T06:22:13Z",
+    "generated_at": "2026-07-09T13:53:27Z",
     "collector": "Macro Collector",
     "agent_input_for": "Macro Agent",
     "data_source": {
@@ -14,10 +14,10 @@
             "yahoo_ticker": "^TNX",
             "name": "US 10-Year Treasury Yield",
             "category": "yield",
-            "latest_trading_date": "2026-07-02",
-            "close": 0.4485,
-            "weekly_change_pct": 2.12,
-            "change_5d": 0.0093,
+            "latest_trading_date": "2026-07-09",
+            "close": 0.4563,
+            "weekly_change_pct": 3.28,
+            "change_5d": 0.0145,
             "direction_5d": "Up",
             "history_file": "macro/history/US_10Y_YIELD.json"
         },
@@ -26,10 +26,10 @@
             "yahoo_ticker": "^TYX",
             "name": "US 30-Year Treasury Yield",
             "category": "yield",
-            "latest_trading_date": "2026-07-02",
-            "close": 0.4985,
-            "weekly_change_pct": 2.61,
-            "change_5d": 0.0127,
+            "latest_trading_date": "2026-07-09",
+            "close": 0.5075,
+            "weekly_change_pct": 3.53,
+            "change_5d": 0.0173,
             "direction_5d": "Up",
             "history_file": "macro/history/US_30Y_YIELD.json"
         },
@@ -38,11 +38,11 @@
             "yahoo_ticker": "CL=F",
             "name": "Crude Oil WTI Futures",
             "category": "commodity",
-            "latest_trading_date": "2026-07-06",
-            "close": 69.18,
-            "weekly_change_pct": -0.07,
-            "change_5d": -0.05,
-            "direction_5d": "Down",
+            "latest_trading_date": "2026-07-09",
+            "close": 72.83,
+            "weekly_change_pct": 6.2,
+            "change_5d": 4.25,
+            "direction_5d": "Up",
             "history_file": "macro/history/WTI.json"
         },
         "GOLD": {
@@ -50,10 +50,10 @@
             "yahoo_ticker": "GC=F",
             "name": "Gold Futures",
             "category": "commodity",
-            "latest_trading_date": "2026-07-06",
-            "close": 4163.0,
-            "weekly_change_pct": 2.07,
-            "change_5d": 84.3,
+            "latest_trading_date": "2026-07-09",
+            "close": 4134.3999,
+            "weekly_change_pct": 1.62,
+            "change_5d": 66.0999,
             "direction_5d": "Up",
             "history_file": "macro/history/GOLD.json"
         },
@@ -62,10 +62,10 @@
             "yahoo_ticker": "DX-Y.NYB",
             "name": "US Dollar Index",
             "category": "currency_index",
-            "latest_trading_date": "2026-07-06",
-            "close": 101.003,
-            "weekly_change_pct": -0.35,
-            "change_5d": -0.357,
+            "latest_trading_date": "2026-07-09",
+            "close": 100.919,
+            "weekly_change_pct": -0.46,
+            "change_5d": -0.471,
             "direction_5d": "Down",
             "history_file": "macro/history/DXY.json"
         },
@@ -74,11 +74,11 @@
             "yahoo_ticker": "^VIX",
             "name": "CBOE Volatility Index",
             "category": "volatility",
-            "latest_trading_date": "2026-07-02",
-            "close": 16.15,
-            "weekly_change_pct": -14.51,
-            "change_5d": -2.74,
-            "direction_5d": "Down",
+            "latest_trading_date": "2026-07-09",
+            "close": 16.61,
+            "weekly_change_pct": 0.12,
+            "change_5d": 0.02,
+            "direction_5d": "Up",
             "history_file": "macro/history/VIX.json"
         },
         "BTC": {
@@ -86,10 +86,10 @@
             "yahoo_ticker": "BTC-USD",
             "name": "Bitcoin USD",
             "category": "crypto",
-            "latest_trading_date": "2026-07-06",
-            "close": 62962.5,
-            "weekly_change_pct": 7.52,
-            "change_5d": 4403.6406,
+            "latest_trading_date": "2026-07-09",
+            "close": 63159.5508,
+            "weekly_change_pct": 0.11,
+            "change_5d": 71.2461,
             "direction_5d": "Up",
             "history_file": "macro/history/BTC.json"
         }
@@ -97,8 +97,27 @@
     "fed_and_data_watch": {
         "week_commencing": "2026-07-06",
         "week_ending": "2026-07-12",
-        "fed_speakers": [],
-        "fed_speaker_count": 0,
+        "fed_speakers": [
+            {
+                "speaker_hint": "Bowman",
+                "title": "Bowman, Opening Remarks on Sound Practices for Artificial Intelligence",
+                "published_at": "2026-07-07T11:00:00+00:00",
+                "source_url": "https://www.federalreserve.gov/newsevents/speech/bowman20260707a.htm",
+                "summary": "Speech At the Financial Stability Board Virtual Outreach Event",
+                "tone_hint": "neutral_or_unclear_keyword_hint",
+                "r4_note": "Keyword hint only. R4 should verify the actual Fed speaker message."
+            },
+            {
+                "speaker_hint": "Waller",
+                "title": "Waller, Two Thoughts on the Transmission of Monetary Policy",
+                "published_at": "2026-07-06T15:00:00+00:00",
+                "source_url": "https://www.federalreserve.gov/newsevents/speech/waller20260706a.htm",
+                "summary": "Speech At &quot;Challenges for Monetary Policy Transmission in a Changing World,&quot; a conference sponsored by the Bank of Italy for the research network initiated by the European System of Central Banks, Rome, Italy",
+                "tone_hint": "neutral_or_unclear_keyword_hint",
+                "r4_note": "Keyword hint only. R4 should verify the actual Fed speaker message."
+            }
+        ],
+        "fed_speaker_count": 2,
         "inflation_data": [],
         "major_data_releases": [],
         "data_release_errors": {

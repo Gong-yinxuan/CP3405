@@ -1,0 +1,26 @@
+{
+  "weekly_regime": "Bifurcated Market with Large-Cap Resilience and Defensive Sector Rotation",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "+0.5% to +1.0%",
+  "ndx_pct_estimate": "-0.5% to +0.5%",
+  "iwm_pct_estimate": "-1.0% to 0.0%",
+  "top_supporting_reason": "The S&P 500 maintains a 'Zone 1 Bullish' EMA condition and 'Bullish' technical bias, indicating underlying strength in large-cap equities.",
+  "top_contradiction_cited": "Rising US Treasury yields and WTI oil prices, coupled with underperformance in growth/cyclical sectors like Consumer Discretionary and Communication Services, present a macro headwind for broader market expansion.",
+  "invalidation_condition": "SPX closing below its 21-day EMA of 7459.96.",
+  "tone_caveat_language": "Investors should prioritize defensive positioning and large-cap quality over high-growth speculative plays, with awareness of potential options expiry volatility.",
+  "consensus_bias": "MIXED",
+  "consensus_read_summary": "The market is displaying a mixed technical picture with the S&P 500 maintaining a bullish posture, while Nasdaq 100 and Russell 2000 show neutral to pullback conditions. Macroeconomic signals, including rising yields and commodity prices, suggest inflationary pressures and potential headwinds for growth sectors, reinforcing a defensive rotation evident in recent sector performance. The upcoming options expiry week adds a layer of potential volatility and price pinning.",
+  "point_of_maximum_divergence": "The strong bullish technical bias and performance of the S&P 500 (SPX) versus the neutral/pullback technicals and underperformance of the Nasdaq 100 (NDX) and Russell 2000 (IWM), reflecting a clear divergence in large-cap vs. smaller/growth segment sentiment.",
+  "key_supporting_factors": [
+    "SPX is in \"Zone 1 Bullish\" with price above 8-day and 8-day EMA above 21-day EMA.",
+    "Energy (XLE), Healthcare (XLV), and Utilities (XLU) are leading sectors, indicating a defensive/value rotation.",
+    "US 10Y and 30Y Treasury yields increased weekly by over 3%, suggesting higher interest rate pressure.",
+    "WTI Crude Oil increased by 6.2%, pointing to rising commodity prices and potential inflationary pressure."
+  ],
+  "main_contradiction_risk": "Continued significant rise in US Treasury yields could negatively impact all equity segments, particularly the growth-oriented Nasdaq 100, invalidating the S&P 500's current bullish technical bias.",
+  "invalidation_summary": "The consensus view is invalidated if the S&P 500 (SPX) closes below 7459.96 (its 21-day EMA), signaling a breakdown of its bullish trend, or if US 10-Year Treasury Yields exceed 0.5% meaningfully, indicating stronger bearish macro pressure.",
+  "r7_human_score_question": "How significant is the macro backdrop of rising yields and commodity prices, which typically pressures growth, given the S&P 500's current technical resilience and the impending options expiry?",
+  "r6_slide_bullet_1": "Large-cap equities (SPX) show bullish technicals, but broader market indices (NDX, IWM) exhibit neutral to pullback conditions.",
+  "r6_slide_bullet_2": "Defensive sectors (Energy, Healthcare, Utilities) are leading, while growth/cyclical sectors (Consumer Discretionary, Communication Services) are lagging, aligning with rising bond yields and WTI oil.",
+  "r6_slide_bullet_3": "Expect continued sector rotation and potential for increased volatility due to options expiry week, prioritizing defensive positioning."
+}

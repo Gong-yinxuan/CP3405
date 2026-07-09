@@ -70,18 +70,33 @@ jobs:
         run: |
           python prism/src/chart_builder.py
 
+      # SPRINT 6 CONCURRENT REPO UPGRADE
+      # Hits 4 Model API streams simultaneously to populate the comparison brief matrix
+      - name: Run 4-Model Consensus LLM Synthesis
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 0 * * 1'
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        run: |
+          python prism/src/llm_synthesis.py
+
+            # -----------------------------
+      # DYNAMIC COMMIT AND PUSH ENGINE
+      # -----------------------------
       - name: Commit and push generated data
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.email "github-actions[bot]@://github.com"
 
           git add prism/data
 
           if git diff --cached --quiet; then
             echo "No generated data changes to commit"
           else
-            git commit -m "chore: update Prism data $(date +'%Y-%m-%d')"
+            git commit -m "chore: update Prism market data & synthesis $(date +'%Y-%m-%d')"
+            # Fixed: Forces Git to accept the freshly generated runner server data over any old online branch copies
+            git pull --rebase -X theirs origin ${GITHUB_REF_NAME}
+            git push origin ${GITHUB_REF_NAME}
           fi
-
-          git pull --rebase origin main
-          git push origin main

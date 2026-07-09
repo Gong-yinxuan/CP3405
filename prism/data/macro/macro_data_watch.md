@@ -5,7 +5,17 @@
 
 ## Fed Speakers
 
-- No recent Fed speeches found in the collector window.
+- **Speaker hint:** Bowman
+  - Title: Bowman, Opening Remarks on Sound Practices for Artificial Intelligence
+  - Published: 2026-07-07T11:00:00+00:00
+  - Tone hint: neutral_or_unclear_keyword_hint
+  - Source: https://www.federalreserve.gov/newsevents/speech/bowman20260707a.htm
+
+- **Speaker hint:** Waller
+  - Title: Waller, Two Thoughts on the Transmission of Monetary Policy
+  - Published: 2026-07-06T15:00:00+00:00
+  - Tone hint: neutral_or_unclear_keyword_hint
+  - Source: https://www.federalreserve.gov/newsevents/speech/waller20260706a.htm
 
 ## CPI / Inflation-Related Releases
 
