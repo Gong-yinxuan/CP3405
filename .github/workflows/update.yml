@@ -82,13 +82,13 @@ jobs:
         run: |
           python prism/src/llm_synthesis.py
 
-      # -----------------------------
+            # -----------------------------
       # DYNAMIC COMMIT AND PUSH ENGINE
       # -----------------------------
       - name: Commit and push generated data
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.email "github-actions[bot]@://github.com"
 
           git add prism/data
 
@@ -96,7 +96,7 @@ jobs:
             echo "No generated data changes to commit"
           else
             git commit -m "chore: update Prism market data & synthesis $(date +'%Y-%m-%d')"
-            # Fixed: Rebase and push directly using the current active branch token variable
-            git pull --rebase origin ${GITHUB_REF_NAME}
+            # Fixed: Forces Git to accept the freshly generated runner server data over any old online branch copies
+            git pull --rebase -X theirs origin ${GITHUB_REF_NAME}
             git push origin ${GITHUB_REF_NAME}
           fi
