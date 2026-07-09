@@ -1,26 +1,11 @@
 {
-  "weekly_regime": "Cautious Rotation Amidst Volatility",
-  "confidence_score": "Medium",
-  "spx_pct_estimate": "0.0% to +1.0%",
-  "ndx_pct_estimate": "-1.0% to +0.5%",
-  "iwm_pct_estimate": "-1.5% to +0.0%",
-  "top_supporting_reason": "SPX technical strength persists amidst a defensive sector rotation.",
-  "top_contradiction_cited": "Rising yields and commodity prices signal inflationary pressure while growth/cyclical sectors lag.",
-  "invalidation_condition": "SPX close below 7250",
-  "tone_caveat_language": "Favor defensive positioning and rotation into value/energy; cautious on growth equities.",
-  "consensus_bias": "MIXED",
-  "consensus_read_summary": "The market presents a mixed picture for the coming week, with the S&P 500 maintaining a bullish technical stance while the Nasdaq 100 and Russell 2000 show neutral to pullback conditions. Macroeconomic indicators point to rising yields and commodity prices, suggesting underlying inflationary pressures. This is further reinforced by a strong rotation into defensive sectors like Energy, Healthcare, and Utilities, contrasting with weakness in Consumer Discretionary and Communication Services. The upcoming options expiry week adds a layer of potential volatility.",
-  "point_of_maximum_divergence": "The divergence between the S&P 500's bullish technical strength (Zone 1) and the lagging performance and neutral technical biases of the Nasdaq 100 and Russell 2000.",
-  "key_supporting_factors": [
-    "SPX in \"Zone 1 Bullish\" EMA condition with price above 8 and 21 EMA.",
-    "US 10Y and 30Y Treasury yields are trending up with weekly changes of 3.37% and 3.57% respectively.",
-    "Energy (+4.66%), Healthcare (+1.62%), and Utilities (+1.44%) are leading sectors, indicating defensive rotation.",
-    "Options Expiry Week (July 17) is in the forecast window, often associated with increased volatility."
-  ],
-  "main_contradiction_risk": "Persistent inflation signals from rising oil and bond yields, coupled with defensive sector leadership, may challenge the overall market's ability to sustain broader gains beyond large-cap resilience.",
-  "invalidation_summary": "A weekly close of SPX below its recent 20-day low support candidate of 7257.33 would invalidate the prevailing bullish technical bias for the broader market.",
-  "r7_human_score_question": "How significant is the lack of recent BLS economic data (CPI, PPI, Employment) in assessing the true inflationary pressure and its impact on the Fed's future monetary policy stance, especially with rising yields and oil?",
-  "r6_slide_bullet_1": "SPX maintains technical strength, while NDX/IWM show neutral-to-pullback conditions, indicating a bifurcated market.",
-  "r6_slide_bullet_2": "Macro signals point to rising yields and oil, suggesting inflation concerns and a defensive rotation into Energy, Healthcare, and Utilities.",
-  "r6_slide_bullet_3": "Options expiry and midterm year context suggest potential volatility, favoring cautious exposure and selective sector positioning."
+  "weekly_regime": "Error loading Gemini value",
+  "confidence_score": "Error loading Gemini value",
+  "spx_pct_estimate": "Error loading Gemini value",
+  "ndx_pct_estimate": "Error loading Gemini value",
+  "iwm_pct_estimate": "Error loading Gemini value",
+  "top_supporting_reason": "Error loading Gemini value",
+  "top_contradiction_cited": "Error loading Gemini value",
+  "invalidation_condition": "Error loading Gemini value",
+  "tone_caveat_language": "Error loading Gemini value"
 }
