@@ -210,4 +210,4 @@ def generate_markdown_report(c, gpt, gem, ds):
 **Models in agreement (3/4):**
 Claude, ChatGPT, and Gemini find technical convergence regarding short-term EMA chart retention. All four models agree that underlying macro frictions and yield curves apply structural counterweight pressure this cycle.
 
-**Point of maximum divergence:**
+**Point of maximum divergence:** 
