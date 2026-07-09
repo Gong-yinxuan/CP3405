@@ -1,83 +1,83 @@
 {
   "date": "2026-07-09",
   "SPX": {
-    "close": 7482.71,
-    "weekly_change_pct": -0.2
+    "close": 7508.22,
+    "weekly_change_pct": 0.3
   },
   "NDX": {
-    "close": 29252.56,
-    "weekly_change_pct": -3.4
+    "close": 29633.82,
+    "weekly_change_pct": -0.6
   },
   "IWM": {
-    "close": 293.48,
-    "weekly_change_pct": -2.3
+    "close": 295.65,
+    "weekly_change_pct": -1.2
   },
   "GOLD": {
-    "close": 4133.9,
+    "close": 4135.4,
     "weekly_change_pct": 1.6
   },
   "WTI": {
-    "close": 73.05,
-    "weekly_change_pct": 6.5
+    "close": 73.2,
+    "weekly_change_pct": 6.7
   },
   "US10Y": {
     "close": 0.46,
     "weekly_change_pct": 4.5
   },
   "TLT": {
-    "close": 84.36,
-    "weekly_change_pct": -2.0
+    "close": 84.29,
+    "weekly_change_pct": -1.4
   },
   "VIX": {
-    "close": 16.74,
-    "weekly_change_pct": 0.9
+    "close": 16.72,
+    "weekly_change_pct": 0.8
   },
   "BTC": {
-    "close": 62625.93,
-    "weekly_change_pct": -0.7
+    "close": 62758.59,
+    "weekly_change_pct": -0.5
   },
   "XLK": {
-    "close": 181.4,
-    "weekly_change_pct": -4.8
+    "close": 185.78,
+    "weekly_change_pct": 0.1
   },
   "XLF": {
-    "close": 54.97,
-    "weekly_change_pct": 2.5
+    "close": 55.08,
+    "weekly_change_pct": 0.5
   },
   "XLV": {
-    "close": 162.3,
-    "weekly_change_pct": 2.3
+    "close": 162.09,
+    "weekly_change_pct": 1.6
   },
   "XLE": {
-    "close": 55.6,
+    "close": 55.28,
     "weekly_change_pct": 4.7
   },
   "XLY": {
-    "close": 115.3,
-    "weekly_change_pct": -1.7
+    "close": 114.71,
+    "weekly_change_pct": -2.9
   },
   "XLP": {
-    "close": 84.39,
-    "weekly_change_pct": 1.6
+    "close": 83.22,
+    "weekly_change_pct": -0.1
   },
   "XLI": {
-    "close": 180.42,
-    "weekly_change_pct": -2.6
+    "close": 181.92,
+    "weekly_change_pct": -0.8
   },
   "XLU": {
-    "close": 45.36,
-    "weekly_change_pct": 0.0
+    "close": 45.42,
+    "weekly_change_pct": 1.5
   },
   "XLB": {
-    "close": 50.16,
-    "weekly_change_pct": -1.3
+    "close": 50.19,
+    "weekly_change_pct": -1.6
   },
   "XLRE": {
-    "close": 44.15,
-    "weekly_change_pct": 0.3
+    "close": 44.16,
+    "weekly_change_pct": -0.0
   },
   "XLC": {
-    "close": 109.46,
-    "weekly_change_pct": 2.2
+    "close": 108.02,
+    "weekly_change_pct": -1.6
   }
 }

@@ -8,15 +8,15 @@
 
 | Dimension                   | Claude     | ChatGPT    | Gemini     | DeepSeek   |
 | --------------------------- | ---------- | ---------- | ---------- | ---------- |
-| **Weekly Regime**           | Error loading Claude value | Error loading ChatGPT value | Defensive Rotation with Increased Volatility | Error loading DeepSeek value |
+| **Weekly Regime**           | Error loading Claude value | Error loading ChatGPT value | Cautious Rotation Amidst Volatility | Error loading DeepSeek value |
 | **Confidence Score**        | Error loading Claude value | Error loading ChatGPT value | Medium | Error loading DeepSeek value |
-| **SPX % estimate**          | Error loading Claude value | Error loading ChatGPT value | -0.5% to +0.5% | Error loading DeepSeek value |
-| **NDX % estimate**          | Error loading Claude value | Error loading ChatGPT value | -2.0% to 0% | Error loading DeepSeek value |
-| **IWM % estimate**          | Error loading Claude value | Error loading ChatGPT value | -1.5% to +0.5% | Error loading DeepSeek value |
-| **Top supporting reason**   | Error loading Claude value | Error loading ChatGPT value | Strong rotation from growth/tech into defensive/value sectors, affirmed by rising yields and commodity prices. | Error loading DeepSeek value |
-| **Top contradiction cited** | Error loading Claude value | Error loading ChatGPT value | Divergent technical biases between SPX (Neutral/Bullish) and NDX (Bearish) amidst rising volatility. | Error loading DeepSeek value |
-| **Invalidation condition**  | Error loading Claude value | Error loading ChatGPT value | SPX closing below 7454.33 (21-EMA) | Error loading DeepSeek value |
-| **Tone / caveat language**  | Error loading Claude value | Error loading ChatGPT value | Exposure should prioritize defensive and value sectors, hedging against growth and tech underperformance. | Error loading DeepSeek value |
+| **SPX % estimate**          | Error loading Claude value | Error loading ChatGPT value | 0.0% to +1.0% | Error loading DeepSeek value |
+| **NDX % estimate**          | Error loading Claude value | Error loading ChatGPT value | -1.0% to +0.5% | Error loading DeepSeek value |
+| **IWM % estimate**          | Error loading Claude value | Error loading ChatGPT value | -1.5% to +0.0% | Error loading DeepSeek value |
+| **Top supporting reason**   | Error loading Claude value | Error loading ChatGPT value | SPX technical strength persists amidst a defensive sector rotation. | Error loading DeepSeek value |
+| **Top contradiction cited** | Error loading Claude value | Error loading ChatGPT value | Rising yields and commodity prices signal inflationary pressure while growth/cyclical sectors lag. | Error loading DeepSeek value |
+| **Invalidation condition**  | Error loading Claude value | Error loading ChatGPT value | SPX close below 7250 | Error loading DeepSeek value |
+| **Tone / caveat language**  | Error loading Claude value | Error loading ChatGPT value | Favor defensive positioning and rotation into value/energy; cautious on growth equities. | Error loading DeepSeek value |
 
 ## Consensus Read
 
@@ -62,7 +62,7 @@ Dynamic calculation pending...
 
 | Evidence Leg | Current Read                  | Alignment                         |
 | ------------ | ----------------------------- | --------------------------------- |
-| Technical    | Bearish                  | Aligned                      |
+| Technical    | Bullish                  | Aligned                      |
 | Macro        | Stable / Supportive                 | Aligned                     |
 | Almanac      | Neutral-Cautious (Flags Active)               | Mixed                   |
 
