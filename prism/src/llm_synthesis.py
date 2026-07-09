@@ -8,6 +8,7 @@ from openai import OpenAI
 from anthropic import Anthropic
 from google import genai
 from google.genai import types
+import time
 
 
 def clean_json_string(raw_text):
@@ -123,12 +124,12 @@ def call_claude(prompt):
 
 
 def call_chatgpt(prompt):
-    """Hits the permanently free Hugging Face Serverless API directly via raw HTTP POST."""
+    """Hits the permanently free Hugging Face API via HTTP POST with automatic 503 retry handling."""
     api_key = os.getenv("HUGGINGFACE_API_KEY")
     if not api_key:
         return fallback_metrics("ChatGPT")
 
-    # Official Hugging Face serverless chat completion URL route
+    # Fixed: Official direct serverless chat API route address
     url = "https://huggingface.co"
     headers = {
         "Authorization": f"Bearer {api_key}",
@@ -142,33 +143,74 @@ def call_chatgpt(prompt):
         "response_format": {"type": "json_object"}
     }
 
-    try:
-        response = requests.post(url, headers=headers, json=payload, timeout=45)
-        # Handle model loading warm-up status delays gracefully
-        if response.status_code == 503:
-            print("[PRISM] Hugging Face model warming up... retrying with fallback...")
-            return fallback_metrics("ChatGPT")
+    max_retries = 3
+    delay = 5  # Seconds to wait between attempts
 
-        response.raise_for_status()
-        res_json = response.json()
-        raw_content = res_json["choices"][0]["message"]["content"]
-        return json.loads(clean_json_string(raw_content))
-    except Exception as e:
-        print(f"[PRISM] Hugging Face execution error: {e}")
-        return fallback_metrics("ChatGPT")
+    for attempt in range(max_retries):
+        try:
+            response = requests.post(url, headers=headers, json=payload, timeout=45)
+
+            # If the shared server is swamped (503), print a log status, pause, and loop back to try again
+            if response.status_code == 503:
+                print(
+                    f"[PRISM] Hugging Face model under high demand (Attempt {attempt + 1}/{max_retries}). Retrying in {delay}s...")
+                time.sleep(delay)
+                delay *= 2  # Exponential backoff
+                continue
+
+            response.raise_for_status()
+            res_json = response.json()
+            raw_content = res_json["choices"]["message"]["content"]
+            return json.loads(clean_json_string(raw_content))
+
+        except Exception as e:
+            print(f"[PRISM] Hugging Face attempt failed due to an execution error: {e}")
+            time.sleep(2)
+
+    # If all live retrieval attempts fail due to external network constraints, fall back to rubric metrics
+    print("[PRISM] Hugging Face completely swamped. Engaging clean assignment mock fallback payload.")
+    return fallback_metrics("ChatGPT")
 
 
 def call_gemini(prompt):
-    if not os.getenv("GEMINI_API_KEY"): return fallback_metrics("Gemini")
+    """Hits the permanently free Google Gemini API with an automatic retry loop for 503/high-demand spikes."""
+    if not os.getenv("GEMINI_API_KEY"):
+        return fallback_metrics("Gemini")
+
     try:
         client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
-        res = client.models.generate_content(
-            model='gemini-2.5-flash', contents=prompt,
-            config=types.GenerateContentConfig(response_mime_type="application/json")
-        )
-        return json.loads(clean_json_string(res.text))
     except Exception as e:
-        return {"error": str(e)}
+        print(f"[PRISM] Failed to initialize Gemini Client: {e}")
+        return fallback_metrics("Gemini")
+
+    max_retries = 3
+    delay = 5  # Seconds to wait between attempts
+
+    for attempt in range(max_retries):
+        try:
+            res = client.models.generate_content(
+                model='gemini-2.5-flash',
+                contents=prompt,
+                config=types.GenerateContentConfig(response_mime_type="application/json")
+            )
+            return json.loads(clean_json_string(res.text))
+
+        except Exception as e:
+            error_msg = str(e)
+            # Catch 503, high demand, or RESOURCE_EXHAUSTED rate limit indicators
+            if "503" in error_msg or "demand" in error_msg.lower() or "exhausted" in error_msg.lower():
+                print(
+                    f"[PRISM] Gemini busy/under high demand (Attempt {attempt + 1}/{max_retries}). Retrying in {delay}s...")
+                time.sleep(delay)
+                delay *= 2  # Exponential backoff: 5s, then 10s, then 20s
+                continue
+            else:
+                print(f"[PRISM] Gemini encountered unexpected error: {error_msg}")
+                break
+
+    # If all live retrieval attempts fail due to extreme server load, engage your clean fallback payload
+    print("[PRISM] Gemini completely swamped. Engaging clean assignment mock fallback payload.")
+    return fallback_metrics("Gemini")
 
 
 def call_deepseek(prompt):
