@@ -1,11 +1,27 @@
 {
-  "weekly_regime": "Error loading Gemini value",
-  "confidence_score": "Error loading Gemini value",
-  "spx_pct_estimate": "Error loading Gemini value",
-  "ndx_pct_estimate": "Error loading Gemini value",
-  "iwm_pct_estimate": "Error loading Gemini value",
-  "top_supporting_reason": "Error loading Gemini value",
-  "top_contradiction_cited": "Error loading Gemini value",
-  "invalidation_condition": "Error loading Gemini value",
-  "tone_caveat_language": "Error loading Gemini value"
+  "weekly_regime": "Defensive Rotation / Value Outperformance with Tech Weakness",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "-0.5% to -1.5%",
+  "ndx_pct_estimate": "-1.0% to -3.0%",
+  "iwm_pct_estimate": "-0.5% to -2.0%",
+  "top_supporting_reason": "Clear market rotation from high-growth technology sectors towards defensive and cyclical value due to rising yields.",
+  "top_contradiction_cited": "SPX technicals indicating 'Zone 1 Bullish' despite broad market headwinds and significant tech sector decline.",
+  "invalidation_condition": "SPX closes below 7454.33 (21-EMA).",
+  "tone_caveat_language": "Prioritize defensive and value exposure, caution on high-growth tech.",
+  "consensus_bias": "MIXED",
+  "consensus_read_summary": "The market is undergoing a significant rotation from growth to value, with technology indices showing strong bearish technicals and macro headwinds from rising yields. While the S&P 500 maintains a 'Zone 1 Bullish' EMA condition, the overall market tone suggests increased caution and a shift in leadership, amplified by options expiry week volatility.",
+  "point_of_maximum_divergence": "The S&P 500's relatively resilient 'Zone 1 Bullish' EMA condition stands in direct contrast to the Nasdaq 100's 'Zone 3 Bearish' EMA condition and the Technology sector's significant underperformance.",
+  "key_supporting_factors": [
+    "NDX is in 'Zone 3 Bearish' EMA condition with a -3.38% weekly change.",
+    "Technology (XLK) is the leading lagging sector with -4.79% weekly change.",
+    "US 10-Year and 30-Year Treasury Yields are up 3.51% and 3.69% respectively.",
+    "Energy (XLE) is the leading sector with +4.69% weekly change, coinciding with WTI Crude Oil up 7.92%.",
+    "Options expiry week often correlates with increased market volatility."
+  ],
+  "main_contradiction_risk": "Despite tech weakness and rising yields, SPX's technical bias remains 'Neutral' with price 'above' its 8-EMA and 8-EMA 'above' its 21-EMA, which could suggest resilience not reflected in the overall bearish rotation.",
+  "invalidation_summary": "A weekly close for the S&P 500 below its 21-day Exponential Moving Average of 7454.33 would invalidate the current mixed/defensive rotation outlook, suggesting broader market weakness.",
+  "r7_human_score_question": "Given the conflicting technical signals for SPX (Zone 1 Bullish) versus NDX (Zone 3 Bearish) and IWM (Zone 2 Pullback), how much weight should be given to the magnitude of tech's decline and sector rotation over the SPX's relatively stable EMA configuration?",
+  "r6_slide_bullet_1": "Market shifts into 'Defensive Rotation' with Technology (NDX, XLK) showing significant weakness.",
+  "r6_slide_bullet_2": "Value and cyclical sectors like Energy and Financials outperforming, driven by rising yields and commodity prices.",
+  "r6_slide_bullet_3": "Increased volatility anticipated due to options expiry, challenging broad market resilience despite SPX's current technical posture."
 }
