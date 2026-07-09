@@ -1,4 +1,6 @@
 yfinance>=0.2.36
 requests
 matplotlib
-matplotlib
+openai
+anthropic
+google-genai
