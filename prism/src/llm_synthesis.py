@@ -122,12 +122,20 @@ def call_claude(prompt):
 
 
 def call_chatgpt(prompt):
-    if not os.getenv("OPENAI_API_KEY"): return fallback_metrics("ChatGPT")
+    """Hits the permanently free Groq API using the pre-installed OpenAI client framework."""
+    if not os.getenv("GROQ_API_KEY"):
+        return fallback_metrics("ChatGPT")
     try:
-        client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        # Groq seamlessly adapts directly to the OpenAI client wrapper
+        client = OpenAI(
+            api_key=os.getenv("GROQ_API_KEY"),
+            base_url="https://groq.com"
+        )
         res = client.chat.completions.create(
-            model="gpt-4o-mini", response_format={"type": "json_object"},
-            messages=[{"role": "user", "content": prompt}], temperature=0.1
+            model="llama3-8b-8192", # Free model tier option
+            response_format={"type": "json_object"},
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.1
         )
         return json.loads(clean_json_string(res.choices.message.content))
     except Exception as e:
