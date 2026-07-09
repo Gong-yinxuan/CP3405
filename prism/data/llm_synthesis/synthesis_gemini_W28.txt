@@ -1,0 +1,11 @@
+{
+  "weekly_regime": "Error loading Gemini value",
+  "confidence_score": "Error loading Gemini value",
+  "spx_pct_estimate": "Error loading Gemini value",
+  "ndx_pct_estimate": "Error loading Gemini value",
+  "iwm_pct_estimate": "Error loading Gemini value",
+  "top_supporting_reason": "Error loading Gemini value",
+  "top_contradiction_cited": "Error loading Gemini value",
+  "invalidation_condition": "Error loading Gemini value",
+  "tone_caveat_language": "Error loading Gemini value"
+}
