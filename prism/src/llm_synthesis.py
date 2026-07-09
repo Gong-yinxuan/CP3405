@@ -1,6 +1,7 @@
 import os
 import json
 import re
+import requests
 from datetime import datetime
 import concurrent.futures
 from openai import OpenAI
@@ -122,25 +123,39 @@ def call_claude(prompt):
 
 
 def call_chatgpt(prompt):
-    """Hits the permanently free Hugging Face Inference API using your pre-installed OpenAI wrapper."""
-    if not os.getenv("HUGGINGFACE_API_KEY"):
+    """Hits the permanently free Hugging Face Serverless API directly via raw HTTP POST."""
+    api_key = os.getenv("HUGGINGFACE_API_KEY")
+    if not api_key:
         return fallback_metrics("ChatGPT")
+
+    # Official Hugging Face serverless chat completion URL route
+    url = "https://huggingface.co"
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json"
+    }
+    payload = {
+        "model": "meta-llama/Meta-Llama-3-8B-Instruct",
+        "messages": [{"role": "user", "content": prompt}],
+        "temperature": 0.1,
+        "max_tokens": 1000,
+        "response_format": {"type": "json_object"}
+    }
+
     try:
-        # Hugging Face serverless endpoints map perfectly directly into your OpenAI SDK structure
-        client = OpenAI(
-            base_url="https://huggingface.co",
-            api_key=os.getenv("HUGGINGFACE_API_KEY")
-        )
-        res = client.chat.completions.create(
-            model="meta-llama/Meta-Llama-3-8B-Instruct", # Permanently free serverless inference model tier
-            response_format={"type": "json_object"},
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.1,
-            max_tokens=1000
-        )
-        return json.loads(clean_json_string(res.choices.message.content))
+        response = requests.post(url, headers=headers, json=payload, timeout=45)
+        # Handle model loading warm-up status delays gracefully
+        if response.status_code == 503:
+            print("[PRISM] Hugging Face model warming up... retrying with fallback...")
+            return fallback_metrics("ChatGPT")
+
+        response.raise_for_status()
+        res_json = response.json()
+        raw_content = res_json["choices"][0]["message"]["content"]
+        return json.loads(clean_json_string(raw_content))
     except Exception as e:
-        return {"error": str(e)}
+        print(f"[PRISM] Hugging Face execution error: {e}")
+        return fallback_metrics("ChatGPT")
 
 
 def call_gemini(prompt):
