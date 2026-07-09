@@ -1,0 +1,99 @@
+name: Update Market Data
+
+on:
+  schedule:
+    # Monday 8:00 AM Singapore time
+    # Runs R3/R4/R5 agent collectors + chart builder
+    - cron: "0 0 * * 1"
+
+    # Saturday 6:00 AM Singapore time
+    # Runs R6 actuals collector after US Friday close
+    - cron: "0 22 * * 5"
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch-and-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r prism/requirements.txt
+
+      # -----------------------------
+      # R6 ACTUALS COLLECTOR
+      # Runs Saturday 6:00 AM SGT
+      # -----------------------------
+
+      - name: Run R6 actuals collector
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 22 * * 5'
+        run: |
+          python prism/src/data_collector.py
+
+      # -----------------------------
+      # R3/R4/R5 AGENT COLLECTORS
+      # Runs Monday 8:00 AM SGT
+      # -----------------------------
+
+      - name: Run technical collector
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 0 * * 1'
+        run: |
+          python prism/src/collectors/technical_collector.py
+
+      - name: Run macro collector
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 0 * * 1'
+        run: |
+          python prism/src/collectors/macro_collector.py
+
+      - name: Run almanac collector
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 0 * * 1'
+        run: |
+          python prism/src/collectors/almanac_collector.py
+
+      - name: Build agent charts
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 0 * * 1'
+        run: |
+          python prism/src/chart_builder.py
+
+      # SPRINT 6 CONCURRENT REPO UPGRADE
+      # Hits 4 Model API streams simultaneously to populate the comparison brief matrix
+      - name: Run 4-Model Consensus LLM Synthesis
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 0 * * 1'
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        run: |
+          python prism/src/llm_synthesis.py
+
+      - name: Commit and push generated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add prism/data
+
+          if git diff --cached --quiet; then
+            echo "No generated data changes to commit"
+          else
+            git commit -m "chore: update Prism data $(date +'%Y-%m-%d')"
+          fi
+
+          git pull --rebase origin main
+          git push origin main
