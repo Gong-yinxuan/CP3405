@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e3f8ad4e-b4e7-4a8c-94e5-cbc561518d3c" name="Changes" comment="Amend W02 File names to display the correct Week instead of W01&#10;Log individual learning">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="e3f8ad4e-b4e7-4a8c-94e5-cbc561518d3c" name="Changes" comment="Amend W02 File names to display the correct Week instead of W01&#10;Log individual learning" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,6 +33,9 @@
   &quot;fromUser&quot;: false
 }</component>
   <component name="ProjectId" id="3EcOtH2YEuCVnK0lUPXrpWwbO7q" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -48,7 +49,7 @@
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "hyh",
     "kotlin-language-version-configured": "true"
   }
 }]]></component>
