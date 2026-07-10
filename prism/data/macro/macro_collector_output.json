@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-07-10T09:03:27Z",
+    "generated_at": "2026-07-10T11:46:38Z",
     "collector": "Macro Collector",
     "agent_input_for": "Macro Agent",
     "data_source": {
@@ -39,9 +39,9 @@
             "name": "Crude Oil WTI Futures",
             "category": "commodity",
             "latest_trading_date": "2026-07-10",
-            "close": 72.06,
-            "weekly_change_pct": 4.91,
-            "change_5d": 3.37,
+            "close": 72.56,
+            "weekly_change_pct": 5.63,
+            "change_5d": 3.87,
             "direction_5d": "Up",
             "history_file": "macro/history/WTI.json"
         },
@@ -51,9 +51,9 @@
             "name": "Gold Futures",
             "category": "commodity",
             "latest_trading_date": "2026-07-10",
-            "close": 4106.2002,
-            "weekly_change_pct": -0.16,
-            "change_5d": -6.5,
+            "close": 4107.5,
+            "weekly_change_pct": -0.13,
+            "change_5d": -5.2002,
             "direction_5d": "Down",
             "history_file": "macro/history/GOLD.json"
         },
@@ -63,10 +63,10 @@
             "name": "US Dollar Index",
             "category": "currency_index",
             "latest_trading_date": "2026-07-10",
-            "close": 100.851,
-            "weekly_change_pct": -0.01,
-            "change_5d": -0.009,
-            "direction_5d": "Down",
+            "close": 100.878,
+            "weekly_change_pct": 0.02,
+            "change_5d": 0.018,
+            "direction_5d": "Up",
             "history_file": "macro/history/DXY.json"
         },
         "VIX": {
@@ -75,9 +75,9 @@
             "name": "CBOE Volatility Index",
             "category": "volatility",
             "latest_trading_date": "2026-07-10",
-            "close": 16.08,
-            "weekly_change_pct": -0.43,
-            "change_5d": -0.07,
+            "close": 15.93,
+            "weekly_change_pct": -1.36,
+            "change_5d": -0.22,
             "direction_5d": "Down",
             "history_file": "macro/history/VIX.json"
         },
@@ -87,9 +87,9 @@
             "name": "Bitcoin USD",
             "category": "crypto",
             "latest_trading_date": "2026-07-10",
-            "close": 64152.2617,
-            "weekly_change_pct": 0.95,
-            "change_5d": 604.3789,
+            "close": 64418.0703,
+            "weekly_change_pct": 1.37,
+            "change_5d": 870.1875,
             "direction_5d": "Up",
             "history_file": "macro/history/BTC.json"
         }
