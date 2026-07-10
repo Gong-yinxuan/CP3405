@@ -1,368 +1,305 @@
-#!/usr/bin/env python3
 """
-generate_almanac.py
+Prism Almanac Data Collector — W5
 
-Auto-fills the R3 Almanac Agent markdown report from the Almanac Collector's
-JSON output, and writes it to weekNN/r3/almanac.md.
+Collects automatic calendar/seasonality flags and sector ranking.
 
-Usage:
-    python generate_almanac.py <collector_json_path> <week_number> [--out-root OUTPUT_ROOT]
+Output:
+- prism/data/almanac/almanac_input.json
+- prism/data/almanac/sector_history/*.json
 
-Example:
-    python generate_almanac.py almanac_collector_output.json 8
-    -> creates ./week08/r3/almanac.md
-
-Notes:
-    - "week_number" is your internal sprint week number (the collector JSON
-      does not contain it), so pass it explicitly each run.
-    - The narrative sentences (bias, confidence, thesis) are generated with
-      simple rule-based logic from the sector spread and active calendar
-      flags -- same judgment calls that were made manually in W05. Tune the
-      thresholds in the CONFIG section below if the "house style" changes,
-      and always sanity-check the auto-generated thesis before presenting.
+No config file.
+No manual calendar/news interpretation.
 """
 
+import math
 import json
-import re
-import argparse
-from datetime import datetime
+from datetime import date, datetime, timezone, timedelta
 from pathlib import Path
 
-# ---------------------------------------------------------------------------
-# CONFIG -- tune these thresholds if the analytical house style changes
-# ---------------------------------------------------------------------------
-BULLISH_SPREAD_THRESHOLD = 3.0   # |leader_avg - laggard_avg| above this => mild directional lean
-STRONG_SPREAD_THRESHOLD = 6.0    # above this => confident directional call
-MAX_LOW_CONF_FLAGS = 1           # more active caution flags than this caps confidence at Medium
+import yfinance as yf
 
-# Maps calendar_flags boolean keys -> human label used in the caution narrative.
-# The *_seasonal_weakness_flag key is handled separately since its name changes by month.
-CAUTION_FLAG_LABELS = {
-    "midterm_year_flag": "midterm-year caution",
-    "options_expiry_week_flag": "options-expiry-week volatility risk",
-    "market_holiday_in_window_flag": "market-holiday disruption",
-    "compressed_trading_week_flag": "compressed trading week",
+
+SECTOR_TICKERS = {
+    "XLK": "Technology",
+    "XLF": "Financials",
+    "XLV": "Healthcare",
+    "XLE": "Energy",
+    "XLB": "Materials",
+    "XLI": "Industrials",
+    "XLY": "Consumer Discretionary",
+    "XLP": "Consumer Staples",
+    "XLU": "Utilities",
+    "XLC": "Communication Services",
+    "XLRE": "Real Estate"
 }
 
 
-def fmt_date(d: str) -> str:
-    return datetime.strptime(d, "%Y-%m-%d").strftime("%-d %B %Y")
+def get_project_root() -> Path:
+    return Path(__file__).resolve().parents[2]
 
 
-def find_seasonal_weakness_flag(calendar_flags: dict):
-    """Collector currently encodes a *_seasonal_weakness_flag keyed to a
-    specific month (e.g. june_seasonal_weakness_flag). Find it dynamically."""
-    for key, value in calendar_flags.items():
-        if key.endswith("_seasonal_weakness_flag"):
-            month_word = key.replace("_seasonal_weakness_flag", "").capitalize()
-            return key, month_word, value
-    return None, None, False
+def save_json(data: dict | list, path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
 
+    with open(path, "w", encoding="utf-8") as file:
+        json.dump(data, file, indent=4, allow_nan=False)
 
-def active_caution_flags(calendar_flags: dict):
-    active = []
-    for key, label in CAUTION_FLAG_LABELS.items():
-        if calendar_flags.get(key):
-            active.append(label)
-    _, month_word, sw_value = find_seasonal_weakness_flag(calendar_flags)
-    if sw_value:
-        active.append(f"{month_word} seasonal weakness")
-    return active
+    print(f"[OK] Saved {path}")
 
+def is_valid_number(value) -> bool:
+    try:
+        value = float(value)
+        return not math.isnan(value) and not math.isinf(value)
+    except Exception:
+        return False
 
-def compute_bias_and_confidence(leading, lagging, calendar_flags):
-    top_avg = sum(s["weekly_change_pct"] for s in leading) / len(leading)
-    bottom_avg = sum(s["weekly_change_pct"] for s in lagging) / len(lagging)
-    spread = top_avg - bottom_avg
-    caution = active_caution_flags(calendar_flags)
+def fetch_history(ticker: str, period: str = "1mo") -> list[dict]:
+    asset = yf.Ticker(ticker)
+    hist = asset.history(period=period, interval="1d")
 
-    if spread >= STRONG_SPREAD_THRESHOLD:
-        bias = "Risk-on / bullish"
-    elif spread >= BULLISH_SPREAD_THRESHOLD:
-        bias = "Mildly risk-on"
-    elif spread <= -STRONG_SPREAD_THRESHOLD:
-        bias = "Risk-off / bearish"
-    elif spread <= -BULLISH_SPREAD_THRESHOLD:
-        bias = "Mildly risk-off"
-    else:
-        bias = "Neutral-cautious"
+    if hist.empty:
+        raise ValueError(f"No data returned for {ticker}")
 
-    if len(caution) >= 3:
-        confidence = "Low"
-    elif len(caution) > MAX_LOW_CONF_FLAGS or abs(spread) < BULLISH_SPREAD_THRESHOLD:
-        confidence = "Medium"
-    else:
-        confidence = "High"
+    records = []
 
-    return bias, confidence, top_avg, bottom_avg, spread, caution
+    for date_index, row in hist.iterrows():
+        close = row["Close"]
 
-
-def sector_list_str(sectors):
-    return ", ".join(f"{s['sector']} / {s['ticker']}" for s in sectors)
-
-
-def sector_bullets(sectors):
-    return [f"{s['sector']} / {s['ticker']} at {s['weekly_change_pct']:+.2f}%" for s in sectors]
-
-
-def build_markdown(data: dict, week_number: int) -> str:
-    cf = data["calendar_flags"]
-    fw = data["forecast_window"]
-    leading = data["sector_ranking"]["leading_sectors"]
-    lagging = data["sector_ranking"]["lagging_sectors"]
-
-    week_label = f"W{int(week_number):02d}"
-    start_fmt = fmt_date(fw["start"])
-    end_fmt = fmt_date(fw["end"])
-    month_name = cf.get("month", datetime.strptime(fw["start"], "%Y-%m-%d").strftime("%B"))
-    year = datetime.strptime(fw["start"], "%Y-%m-%d").year
-
-    sw_key, sw_month, sw_value = find_seasonal_weakness_flag(cf)
-    sw_month = sw_month or month_name
-    midterm = cf.get("midterm_year_flag", False)
-    expiry_flag = cf.get("options_expiry_week_flag", False)
-    expiry_date = cf.get("options_expiry_date")
-    holiday_flag = cf.get("market_holiday_in_window_flag", False)
-    compressed_flag = cf.get("compressed_trading_week_flag", False)
-
-    bias, confidence, top_avg, bottom_avg, spread, caution = compute_bias_and_confidence(
-        leading, lagging, cf
-    )
-
-    leaders_str = sector_list_str(leading)
-    laggers_str = sector_list_str(lagging)
-    leader_bullets = sector_bullets(leading)
-    lagger_bullets = sector_bullets(lagging)
-
-    caution_str = ", ".join(caution) if caution else "no active seasonal or cycle-year caution flags"
-    breadth_word = "mixed" if abs(spread) < STRONG_SPREAD_THRESHOLD else ("bullish" if spread > 0 else "bearish")
-
-    # --- Cycle context table rows ---
-    cycle_rows = []
-    cycle_rows.append(
-        f"| {week_label}: {start_fmt} - {end_fmt} | "
-        f"{(sw_month + ' seasonal weakness flag is active' if sw_value else sw_month + ' seasonal weakness flag is not active')}"
-        f"{' and midterm-year flag is active.' if midterm else '; midterm-year flag is not active.'} | "
-        f"{'Use as a confidence reducer, not as a hard directional signal.' if caution else 'No calendar-based confidence reduction required.'} |"
-    )
-    if expiry_flag and expiry_date:
-        cycle_rows.append(
-            f"| Options-expiry week | Options-expiry date is {fmt_date(expiry_date)}, inside this forecast window. | "
-            f"Apply an options-expiry-week volatility caveat for {week_label}. |"
-        )
-    else:
-        cycle_rows.append(
-            f"| Post-options-expiry period | No options-expiry date falls inside this forecast window. | "
-            f"Do not apply a direct options-expiry-week penalty for {week_label}. |"
-        )
-    cycle_rows.append(
-        f"| {month_name} seasonal context | The collector does not provide exact historical average returns for {month_name}. | "
-        f"Keep the almanac signal data-driven and avoid unsupported statistics. |"
-    )
-
-    lines = []
-    lines.append(f"# Almanac Agent Output — R3 — Week {week_label}")
-    lines.append("")
-    lines.append(f"**Sprint:** Week {week_label}")
-    lines.append(f"**Market week:** {start_fmt} – {end_fmt}")
-    lines.append("**Role:** R3 — Almanac Agent Lead")
-    lines.append("**File:** `almanac.md`")
-    lines.append("**Purpose:** Provide the seasonal / calendar-pattern evidence leg before LLM synthesis. This is a probability-context document, not a standalone trading call.")
-    lines.append("")
-    lines.append("> **Commit note:** If this file is uploaded to GitHub, also upload the folder `almanac_assets/` so the charts render correctly.")
-    lines.append(f"> **Auto-generated:** Generated from `{data.get('collector', 'Almanac Collector')}` output dated {data.get('generated_at', 'unknown')}. Review narrative sections before presenting.")
-    lines.append("")
-    lines.append("---")
-    lines.append("")
-    lines.append("## 1. R3 Presentation Bullets — Max 3 Points")
-    lines.append("")
-    lines.append(f"* **Month rank / cycle context:** {month_name} {year} carries {caution_str}. Historically, the S&P 500 and NASDAQ monthly return statistics were not automatically collected by the current Almanac Collector, so exact average return values should not be invented.")
-    lines.append("")
-    expiry_bit = f"contains an options-expiry date ({fmt_date(expiry_date)})" if (expiry_flag and expiry_date) else "does not contain an options-expiry week"
-    holiday_bit = "a market holiday" if holiday_flag else "no market holiday"
-    compressed_bit = "is a compressed trading week" if compressed_flag else "is not a compressed trading week"
-    lines.append(f"* **Most relevant week pattern:** Week {week_label} {expiry_bit}, has {holiday_bit}, and {compressed_bit}.")
-    lines.append("")
-    lines.append(f"* **Sector seasonality / confidence:** **{bias}, {confidence} confidence.** The strongest current sector evidence comes from {leaders_str}. However, {laggers_str} are lagging, so broad sector breadth leans {breadth_word}.")
-    lines.append("")
-    lines.append("---")
-    lines.append("")
-    lines.append("## 2. Visual Evidence Summary")
-    lines.append("")
-    lines.append(f"### 2.1 {week_label} Calendar Risk Flags")
-    lines.append("")
-    lines.append(f"**Interpretation:** The collector identifies {caution_str} as active. R3 should {'reduce confidence accordingly' if (caution or expiry_flag) else 'not apply a calendar-based confidence reduction'}.")
-    lines.append("")
-    lines.append(f"### 2.2 {week_label} Sector Leadership Ranking")
-    lines.append("")
-    lines.append(f"**Interpretation:** Sector leadership is led by {', '.join(leader_bullets)}. This suggests market leadership is {'broad-based' if top_avg > 0 else 'weak even among relative leaders'}.")
-    lines.append("")
-    lines.append(f"### 2.3 {week_label} Sector Lagging Ranking")
-    lines.append("")
-    lines.append(f"**Interpretation:** The weakest sectors are {', '.join(lagger_bullets)}. The sector picture is {breadth_word}.")
-    lines.append("")
-    lines.append("---")
-    lines.append("")
-    lines.append("## 3. Structured Almanac Agent Output for LLM Synthesis")
-    lines.append("")
-    lines.append("### MONTH")
-    lines.append("")
-    lines.append(f"**{month_name} {year}** — {caution_str if caution else 'no active structural seasonal caution block'}.")
-    lines.append("")
-    lines.append("### CYCLE CONTEXT")
-    lines.append("")
-    lines.append(f"{year} is {'a **midterm year**' if midterm else 'not flagged as a midterm year'}. The Almanac framework treats **{month_name} in this cycle-year setting** based on the active flags below.")
-    lines.append("")
-    lines.append("| Cycle Window | Historical Context | R3 Use |")
-    lines.append("| --- | --- | --- |")
-    lines.extend(cycle_rows)
-    lines.append("")
-    interp1 = f"The cycle context matters because {caution_str} warn that the week may carry elevated risk." if caution else "No active cycle-context flags reduce confidence this week."
-    interp2 = "The options-expiry date inside this window adds a volatility caveat." if expiry_flag else "The absence of options-expiry, holiday, and compressed-week flags keeps calendar pressure low."
-    lines.append(f"**Interpretation:** {interp1} {interp2}")
-    lines.append("")
-    lines.append("### MONTHLY STATS")
-    lines.append("")
-    lines.append(f"| Index / Asset | {month_name} Seasonal Rank | {month_name} Avg % Return | Cycle-Year Rank | Cycle-Year Avg % Return | R3 Interpretation |")
-    lines.append("| --- | :---: | :---: | :---: | :---: | --- |")
-    lines.append("| **S&P 500** | Not automated | Not automated | Not automated | Not automated | No collector-based monthly statistic available. |")
-    lines.append("| **DJIA / Dow** | Not automated | Not automated | Not automated | Not automated | No collector-based monthly statistic available. |")
-    lines.append("| **NASDAQ** | Not automated | Not automated | Not automated | Not automated | Use sector leadership as the stronger evidence source instead of unsupported monthly stats. |")
-    lines.append("| **Russell 2000 / IWM** | Not automated | Not automated | Not automated | Not automated | No collector-based monthly statistic available. |")
-    lines.append("")
-    lines.append(f"**Net monthly signal:** **{bias}.**")
-    lines.append("")
-    lines.append("### SPECIFIC WEEK / DAY PATTERN")
-    lines.append("")
-    lines.append("| Pattern | Direction | Strength | R3 Treatment |")
-    lines.append("| --- | --- | --- | --- |")
-    if sw_value:
-        lines.append(f"| {sw_month} seasonal weakness flag | Bearish / cautious | Medium | Use as a confidence reducer. |")
-    else:
-        lines.append(f"| {sw_month} seasonal weakness flag | Neutral | Low | No seasonal weakness flag active this window. |")
-    if midterm:
-        lines.append("| Midterm-year flag | Bearish / cautious | Medium | Adds caution to the forecast, especially if other agents disagree. |")
-    else:
-        lines.append("| Midterm-year flag | Neutral | Low | Midterm-year flag not active. |")
-    if expiry_flag:
-        lines.append("| Options-expiry-week flag is true | Bearish / cautious | Medium | Apply an options-expiry-week volatility caveat. |")
-    else:
-        lines.append("| Options-expiry-week flag is false | Neutral | Low | No direct options-expiry-week penalty. |")
-    if holiday_flag or compressed_flag:
-        lines.append("| Market-holiday / compressed-week flag is true | Bearish / cautious | Low-Medium | Reduce liquidity expectations and widen error bars. |")
-    else:
-        lines.append("| Market-holiday and compressed-week flags are false | Neutral | Low | Calendar structure is clean this week. |")
-    lines.append("")
-    week_implication = (
-        "Seasonality and calendar risk argue for a cautious stance; sector evidence can only partially offset this."
-        if len(caution) >= 2
-        else "Seasonality does not provide a strong directional signal by itself; sector evidence should carry more weight this week."
-    )
-    lines.append(f"**Week {week_label} implication:** {week_implication}")
-    lines.append("")
-    lines.append("### SECTOR SEASONALITY SIGNALS")
-    lines.append("")
-    lines.append("| Sector / ETF Proxy | Almanac Seasonal Window | Signal | R3 Use in Prediction |")
-    lines.append("| --- | --- | --- | --- |")
-    for s in leading:
-        lines.append(f"| **{s['sector']} / {s['ticker']}** | {week_label} current collector window | Bullish / positive current evidence | {s['sector']} is a leading sector at {s['weekly_change_pct']:+.2f}%, supporting a risk-on interpretation. |")
-    for s in lagging:
-        lines.append(f"| **{s['sector']} / {s['ticker']}** | {week_label} current collector window | Bearish / weak current evidence | {s['sector']} is a lagging sector at {s['weekly_change_pct']:+.2f}%, so it should not be used as a leader. |")
-    lines.append("")
-    breadth_desc = "Sector breadth is constructive at the leadership level" if top_avg > 0 else "Sector breadth is weak even at the leadership level"
-    lines.append(f"**Net sector signal:** {breadth_desc}, while {laggers_str} weigh on the picture. The net sector signal is **{bias}**.")
-    lines.append("")
-    lines.append("### ALMANAC SEASONAL BIAS")
-    lines.append("")
-    lines.append(f"**{bias}.**")
-    lines.append("")
-    lines.append("### CONFIDENCE")
-    lines.append("")
-    lines.append(f"**{confidence}.**")
-    reasoning_flags = caution_str.capitalize() if caution else "No active caution flags"
-    reasoning_expiry = "and an options-expiry date falls inside this window" if expiry_flag else "with no options-expiry, holiday, or compressed-week flag active"
-    reasoning_spread = "a strong signal" if abs(spread) >= STRONG_SPREAD_THRESHOLD else "a moderate signal"
-    lines.append(f"Reasoning: {reasoning_flags} {reasoning_expiry}. Sector spread between leaders and laggards is {spread:+.2f} percentage points, which is {reasoning_spread}.")
-    lines.append("")
-    lines.append("### ALMANAC THESIS")
-    lines.append("")
-    thesis_filter = "a caution filter" if (caution or expiry_flag) else "a data point"
-    thesis_caution = (caution_str.capitalize() + " conditions warn that volatility and false breaks are possible.") if caution else "No structural calendar warnings are active this week."
-    thesis_action = "reduce confidence but not override bullish or bearish evidence from Technical or Macro agents" if caution else "let sector evidence lead, since no calendar caution flags are active"
-    lines.append(f"The {week_label} Almanac signal should be treated as {thesis_filter} rather than a standalone forecast. {thesis_caution} Current sector ranking shows leadership in {leaders_str}, while {laggers_str} lag. R3 should {thesis_action} if those agents also support the same direction.")
-    lines.append("")
-    lines.append("### KEY OUTPUT SENTENCE")
-    lines.append("")
-    offset_word = "offsets" if spread > 0 else "reinforces"
-    lines.append(f"**Seasonality suggests {bias.lower()}, with {confidence.lower()} confidence, because {caution_str}, while sector leadership in {leaders_str} {offset_word} the calendar risk.**")
-    lines.append("")
-    lines.append("---")
-    lines.append("")
-    lines.append("## 4. R3 Handoff to R6 / R7")
-    lines.append("")
-    lines.append("### What R6 should paste into the multi-LLM prompt")
-    lines.append("")
-    lines.append("Use the full **Structured Almanac Agent Output** section from the previous block.")
-    lines.append("")
-    lines.append("---")
-    lines.append("")
-    lines.append("## 5. Final R3 Slide Text")
-    lines.append("")
-    lines.append(f"**R3 Almanac Agent — Week {week_label}**")
-    lines.append("")
-    bullet1 = (caution_str.capitalize() + " remain active, so Almanac reduces confidence.") if caution else "No active seasonal or cycle-year caution flags this week."
-    bullet2 = f"An options-expiry date falls inside this window ({fmt_date(expiry_date)}), adding volatility risk." if (expiry_flag and expiry_date) else f"Week {week_label} has no options-expiry-week, market-holiday, or compressed trading-week flag."
-    lines.append(f"* {bullet1}")
-    lines.append(f"* {bullet2}")
-    lines.append(f"* Sector evidence: {leaders_str} lead, while {laggers_str} lag.")
-
-    return "\n".join(lines) + "\n"
-
-
-def detect_next_week_number(root: Path) -> int:
-    """Scan the repo root for existing Week{N} / Week{N}_Evidence folders and
-    return the next sequential week number. Falls back to 1 if none found."""
-    pattern = re.compile(r"^Week(\d+)", re.IGNORECASE)
-    max_week = 0
-    for child in root.iterdir():
-        if not child.is_dir():
+        if not is_valid_number(close):
+            print(f"[WARN] Skipping invalid row for {ticker} on {date_index.strftime('%Y-%m-%d')}")
             continue
-        m = pattern.match(child.name)
-        if m:
-            max_week = max(max_week, int(m.group(1)))
-    return max_week + 1 if max_week > 0 else 1
+
+        records.append({
+            "date": date_index.strftime("%Y-%m-%d"),
+            "close": round(float(close), 4)
+        })
+
+    if not records:
+        raise ValueError(f"No valid price rows returned for {ticker}")
+
+    return records
 
 
-def main():
-    parser = argparse.ArgumentParser(description="Generate R3 Almanac Agent markdown from collector JSON.")
-    parser.add_argument("json_path", help="Path to the Almanac Collector JSON output")
-    parser.add_argument(
-        "week_number",
-        type=int,
-        nargs="?",
-        default=None,
-        help="Sprint week number, e.g. 8 for W08. If omitted, auto-detected from existing Week{N} folders under --out-root.",
+def calculate_weekly_change(history: list[dict]) -> float | None:
+    if len(history) < 6:
+        return None
+
+    latest_close = history[-1]["close"]
+    previous_close = history[-6]["close"]
+
+    if not is_valid_number(latest_close) or not is_valid_number(previous_close):
+        return None
+
+    if previous_close == 0:
+        return None
+
+    return round(((latest_close - previous_close) / previous_close) * 100, 2)
+
+
+def next_monday_after(today: date) -> date:
+    days_ahead = (7 - today.weekday()) % 7
+
+    if days_ahead == 0:
+        days_ahead = 7
+
+    return today + timedelta(days=days_ahead)
+
+
+def third_friday(year: int, month: int) -> date:
+    current = date(year, month, 1)
+    fridays = []
+
+    while current.month == month:
+        if current.weekday() == 4:
+            fridays.append(current)
+
+        current += timedelta(days=1)
+
+    return fridays[2]
+
+
+def observed_holiday(holiday: date) -> date:
+    if holiday.weekday() == 5:
+        return holiday - timedelta(days=1)
+
+    if holiday.weekday() == 6:
+        return holiday + timedelta(days=1)
+
+    return holiday
+
+
+def us_market_holidays_for_year(year: int) -> list[dict]:
+    holidays = [
+        {
+            "name": "New Year's Day",
+            "date": observed_holiday(date(year, 1, 1))
+        },
+        {
+            "name": "Juneteenth",
+            "date": observed_holiday(date(year, 6, 19))
+        },
+        {
+            "name": "Independence Day",
+            "date": observed_holiday(date(year, 7, 4))
+        },
+        {
+            "name": "Christmas Day",
+            "date": observed_holiday(date(year, 12, 25))
+        }
+    ]
+
+    return holidays
+
+
+def is_in_window(target: date, start: date, end: date) -> bool:
+    return start <= target <= end
+
+
+def is_midterm_year(year: int) -> bool:
+    """
+    2026 is a US midterm year after the 2024 presidential election.
+    """
+    return (year - 2024) % 4 == 2
+
+
+def build_forecast_window() -> dict:
+    today = datetime.now(timezone.utc).date()
+    start = next_monday_after(today)
+    end = start + timedelta(days=4)
+
+    return {
+        "generated_from_date_utc": today.strftime("%Y-%m-%d"),
+        "start": start.strftime("%Y-%m-%d"),
+        "end": end.strftime("%Y-%m-%d")
+    }
+
+
+def fetch_sector_data(project_root: Path) -> dict:
+    sectors = {}
+
+    print("Fetching sector data...")
+
+    for ticker, sector_name in SECTOR_TICKERS.items():
+        try:
+            history = fetch_history(ticker, period="1mo")
+
+            history_path = (
+                project_root
+                / "data"
+                / "almanac"
+                / "sector_history"
+                / f"{ticker}.json"
+            )
+
+            save_json(history, history_path)
+
+            latest = history[-1]
+            weekly_change = calculate_weekly_change(history)
+
+            sectors[ticker] = {
+                "ticker": ticker,
+                "sector": sector_name,
+                "latest_trading_date": latest["date"],
+                "close": latest["close"],
+                "weekly_change_pct": weekly_change,
+                "history_file": f"almanac/sector_history/{ticker}.json"
+            }
+
+            print(f"[OK] Sector {ticker}: {weekly_change}%")
+
+        except Exception as error:
+            sectors[ticker] = {
+                "ticker": ticker,
+                "sector": sector_name,
+                "error": str(error)
+            }
+
+            print(f"[ERROR] Failed to collect {ticker}: {error}")
+
+    return sectors
+
+
+def rank_sectors(sectors: dict) -> dict:
+    valid = []
+
+    for ticker, data in sectors.items():
+        change = data.get("weekly_change_pct")
+
+        if is_valid_number(change):
+            valid.append({
+                "ticker": ticker,
+                "sector": data["sector"],
+                "weekly_change_pct": float(change)
+            })
+
+    sorted_sectors = sorted(
+        valid,
+        key=lambda item: item["weekly_change_pct"],
+        reverse=True
     )
-    parser.add_argument("--out-root", default=".", help="Repo root containing Week{N} folders")
-    args = parser.parse_args()
 
-    with open(args.json_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
+    return {
+        "leading_sectors": sorted_sectors[:3],
+        "lagging_sectors": sorted_sectors[-3:][::-1]
+    }
 
-    out_root = Path(args.out_root)
-    week_number = args.week_number
-    if week_number is None:
-        week_number = detect_next_week_number(out_root)
-        print(f"[auto] No week number given -- detected next week as {week_number}")
 
-    md = build_markdown(data, week_number)
+def build_calendar_flags(forecast_window: dict) -> dict:
+    start = datetime.strptime(forecast_window["start"], "%Y-%m-%d").date()
+    end = datetime.strptime(forecast_window["end"], "%Y-%m-%d").date()
 
-    n = int(week_number)
-    out_dir = out_root / f"Week{n}" / "R3_almanac"
-    out_dir.mkdir(parents=True, exist_ok=True)
-    out_path = out_dir / f"almanac_agent_W{n:02d}.md"
-    out_path.write_text(md, encoding="utf-8")
-    print(f"Written: {out_path}")
+    expiry = third_friday(start.year, start.month)
+
+    holidays = us_market_holidays_for_year(start.year)
+
+    holidays_in_window = [
+        {
+            "name": item["name"],
+            "date": item["date"].strftime("%Y-%m-%d")
+        }
+        for item in holidays
+        if is_in_window(item["date"], start, end)
+    ]
+
+    return {
+        "month": start.strftime("%B"),
+        "june_seasonal_weakness_flag": start.month == 6 or end.month == 6,
+        "midterm_year_flag": is_midterm_year(start.year),
+        "options_expiry_date": expiry.strftime("%Y-%m-%d"),
+        "options_expiry_week_flag": is_in_window(expiry, start, end),
+        "market_holiday_in_window_flag": len(holidays_in_window) > 0,
+        "compressed_trading_week_flag": len(holidays_in_window) > 0,
+        "holidays_in_window": holidays_in_window
+    }
+
+
+def main() -> None:
+    project_root = get_project_root()
+
+    forecast_window = build_forecast_window()
+    sectors = fetch_sector_data(project_root)
+    sector_ranking = rank_sectors(sectors)
+    calendar_flags = build_calendar_flags(forecast_window)
+
+    output = {
+        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "collector": "Almanac Collector",
+        "agent_input_for": "Almanac Agent",
+        "data_source": "Yahoo Finance via yfinance + automatic date rules",
+        "note": (
+            "This collector automates calendar flags and sector ranking. "
+            "It does not manually interpret seasonal patterns or news."
+        ),
+        "forecast_window": forecast_window,
+        "calendar_flags": calendar_flags,
+        "sector_weekly_performance": sectors,
+        "sector_ranking": sector_ranking
+    }
+
+    output_path = project_root / "data" / "almanac" / "almanac_collector_output.json"
+    save_json(output, output_path)
+
+    print("Almanac collection complete.")
 
 
 if __name__ == "__main__":
