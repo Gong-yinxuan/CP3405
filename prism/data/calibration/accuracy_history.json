@@ -14,11 +14,11 @@
         "release": "vW25",
         "week": "W25",
         "forecast_week": "2026-06-22 to 2026-06-26",
-        "direction_accuracy_pct": 77.8,
-        "direction_correct_count": 7,
+        "direction_accuracy_pct": 66.7,
+        "direction_correct_count": 6,
         "total_assets_scored": 9,
-        "range_accuracy_pct": 66.7,
-        "range_hit_count": 6,
-        "average_error_pct": 1.64
+        "range_accuracy_pct": 44.4,
+        "range_hit_count": 4,
+        "average_error_pct": 3.01
     }
 ]
