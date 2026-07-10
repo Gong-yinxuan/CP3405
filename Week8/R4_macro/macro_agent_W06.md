@@ -1,4 +1,4 @@
-# R4 Macro Agent — Week 08
+# R4 Macro Agent — Week 06
 
 > **Auto-generated:** Generated from `Macro Collector` output dated 2026-07-10T07:38:13Z. Fields marked *Not automated* need to be filled in by hand -- see the script docstring for why.
 
