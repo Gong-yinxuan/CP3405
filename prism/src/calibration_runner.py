@@ -110,38 +110,35 @@ def get_prediction_path(prism_root: Path, release: str) -> Path:
 
 def get_actuals_path_for_release(prism_root: Path, release: str, output_path: Path) -> Path:
     """
-    For latest release:
-    - copy prism/data/output.json into prism/data/actuals/vWx_actuals.json
-
-    For old releases:
-    - use existing prism/data/actuals/vWx_actuals.json
-    - do NOT overwrite it with current output.json
+    Use release-specific actuals if it already exists.
+    Only create a new actuals snapshot if it does not exist yet.
+    This prevents old weeks like vW25 from being overwritten by current output.json.
     """
     actuals_dir = prism_root / "data" / "actuals"
     actuals_dir.mkdir(parents=True, exist_ok=True)
 
     snapshot_path = actuals_dir / f"{release}_actuals.json"
+
+    # Safety rule: never overwrite existing actuals snapshot
+    if snapshot_path.exists():
+        print(f"[INFO] Using existing actuals snapshot: {snapshot_path}")
+        return snapshot_path
+
     latest_release = detect_latest_release(prism_root)
 
-    # Latest release: refresh actuals from output.json
-    if release == latest_release:
-        if not output_path.exists():
-            raise FileNotFoundError(f"Missing actuals output file: {output_path}")
+    if release != latest_release:
+        raise FileNotFoundError(
+            f"Missing actuals file for old release: {snapshot_path}\n"
+            f"Cannot create old actuals from output.json because output.json only contains latest data."
+        )
 
-        copy2(output_path, snapshot_path)
-        print(f"[OK] Saved latest actuals snapshot: {snapshot_path}")
-        return snapshot_path
+    if not output_path.exists():
+        raise FileNotFoundError(f"Missing actuals output file: {output_path}")
 
-    # Old release: only use existing actuals file
-    if snapshot_path.exists():
-        print(f"[INFO] Using existing old actuals file: {snapshot_path}")
-        return snapshot_path
+    copy2(output_path, snapshot_path)
+    print(f"[OK] Created new actuals snapshot: {snapshot_path}")
 
-    raise FileNotFoundError(
-        f"Missing actuals file for old release: {snapshot_path}\n"
-        f"Do not use prism/data/output.json for old release {release}, "
-        f"because output.json only contains the latest collector result."
-    )
+    return snapshot_path
 
 
 def normalise_direction(direction: str) -> str:
