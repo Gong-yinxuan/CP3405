@@ -1,11 +1,11 @@
 {
-    "generated_at": "2026-07-09T13:53:30Z",
+    "generated_at": "2026-07-10T03:36:11Z",
     "collector": "Almanac Collector",
     "agent_input_for": "Almanac Agent",
     "data_source": "Yahoo Finance via yfinance + automatic date rules",
     "note": "This collector automates calendar flags and sector ranking. It does not manually interpret seasonal patterns or news.",
     "forecast_window": {
-        "generated_from_date_utc": "2026-07-09",
+        "generated_from_date_utc": "2026-07-10",
         "start": "2026-07-13",
         "end": "2026-07-17"
     },
@@ -24,88 +24,88 @@
             "ticker": "XLK",
             "sector": "Technology",
             "latest_trading_date": "2026-07-09",
-            "close": 186.07,
-            "weekly_change_pct": 0.24,
+            "close": 185.35,
+            "weekly_change_pct": -0.15,
             "history_file": "almanac/sector_history/XLK.json"
         },
         "XLF": {
             "ticker": "XLF",
             "sector": "Financials",
             "latest_trading_date": "2026-07-09",
-            "close": 55.22,
-            "weekly_change_pct": 0.8,
+            "close": 55.54,
+            "weekly_change_pct": 1.39,
             "history_file": "almanac/sector_history/XLF.json"
         },
         "XLV": {
             "ticker": "XLV",
             "sector": "Healthcare",
             "latest_trading_date": "2026-07-09",
-            "close": 162.44,
-            "weekly_change_pct": 1.82,
+            "close": 162.17,
+            "weekly_change_pct": 1.65,
             "history_file": "almanac/sector_history/XLV.json"
         },
         "XLE": {
             "ticker": "XLE",
             "sector": "Energy",
             "latest_trading_date": "2026-07-09",
-            "close": 54.99,
-            "weekly_change_pct": 4.13,
+            "close": 54.82,
+            "weekly_change_pct": 3.81,
             "history_file": "almanac/sector_history/XLE.json"
         },
         "XLB": {
             "ticker": "XLB",
             "sector": "Materials",
             "latest_trading_date": "2026-07-09",
-            "close": 50.23,
-            "weekly_change_pct": -1.55,
+            "close": 50.26,
+            "weekly_change_pct": -1.49,
             "history_file": "almanac/sector_history/XLB.json"
         },
         "XLI": {
             "ticker": "XLI",
             "sector": "Industrials",
             "latest_trading_date": "2026-07-09",
-            "close": 181.75,
-            "weekly_change_pct": -0.88,
+            "close": 181.11,
+            "weekly_change_pct": -1.23,
             "history_file": "almanac/sector_history/XLI.json"
         },
         "XLY": {
             "ticker": "XLY",
             "sector": "Consumer Discretionary",
             "latest_trading_date": "2026-07-09",
-            "close": 115.225,
-            "weekly_change_pct": -2.43,
+            "close": 116.85,
+            "weekly_change_pct": -1.05,
             "history_file": "almanac/sector_history/XLY.json"
         },
         "XLP": {
             "ticker": "XLP",
             "sector": "Consumer Staples",
             "latest_trading_date": "2026-07-09",
-            "close": 83.365,
-            "weekly_change_pct": 0.08,
+            "close": 83.2,
+            "weekly_change_pct": -0.12,
             "history_file": "almanac/sector_history/XLP.json"
         },
         "XLU": {
             "ticker": "XLU",
             "sector": "Utilities",
             "latest_trading_date": "2026-07-09",
-            "close": 45.27,
-            "weekly_change_pct": 1.12,
+            "close": 45.13,
+            "weekly_change_pct": 0.8,
             "history_file": "almanac/sector_history/XLU.json"
         },
         "XLC": {
             "ticker": "XLC",
             "sector": "Communication Services",
             "latest_trading_date": "2026-07-09",
-            "close": 108.37,
-            "weekly_change_pct": -1.25,
+            "close": 110.51,
+            "weekly_change_pct": 0.7,
             "history_file": "almanac/sector_history/XLC.json"
         },
         "XLRE": {
             "ticker": "XLRE",
             "sector": "Real Estate",
             "latest_trading_date": "2026-07-09",
-            "close": 44.33,
-            "weekly_change_pct": 0.34,
+            "close": 44.23,
+            "weekly_change_pct": 0.11,
             "history_file": "almanac/sector_history/XLRE.json"
         }
     },
@@ -114,34 +114,34 @@
             {
                 "ticker": "XLE",
                 "sector": "Energy",
-                "weekly_change_pct": 4.13
+                "weekly_change_pct": 3.81
             },
             {
                 "ticker": "XLV",
                 "sector": "Healthcare",
-                "weekly_change_pct": 1.82
+                "weekly_change_pct": 1.65
             },
             {
-                "ticker": "XLU",
-                "sector": "Utilities",
-                "weekly_change_pct": 1.12
+                "ticker": "XLF",
+                "sector": "Financials",
+                "weekly_change_pct": 1.39
             }
         ],
         "lagging_sectors": [
             {
-                "ticker": "XLY",
-                "sector": "Consumer Discretionary",
-                "weekly_change_pct": -2.43
-            },
-            {
                 "ticker": "XLB",
                 "sector": "Materials",
-                "weekly_change_pct": -1.55
+                "weekly_change_pct": -1.49
             },
             {
-                "ticker": "XLC",
-                "sector": "Communication Services",
-                "weekly_change_pct": -1.25
+                "ticker": "XLI",
+                "sector": "Industrials",
+                "weekly_change_pct": -1.23
+            },
+            {
+                "ticker": "XLY",
+                "sector": "Consumer Discretionary",
+                "weekly_change_pct": -1.05
             }
         ]
     }
