@@ -53,6 +53,7 @@ jobs:
         if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 22 * * 5'
         run: |
           python prism/src/calibration_runner.py
+
       # -----------------------------
       # MONTHLY SEASONALITY COLLECTOR
       # Runs 1st of each month -- slow-changing historical stats
@@ -139,8 +140,15 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add prism/data
-          git add Week*/ || true
+          echo "Git status before staging:"
+          git status --short
+
+          git add -A prism/data
+          git add -A Week* || true
+          git add -A delta_*.md || true
+
+          echo "Git status after staging:"
+          git status --short
 
           if git diff --cached --quiet; then
             echo "No generated data changes to commit"
@@ -148,5 +156,8 @@ jobs:
             git commit -m "chore: update Prism data $(date +'%Y-%m-%d')"
           fi
 
-          git pull --rebase origin main
+          echo "Git status after commit:"
+          git status --short
+
+          git pull --rebase --autostash origin main
           git push origin main
