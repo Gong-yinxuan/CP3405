@@ -58,6 +58,7 @@ real, in case the collector's scaling changes.
 
 import json
 import re
+import shutil
 import argparse
 from datetime import datetime, date
 from pathlib import Path
@@ -361,6 +362,12 @@ def main():
         help="Sprint week number, e.g. 6 for W06. If omitted, auto-detected from existing Week{N} folders under --out-root.",
     )
     parser.add_argument("--out-root", default=".", help="Repo root containing Week{N} folders")
+    parser.add_argument(
+        "--charts-dir",
+        default=None,
+        help="Directory containing this week's macro chart PNGs (e.g. prism/data/macro/charts). "
+             "If given, copies them into Week{N}/R4_macro/macro_assets/ alongside the report.",
+    )
     args = parser.parse_args()
 
     with open(args.json_path, "r", encoding="utf-8") as f:
@@ -380,6 +387,19 @@ def main():
     out_path = out_dir / f"macro_agent_W{n:02d}.md"
     out_path.write_text(md, encoding="utf-8")
     print(f"Written: {out_path}")
+
+    if args.charts_dir:
+        charts_src = Path(args.charts_dir)
+        if charts_src.is_dir():
+            assets_dir = out_dir / "macro_assets"
+            assets_dir.mkdir(parents=True, exist_ok=True)
+            copied = 0
+            for png in charts_src.glob("*.png"):
+                shutil.copy2(png, assets_dir / png.name)
+                copied += 1
+            print(f"[OK] Archived {copied} chart(s) into {assets_dir}")
+        else:
+            print(f"[warn] charts-dir not found, skipping chart archiving: {charts_src}")
 
 
 if __name__ == "__main__":
