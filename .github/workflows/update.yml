@@ -98,13 +98,7 @@ jobs:
         if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 0 * * 1'
         id: week
         run: |
-          WEEK_NUMBER=$(python -c "
-          from pathlib import Path
-          import sys
-          sys.path.insert(0, 'prism/src/report_builders')
-          from week_utils import detect_next_week_number
-          print(detect_next_week_number(Path('.')))
-          ")
+          WEEK_NUMBER=$(python -c "import sys; sys.path.insert(0, 'prism/src/report_builders'); from pathlib import Path; from week_utils import detect_next_week_number; print(detect_next_week_number(Path('.')))")
           echo "number=$WEEK_NUMBER" >> "$GITHUB_OUTPUT"
           echo "Detected week number: $WEEK_NUMBER"
 
