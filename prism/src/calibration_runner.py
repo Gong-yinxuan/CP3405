@@ -108,27 +108,40 @@ def get_prediction_path(prism_root: Path, release: str) -> Path:
     return prediction_path
 
 
-def save_actuals_snapshot(prism_root: Path, release: str, output_path: Path) -> Path:
+def get_actuals_path_for_release(prism_root: Path, release: str, output_path: Path) -> Path:
     """
-    Copy prism/data/output.json into a release-specific actuals file.
+    For latest release:
+    - copy prism/data/output.json into prism/data/actuals/vWx_actuals.json
 
-    Example:
-    prism/data/output.json
-    -> prism/data/actuals/vW28_actuals.json
+    For old releases:
+    - use existing prism/data/actuals/vWx_actuals.json
+    - do NOT overwrite it with current output.json
     """
-    if not output_path.exists():
-        raise FileNotFoundError(f"Missing actuals output file: {output_path}")
-
     actuals_dir = prism_root / "data" / "actuals"
     actuals_dir.mkdir(parents=True, exist_ok=True)
 
     snapshot_path = actuals_dir / f"{release}_actuals.json"
+    latest_release = detect_latest_release(prism_root)
 
-    copy2(output_path, snapshot_path)
+    # Latest release: refresh actuals from output.json
+    if release == latest_release:
+        if not output_path.exists():
+            raise FileNotFoundError(f"Missing actuals output file: {output_path}")
 
-    print(f"[OK] Saved actuals snapshot: {snapshot_path}")
+        copy2(output_path, snapshot_path)
+        print(f"[OK] Saved latest actuals snapshot: {snapshot_path}")
+        return snapshot_path
 
-    return snapshot_path
+    # Old release: only use existing actuals file
+    if snapshot_path.exists():
+        print(f"[INFO] Using existing old actuals file: {snapshot_path}")
+        return snapshot_path
+
+    raise FileNotFoundError(
+        f"Missing actuals file for old release: {snapshot_path}\n"
+        f"Do not use prism/data/output.json for old release {release}, "
+        f"because output.json only contains the latest collector result."
+    )
 
 
 def normalise_direction(direction: str) -> str:
@@ -503,7 +516,7 @@ def main() -> None:
     print(f"[INFO] Prediction file: {prediction_path}")
     print(f"[INFO] Latest output file: {output_path}")
 
-    actuals_snapshot_path = save_actuals_snapshot(
+    actuals_snapshot_path = get_actuals_path_for_release(
         prism_root=prism_root,
         release=release,
         output_path=output_path
