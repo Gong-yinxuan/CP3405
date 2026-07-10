@@ -374,18 +374,9 @@ def build_markdown(data: dict, week_number: int, seasonality: dict = None) -> st
     return "\n".join(lines) + "\n"
 
 
-def detect_next_week_number(root: Path) -> int:
-    """Scan the repo root for existing Week{N} / Week{N}_Evidence folders and
-    return the next sequential week number. Falls back to 1 if none found."""
-    pattern = re.compile(r"^Week(\d+)", re.IGNORECASE)
-    max_week = 0
-    for child in root.iterdir():
-        if not child.is_dir():
-            continue
-        m = pattern.match(child.name)
-        if m:
-            max_week = max(max_week, int(m.group(1)))
-    return max_week + 1 if max_week > 0 else 1
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from week_utils import detect_next_week_number  # noqa: E402
 
 
 def main():

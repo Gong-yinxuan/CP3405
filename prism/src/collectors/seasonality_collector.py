@@ -1,4 +1,4 @@
-"""
+""""
 Prism Monthly Seasonality Collector
 
 Fills the gap the Almanac Collector explicitly does not cover: exact
