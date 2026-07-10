@@ -49,6 +49,10 @@ jobs:
         run: |
           python prism/src/data_collector.py
 
+      - name: Run R6/R10 calibration runner
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 22 * * 5'
+        run: |
+          python prism/src/calibration_runner.py
       # -----------------------------
       # MONTHLY SEASONALITY COLLECTOR
       # Runs 1st of each month -- slow-changing historical stats
