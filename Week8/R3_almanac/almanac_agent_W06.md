@@ -1,6 +1,6 @@
-# Almanac Agent Output — R3 — Week W08
+# Almanac Agent Output — R3 — Week W06
 
-**Sprint:** Week W08
+**Sprint:** Week W06
 **Market week:** 13 July 2026 – 17 July 2026
 **Role:** R3 — Almanac Agent Lead
 **File:** `almanac.md`
@@ -119,7 +119,7 @@ Use the full **Structured Almanac Agent Output** section from the previous block
 
 ## 5. Final R3 Slide Text
 
-**R3 Almanac Agent — Week W08**
+**R3 Almanac Agent — Week W06**
 
 * Midterm-year caution, options-expiry-week volatility risk remain active, so Almanac reduces confidence.
 * An options-expiry date falls inside this window (17 July 2026), adding volatility risk.
