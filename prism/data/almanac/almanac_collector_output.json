@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-07-10T08:54:21Z",
+    "generated_at": "2026-07-10T09:03:30Z",
     "collector": "Almanac Collector",
     "agent_input_for": "Almanac Agent",
     "data_source": "Yahoo Finance via yfinance + automatic date rules",

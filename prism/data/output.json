@@ -13,12 +13,12 @@
     "weekly_change_pct": -0.7
   },
   "GOLD": {
-    "close": 4110.3,
+    "close": 4107.2,
     "weekly_change_pct": -0.1
   },
   "WTI": {
-    "close": 71.99,
-    "weekly_change_pct": 4.8
+    "close": 72.03,
+    "weekly_change_pct": 4.9
   },
   "US10Y": {
     "close": 0.45,
@@ -29,11 +29,11 @@
     "weekly_change_pct": -1.2
   },
   "VIX": {
-    "close": 16.09,
+    "close": 16.08,
     "weekly_change_pct": -0.4
   },
   "BTC": {
-    "close": 64141.45,
+    "close": 64142.79,
     "weekly_change_pct": 0.9
   },
   "XLK": {

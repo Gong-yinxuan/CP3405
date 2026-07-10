@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-10T08:54:16Z",
+  "generated_at": "2026-07-10T09:03:25Z",
   "collector": "Monthly Seasonality Collector",
   "data_source": "Yahoo Finance via yfinance (full available monthly history)",
   "note": "Historical average % return and seasonal rank per calendar month, and the same broken out by US presidential-cycle-year phase. Rank 1 = highest average return for that grouping.",
