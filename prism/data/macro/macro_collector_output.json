@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-07-12T07:30:37Z",
+    "generated_at": "2026-07-12T08:03:36Z",
     "collector": "Macro Collector",
     "agent_input_for": "Macro Agent",
     "data_source": {
@@ -16,8 +16,8 @@
             "category": "yield",
             "latest_trading_date": "2026-07-10",
             "close": 0.4569,
-            "weekly_change_pct": 2.1,
-            "change_5d": 0.0094,
+            "weekly_change_pct": 1.87,
+            "change_5d": 0.0084,
             "direction_5d": "Up",
             "history_file": "macro/history/US_10Y_YIELD.json"
         },
@@ -28,8 +28,8 @@
             "category": "yield",
             "latest_trading_date": "2026-07-10",
             "close": 0.5071,
-            "weekly_change_pct": 2.11,
-            "change_5d": 0.0105,
+            "weekly_change_pct": 1.73,
+            "change_5d": 0.0086,
             "direction_5d": "Up",
             "history_file": "macro/history/US_30Y_YIELD.json"
         },
@@ -87,9 +87,9 @@
             "name": "Bitcoin USD",
             "category": "crypto",
             "latest_trading_date": "2026-07-12",
-            "close": 63827.3984,
-            "weekly_change_pct": 0.84,
-            "change_5d": 530.0039,
+            "close": 63887.3711,
+            "weekly_change_pct": 0.93,
+            "change_5d": 589.9766,
             "direction_5d": "Up",
             "history_file": "macro/history/BTC.json"
         }
