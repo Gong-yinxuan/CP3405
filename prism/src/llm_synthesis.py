@@ -1,3 +1,4 @@
+import sys
 import os
 import json
 import re
@@ -461,20 +462,41 @@ def generate_markdown_report(c, gpt, gem, ds, raw_data):
 def main():
     print("[PRISM] Querying multi-agent environment data blocks...")
     data = find_latest_collector_data()
+
+    # 1. Generate the master synthesis validation prompt layout
     prompt = build_synthesis_prompt(data)
 
-    almanac_window = data.get("almanac", {}).get("forecast_window", {})
-    week_suffix = f"W{almanac_window.get('sprint_week', '28')}"
-    target_dir = "prism/data/llm_synthesis"
-    os.makedirs(target_dir, exist_ok=True)
+    # 2. Extract parent tracking folder from pipeline command arguments
+    if len(sys.argv) > 1:
+        parent_week_dir = sys.argv[1]  # Captures "Week6" explicitly from workflow context
+    else:
+        # Fallback tracking resolution for offline local executions inside PyCharm
+        almanac_window = data.get("almanac", {}).get("forecast_window", {})
+        parent_week_dir = f"Week{almanac_window.get('sprint_week', '6')}"
 
-    # Save unified attestation prompt snapshot
-    prompt_file_path = os.path.join(target_dir, f"ai_prompt_{week_suffix}.md")
+    # 3. Strip structural alphabetic characters to convert indices to numeric formats ("Week6" -> 6)
+    try:
+        week_digits = "".join(filter(str.isdigit, parent_week_dir))
+        week_num = int(week_digits) if week_digits else 6
+    except Exception:
+        week_num = 6
+
+    # Standardize string representations to follow two-digit padding rule ("W06")
+    week_suffix_file = f"W{week_num:02d}"
+
+    # 4. Bind the execution path directly inside your specified structural node: Week{N}/R8_llm/
+    target_dir = os.path.join(".", parent_week_dir, "R8_llm")
+    os.makedirs(target_dir, exist_ok=True)
+    print(f"[OK] Workspace successfully pinned to dynamic ledger: {target_dir}")
+
+    # 5. Drop pristine prompt configuration file snapshot into the specific folder
+    prompt_file_path = os.path.join(target_dir, f"ai_prompt_{week_suffix_file}.md")
     try:
         with open(prompt_file_path, "w", encoding="utf-8") as prompt_file:
             prompt_file.write(prompt)
+        print(f"[OK] Attestation target prompt cached: {prompt_file_path}")
     except Exception as e:
-        print(f"[WARN] Prompt cache error: {e}")
+        print(f"[WARN] Ingestion tracking sequence dropped prompt frame save: {e}")
 
     print("[PRISM] Spawning concurrent threads to execute multi-engine matrix evaluation...")
     with concurrent.futures.ThreadPoolExecutor() as executor:
@@ -488,6 +510,7 @@ def main():
     gem_res = future_gemini.result()
     ds_res = future_deepseek.result()
 
+    # Align model handles cleanly with your folder structure naming patterns
     responses_map = {
         "chatgpt": gpt_res,
         "claude": c_res,
@@ -495,19 +518,20 @@ def main():
         "deepseek": ds_res
     }
 
-    # Routinely drops the raw txt logs directly into prism/data/llm_synthesis/
+    # 6. Save every independent raw agent text ledger into target folder tree
     for name, data_obj in responses_map.items():
-        out_path = os.path.join(target_dir, f"synthesis_{name}_{week_suffix}.txt")
+        out_path = os.path.join(target_dir, f"synthesis_{name}_{week_suffix_file}.txt")
         with open(out_path, "w", encoding="utf-8") as f:
             f.write(json.dumps(data_obj, indent=2))
-        print(f"[OK] Saved copy tracker: {out_path}")
+        print(f"[OK] Stored raw validation token logs: {out_path}")
 
-    # Drops the compiled markdown matrix directly into prism/data/llm_synthesis/
+    # 7. Generate and output the final compiled dashboard markdown file
     report_content = generate_markdown_report(c_res, gpt_res, gem_res, ds_res, data)
-    report_file_path = os.path.join(target_dir, f"llm_synthesis_{week_suffix}.md")
+    report_file_path = os.path.join(target_dir, f"llm_synthesis_{week_suffix_file}.md")
     with open(report_file_path, "w", encoding="utf-8") as report_file:
         report_file.write(report_content)
-    print(f"[PRISM] Complete! Dynamic markdown generated cleanly at: {report_file_path}")
+
+    print(f"[PRISM] Complete! Synthesis markdown generated cleanly at: {report_file_path}")
 
 if __name__ == "__main__":
     main()
