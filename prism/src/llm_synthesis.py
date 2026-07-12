@@ -133,7 +133,7 @@ def call_openrouter(prompt):
         print("[PRISM] [DEBUG_ALERTER] OPENROUTER_API_KEY environment variable is MISSING or blank!")
         return fallback_metrics("OpenRouter")
 
-    url = "https://openrouter.ai"
+    url = "https://openrouter.ai/api/v1"
 
     headers = {
         "Authorization": f"Bearer {api_key}",
