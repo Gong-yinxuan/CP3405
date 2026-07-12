@@ -1,5 +1,5 @@
 {
-  "date": "2026-07-12",
+  "date": "2026-07-10",
   "SPX": {
     "close": 7575.39,
     "weekly_change_pct": 1.2
@@ -13,12 +13,12 @@
     "weekly_change_pct": -0.5
   },
   "GOLD": {
-    "close": 4113.7,
-    "weekly_change_pct": 0.0
+    "close": 4128.9,
+    "weekly_change_pct": 0.4
   },
   "WTI": {
-    "close": 71.41,
-    "weekly_change_pct": 4.0
+    "close": 71.51,
+    "weekly_change_pct": 4.1
   },
   "US10Y": {
     "close": 0.46,
@@ -33,7 +33,7 @@
     "weekly_change_pct": -6.9
   },
   "BTC": {
-    "close": 63885.64,
+    "close": 64120.8,
     "weekly_change_pct": 0.9
   },
   "XLK": {
