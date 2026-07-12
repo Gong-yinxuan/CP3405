@@ -1,0 +1,25 @@
+{
+  "weekly_regime": "Large-cap driven risk-on, with caution on small-cap vulnerability and options expiry week.",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "+0.5% to +1.5%",
+  "ndx_pct_estimate": "+0.5% to +1.0%",
+  "iwm_pct_estimate": "-0.5% to +0.5%",
+  "top_supporting_reason": "Strong bullish technical momentum in large-cap indices (SPX, NDX) with leading Tech and Communication Services sectors.",
+  "top_contradiction_cited": "Weak historical July seasonality for NASDAQ and Russell 2000 in a midterm election year, conflicting with current large-cap technical strength.",
+  "invalidation_condition": "SPX closing below its 8-day EMA (7511.06) or IWM closing below its 21-day EMA (294.77).",
+  "tone_caveat_language": "Cautiously optimistic for large-cap growth, defensive posture recommended for small-cap exposure.",
+  "consensus_bias": "MIXED",
+  "consensus_read_summary": "Major large-cap indices (SPX, NDX) exhibit robust bullish technicals, supported by strong performance in Technology and Communication Services. However, the Russell 2000 (IWM) shows technical weakness and faces significant historical headwinds from July's midterm year seasonality. Rising yields and options expiry week add layers of potential volatility.",
+  "point_of_maximum_divergence": "The strong bullish technicals and positive overall July seasonality for the S&P 500 contrast sharply with the negative historical performance of the Nasdaq and Russell 2000 during July in a midterm election year.",
+  "key_supporting_factors": [
+    "SPX and NDX in 'Zone 1 Bullish' EMA condition, trading above key moving averages with positive weekly change.",
+    "VIX significantly down (-6.93% weekly), indicating reduced market volatility and fear.",
+    "Technology (XLK) and Communication Services (XLC) are leading sectors, supporting large-cap growth momentum."
+  ],
+  "main_contradiction_risk": "Persistent and substantial negative historical seasonality for small-caps (IWM) and NASDAQ during July in midterm election years, compounded by IWM's current technical 'Zone 2 Pullback' status.",
+  "invalidation_summary": "A sustained close of SPX below its 8-day EMA (7511.06) or IWM breaking below its 21-day EMA (294.77) would invalidate the current bullish large-cap and neutral small-cap outlooks respectively.",
+  "r7_human_score_question": "How much weight should current large-cap technical strength and sector leadership be given against the historical midterm year July weakness for growth and small-cap indices?",
+  "r6_slide_bullet_1": "Large-cap indices (SPX, NDX) maintain bullish technical momentum, driven by Tech and Comm Services leadership.",
+  "r6_slide_bullet_2": "Small-caps (IWM) face neutral technicals and significant historical headwinds in midterm year July.",
+  "r6_slide_bullet_3": "Options expiry week and rising yields add complexity to an otherwise large-cap favorable environment."
+}
