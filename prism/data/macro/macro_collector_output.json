@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-07-12T11:49:09Z",
+    "generated_at": "2026-07-12T11:52:02Z",
     "collector": "Macro Collector",
     "agent_input_for": "Macro Agent",
     "data_source": {
@@ -87,9 +87,9 @@
             "name": "Bitcoin USD",
             "category": "crypto",
             "latest_trading_date": "2026-07-12",
-            "close": 63973.6094,
-            "weekly_change_pct": 1.07,
-            "change_5d": 676.2149,
+            "close": 63969.3594,
+            "weekly_change_pct": 1.06,
+            "change_5d": 671.9649,
             "direction_5d": "Up",
             "history_file": "macro/history/BTC.json"
         }
