@@ -20,5 +20,16 @@
         "range_accuracy_pct": 44.4,
         "range_hit_count": 4,
         "average_error_pct": 3.01
+    },
+    {
+        "release": "vW28",
+        "week": "W28",
+        "forecast_week": "2026-07-13 to 2026-07-17",
+        "direction_accuracy_pct": 85.0,
+        "direction_correct_count": 17,
+        "total_assets_scored": 20,
+        "range_accuracy_pct": 55.0,
+        "range_hit_count": 11,
+        "average_error_pct": 1.17
     }
 ]
