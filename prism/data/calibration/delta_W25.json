@@ -2,7 +2,7 @@
     "release": "vW25",
     "week": "W25",
     "forecast_week": "2026-06-22 to 2026-06-26",
-    "generated_at": "2026-07-10 22:56:01",
+    "generated_at": "2026-07-12 06:32:54",
     "prediction_source_type": "manual_backfill_from_sealed_markdown_prediction",
     "actuals_source": "prism/data/actuals/vW25_actuals.json",
     "total_assets_scored": 9,
