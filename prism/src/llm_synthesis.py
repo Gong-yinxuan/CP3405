@@ -136,7 +136,7 @@ def call_openrouter(prompt):
         return fallback_metrics("OpenRouter")
 
     # Standard OpenRouter base completions routing URL configuration
-    url = "https://openrouter.ai"
+    url = "https://openrouter.ai/api/v1/chat/completions"
 
     headers = {
         "Authorization": f"Bearer {api_key}",
