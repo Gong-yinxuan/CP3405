@@ -125,25 +125,24 @@ def call_claude(prompt):
 def call_openrouter(prompt):
     """
     Queries OpenRouter's free tier endpoints using uniform OpenAI JSON schemas.
-    Utilizes a robust open-weights model runner with zero credit card setup requirements.
+    Provides explicit fail-safe HTTP error catching to diagnose connection blockages.
     """
     api_key = os.getenv("OPENROUTER_API_KEY")
     if not api_key:
+        print("[PRISM] [DEBUG_ALERTER] OPENROUTER_API_KEY environment variable is MISSING or blank!")
         return fallback_metrics("OpenRouter")
 
     url = "https://openrouter.ai"
 
-    # --- FIXED: ADD MANDATORY OPENROUTER IDENTIFICATION HEADERS ---
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json",
-        "HTTP-Referer": "https://localhost:3000",  # Required by OpenRouter rank layers
-        "X-Title": "Prism Analytical Synthesis Matrix"  # Required by OpenRouter dashboard logs
+        "HTTP-Referer": "https://localhost:3000",
+        "X-Title": "Prism Analytical Synthesis Matrix"
     }
-    # --------------------------------------------------------------
 
     payload = {
-        "model": "openrouter/free",  # Automatically switches to the best responsive free model
+        "model": "openrouter/free",
         "messages": [
             {
                 "role": "system",
@@ -158,12 +157,15 @@ def call_openrouter(prompt):
     }
 
     try:
+        # Send the raw network request
         response = requests.post(url, headers=headers, json=payload, timeout=45)
 
+        # --- CRITICAL BUG CATCHER: INTERCEPT NON-200 REJECTIONS BEFORE JSON PARSING ---
         if response.status_code != 200:
-            print(f"[PRISM] OpenRouter HTTP Reject Code: {response.status_code}")
-            print(f"[PRISM] Raw Server Response: {response.text[:200]}")  # Safely prints the error text
+            print(f"\n[PRISM] [DEBUG_ALERTER] OpenRouter Rejected Connection! HTTP Code: {response.status_code}")
+            print(f"[PRISM] [DEBUG_ALERTER] Raw Response Content: {response.text[:300]}")
             return fallback_metrics("OpenRouter")
+        # ------------------------------------------------------------------------------
 
         res_json = response.json()
         raw_content = res_json["choices"]["message"]["content"].strip()
@@ -178,7 +180,7 @@ def call_openrouter(prompt):
         return json.loads(cleaned_text)
 
     except Exception as e:
-        print(f"[PRISM] OpenRouter processing layer failed: {e}")
+        print(f"[PRISM] OpenRouter processing layer failed down on outer block: {e}")
         return fallback_metrics("OpenRouter")
 
 def call_chatgpt(prompt):
