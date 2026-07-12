@@ -4,7 +4,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
 1. MASTER MARKET DATA (Verified by Data Pipeline)
 [TECHNICAL INDICATOR AGENT DATA]: 
 {
-  "generated_at": "2026-07-12T06:41:11Z",
+  "generated_at": "2026-07-12T07:07:16Z",
   "collector": "Technical Collector",
   "agent_input_for": "Technical Agent",
   "data_source": "Yahoo Finance via yfinance",
@@ -81,7 +81,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
 
 [MACROECONOMIC DATA AGENT DATA]: 
 {
-  "generated_at": "2026-07-12T06:41:12Z",
+  "generated_at": "2026-07-12T07:07:17Z",
   "collector": "Macro Collector",
   "agent_input_for": "Macro Agent",
   "data_source": {
@@ -169,9 +169,9 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
       "name": "Bitcoin USD",
       "category": "crypto",
       "latest_trading_date": "2026-07-12",
-      "close": 63732.7617,
-      "weekly_change_pct": 0.69,
-      "change_5d": 435.3672,
+      "close": 63750.9609,
+      "weekly_change_pct": 0.72,
+      "change_5d": 453.5664,
       "direction_5d": "Up",
       "history_file": "macro/history/BTC.json"
     }
@@ -214,7 +214,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
 
 [ALMANAC & HISTORICAL SEASONALITY AGENT DATA]: 
 {
-  "generated_at": "2026-07-12T06:41:15Z",
+  "generated_at": "2026-07-12T07:07:19Z",
   "collector": "Almanac Collector",
   "agent_input_for": "Almanac Agent",
   "data_source": "Yahoo Finance via yfinance + automatic date rules",
@@ -362,7 +362,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
   }
 }
 {
-  "generated_at": "2026-07-12T06:41:10Z",
+  "generated_at": "2026-07-12T07:07:15Z",
   "collector": "Monthly Seasonality Collector",
   "data_source": "Yahoo Finance via yfinance (full available monthly history)",
   "note": "Historical average % return and seasonal rank per calendar month, and the same broken out by US presidential-cycle-year phase. Rank 1 = highest average return for that grouping.",
