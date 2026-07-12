@@ -143,11 +143,11 @@ def call_openrouter(prompt):
     # --------------------------------------------------------------
 
     payload = {
-        "model": "openrouter/free",  # Dynamically points to active free networks
+        "model": "openrouter/free",  # Automatically switches to the best responsive free model
         "messages": [
             {
                 "role": "system",
-                "content": "You are a rigid automation server. You must output ONLY a valid raw JSON object."
+                "content": "You are a rigid automation server. You must output ONLY a valid raw JSON object. Do not include any conversational introduction, notes, or markdown code blocks."
             },
             {
                 "role": "user",
@@ -160,9 +160,9 @@ def call_openrouter(prompt):
     try:
         response = requests.post(url, headers=headers, json=payload, timeout=45)
 
-        # This will catch the 403/401 and print the explicit server rejection code
         if response.status_code != 200:
-            print(f"[PRISM] OpenRouter HTTP Reject: Status {response.status_code} - Raw: {response.text[:150]}")
+            print(f"[PRISM] OpenRouter HTTP Reject Code: {response.status_code}")
+            print(f"[PRISM] Raw Server Response: {response.text[:200]}")  # Safely prints the error text
             return fallback_metrics("OpenRouter")
 
         res_json = response.json()
