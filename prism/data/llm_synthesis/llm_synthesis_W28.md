@@ -8,15 +8,15 @@
 
 | Dimension                   | Claude     | ChatGPT    | Gemini     | DeepSeek   |
 | --------------------------- | ---------- | ---------- | ---------- | ---------- |
-| **Weekly Regime**           | Error loading Claude value | Error loading OpenRouter value | Cautiously bullish for large-caps, grinding higher driven by technology, with underlying small-cap weakness and options expiry volatility. | Error loading DeepSeek value |
+| **Weekly Regime**           | Error loading Claude value | Error loading OpenRouter value | Mixed sentiment, favoring large-cap strength with potential for consolidation, while small-caps face headwinds from technical weakness and midterm year seasonality. | Error loading DeepSeek value |
 | **Confidence Score**        | Error loading Claude value | Error loading OpenRouter value | Medium | Error loading DeepSeek value |
-| **SPX % estimate**          | Error loading Claude value | Error loading OpenRouter value | 0.5% to 1.5% Up | Error loading DeepSeek value |
-| **NDX % estimate**          | Error loading Claude value | Error loading OpenRouter value | 1.0% to 2.0% Up | Error loading DeepSeek value |
-| **IWM % estimate**          | Error loading Claude value | Error loading OpenRouter value | -1.0% to 0.5% (Neutral to Slightly Down) | Error loading DeepSeek value |
-| **Top supporting reason**   | Error loading Claude value | Error loading OpenRouter value | Strong bullish technical momentum in large-cap indices coupled with declining volatility (VIX). | Error loading DeepSeek value |
-| **Top contradiction cited** | Error loading Claude value | Error loading OpenRouter value | Small-cap (IWM) weakness and negative historical July seasonality in a midterm year, conflicting with large-cap strength. | Error loading DeepSeek value |
-| **Invalidation condition**  | Error loading Claude value | Error loading OpenRouter value | SPX closes below 7511.06 (8-day EMA) or IWM closes below 294.77 (21-day EMA). | Error loading DeepSeek value |
-| **Tone / caveat language**  | Error loading Claude value | Error loading OpenRouter value | This outlook is aligned with growth-oriented large-cap exposure, favoring technology, but advises caution with broader market breadth and small-cap segments. | Error loading DeepSeek value |
+| **SPX % estimate**          | Error loading Claude value | Error loading OpenRouter value | 0.0% to +0.5% | Error loading DeepSeek value |
+| **NDX % estimate**          | Error loading Claude value | Error loading OpenRouter value | +0.5% to +1.0% | Error loading DeepSeek value |
+| **IWM % estimate**          | Error loading Claude value | Error loading OpenRouter value | -0.5% to -1.5% | Error loading DeepSeek value |
+| **Top supporting reason**   | Error loading Claude value | Error loading OpenRouter value | Strong bullish technical momentum in large-cap indices (SPX, NDX) supported by declining VIX and leading Technology sector performance. | Error loading DeepSeek value |
+| **Top contradiction cited** | Error loading Claude value | Error loading OpenRouter value | Significant divergence between robust large-cap technicals and historical midterm July seasonality for growth/small-cap indices, coupled with IWM's current technical pullback. | Error loading DeepSeek value |
+| **Invalidation condition**  | Error loading Claude value | Error loading OpenRouter value | SPX closing definitively below its 8-day EMA (7511.06) or IWM closing below its 21-day EMA (294.77). | Error loading DeepSeek value |
+| **Tone / caveat language**  | Error loading Claude value | Error loading OpenRouter value | Cautiously optimistic on large-cap strength, defensive posture advised for small-cap and broader market exposure during options expiry week. | Error loading DeepSeek value |
 
 ## Consensus Read
 

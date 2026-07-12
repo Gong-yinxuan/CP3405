@@ -4,7 +4,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
 1. MASTER MARKET DATA (Verified by Data Pipeline)
 [TECHNICAL INDICATOR AGENT DATA]: 
 {
-  "generated_at": "2026-07-12T07:19:30Z",
+  "generated_at": "2026-07-12T07:23:19Z",
   "collector": "Technical Collector",
   "agent_input_for": "Technical Agent",
   "data_source": "Yahoo Finance via yfinance",
@@ -81,7 +81,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
 
 [MACROECONOMIC DATA AGENT DATA]: 
 {
-  "generated_at": "2026-07-12T07:19:31Z",
+  "generated_at": "2026-07-12T07:23:20Z",
   "collector": "Macro Collector",
   "agent_input_for": "Macro Agent",
   "data_source": {
@@ -98,8 +98,8 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
       "category": "yield",
       "latest_trading_date": "2026-07-10",
       "close": 0.4569,
-      "weekly_change_pct": 1.87,
-      "change_5d": 0.0084,
+      "weekly_change_pct": 2.1,
+      "change_5d": 0.0094,
       "direction_5d": "Up",
       "history_file": "macro/history/US_10Y_YIELD.json"
     },
@@ -110,8 +110,8 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
       "category": "yield",
       "latest_trading_date": "2026-07-10",
       "close": 0.5071,
-      "weekly_change_pct": 1.73,
-      "change_5d": 0.0086,
+      "weekly_change_pct": 2.11,
+      "change_5d": 0.0105,
       "direction_5d": "Up",
       "history_file": "macro/history/US_30Y_YIELD.json"
     },
@@ -169,9 +169,9 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
       "name": "Bitcoin USD",
       "category": "crypto",
       "latest_trading_date": "2026-07-12",
-      "close": 63789.9883,
-      "weekly_change_pct": 0.78,
-      "change_5d": 492.5938,
+      "close": 63821.4414,
+      "weekly_change_pct": 0.83,
+      "change_5d": 524.0469,
       "direction_5d": "Up",
       "history_file": "macro/history/BTC.json"
     }
@@ -214,7 +214,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
 
 [ALMANAC & HISTORICAL SEASONALITY AGENT DATA]: 
 {
-  "generated_at": "2026-07-12T07:19:36Z",
+  "generated_at": "2026-07-12T07:23:23Z",
   "collector": "Almanac Collector",
   "agent_input_for": "Almanac Agent",
   "data_source": "Yahoo Finance via yfinance + automatic date rules",
@@ -362,7 +362,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
   }
 }
 {
-  "generated_at": "2026-07-12T07:19:28Z",
+  "generated_at": "2026-07-12T07:23:18Z",
   "collector": "Monthly Seasonality Collector",
   "data_source": "Yahoo Finance via yfinance (full available monthly history)",
   "note": "Historical average % return and seasonal rank per calendar month, and the same broken out by US presidential-cycle-year phase. Rank 1 = highest average return for that grouping.",
