@@ -1,5 +1,16 @@
 [
     {
+        "release": "vW23",
+        "week": "W23",
+        "forecast_week": "Week 3",
+        "direction_accuracy_pct": 25.0,
+        "direction_correct_count": 2,
+        "total_assets_scored": 8,
+        "range_accuracy_pct": 12.5,
+        "range_hit_count": 1,
+        "average_error_pct": 6.34
+    },
+    {
         "release": "vW25",
         "week": "W25",
         "forecast_week": "2026-06-22 to 2026-06-26",

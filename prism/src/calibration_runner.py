@@ -108,25 +108,35 @@ def get_prediction_path(prism_root: Path, release: str) -> Path:
     return prediction_path
 
 
-def save_actuals_snapshot(prism_root: Path, release: str, output_path: Path) -> Path:
+def get_actuals_path_for_release(prism_root: Path, release: str, output_path: Path) -> Path:
     """
-    Copy prism/data/output.json into a release-specific actuals file.
-
-    Example:
-    prism/data/output.json
-    -> prism/data/actuals/vW28_actuals.json
+    Use release-specific actuals if it already exists.
+    Only create a new actuals snapshot if it does not exist yet.
+    This prevents old weeks like vW25 from being overwritten by current output.json.
     """
-    if not output_path.exists():
-        raise FileNotFoundError(f"Missing actuals output file: {output_path}")
-
     actuals_dir = prism_root / "data" / "actuals"
     actuals_dir.mkdir(parents=True, exist_ok=True)
 
     snapshot_path = actuals_dir / f"{release}_actuals.json"
 
-    copy2(output_path, snapshot_path)
+    # Safety rule: never overwrite existing actuals snapshot
+    if snapshot_path.exists():
+        print(f"[INFO] Using existing actuals snapshot: {snapshot_path}")
+        return snapshot_path
 
-    print(f"[OK] Saved actuals snapshot: {snapshot_path}")
+    latest_release = detect_latest_release(prism_root)
+
+    if release != latest_release:
+        raise FileNotFoundError(
+            f"Missing actuals file for old release: {snapshot_path}\n"
+            f"Cannot create old actuals from output.json because output.json only contains latest data."
+        )
+
+    if not output_path.exists():
+        raise FileNotFoundError(f"Missing actuals output file: {output_path}")
+
+    copy2(output_path, snapshot_path)
+    print(f"[OK] Created new actuals snapshot: {snapshot_path}")
 
     return snapshot_path
 
@@ -503,7 +513,7 @@ def main() -> None:
     print(f"[INFO] Prediction file: {prediction_path}")
     print(f"[INFO] Latest output file: {output_path}")
 
-    actuals_snapshot_path = save_actuals_snapshot(
+    actuals_snapshot_path = get_actuals_path_for_release(
         prism_root=prism_root,
         release=release,
         output_path=output_path

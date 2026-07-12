@@ -1,6 +1,10 @@
 yfinance>=0.2.36
 requests
 matplotlib
+<<<<<<< HEAD
 openai
 anthropic
 google-genai
+=======
+pandas
+>>>>>>> main

@@ -3,12 +3,16 @@ name: Update Market Data
 on:
   schedule:
     # Monday 8:00 AM Singapore time
-    # Runs R3/R4/R5 agent collectors + chart builder
+    # Runs R3/R4/R5 agent collectors + chart builder + report builders
     - cron: "0 0 * * 1"
 
     # Saturday 6:00 AM Singapore time
     # Runs R6 actuals collector after US Friday close
     - cron: "0 22 * * 5"
+
+    # 1st of each month, 8:00 AM Singapore time
+    # Refreshes long-run monthly seasonality stats (slow-changing, no need weekly)
+    - cron: "0 0 1 * *"
 
   workflow_dispatch:
 
@@ -45,6 +49,21 @@ jobs:
         run: |
           python prism/src/data_collector.py
 
+      - name: Run R6/R10 calibration runner
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 22 * * 5'
+        run: |
+          python prism/src/calibration_runner.py
+
+      # -----------------------------
+      # MONTHLY SEASONALITY COLLECTOR
+      # Runs 1st of each month -- slow-changing historical stats
+      # -----------------------------
+
+      - name: Run monthly seasonality collector
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 0 1 * *'
+        run: |
+          python prism/src/collectors/seasonality_collector.py
+
       # -----------------------------
       # R3/R4/R5 AGENT COLLECTORS
       # Runs Monday 8:00 AM SGT
@@ -70,6 +89,7 @@ jobs:
         run: |
           python prism/src/chart_builder.py
 
+<<<<<<< HEAD
       # SPRINT 6 CONCURRENT REPO UPGRADE
       # Hits 4 Model API streams simultaneously to populate the comparison brief matrix
       - name: Run 4-Model Consensus LLM Synthesis
@@ -85,18 +105,89 @@ jobs:
             # -----------------------------
       # DYNAMIC COMMIT AND PUSH ENGINE
       # -----------------------------
+=======
+      # -----------------------------
+      # REPORT BUILDERS
+      # Auto-fill Week{N}/R{3,4,5}_.../*_agent_W{NN}.md from each
+      # collector's JSON output. Week number is computed ONCE here and
+      # passed explicitly to all three, so they can't drift onto
+      # different week numbers (each script's own auto-detect only looks
+      # at whichever Week{N} folders already exist, so running them
+      # back-to-back would otherwise bump the number each time).
+      # -----------------------------
+
+      - name: Determine week number
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 0 * * 1'
+        id: week
+        run: |
+          WEEK_NUMBER=$(python -c "import sys; sys.path.insert(0, 'prism/src/report_builders'); from pathlib import Path; from week_utils import detect_next_week_number; print(detect_next_week_number(Path('.')))")
+          echo "number=$WEEK_NUMBER" >> "$GITHUB_OUTPUT"
+          echo "Detected week number: $WEEK_NUMBER"
+
+      - name: Build almanac agent report (R3)
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 0 * * 1'
+        run: |
+          python prism/src/report_builders/generate_almanac.py \
+            prism/data/almanac/almanac_collector_output.json \
+            ${{ steps.week.outputs.number }} \
+            --out-root . \
+            --seasonality-json prism/data/almanac/monthly_seasonality.json \
+            --charts-dir prism/data/almanac/charts
+
+      - name: Build macro agent report (R4)
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 0 * * 1'
+        run: |
+          python prism/src/report_builders/generate_macro.py \
+            prism/data/macro/macro_collector_output.json \
+            ${{ steps.week.outputs.number }} \
+            --out-root . \
+            --charts-dir prism/data/macro/charts
+
+      - name: Build technical agent report (R5)
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 0 * * 1'
+        run: |
+          python prism/src/report_builders/generate_technical.py \
+            prism/data/technical/technical_collector_output.json \
+            ${{ steps.week.outputs.number }} \
+            --out-root . \
+            --charts-dir prism/data/technical/charts
+
+>>>>>>> main
       - name: Commit and push generated data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@://github.com"
 
-          git add prism/data
+          echo "Git status before staging:"
+          git status --short
+
+          git add -A prism/data
+          git add -A Week* || true
+          git add -A delta_*.md || true
+
+          echo "Git status after staging:"
+          git status --short
 
           if git diff --cached --quiet; then
             echo "No generated data changes to commit"
           else
+<<<<<<< HEAD
             git commit -m "chore: update Prism market data & synthesis $(date +'%Y-%m-%d')"
             # Fixed: Forces Git to accept the freshly generated runner server data over any old online branch copies
             git pull --rebase -X theirs origin ${GITHUB_REF_NAME}
             git push origin ${GITHUB_REF_NAME}
           fi
+=======
+            git commit -m "chore: update Prism data $(date +'%Y-%m-%d')"
+          fi
+
+          echo "Git status after commit:"
+          git status --short
+
+          CURRENT_BRANCH="${GITHUB_REF_NAME}"
+
+          echo "Current branch: $CURRENT_BRANCH"
+
+          git pull --rebase --autostash origin "$CURRENT_BRANCH"
+          git push origin "HEAD:$CURRENT_BRANCH"
+>>>>>>> main
