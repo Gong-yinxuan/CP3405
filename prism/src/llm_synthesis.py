@@ -1,3 +1,4 @@
+import sys
 import os
 import json
 import re
@@ -122,6 +123,66 @@ def call_claude(prompt):
     except Exception as e:
         return {"error": str(e)}
 
+def call_openrouter(prompt):
+    """
+    Queries OpenRouter's free tier endpoints using uniform OpenAI JSON schemas.
+    Provides explicit fail-safe HTTP error catching to diagnose connection blockages.
+    """
+    api_key = os.getenv("OPENROUTER_API_KEY")
+    if not api_key:
+        print("[PRISM] [DEBUG_ALERTER] OPENROUTER_API_KEY environment variable is MISSING or blank!")
+        return fallback_metrics("OpenRouter")
+
+    url = "https://openrouter.ai"
+
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json",
+        "HTTP-Referer": "https://localhost:3000",
+        "X-Title": "Prism Analytical Synthesis Matrix"
+    }
+
+    payload = {
+        "model": "openrouter/free",
+        "messages": [
+            {
+                "role": "system",
+                "content": "You are a rigid automation server. You must output ONLY a valid raw JSON object. Do not include any conversational introduction, notes, or markdown code blocks."
+            },
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ],
+        "temperature": 0.1
+    }
+
+    try:
+        # Send the raw network request
+        response = requests.post(url, headers=headers, json=payload, timeout=45)
+
+        # --- CRITICAL BUG CATCHER: INTERCEPT NON-200 REJECTIONS BEFORE JSON PARSING ---
+        if response.status_code != 200:
+            print(f"\n[PRISM] [DEBUG_ALERTER] OpenRouter Rejected Connection! HTTP Code: {response.status_code}")
+            print(f"[PRISM] [DEBUG_ALERTER] Raw Response Content: {response.text[:300]}")
+            return fallback_metrics("OpenRouter")
+        # ------------------------------------------------------------------------------
+
+        res_json = response.json()
+        raw_content = res_json["choices"]["message"]["content"].strip()
+
+        cleaned_text = clean_json_string(raw_content)
+        json_match = re.search(r'\{.*\}', cleaned_text, re.DOTALL)
+        if json_match:
+            cleaned_text = json_match.group(0)
+
+        cleaned_text = re.sub(r',\s*\}', '}', cleaned_text)
+        cleaned_text = re.sub(r',\s*\]', ']', cleaned_text)
+        return json.loads(cleaned_text)
+
+    except Exception as e:
+        print(f"[PRISM] OpenRouter processing layer failed down on outer block: {e}")
+        return fallback_metrics("OpenRouter")
 
 def call_chatgpt(prompt):
     """
@@ -397,31 +458,59 @@ def generate_markdown_report(c, gpt, gem, ds, raw_data):
     ]
     return "\n".join(lines)
 
+
 def main():
     print("[PRISM] Querying multi-agent environment data blocks...")
     data = find_latest_collector_data()
+
+    # 1. Generate the master synthesis validation prompt layout
     prompt = build_synthesis_prompt(data)
+
+    # 2. Extract parent tracking folder from pipeline command arguments
+    if len(sys.argv) > 1:
+        parent_week_dir = sys.argv[1]  # Captures "Week6" explicitly from workflow context
+    else:
+        # Fallback tracking resolution for offline local executions inside PyCharm
+        almanac_window = data.get("almanac", {}).get("forecast_window", {})
+        parent_week_dir = f"Week{almanac_window.get('sprint_week', '6')}"
+
+    # 3. Strip structural alphabetic characters to convert indices to numeric formats ("Week6" -> 6)
+    try:
+        week_digits = "".join(filter(str.isdigit, parent_week_dir))
+        week_num = int(week_digits) if week_digits else 6
+    except Exception:
+        week_num = 6
+
+    # Standardize string representations to follow two-digit padding rule ("W06")
+    week_suffix_file = f"W{week_num:02d}"
+
+    # 4. Bind the execution path directly inside your specified structural node: Week{N}/R8_llm/
+    target_dir = os.path.join(".", parent_week_dir, "R8_llm")
+    os.makedirs(target_dir, exist_ok=True)
+    print(f"[OK] Workspace successfully pinned to dynamic ledger: {target_dir}")
+
+    # 5. Drop pristine prompt configuration file snapshot into the specific folder
+    prompt_file_path = os.path.join(target_dir, f"ai_prompt_{week_suffix_file}.md")
+    try:
+        with open(prompt_file_path, "w", encoding="utf-8") as prompt_file:
+            prompt_file.write(prompt)
+        print(f"[OK] Attestation target prompt cached: {prompt_file_path}")
+    except Exception as e:
+        print(f"[WARN] Ingestion tracking sequence dropped prompt frame save: {e}")
 
     print("[PRISM] Spawning concurrent threads to execute multi-engine matrix evaluation...")
     with concurrent.futures.ThreadPoolExecutor() as executor:
         future_claude = executor.submit(call_claude, prompt)
-        future_gpt = executor.submit(call_chatgpt, prompt)
+        future_openrouter = executor.submit(call_openrouter, prompt)
         future_gemini = executor.submit(call_gemini, prompt)
         future_deepseek = executor.submit(call_deepseek, prompt)
 
-        c_res = future_claude.result()
-        gpt_res = future_gpt.result()
-        gem_res = future_gemini.result()
-        ds_res = future_deepseek.result()
+    c_res = future_claude.result()
+    gpt_res = future_openrouter.result()
+    gem_res = future_gemini.result()
+    ds_res = future_deepseek.result()
 
-    # Fixed: Creates a pristine, dedicated folder inside your data ecosystem
-    target_dir = "prism/data/llm_synthesis"
-    os.makedirs(target_dir, exist_ok=True)
-
-    # Calculate target week label dynamically from the data window
-    almanac_window = data.get("almanac", {}).get("forecast_window", {})
-    week_suffix = f"W{almanac_window.get('sprint_week', '28')}"
-
+    # Align model handles cleanly with your folder structure naming patterns
     responses_map = {
         "chatgpt": gpt_res,
         "claude": c_res,
@@ -429,20 +518,20 @@ def main():
         "deepseek": ds_res
     }
 
-    # Routinely drops the raw txt logs directly into prism/data/llm_synthesis/
+    # 6. Save every independent raw agent text ledger into target folder tree
     for name, data_obj in responses_map.items():
-        out_path = os.path.join(target_dir, f"synthesis_{name}_{week_suffix}.txt")
+        out_path = os.path.join(target_dir, f"synthesis_{name}_{week_suffix_file}.txt")
         with open(out_path, "w", encoding="utf-8") as f:
             f.write(json.dumps(data_obj, indent=2))
-        print(f"[OK] Saved copy tracker: {out_path}")
+        print(f"[OK] Stored raw validation token logs: {out_path}")
 
-    # Drops the compiled markdown matrix directly into prism/data/llm_synthesis/
+    # 7. Generate and output the final compiled dashboard markdown file
     report_content = generate_markdown_report(c_res, gpt_res, gem_res, ds_res, data)
-    report_file_path = os.path.join(target_dir, f"llm_synthesis_{week_suffix}.md")
+    report_file_path = os.path.join(target_dir, f"llm_synthesis_{week_suffix_file}.md")
     with open(report_file_path, "w", encoding="utf-8") as report_file:
         report_file.write(report_content)
 
-    print(f"[PRISM] Complete! Dynamic markdown generated cleanly at: {report_file_path}")
+    print(f"[PRISM] Complete! Synthesis markdown generated cleanly at: {report_file_path}")
 
 if __name__ == "__main__":
     main()

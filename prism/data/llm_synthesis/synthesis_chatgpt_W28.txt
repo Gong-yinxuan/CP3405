@@ -1,11 +1,11 @@
 {
-  "weekly_regime": "Error loading ChatGPT value",
-  "confidence_score": "Error loading ChatGPT value",
-  "spx_pct_estimate": "Error loading ChatGPT value",
-  "ndx_pct_estimate": "Error loading ChatGPT value",
-  "iwm_pct_estimate": "Error loading ChatGPT value",
-  "top_supporting_reason": "Error loading ChatGPT value",
-  "top_contradiction_cited": "Error loading ChatGPT value",
-  "invalidation_condition": "Error loading ChatGPT value",
-  "tone_caveat_language": "Error loading ChatGPT value"
+  "weekly_regime": "Error loading OpenRouter value",
+  "confidence_score": "Error loading OpenRouter value",
+  "spx_pct_estimate": "Error loading OpenRouter value",
+  "ndx_pct_estimate": "Error loading OpenRouter value",
+  "iwm_pct_estimate": "Error loading OpenRouter value",
+  "top_supporting_reason": "Error loading OpenRouter value",
+  "top_contradiction_cited": "Error loading OpenRouter value",
+  "invalidation_condition": "Error loading OpenRouter value",
+  "tone_caveat_language": "Error loading OpenRouter value"
 }

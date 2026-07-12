@@ -1,15 +1,21 @@
 # R4 Macro Agent — Fed + Data Watch
 
-**Week commencing:** 2026-06-22
-**Week ending:** 2026-06-28
+**Week commencing:** 2026-07-06
+**Week ending:** 2026-07-12
 
 ## Fed Speakers
 
-- **Speaker hint:** Waller
-  - Title: Waller, Welcoming Remarks on the International Role of the U.S. Dollar
-  - Published: 2026-06-22T13:00:00+00:00
+- **Speaker hint:** Bowman
+  - Title: Bowman, Opening Remarks on Sound Practices for Artificial Intelligence
+  - Published: 2026-07-07T11:00:00+00:00
   - Tone hint: neutral_or_unclear_keyword_hint
-  - Source: https://www.federalreserve.gov/newsevents/speech/waller20260622a.htm
+  - Source: https://www.federalreserve.gov/newsevents/speech/bowman20260707a.htm
+
+- **Speaker hint:** Waller
+  - Title: Waller, Two Thoughts on the Transmission of Monetary Policy
+  - Published: 2026-07-06T15:00:00+00:00
+  - Tone hint: neutral_or_unclear_keyword_hint
+  - Source: https://www.federalreserve.gov/newsevents/speech/waller20260706a.htm
 
 ## CPI / Inflation-Related Releases
 

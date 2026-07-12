@@ -8,15 +8,15 @@
 
 | Dimension                   | Claude     | ChatGPT    | Gemini     | DeepSeek   |
 | --------------------------- | ---------- | ---------- | ---------- | ---------- |
-| **Weekly Regime**           | Error loading Claude value | Error loading ChatGPT value | Bifurcated Market with Large-Cap Resilience and Defensive Sector Rotation | Error loading DeepSeek value |
-| **Confidence Score**        | Error loading Claude value | Error loading ChatGPT value | Medium | Error loading DeepSeek value |
-| **SPX % estimate**          | Error loading Claude value | Error loading ChatGPT value | +0.5% to +1.0% | Error loading DeepSeek value |
-| **NDX % estimate**          | Error loading Claude value | Error loading ChatGPT value | -0.5% to +0.5% | Error loading DeepSeek value |
-| **IWM % estimate**          | Error loading Claude value | Error loading ChatGPT value | -1.0% to 0.0% | Error loading DeepSeek value |
-| **Top supporting reason**   | Error loading Claude value | Error loading ChatGPT value | The S&P 500 maintains a 'Zone 1 Bullish' EMA condition and 'Bullish' technical bias, indicating underlying strength in large-cap equities. | Error loading DeepSeek value |
-| **Top contradiction cited** | Error loading Claude value | Error loading ChatGPT value | Rising US Treasury yields and WTI oil prices, coupled with underperformance in growth/cyclical sectors like Consumer Discretionary and Communication Services, present a macro headwind for broader market expansion. | Error loading DeepSeek value |
-| **Invalidation condition**  | Error loading Claude value | Error loading ChatGPT value | SPX closing below its 21-day EMA of 7459.96. | Error loading DeepSeek value |
-| **Tone / caveat language**  | Error loading Claude value | Error loading ChatGPT value | Investors should prioritize defensive positioning and large-cap quality over high-growth speculative plays, with awareness of potential options expiry volatility. | Error loading DeepSeek value |
+| **Weekly Regime**           | Error loading Claude value | Error loading OpenRouter value | Risk-on with internal divergence, favoring large-cap growth over small-caps, despite rising yields. | Error loading DeepSeek value |
+| **Confidence Score**        | Error loading Claude value | Error loading OpenRouter value | Medium | Error loading DeepSeek value |
+| **SPX % estimate**          | Error loading Claude value | Error loading OpenRouter value | +0.5% to +1.5% | Error loading DeepSeek value |
+| **NDX % estimate**          | Error loading Claude value | Error loading OpenRouter value | +0.2% to +1.2% | Error loading DeepSeek value |
+| **IWM % estimate**          | Error loading Claude value | Error loading OpenRouter value | -1.0% to -2.0% | Error loading DeepSeek value |
+| **Top supporting reason**   | Error loading Claude value | Error loading OpenRouter value | Major indices SPX and NDX demonstrate strong technical bullishness, supported by a decline in the VIX indicating a risk-on sentiment. | Error loading DeepSeek value |
+| **Top contradiction cited** | Error loading Claude value | Error loading OpenRouter value | Small-cap weakness (IWM) and notably negative July midterm year seasonality for NASDAQ and Russell 2000 contrast with large-cap strength. | Error loading DeepSeek value |
+| **Invalidation condition**  | Error loading Claude value | Error loading OpenRouter value | A weekly close below SPX 7472.72 (21-day EMA) or NDX 29593.23 (21-day EMA) would invalidate the bullish lean. | Error loading DeepSeek value |
+| **Tone / caveat language**  | Error loading Claude value | Error loading OpenRouter value | Long exposure on large-cap indices (SPX, NDX) is favored, while caution is advised for small-caps (IWM) and sectors sensitive to rising yields if they begin to falter. | Error loading DeepSeek value |
 
 ## Consensus Read
 
