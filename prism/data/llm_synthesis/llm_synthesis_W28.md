@@ -8,15 +8,15 @@
 
 | Dimension                   | Claude     | ChatGPT    | Gemini     | DeepSeek   |
 | --------------------------- | ---------- | ---------- | ---------- | ---------- |
-| **Weekly Regime**           | Error loading Claude value | Error loading OpenRouter value | Selective large-cap bullish momentum with small-cap divergence and consolidation. | Error loading DeepSeek value |
+| **Weekly Regime**           | Error loading Claude value | Error loading OpenRouter value | Cautiously bullish for large-caps, grinding higher driven by technology, with underlying small-cap weakness and options expiry volatility. | Error loading DeepSeek value |
 | **Confidence Score**        | Error loading Claude value | Error loading OpenRouter value | Medium | Error loading DeepSeek value |
-| **SPX % estimate**          | Error loading Claude value | Error loading OpenRouter value | +0.5% to +1.5% | Error loading DeepSeek value |
-| **NDX % estimate**          | Error loading Claude value | Error loading OpenRouter value | +1.0% to +2.0% | Error loading DeepSeek value |
-| **IWM % estimate**          | Error loading Claude value | Error loading OpenRouter value | -1.0% to +0.5% | Error loading DeepSeek value |
-| **Top supporting reason**   | Error loading Claude value | Error loading OpenRouter value | S&P 500 and Nasdaq 100 maintain strong Zone 1 Bullish technicals with price above key EMAs, supported by falling VIX. | Error loading DeepSeek value |
-| **Top contradiction cited** | Error loading Claude value | Error loading OpenRouter value | Midterm year July seasonality is historically negative for Nasdaq and Russell 2000, and IWM is currently in a technical pullback. | Error loading DeepSeek value |
-| **Invalidation condition**  | Error loading Claude value | Error loading OpenRouter value | SPX closes below its 21-day EMA of 7472.72. | Error loading DeepSeek value |
-| **Tone / caveat language**  | Error loading Claude value | Error loading OpenRouter value | Favors selective long exposure in leading sectors and large-cap indices, while advising caution on small caps during an OPEX week. | Error loading DeepSeek value |
+| **SPX % estimate**          | Error loading Claude value | Error loading OpenRouter value | 0.5% to 1.5% Up | Error loading DeepSeek value |
+| **NDX % estimate**          | Error loading Claude value | Error loading OpenRouter value | 1.0% to 2.0% Up | Error loading DeepSeek value |
+| **IWM % estimate**          | Error loading Claude value | Error loading OpenRouter value | -1.0% to 0.5% (Neutral to Slightly Down) | Error loading DeepSeek value |
+| **Top supporting reason**   | Error loading Claude value | Error loading OpenRouter value | Strong bullish technical momentum in large-cap indices coupled with declining volatility (VIX). | Error loading DeepSeek value |
+| **Top contradiction cited** | Error loading Claude value | Error loading OpenRouter value | Small-cap (IWM) weakness and negative historical July seasonality in a midterm year, conflicting with large-cap strength. | Error loading DeepSeek value |
+| **Invalidation condition**  | Error loading Claude value | Error loading OpenRouter value | SPX closes below 7511.06 (8-day EMA) or IWM closes below 294.77 (21-day EMA). | Error loading DeepSeek value |
+| **Tone / caveat language**  | Error loading Claude value | Error loading OpenRouter value | This outlook is aligned with growth-oriented large-cap exposure, favoring technology, but advises caution with broader market breadth and small-cap segments. | Error loading DeepSeek value |
 
 ## Consensus Read
 
