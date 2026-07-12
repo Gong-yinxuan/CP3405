@@ -132,12 +132,16 @@ def call_openrouter(prompt):
         return fallback_metrics("OpenRouter")
 
     url = "https://openrouter.ai"
+
+    # --- FIXED: ADD MANDATORY OPENROUTER IDENTIFICATION HEADERS ---
     headers = {
         "Authorization": f"Bearer {api_key}",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "HTTP-Referer": "https://localhost:3000",  # Required by OpenRouter rank layers
+        "X-Title": "Prism Analytical Synthesis Matrix"  # Required by OpenRouter dashboard logs
     }
+    # --------------------------------------------------------------
 
-    # We target the highly performant Llama 3 8B free variant hosted on OpenRouter
     payload = {
         "model": "meta-llama/llama-3-8b-instruct:free",
         "messages": [
@@ -155,12 +159,15 @@ def call_openrouter(prompt):
 
     try:
         response = requests.post(url, headers=headers, json=payload, timeout=45)
-        response.raise_for_status()
+
+        # This will catch the 403/401 and print the explicit server rejection code
+        if response.status_code != 200:
+            print(f"[PRISM] OpenRouter HTTP Reject: Status {response.status_code} - Raw: {response.text[:150]}")
+            return fallback_metrics("OpenRouter")
 
         res_json = response.json()
-        raw_content = res_json["choices"][0]["message"]["content"].strip()
+        raw_content = res_json["choices"]["message"]["content"].strip()
 
-        # Run through your extraction regex matrix to extract pristine dictionary
         cleaned_text = clean_json_string(raw_content)
         json_match = re.search(r'\{.*\}', cleaned_text, re.DOTALL)
         if json_match:
