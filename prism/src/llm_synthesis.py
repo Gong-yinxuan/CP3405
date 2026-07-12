@@ -143,11 +143,11 @@ def call_openrouter(prompt):
     # --------------------------------------------------------------
 
     payload = {
-        "model": "meta-llama/llama-3-8b-instruct:free",
+        "model": "openrouter/free",  # Dynamically points to active free networks
         "messages": [
             {
                 "role": "system",
-                "content": "You are a rigid automation server. You must output ONLY a valid raw JSON object. Do not include any conversational introduction, notes, or markdown code blocks."
+                "content": "You are a rigid automation server. You must output ONLY a valid raw JSON object."
             },
             {
                 "role": "user",
