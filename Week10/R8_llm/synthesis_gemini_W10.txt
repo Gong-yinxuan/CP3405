@@ -1,0 +1,26 @@
+{
+  "weekly_regime": "Bullish Momentum with Sector Rotation",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "+0.5% to +1.5%",
+  "ndx_pct_estimate": "+1.0% to +2.5%",
+  "iwm_pct_estimate": "-1.5% to -0.5%",
+  "top_supporting_reason": "Strong bullish technical momentum in large-cap indices (SPX, NDX) is supported by decreasing volatility (VIX) and leading Technology and Energy sectors.",
+  "top_contradiction_cited": "Significant historical seasonal weakness for small-caps (IWM) and Nasdaq in a midterm July conflicts with current large-cap bullish momentum.",
+  "invalidation_condition": "SPX closes below 7472.72 (21-EMA) or IWM closes below 283.4 (20-day low/support candidate).",
+  "tone_caveat_language": "Momentum plays, large-cap bias, careful small-cap exposure.",
+  "consensus_bias": "MIXED",
+  "consensus_read_summary": "Large-cap indices (SPX, NDX) are exhibiting strong bullish technical momentum, indicated by 'Zone 1 Bullish' EMA conditions and declining volatility (VIX), suggesting continued upside potential particularly in Technology and Energy sectors. However, small-caps (IWM) are in a 'Zone 2 Pullback' and face substantial historical seasonal headwinds for a midterm July, creating a divergent outlook.",
+  "point_of_maximum_divergence": "The strong bullish technicals and positive weekly performance of SPX and NDX directly conflict with IWM's current technical pullback and its significantly negative historical seasonality for July in a midterm year.",
+  "key_supporting_factors": [
+    "SPX and NDX are in 'Zone 1 Bullish' EMA condition with positive weekly changes.",
+    "VIX declining by almost 7%, indicating reduced market fear and increased risk appetite.",
+    "Technology (XLK) and Energy (XLE) are leading sectors with strong weekly performance.",
+    "The upcoming week is an options expiry week, which can often coincide with upward market drift."
+  ],
+  "main_contradiction_risk": "Historical seasonality data for July in a midterm year indicates significant weakness for the Russell 2000 (IWM) and a negative average return for NASDAQ, posing a risk to broader market participation despite current large-cap technical strength.",
+  "invalidation_summary": "A sustained close of the S&P 500 below its 21-EMA of 7472.72, or a breach of the Russell 2000's (IWM) support candidate at 283.4, would invalidate the current mixed-to-bullish consensus.",
+  "r7_human_score_question": "Does the dominant current technical momentum in large-cap growth sectors (XLK, XLC) sufficiently override the strong historical seasonal headwinds for broader market indices (IWM, NASDAQ) during a midterm July, especially with missing core economic data?",
+  "r6_slide_bullet_1": "Large-cap indices (SPX, NDX) show robust bullish technicals and declining VIX, pointing to continued upside.",
+  "r6_slide_bullet_2": "Technology and Energy sectors are leading, with Crude Oil prices also rising significantly.",
+  "r6_slide_bullet_3": "Small-cap (IWM) faces a technical pullback and strong historical seasonal weakness for a midterm July, diverging from large-cap strength."
+}

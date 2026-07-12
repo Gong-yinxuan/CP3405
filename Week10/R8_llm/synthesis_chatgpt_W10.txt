@@ -1,0 +1,24 @@
+{
+  "weekly_regime": "Bullish continuation with moderate upside potential",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "0.8% - 1.5%",
+  "ndx_pct_estimate": "1.0% - 1.5%",
+  "iwm_pct_estimate": "-0.3% - 0.3%",
+  "top_supporting_reason": "SPX and NDX are firmly above both 8\u2011EMA and 21\u2011EMA (Zone 1 Bullish) while the VIX has dropped 7% weekly, indicating reduced fear.",
+  "top_contradiction_cited": "IWM shows a pull\u2011back below its 8\u2011EMA and the 10\u2011yr Treasury yield is rising, which could pressure risk assets if rates accelerate.",
+  "invalidation_condition": "SPX closing below 7500 or US 10\u2011yr yield breaching 0.48% would invalidate the bullish view.",
+  "tone_caveat_language": "Bias toward risk\u2011on assets but watch for rate\u2011sensitivity in small\u2011cap exposure.",
+  "consensus_bias": "BULLISH",
+  "consensus_read_summary": "Technical indicators signal strong momentum for the large\u2011cap indices, macro data shows a rising yield curve and a sharply lower VIX, and the almanac flags a favorable July backdrop with energy leading. All three legs align on a short\u2011term upside, though small\u2011cap weakness tempers the view.",
+  "point_of_maximum_divergence": "IWM's neutral technical stance versus the bullish bias of SPX/NDX creates the biggest split between aggressive and defensive outlooks.",
+  "key_supporting_factors": [
+    "SPX price 64 points above 8\u2011EMA and 103 points above 21\u2011EMA",
+    "VIX down 6.9% week\u2011over\u2011week"
+  ],
+  "main_contradiction_risk": "Accelerating Treasury yields could increase financing costs and hurt equity valuations, especially in rate\u2011sensitive sectors.",
+  "invalidation_summary": "A close of SPX under 7500 or a 10\u2011yr yield rise above 0.48% would break the consensus bullish case.",
+  "r7_human_score_question": "Given IWM's pull\u2011back and rising yields, should the portfolio overweight large\u2011cap growth and energy while underweight small\u2011cap exposure this week?",
+  "r6_slide_bullet_1": "Technical: SPX/NDX in Zone 1 Bullish \u2013 both indices above 8\u2011EMA & 21\u2011EMA.",
+  "r6_slide_bullet_2": "Macro: VIX falling sharply, yields climbing but still supportive of risk\u2011on sentiment.",
+  "r6_slide_bullet_3": "Almanac: Energy sector leading; July historically positive for equities; options expiry adds liquidity."
+}

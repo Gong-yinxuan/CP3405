@@ -2,7 +2,7 @@
 
 **Week:** W25
 **Forecast week:** 2026-06-22 to 2026-06-26
-**Generated at:** 2026-07-12 12:08:15
+**Generated at:** 2026-07-12 12:18:18
 **Actuals source:** `prism/data/actuals/vW25_actuals.json`
 
 ## Summary
