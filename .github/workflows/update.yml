@@ -134,7 +134,7 @@ jobs:
             ${{ steps.week.outputs.number }} \
             --out-root . \
             --charts-dir prism/data/technical/charts
-          -
+
       - name: Run multi-LLM consensus synthesis matrix
         if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 0 * * 1'
         env:
