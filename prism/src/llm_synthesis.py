@@ -184,6 +184,109 @@ def call_openrouter(prompt):
         print(f"[PRISM] OpenRouter processing layer failed down on outer block: {e}")
         return fallback_metrics("OpenRouter")
 
+def call_openrouter(prompt):
+    """
+    Queries OpenRouter's free tier endpoints using uniform OpenAI JSON schemas.
+    Provides explicit fail-safe HTTP error catching and robust multi-schema
+    parsing to safely handle dynamic backend model payload structural variations.
+    """
+    api_key = os.getenv("OPENROUTER_API_KEY")
+    if not api_key:
+        print("[PRISM] [DEBUG_ALERTER] OPENROUTER_API_KEY environment variable is MISSING or blank!")
+        return fallback_metrics("OpenRouter")
+
+    # Standard OpenRouter base completions routing URL configuration
+    url = "https://openrouter.ai/api/v1/chat/completions"
+
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json",
+        "HTTP-Referer": "https://localhost:3000",
+        "X-Title": "Prism Analytical Synthesis Matrix"
+    }
+
+    payload = {
+        "model": "openrouter/free",
+        "messages": [
+            {
+                "role": "system",
+                "content": "You are a rigid automation server. You must output ONLY a valid raw JSON object. Do not include any conversational introduction, notes, or markdown code blocks."
+            },
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ],
+        "temperature": 0.1
+    }
+
+    try:
+        # Send raw connection data payload across the endpoint network
+        response = requests.post(url, headers=headers, json=payload, timeout=45)
+
+        # Intercept network blocks or server rejections immediately
+        if response.status_code != 200:
+            print(f"\n[PRISM] OpenRouter HTTP Reject Code: {response.status_code}")
+            print(f"[PRISM] Raw Server Response: {response.text[:200]}")
+            return fallback_metrics("OpenRouter")
+
+        res_json = response.json()
+
+        # --- NEW ROBUST MULTI-SCHEMA ACCESSIBLE PAYLOAD PARSER ---
+        raw_content = ""
+
+        # Scenario A: Standard OpenAI array format choice mapping
+        if "choices" in res_json and isinstance(res_json["choices"], list) and len(res_json["choices"]) > 0:
+            choice_item = res_json["choices"][0]  # Fixed positional index parameter lookup mutation
+            if "message" in choice_item and "content" in choice_item["message"]:
+                raw_content = str(choice_item["message"]["content"]).strip()
+
+        # Scenario B: Alternative direct response parameters
+        elif "content" in res_json:
+            raw_content = str(res_json["content"]).strip()
+        elif "message" in res_json and isinstance(res_json["message"], dict) and "content" in res_json["message"]:
+            raw_content = str(res_json["message"]["content"]).strip()
+
+        # Scenario C: Catch-all raw structural conversion fallback
+        else:
+            raw_content = str(res_json).strip()
+
+        if not raw_content:
+            print("[PRISM] [PARSER_ERR] Extracted OpenRouter completion body text is completely empty.")
+            return fallback_metrics("OpenRouter")
+
+        # Strip away markdown block text containers if the active free engine added them
+        if "```" in raw_content:
+            blocks = raw_content.split("```")
+            for block in blocks:
+                block_clean = block.strip()
+                if block_clean.startswith("json"):
+                    block_clean = block_clean[4:].strip()
+                if block_clean.startswith("{") and block_clean.endswith("}"):
+                    raw_content = block_clean
+                    break
+
+        # Final safety boundary containment strip matching brackets: { ... }
+        start_idx = raw_content.find("{")
+        end_idx = raw_content.rfind("}")
+
+        if start_idx == -1 or end_idx == -1:
+            print("[PRISM] [PARSER_ERR] No clean structural JSON block discovered in model completion.")
+            return fallback_metrics("OpenRouter")
+
+        pristine_json_string = raw_content[start_idx:end_idx + 1].strip()
+
+        # Structural regex cleaning loops to drop invalid trailing object parameters
+        pristine_json_string = re.sub(r',\s*\}', '}', pristine_json_string)
+        pristine_json_string = re.sub(r',\s*\]', ']', pristine_json_string)
+
+        return json.loads(pristine_json_string)
+        # -----------------------------------------------------------
+
+    except Exception as e:
+        print(f"[PRISM] OpenRouter processing layer failed down on parser block: {e}")
+        return fallback_metrics("OpenRouter")
+
 def call_chatgpt(prompt):
     """
     Hits the permanently free Hugging Face API via HTTP POST with an aggressive,
