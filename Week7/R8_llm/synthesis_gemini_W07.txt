@@ -1,0 +1,25 @@
+{
+  "weekly_regime": "Divergent Growth with Cautious Rotation",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "0.5% to 1.5%",
+  "ndx_pct_estimate": "0.0% to 1.0%",
+  "iwm_pct_estimate": "-0.5% to -1.5%",
+  "top_supporting_reason": "Large-cap indices (SPX, NDX) exhibit robust 'Zone 1 Bullish' technicals with decreasing volatility, propelled by strong performance in Technology and Energy sectors.",
+  "top_contradiction_cited": "Historical July seasonality in a midterm year points to significant weakness for NASDAQ (-0.42% avg) and Russell 2000 (-1.85% avg), directly conflicting with recent large-cap tech outperformance.",
+  "invalidation_condition": "SPX closes below its 21-day EMA of 7472.72, or IWM breaks decisively below its 20-day low support of 283.4.",
+  "tone_caveat_language": "Prioritize selective large-cap exposure while maintaining caution on small-cap and broad growth due to macro headwinds and conflicting seasonality.",
+  "consensus_bias": "MIXED",
+  "consensus_read_summary": "The market presents a mixed outlook for the coming week, with large-cap indices like the S&P 500 and Nasdaq 100 maintaining bullish technical structures and declining volatility. However, small-cap index IWM is showing a technical pullback and both it and the Nasdaq 100 face historically negative July seasonality in this midterm year. Rising bond yields add a macro headwind, suggesting a period of potential rotation or consolidation.",
+  "point_of_maximum_divergence": "The robust technical strength and leading weekly performance of Technology and Communication Services sectors (driving NDX) versus the significantly negative historical July average returns for NASDAQ and Russell 2000 during midterm election years.",
+  "key_supporting_factors": [
+    "SPX and NDX are in a 'Zone 1 Bullish' EMA condition, indicating strong upward momentum.",
+    "The CBOE Volatility Index (VIX) declined by -6.93% weekly, signaling reduced market fear.",
+    "Energy (XLE) and Technology (XLK) were the leading sectors last week with +3.49% and +2.87% gains respectively."
+  ],
+  "main_contradiction_risk": "Rising US 10-Year (+1.87%) and 30-Year (+1.73%) Treasury yields, coupled with negative historical July seasonality for NASDAQ and Russell 2000 in a midterm year, pose a significant risk to continued broad market and growth sector strength.",
+  "invalidation_summary": "This consensus view would be invalidated if the S&P 500 (SPX) closes definitively below its 21-day Exponential Moving Average of 7472.72, or if the Russell 2000 ETF (IWM) breaks below its recent 20-day low support candidate of 283.4, signaling a broader market downturn or significant small-cap underperformance.",
+  "r7_human_score_question": "Given the stark contradiction between current technical strength in large-cap tech (NDX, XLK) and the strongly negative historical July midterm year seasonality for NASDAQ, how likely is historical seasonality to override current momentum this week?",
+  "r6_slide_bullet_1": "Large-cap indices (SPX, NDX) maintain bullish technicals; small caps (IWM) show a pullback.",
+  "r6_slide_bullet_2": "Midterm July seasonality points to historical weakness for NASDAQ and Russell 2000.",
+  "r6_slide_bullet_3": "Rising yields & options expiry week introduce potential headwinds and volatility for the market."
+}
