@@ -122,6 +122,57 @@ def call_claude(prompt):
     except Exception as e:
         return {"error": str(e)}
 
+def call_openrouter(prompt):
+    """
+    Queries OpenRouter's free tier endpoints using uniform OpenAI JSON schemas.
+    Utilizes a robust open-weights model runner with zero credit card setup requirements.
+    """
+    api_key = os.getenv("OPENROUTER_API_KEY")
+    if not api_key:
+        return fallback_metrics("OpenRouter")
+
+    url = "https://openrouter.ai"
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json"
+    }
+
+    # We target the highly performant Llama 3 8B free variant hosted on OpenRouter
+    payload = {
+        "model": "meta-llama/llama-3-8b-instruct:free",
+        "messages": [
+            {
+                "role": "system",
+                "content": "You are a rigid automation server. You must output ONLY a valid raw JSON object. Do not include any conversational introduction, notes, or markdown code blocks."
+            },
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ],
+        "temperature": 0.1
+    }
+
+    try:
+        response = requests.post(url, headers=headers, json=payload, timeout=45)
+        response.raise_for_status()
+
+        res_json = response.json()
+        raw_content = res_json["choices"][0]["message"]["content"].strip()
+
+        # Run through your extraction regex matrix to extract pristine dictionary
+        cleaned_text = clean_json_string(raw_content)
+        json_match = re.search(r'\{.*\}', cleaned_text, re.DOTALL)
+        if json_match:
+            cleaned_text = json_match.group(0)
+
+        cleaned_text = re.sub(r',\s*\}', '}', cleaned_text)
+        cleaned_text = re.sub(r',\s*\]', ']', cleaned_text)
+        return json.loads(cleaned_text)
+
+    except Exception as e:
+        print(f"[PRISM] OpenRouter processing layer failed: {e}")
+        return fallback_metrics("OpenRouter")
 
 def call_chatgpt(prompt):
     """
@@ -397,30 +448,36 @@ def generate_markdown_report(c, gpt, gem, ds, raw_data):
     ]
     return "\n".join(lines)
 
+
 def main():
     print("[PRISM] Querying multi-agent environment data blocks...")
     data = find_latest_collector_data()
     prompt = build_synthesis_prompt(data)
 
-    print("[PRISM] Spawning concurrent threads to execute multi-engine matrix evaluation...")
-    with concurrent.futures.ThreadPoolExecutor() as executor:
-        future_claude = executor.submit(call_claude, prompt)
-        future_gpt = executor.submit(call_chatgpt, prompt)
-        future_gemini = executor.submit(call_gemini, prompt)
-        future_deepseek = executor.submit(call_deepseek, prompt)
-
-        c_res = future_claude.result()
-        gpt_res = future_gpt.result()
-        gem_res = future_gemini.result()
-        ds_res = future_deepseek.result()
-
-    # Fixed: Creates a pristine, dedicated folder inside your data ecosystem
+    almanac_window = data.get("almanac", {}).get("forecast_window", {})
+    week_suffix = f"W{almanac_window.get('sprint_week', '28')}"
     target_dir = "prism/data/llm_synthesis"
     os.makedirs(target_dir, exist_ok=True)
 
-    # Calculate target week label dynamically from the data window
-    almanac_window = data.get("almanac", {}).get("forecast_window", {})
-    week_suffix = f"W{almanac_window.get('sprint_week', '28')}"
+    # Save unified attestation prompt snapshot
+    prompt_file_path = os.path.join(target_dir, f"ai_prompt_{week_suffix}.md")
+    try:
+        with open(prompt_file_path, "w", encoding="utf-8") as prompt_file:
+            prompt_file.write(prompt)
+    except Exception as e:
+        print(f"[WARN] Prompt cache error: {e}")
+
+    print("[PRISM] Spawning concurrent threads to execute multi-engine matrix evaluation...")
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        future_claude = executor.submit(call_claude, prompt)
+        future_openrouter = executor.submit(call_openrouter, prompt)
+        future_gemini = executor.submit(call_gemini, prompt)
+        future_deepseek = executor.submit(call_deepseek, prompt)
+
+    c_res = future_claude.result()
+    gpt_res = future_openrouter.result()
+    gem_res = future_gemini.result()
+    ds_res = future_deepseek.result()
 
     responses_map = {
         "chatgpt": gpt_res,
@@ -441,7 +498,6 @@ def main():
     report_file_path = os.path.join(target_dir, f"llm_synthesis_{week_suffix}.md")
     with open(report_file_path, "w", encoding="utf-8") as report_file:
         report_file.write(report_content)
-
     print(f"[PRISM] Complete! Dynamic markdown generated cleanly at: {report_file_path}")
 
 if __name__ == "__main__":
