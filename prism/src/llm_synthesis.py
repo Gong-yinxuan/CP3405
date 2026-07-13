@@ -188,13 +188,13 @@ def call_openrouter_base(prompt, model_name):
         return fallback_metrics(model_name)
 
 def call_claude(prompt):
-    return call_openrouter_base(prompt, "anthropic/claude-3-haiku:free")
+    return call_openrouter_base(prompt, "tencent/hy3")
 
 def call_chatgpt(prompt):
-    return call_openrouter_base(prompt, "meta-llama/llama-3-8b-instruct:free")
+    return call_openrouter_base(prompt, "meta-llama/llama-3.1-70b-instruct:free")
 
 def call_deepseek(prompt):
-    return call_openrouter_base(prompt, "qwen/qwen-2.5-72b-instruct:free")
+    return call_openrouter_base(prompt, "poolside/laguna-xs-2.1")
 
 def call_gemini(prompt):
     """Hits the permanently free Google Gemini API with an automatic retry loop for 503/high-demand spikes."""
