@@ -1,23 +1,23 @@
-# R4 Macro Agent — Week 06
+# R4 Macro Agent — Week 07
 
-> **Auto-generated:** Generated from `Macro Collector` output dated 2026-07-10T09:03:27Z. Fields marked *Not automated* need to be filled in by hand -- see the script docstring for why.
+> **Auto-generated:** Generated from `Macro Collector` output dated 2026-07-13T02:50:51Z. Fields marked *Not automated* need to be filled in by hand -- see the script docstring for why.
 
 ## FED & RATES
 - Fed target rate: 3.50%–3.75% (source: FRED DFEDTARL/DFEDTARU)
 - Fed hold probability: Not automated (CME FedWatch has no free public API)
 - Next FOMC: 29 July 2026
-- 2Y Yield: 4.21% (source: FRED DGS2)
-- 10Y Yield: 4.54%
-- 30Y Yield: 5.05%
-- Yield curve: [normal], 2Y 4.21% / 10Y 4.54% / 30Y 5.05%
+- 2Y Yield: 4.16% (source: FRED DGS2)
+- 10Y Yield: 4.57%
+- 30Y Yield: 5.07%
+- Yield curve: [normal], 2Y 4.16% / 10Y 4.57% / 30Y 5.07%
 - Yield direction: Slightly Rising
 
 ## COMMODITIES & DOLLAR
-- Crude Oil WTI: $72.06, Rising
-- Gold: $4,106.20, Flat
-- DXY: 100.85, Flat
-- VIX: 16.08, Flat
-- BTC: $64,152.26, Slightly Rising
+- Crude Oil WTI: $74.27, Rising
+- Gold: $4,079.60, Slightly Falling
+- DXY: 101.11, Flat
+- VIX: 15.03, Falling
+- BTC: $63,424.04, Flat
 
 ## WEEK-AHEAD CALENDAR
 *Not automated — BLS RSS feeds returned errors this run (CPI, PPI, IMPORT_EXPORT_PRICES, REAL_EARNINGS, EMPLOYMENT_SITUATION). Fill in manually from a calendar source (e.g. Investing.com, ForexFactory).*
@@ -37,9 +37,9 @@
 *Not automated — no news collection wired up yet. Fill in manually.*
 
 ## MACRO BIAS
-**Bearish** _(auto-drafted from yields/VIX/oil/gold/DXY only -- no Fed, calendar, or news signal was available; review and rewrite once those sections are filled in)_
+**Slightly Bearish** _(auto-drafted from yields/VIX/oil/gold/DXY only -- no Fed, calendar, or news signal was available; review and rewrite once those sections are filled in)_
 
-Yields are rising on the week (avg +2.91%), with VIX at 16.1. Oil, gold, and dollar moves were weighed alongside these to produce a rough bearish lean (0 risk-on signal(s) vs 2 risk-off signal(s)). This draft does NOT reflect any Fed policy stance, scheduled data releases, earnings, or news events, since none of those are currently automated -- update this paragraph once those sections are filled in.
+Yields are rising on the week (avg +1.80%), with VIX at 15.0. Oil, gold, and dollar moves were weighed alongside these to produce a rough slightly bearish lean (1 risk-on signal(s) vs 2 risk-off signal(s)). This draft does NOT reflect any Fed policy stance, scheduled data releases, earnings, or news events, since none of those are currently automated -- update this paragraph once those sections are filled in.
 
 ## CONFIDENCE
 **Low** _(auto-drafted)_
