@@ -1,20 +1,20 @@
 {
-    "generated_at": "2026-07-12T12:18:22Z",
+    "generated_at": "2026-07-13T02:50:55Z",
     "collector": "Almanac Collector",
     "agent_input_for": "Almanac Agent",
     "data_source": "Yahoo Finance via yfinance + automatic date rules",
     "note": "This collector automates calendar flags and sector ranking. It does not manually interpret seasonal patterns or news.",
     "forecast_window": {
-        "generated_from_date_utc": "2026-07-12",
-        "start": "2026-07-13",
-        "end": "2026-07-17"
+        "generated_from_date_utc": "2026-07-13",
+        "start": "2026-07-20",
+        "end": "2026-07-24"
     },
     "calendar_flags": {
         "month": "July",
         "june_seasonal_weakness_flag": false,
         "midterm_year_flag": true,
         "options_expiry_date": "2026-07-17",
-        "options_expiry_week_flag": true,
+        "options_expiry_week_flag": false,
         "market_holiday_in_window_flag": false,
         "compressed_trading_week_flag": false,
         "holidays_in_window": []

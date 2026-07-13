@@ -1,6 +1,6 @@
 # R4 Macro Agent — Week 07
 
-> **Auto-generated:** Generated from `Macro Collector` output dated 2026-07-12T11:49:09Z. Fields marked *Not automated* need to be filled in by hand -- see the script docstring for why.
+> **Auto-generated:** Generated from `Macro Collector` output dated 2026-07-13T02:50:51Z. Fields marked *Not automated* need to be filled in by hand -- see the script docstring for why.
 
 ## FED & RATES
 - Fed target rate: 3.50%–3.75% (source: FRED DFEDTARL/DFEDTARU)
@@ -13,11 +13,11 @@
 - Yield direction: Slightly Rising
 
 ## COMMODITIES & DOLLAR
-- Crude Oil WTI: $71.41, Rising
-- Gold: $4,113.70, Flat
-- DXY: 100.97, Flat
+- Crude Oil WTI: $74.27, Rising
+- Gold: $4,079.60, Slightly Falling
+- DXY: 101.11, Flat
 - VIX: 15.03, Falling
-- BTC: $63,973.61, Slightly Rising
+- BTC: $63,424.04, Flat
 
 ## WEEK-AHEAD CALENDAR
 *Not automated — BLS RSS feeds returned errors this run (CPI, PPI, IMPORT_EXPORT_PRICES, REAL_EARNINGS, EMPLOYMENT_SITUATION). Fill in manually from a calendar source (e.g. Investing.com, ForexFactory).*

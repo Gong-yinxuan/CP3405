@@ -1,6 +1,6 @@
 # Technical Agent Output — Week of 10 Jul 2026
 
-> **Auto-generated:** Generated from `Technical Collector` output dated 2026-07-12T11:49:08Z. Sections marked *Not automated* need to be filled in by hand -- see the script docstring for why.
+> **Auto-generated:** Generated from `Technical Collector` output dated 2026-07-13T02:50:50Z. Sections marked *Not automated* need to be filled in by hand -- see the script docstring for why.
 
 ---
 

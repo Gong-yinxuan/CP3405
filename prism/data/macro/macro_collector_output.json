@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-07-12T12:18:20Z",
+    "generated_at": "2026-07-13T02:50:51Z",
     "collector": "Macro Collector",
     "agent_input_for": "Macro Agent",
     "data_source": {
@@ -38,10 +38,10 @@
             "yahoo_ticker": "CL=F",
             "name": "Crude Oil WTI Futures",
             "category": "commodity",
-            "latest_trading_date": "2026-07-10",
-            "close": 71.41,
-            "weekly_change_pct": 3.96,
-            "change_5d": 2.72,
+            "latest_trading_date": "2026-07-12",
+            "close": 74.27,
+            "weekly_change_pct": 8.34,
+            "change_5d": 5.72,
             "direction_5d": "Up",
             "history_file": "macro/history/WTI.json"
         },
@@ -50,11 +50,11 @@
             "yahoo_ticker": "GC=F",
             "name": "Gold Futures",
             "category": "commodity",
-            "latest_trading_date": "2026-07-10",
-            "close": 4113.7002,
-            "weekly_change_pct": 0.02,
-            "change_5d": 1.0,
-            "direction_5d": "Up",
+            "latest_trading_date": "2026-07-12",
+            "close": 4079.6001,
+            "weekly_change_pct": -1.82,
+            "change_5d": -75.5,
+            "direction_5d": "Down",
             "history_file": "macro/history/GOLD.json"
         },
         "DXY": {
@@ -62,10 +62,10 @@
             "yahoo_ticker": "DX-Y.NYB",
             "name": "US Dollar Index",
             "category": "currency_index",
-            "latest_trading_date": "2026-07-10",
-            "close": 100.97,
-            "weekly_change_pct": 0.11,
-            "change_5d": 0.11,
+            "latest_trading_date": "2026-07-12",
+            "close": 101.112,
+            "weekly_change_pct": 0.26,
+            "change_5d": 0.262,
             "direction_5d": "Up",
             "history_file": "macro/history/DXY.json"
         },
@@ -86,17 +86,17 @@
             "yahoo_ticker": "BTC-USD",
             "name": "Bitcoin USD",
             "category": "crypto",
-            "latest_trading_date": "2026-07-12",
-            "close": 64040.0,
-            "weekly_change_pct": 1.17,
-            "change_5d": 742.6055,
+            "latest_trading_date": "2026-07-13",
+            "close": 63424.0391,
+            "weekly_change_pct": 0.2,
+            "change_5d": 126.6446,
             "direction_5d": "Up",
             "history_file": "macro/history/BTC.json"
         }
     },
     "fed_and_data_watch": {
-        "week_commencing": "2026-07-06",
-        "week_ending": "2026-07-12",
+        "week_commencing": "2026-07-13",
+        "week_ending": "2026-07-19",
         "fed_speakers": [
             {
                 "speaker_hint": "Bowman",

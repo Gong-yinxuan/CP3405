@@ -1,7 +1,7 @@
 # R4 Macro Agent — Fed + Data Watch
 
-**Week commencing:** 2026-07-06
-**Week ending:** 2026-07-12
+**Week commencing:** 2026-07-13
+**Week ending:** 2026-07-19
 
 ## Fed Speakers
 

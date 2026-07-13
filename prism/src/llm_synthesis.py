@@ -123,6 +123,66 @@ def call_claude(prompt):
     except Exception as e:
         return {"error": str(e)}
 
+def call_openrouter(prompt):
+    """
+    Queries OpenRouter's free tier endpoints using uniform OpenAI JSON schemas.
+    Provides explicit fail-safe HTTP error catching to diagnose connection blockages.
+    """
+    api_key = os.getenv("OPENROUTER_API_KEY")
+    if not api_key:
+        print("[PRISM] [DEBUG_ALERTER] OPENROUTER_API_KEY environment variable is MISSING or blank!")
+        return fallback_metrics("OpenRouter")
+
+    url = "https://openrouter.ai"
+
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json",
+        "HTTP-Referer": "https://localhost:3000",
+        "X-Title": "Prism Analytical Synthesis Matrix"
+    }
+
+    payload = {
+        "model": "openrouter/free",
+        "messages": [
+            {
+                "role": "system",
+                "content": "You are a rigid automation server. You must output ONLY a valid raw JSON object. Do not include any conversational introduction, notes, or markdown code blocks."
+            },
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ],
+        "temperature": 0.1
+    }
+
+    try:
+        # Send the raw network request
+        response = requests.post(url, headers=headers, json=payload, timeout=45)
+
+        # --- CRITICAL BUG CATCHER: INTERCEPT NON-200 REJECTIONS BEFORE JSON PARSING ---
+        if response.status_code != 200:
+            print(f"\n[PRISM] [DEBUG_ALERTER] OpenRouter Rejected Connection! HTTP Code: {response.status_code}")
+            print(f"[PRISM] [DEBUG_ALERTER] Raw Response Content: {response.text[:300]}")
+            return fallback_metrics("OpenRouter")
+        # ------------------------------------------------------------------------------
+
+        res_json = response.json()
+        raw_content = res_json["choices"]["message"]["content"].strip()
+
+        cleaned_text = clean_json_string(raw_content)
+        json_match = re.search(r'\{.*\}', cleaned_text, re.DOTALL)
+        if json_match:
+            cleaned_text = json_match.group(0)
+
+        cleaned_text = re.sub(r',\s*\}', '}', cleaned_text)
+        cleaned_text = re.sub(r',\s*\]', ']', cleaned_text)
+        return json.loads(cleaned_text)
+
+    except Exception as e:
+        print(f"[PRISM] OpenRouter processing layer failed down on outer block: {e}")
+        return fallback_metrics("OpenRouter")
 
 def call_openrouter(prompt):
     """

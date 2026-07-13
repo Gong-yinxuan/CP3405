@@ -94,9 +94,7 @@ jobs:
       # Auto-fill Week{N}/R{3,4,5}_.../*_agent_W{NN}.md from each
       # collector's JSON output. Week number is computed ONCE here and
       # passed explicitly to all three, so they can't drift onto
-      # different week numbers (each script's own auto-detect only looks
-      # at whichever Week{N} folders already exist, so running them
-      # back-to-back would otherwise bump the number each time).
+      # different week numbers.
       # -----------------------------
 
       - name: Determine week number
@@ -141,11 +139,27 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
-          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }} # Aggregated endpoint key
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: |
           python prism/src/llm_synthesis.py "Week${{ steps.week.outputs.number }}"
 
+      # Manual runs keep generated files as a downloadable artifact.
+      # Nothing is committed or pushed.
+      - name: Upload manual run output
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: prism-manual-output-${{ github.run_number }}
+          path: |
+            prism/data/
+            Week*/
+            delta_*.md
+          if-no-files-found: warn
+          retention-days: 7
+
+      # Only automatic scheduled runs commit and push files.
       - name: Commit and push generated data
+        if: github.event_name == 'schedule'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
