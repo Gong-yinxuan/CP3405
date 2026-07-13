@@ -191,7 +191,7 @@ def call_claude(prompt):
     return call_openrouter_base(prompt, "tencent/hy3")
 
 def call_chatgpt(prompt):
-    return call_openrouter_base(prompt, "meta-llama/llama-3.1-70b-instruct:free")
+    return call_openrouter_base(prompt, "openai/gpt-oss-120b")
 
 def call_deepseek(prompt):
     return call_openrouter_base(prompt, "poolside/laguna-xs-2.1")
@@ -249,11 +249,9 @@ def generate_markdown_report(c, gpt, gem, ds, raw_data):
     almanac_window = raw_data.get("almanac", {}).get("forecast_window", {})
     start_date_str = almanac_window.get("start", datetime.now().strftime("%Y-%m-%d"))
 
-    # Derives the formal display week (e.g., Week 28) based on the course roadmap calendar tracking
     try:
         dt_obj = datetime.strptime(start_date_str, "%Y-%m-%d")
         display_date = dt_obj.strftime('%d %B %Y')
-        # Map dynamic target context tracking directly to your vW layout definitions
         current_week_label = f"Week {almanac_window.get('sprint_week', '28')}"
     except Exception:
         display_date = datetime.now().strftime('%d %B %Y')
@@ -263,7 +261,6 @@ def generate_markdown_report(c, gpt, gem, ds, raw_data):
     tech_instruments = raw_data.get("technical", {}).get("instruments", {})
     bullish_count = sum(1 for inst in tech_instruments.values() if "Bullish" in inst.get("technical_bias", ""))
     bearish_count = sum(1 for inst in tech_instruments.values() if "Bearish" in inst.get("technical_bias", ""))
-
     if bullish_count > bearish_count:
         tech_read, tech_align = "Bullish", "Aligned"
     elif bearish_count > bullish_count:
@@ -306,17 +303,17 @@ def generate_markdown_report(c, gpt, gem, ds, raw_data):
         "",
         "## Comparison Table",
         "",
-        "| Dimension                   | Claude     | ChatGPT    | Gemini     | DeepSeek   |",
+        "| Dimension | Claude | ChatGPT | Gemini | DeepSeek |",
         "| --------------------------- | ---------- | ---------- | ---------- | ---------- |",
-        f"| **Weekly Regime**           | {c.get('weekly_regime')} | {gpt.get('weekly_regime')} | {gem.get('weekly_regime')} | {ds.get('weekly_regime')} |",
-        f"| **Confidence Score**        | {c.get('confidence_score')} | {gpt.get('confidence_score')} | {gem.get('confidence_score')} | {ds.get('confidence_score')} |",
-        f"| **SPX % estimate**          | {c.get('spx_pct_estimate')} | {gpt.get('spx_pct_estimate')} | {gem.get('spx_pct_estimate')} | {ds.get('spx_pct_estimate')} |",
-        f"| **NDX % estimate**          | {c.get('ndx_pct_estimate')} | {gpt.get('ndx_pct_estimate')} | {gem.get('ndx_pct_estimate')} | {ds.get('ndx_pct_estimate')} |",
-        f"| **IWM % estimate**          | {c.get('iwm_pct_estimate')} | {gpt.get('iwm_pct_estimate')} | {gem.get('iwm_pct_estimate')} | {ds.get('iwm_pct_estimate')} |",
-        f"| **Top supporting reason**   | {c.get('top_supporting_reason')} | {gpt.get('top_supporting_reason')} | {gem.get('top_supporting_reason')} | {ds.get('top_supporting_reason')} |",
+        f"| **Weekly Regime** | {c.get('weekly_regime')} | {gpt.get('weekly_regime')} | {gem.get('weekly_regime')} | {ds.get('weekly_regime')} |",
+        f"| **Confidence Score** | {c.get('confidence_score')} | {gpt.get('confidence_score')} | {gem.get('confidence_score')} | {ds.get('confidence_score')} |",
+        f"| **SPX % estimate** | {c.get('spx_pct_estimate')} | {gpt.get('spx_pct_estimate')} | {gem.get('spx_pct_estimate')} | {ds.get('spx_pct_estimate')} |",
+        f"| **NDX % estimate** | {c.get('ndx_pct_estimate')} | {gpt.get('ndx_pct_estimate')} | {gem.get('ndx_pct_estimate')} | {ds.get('ndx_pct_estimate')} |",
+        f"| **IWM % estimate** | {c.get('iwm_pct_estimate')} | {gpt.get('iwm_pct_estimate')} | {gem.get('iwm_pct_estimate')} | {ds.get('iwm_pct_estimate')} |",
+        f"| **Top supporting reason** | {c.get('top_supporting_reason')} | {gpt.get('top_supporting_reason')} | {gem.get('top_supporting_reason')} | {ds.get('top_supporting_reason')} |",
         f"| **Top contradiction cited** | {c.get('top_contradiction_cited')} | {gpt.get('top_contradiction_cited')} | {gem.get('top_contradiction_cited')} | {ds.get('top_contradiction_cited')} |",
-        f"| **Invalidation condition**  | {c.get('invalidation_condition')} | {gpt.get('invalidation_condition')} | {gem.get('invalidation_condition')} | {ds.get('invalidation_condition')} |",
-        f"| **Tone / caveat language**  | {c.get('tone_caveat_language')} | {gpt.get('tone_caveat_language')} | {gem.get('tone_caveat_language')} | {ds.get('tone_caveat_language')} |",
+        f"| **Invalidation condition** | {c.get('invalidation_condition')} | {gpt.get('invalidation_condition')} | {gem.get('invalidation_condition')} | {ds.get('invalidation_condition')} |",
+        f"| **Tone / caveat language** | {c.get('tone_caveat_language')} | {gpt.get('tone_caveat_language')} | {gem.get('tone_caveat_language')} | {ds.get('tone_caveat_language')} |",
         "",
         "## Consensus Read",
         "",
@@ -360,11 +357,11 @@ def generate_markdown_report(c, gpt, gem, ds, raw_data):
         "",
         "## Evidence Confluence Check",
         "",
-        "| Evidence Leg | Current Read                  | Alignment                         |",
+        "| Evidence Leg | Current Read | Alignment |",
         "| ------------ | ----------------------------- | --------------------------------- |",
-        f"| Technical    | {tech_read}                  | {tech_align}                      |",
-        f"| Macro        | {macro_read}                 | {macro_align}                     |",
-        f"| Almanac      | {almanac_read}               | {almanac_align}                   |",
+        f"| Technical | {tech_read} | {tech_align} |",
+        f"| Macro | {macro_read} | {macro_align} |",
+        f"| Almanac | {almanac_read} | {almanac_align} |",
         "",
         "---",
         "",
@@ -376,10 +373,11 @@ def generate_markdown_report(c, gpt, gem, ds, raw_data):
         "",
         "---",
         "### Raw responses saved as:",
-        f"* `synthesis_chatgpt_{current_week_label.replace(' ', '')}.txt`",
-        f"* `synthesis_claude_{current_week_label.replace(' ', '')}.txt`",
-        f"* `synthesis_gemini_{current_week_label.replace(' ', '')}.txt`",
-        f"* `synthesis_deepseek_{current_week_label.replace(' ', '')}.txt`"
+        # FIXED: References transformed from .txt to .json to align with your artifact updates
+        f"* `synthesis_chatgpt_{current_week_label.replace(' ', '')}.json`",
+        f"* `synthesis_claude_{current_week_label.replace(' ', '')}.json`",
+        f"* `synthesis_gemini_{current_week_label.replace(' ', '')}.json`",
+        f"* `synthesis_deepseek_{current_week_label.replace(' ', '')}.json`"
     ]
     return "\n".join(lines)
 
@@ -387,25 +385,34 @@ def generate_markdown_report(c, gpt, gem, ds, raw_data):
 def main():
     print("[PRISM] Querying multi-agent environment data blocks...")
     data = find_latest_collector_data()
+
+    # 1. Generate the master synthesis validation prompt layout
     prompt = build_synthesis_prompt(data)
 
+    # 2. Extract parent tracking folder from pipeline command arguments
     if len(sys.argv) > 1:
-        parent_week_dir = sys.argv[1]
+        parent_week_dir = sys.argv[1]  # Captures "Week6" explicitly from workflow context
     else:
+        # Fallback tracking resolution for offline local executions inside PyCharm
         almanac_window = data.get("almanac", {}).get("forecast_window", {})
         parent_week_dir = f"Week{almanac_window.get('sprint_week', '6')}"
 
+    # 3. Strip structural alphabetic characters to convert indices to numeric formats ("Week6" -> 6)
     try:
         week_digits = "".join(filter(str.isdigit, parent_week_dir))
         week_num = int(week_digits) if week_digits else 6
     except Exception:
         week_num = 6
 
+    # Standardize string representations to follow two-digit padding rule ("W06")
     week_suffix_file = f"W{week_num:02d}"
+
+    # 4. Bind the execution path directly inside your specified structural node: Week{N}/R8_llm/
     target_dir = os.path.join(".", parent_week_dir, "R8_llm")
     os.makedirs(target_dir, exist_ok=True)
     print(f"[OK] Workspace successfully pinned to dynamic ledger: {target_dir}")
 
+    # 5. Drop pristine prompt configuration file snapshot into the specific folder
     prompt_file_path = os.path.join(target_dir, f"ai_prompt_{week_suffix_file}.md")
     try:
         with open(prompt_file_path, "w", encoding="utf-8") as prompt_file:
@@ -426,6 +433,7 @@ def main():
     gem_res = future_gemini.result()
     ds_res = future_deepseek.result()
 
+    # Align model handles cleanly with your folder structure naming patterns
     responses_map = {
         "chatgpt": gpt_res,
         "claude": c_res,
@@ -433,12 +441,15 @@ def main():
         "deepseek": ds_res
     }
 
+    # 6. Save every independent raw agent text ledger as structured JSON into target folder tree
     for name, data_obj in responses_map.items():
-        out_path = os.path.join(target_dir, f"synthesis_{name}_{week_suffix_file}.txt")
+        # FIXED: Changed tracking file extensions from .txt to .json
+        out_path = os.path.join(target_dir, f"synthesis_{name}_{week_suffix_file}.json")
         with open(out_path, "w", encoding="utf-8") as f:
             f.write(json.dumps(data_obj, indent=2))
         print(f"[OK] Stored raw validation token logs: {out_path}")
 
+    # 7. Generate and output the final compiled dashboard markdown file
     report_content = generate_markdown_report(c_res, gpt_res, gem_res, ds_res, data)
     report_file_path = os.path.join(target_dir, f"llm_synthesis_{week_suffix_file}.md")
     with open(report_file_path, "w", encoding="utf-8") as report_file:
