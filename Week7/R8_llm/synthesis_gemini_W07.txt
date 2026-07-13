@@ -1,0 +1,24 @@
+{
+  "weekly_regime": "Growth-led Bullish with Divergent Breadth",
+  "confidence_score": "Medium-High",
+  "spx_pct_estimate": "+0.5% to +1.0%",
+  "ndx_pct_estimate": "+1.0% to +2.0%",
+  "iwm_pct_estimate": "-1.0% to 0.0%",
+  "top_supporting_reason": "Large-cap indices (SPX, NDX) exhibit strong bullish technicals, supported by robust Technology and Energy sector performance and declining volatility (VIX).",
+  "top_contradiction_cited": "Divergence in market breadth, with small-cap (IWM) in a 'Zone 2 Pullback' and rising US Treasury yields indicating potential underlying caution.",
+  "invalidation_condition": "A sustained close below SPX 8-EMA (7511.06) or IWM 20-day low support (283.4).",
+  "tone_caveat_language": "Market momentum favors large-cap growth and specific sector leadership, rather than broad market participation.",
+  "consensus_bias": "MIXED leaning BULLISH",
+  "consensus_read_summary": "The consensus points to continued upward momentum for large-cap indices like SPX and NDX, driven by strong technicals and leadership in Technology and Energy sectors. However, this is tempered by a clear pullback in small-caps (IWM) and a macro environment featuring rising bond yields, signaling a cautious, bifurcated market.",
+  "point_of_maximum_divergence": "The stark contrast between the 'Zone 1 Bullish' condition of SPX/NDX and the 'Zone 2 Pullback' of IWM, indicating a narrowing of market leadership.",
+  "key_supporting_factors": [
+    "SPX and NDX are in 'Zone 1 Bullish' EMA conditions with price above both 8-EMA and 21-EMA.",
+    "Technology (XLK) and Energy (XLE) are the leading sectors with significant weekly gains (2.87% and 3.49% respectively)."
+  ],
+  "main_contradiction_risk": "The combination of rising US 10-Year and 30-Year Treasury yields alongside the 'Zone 2 Pullback' in small-cap IWM suggests potential headwinds for broader market participation and valuation concerns.",
+  "invalidation_summary": "Should the S&P 500 close below its 8-day Exponential Moving Average of 7511.06, or the Russell 2000 ETF Proxy (IWM) break below its 20-day low support of 283.4, the current bullish thesis would be invalidated, signaling deeper consolidation or reversal.",
+  "r7_human_score_question": "Given the rising bond yields and underperformance of small-cap and defensive sectors, is the current strength in large-cap technology and energy sustainable, or is it indicative of a fragile market breadth?",
+  "r6_slide_bullet_1": "Large-cap indices (SPX, NDX) maintain bullish technical posture, driven by strong Technology and Energy sector performance.",
+  "r6_slide_bullet_2": "Small-cap (IWM) shows signs of pullback, indicating a divergence in market breadth and potential caution for broader participation.",
+  "r6_slide_bullet_3": "Rising bond yields and USD strength, coupled with declining VIX, create a mixed macro backdrop favoring growth over defensive plays with an underlying cautious tone."
+}
