@@ -1,10 +1,10 @@
 # R4 Macro Agent — Week 07
 
-> **Auto-generated:** Generated from `Macro Collector` output dated 2026-07-14T02:03:02Z. This report uses Prism automation outputs only; missing calendar, earnings, and news data are marked as unavailable rather than filled from manual external sources.
+> **Auto-generated:** Generated from `Macro Collector` output dated 2026-07-14T02:03:02Z. This report mainly uses Prism automation outputs. Fields marked **manual review** were added by R4 after checking external sources.
 
 ## FED & RATES
 - Fed target rate: 3.50%–3.75% (source: automated FRED fetch in Prism report builder)
-- Fed hold probability: Not automated (CME FedWatch has no free public API)
+- Fed hold probability: **Manual review** — [fill FedWatch value here] from CME FedWatch as of [date/time checked]
 - Next FOMC: 29 July 2026 (from Prism's hardcoded FOMC schedule)
 - 2Y Yield: 4.21% (source: automated FRED fetch in Prism report builder)
 - 10Y Yield: 4.61%
