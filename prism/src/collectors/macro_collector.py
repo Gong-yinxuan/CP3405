@@ -15,7 +15,7 @@ No fake calendar/news data.
 
 import json
 import xml.etree.ElementTree as ET
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timezone, timedelta, date
 from email.utils import parsedate_to_datetime
 from pathlib import Path
 
@@ -77,6 +77,29 @@ BLS_RELEASE_FEEDS = {
     "IMPORT_EXPORT_PRICES": "https://www.bls.gov/feed/ximpim.rss",
     "REAL_EARNINGS": "https://www.bls.gov/feed/realer.rss",
     "EMPLOYMENT_SITUATION": "https://www.bls.gov/feed/empsit.rss"
+}
+
+
+REQUEST_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (compatible; PrismMacroCollector/1.0; +https://github.com/)",
+    "Accept": "application/rss+xml, application/xml, text/xml, text/html;q=0.9,*/*;q=0.8"
+}
+
+
+EARNINGS_WATCHLIST = {
+    # Banks / financials
+    "JPM": {"company": "JPMorgan Chase", "why_it_matters": "Large U.S. bank; credit quality, loan demand, trading revenue, and economic outlook."},
+    "BAC": {"company": "Bank of America", "why_it_matters": "Consumer banking, deposits, net interest income, and credit stress."},
+    "C": {"company": "Citigroup", "why_it_matters": "Global banking, credit trends, and risk appetite."},
+    "WFC": {"company": "Wells Fargo", "why_it_matters": "Consumer credit, loan demand, and deposit pressure."},
+    "GS": {"company": "Goldman Sachs", "why_it_matters": "Investment banking, trading activity, and market-risk appetite."},
+    "MS": {"company": "Morgan Stanley", "why_it_matters": "Investment banking, wealth management, and capital markets sentiment."},
+
+    # Mega-cap / macro-sensitive growth
+    "AAPL": {"company": "Apple", "why_it_matters": "Mega-cap demand signal and large weight in SPX/NDX."},
+    "MSFT": {"company": "Microsoft", "why_it_matters": "Cloud/AI demand and large-cap technology leadership."},
+    "NVDA": {"company": "NVIDIA", "why_it_matters": "AI semiconductor demand and high-beta technology leadership."},
+    "TSLA": {"company": "Tesla", "why_it_matters": "Consumer discretionary risk appetite and high-beta growth sentiment."}
 }
 
 
@@ -284,7 +307,7 @@ def fetch_fed_speeches(week_window: dict, max_items: int = 10) -> list[dict]:
     Fetch Fed speaker metadata from the Federal Reserve speeches RSS feed.
     """
 
-    response = requests.get(FED_SPEECHES_RSS_URL, timeout=30)
+    response = requests.get(FED_SPEECHES_RSS_URL, timeout=30, headers=REQUEST_HEADERS)
     response.raise_for_status()
 
     root = ET.fromstring(response.content)
@@ -331,7 +354,7 @@ def fetch_bls_feed(feed_name: str, feed_url: str, week_window: dict, max_items: 
     Fetch BLS release metadata from one BLS RSS feed.
     """
 
-    response = requests.get(feed_url, timeout=30)
+    response = requests.get(feed_url, timeout=30, headers=REQUEST_HEADERS)
     response.raise_for_status()
 
     root = ET.fromstring(response.content)
@@ -423,6 +446,185 @@ def fetch_bls_releases(week_window: dict) -> dict:
 
     return output
 
+
+
+
+def normalise_earnings_date(value) -> date | None:
+    """
+    yfinance calendar formats can change. This function accepts strings,
+    datetime/date objects, pandas timestamps, or list-like values and returns a date.
+    """
+
+    if value is None:
+        return None
+
+    if isinstance(value, (list, tuple)):
+        if not value:
+            return None
+        value = value[0]
+
+    if hasattr(value, "to_pydatetime"):
+        value = value.to_pydatetime()
+
+    if isinstance(value, datetime):
+        return value.date()
+
+    if isinstance(value, date):
+        return value
+
+    if isinstance(value, str):
+        text = value.strip()
+        if not text:
+            return None
+        # Keep only the date part if yfinance returns a timestamp string.
+        text = text.replace("Z", "").split("T")[0].split(" ")[0]
+        try:
+            return datetime.fromisoformat(text).date()
+        except Exception:
+            return None
+
+    return None
+
+
+def extract_earnings_date_from_calendar(calendar_data) -> date | None:
+    """
+    Best-effort extraction for yfinance calendar output.
+    Handles dict-like and DataFrame-like structures.
+    """
+
+    if calendar_data is None:
+        return None
+
+    # Newer yfinance often returns a dict.
+    if isinstance(calendar_data, dict):
+        for key in ["Earnings Date", "Earnings High", "Earnings Low"]:
+            if key in calendar_data:
+                parsed = normalise_earnings_date(calendar_data.get(key))
+                if parsed:
+                    return parsed
+
+    # Older yfinance sometimes returns a DataFrame with index labels.
+    try:
+        if hasattr(calendar_data, "loc"):
+            for key in ["Earnings Date", "Earnings High", "Earnings Low"]:
+                try:
+                    value = calendar_data.loc[key].iloc[0]
+                    parsed = normalise_earnings_date(value)
+                    if parsed:
+                        return parsed
+                except Exception:
+                    pass
+    except Exception:
+        pass
+
+    # Last fallback: scan values looking for a date.
+    try:
+        values = calendar_data.values.flatten() if hasattr(calendar_data, "values") else []
+        for value in values:
+            parsed = normalise_earnings_date(value)
+            if parsed:
+                return parsed
+    except Exception:
+        pass
+
+    return None
+
+
+def fetch_earnings_calendar(week_window: dict) -> dict:
+    """
+    Fetch upcoming earnings dates for a small macro-relevant watchlist using yfinance.
+    This is best-effort. If yfinance does not return a date, the item is skipped and
+    the error is recorded instead of inventing an earnings event.
+    """
+
+    start_date = week_window["start"].date()
+    end_date = week_window["end"].date()
+
+    output = {
+        "earnings_calendar": [],
+        "errors": {}
+    }
+
+    for ticker, info in EARNINGS_WATCHLIST.items():
+        try:
+            yf_ticker = yf.Ticker(ticker)
+            calendar_data = yf_ticker.calendar
+            earnings_date = extract_earnings_date_from_calendar(calendar_data)
+
+            if earnings_date is None:
+                output["errors"][ticker] = "No earnings date returned by yfinance calendar."
+                continue
+
+            if start_date <= earnings_date <= end_date:
+                output["earnings_calendar"].append({
+                    "ticker": ticker,
+                    "company": info["company"],
+                    "date": earnings_date.isoformat(),
+                    "why_it_matters": info["why_it_matters"],
+                    "source": "yfinance calendar"
+                })
+
+        except Exception as error:
+            output["errors"][ticker] = str(error)
+
+    return output
+
+
+def build_confirmed_prism_events(output: dict) -> list[str]:
+    """
+    Build a confirmed-events list using only things Prism actually collected.
+    This is not a general news scraper. It summarizes Fed RSS items, BLS release
+    metadata, earnings calendar hits, and large macro-market moves.
+    """
+
+    events = []
+    watch = output.get("fed_and_data_watch", {})
+    market = output.get("macro_market_data", {})
+
+    for speech in watch.get("fed_speakers", []):
+        speaker = speech.get("speaker_hint", "Fed speaker")
+        title = speech.get("title", "Fed speech")
+        tone = speech.get("tone_hint", "unknown tone")
+        events.append(f"Fed speech captured: {speaker} — {title} ({tone}).")
+
+    for item in watch.get("inflation_data", []) + watch.get("major_data_releases", []):
+        feed = item.get("feed", "BLS")
+        title = item.get("title", "BLS release")
+        published = item.get("published_at", "date unavailable")
+        events.append(f"BLS release metadata captured: {feed} — {title} ({published}).")
+
+    for earning in watch.get("earnings_calendar", []):
+        company = earning.get("company", earning.get("ticker", "Company"))
+        date_text = earning.get("date", "date unavailable")
+        events.append(f"Earnings calendar item captured: {company} on {date_text}.")
+
+    y10 = market.get("US_10Y_YIELD", {})
+    y30 = market.get("US_30Y_YIELD", {})
+    wti = market.get("WTI", {})
+    vix = market.get("VIX", {})
+    gold = market.get("GOLD", {})
+
+    yield_changes = [item.get("weekly_change_pct") for item in [y10, y30] if isinstance(item.get("weekly_change_pct"), (int, float))]
+    if yield_changes:
+        avg_yield_change = sum(yield_changes) / len(yield_changes)
+        if avg_yield_change > 1.0:
+            events.append(f"Treasury yield pressure confirmed: average 10Y/30Y weekly change is +{avg_yield_change:.2f}%.")
+        elif avg_yield_change < -1.0:
+            events.append(f"Treasury yield relief confirmed: average 10Y/30Y weekly change is {avg_yield_change:.2f}%.")
+
+    if isinstance(wti.get("weekly_change_pct"), (int, float)) and wti["weekly_change_pct"] > 3:
+        events.append(f"Oil inflation-risk signal confirmed: WTI weekly change is +{wti['weekly_change_pct']:.2f}%.")
+
+    if isinstance(vix.get("weekly_change_pct"), (int, float)) and vix["weekly_change_pct"] < -5:
+        events.append(f"Volatility compression confirmed: VIX weekly change is {vix['weekly_change_pct']:.2f}%.")
+
+    if isinstance(gold.get("weekly_change_pct"), (int, float)) and gold["weekly_change_pct"] < -1.5:
+        events.append(f"Gold weakness confirmed: gold weekly change is {gold['weekly_change_pct']:.2f}%.")
+
+    if not events:
+        events.append("No confirmed macro events were collected by Prism automation in this run.")
+
+    return events
 
 def build_macro_record(symbol: str, info: dict, history: list[dict]) -> dict:
     latest = history[-1]
@@ -535,7 +737,10 @@ def main() -> None:
             "fed_speaker_count": 0,
             "inflation_data": [],
             "major_data_releases": [],
-            "data_release_errors": {}
+            "data_release_errors": {},
+            "earnings_calendar": [],
+            "earnings_errors": {},
+            "confirmed_news_events": []
         }
     }
 
@@ -605,6 +810,14 @@ def main() -> None:
 
     print(f"[OK] Inflation releases collected: {len(bls_releases['inflation_data'])}")
     print(f"[OK] Major data releases collected: {len(bls_releases['major_data_releases'])}")
+
+    print("Fetching earnings calendar from yfinance watchlist...")
+    earnings_output = fetch_earnings_calendar(week_window)
+    output["fed_and_data_watch"]["earnings_calendar"] = earnings_output["earnings_calendar"]
+    output["fed_and_data_watch"]["earnings_errors"] = earnings_output["errors"]
+    print(f"[OK] Earnings calendar items collected: {len(earnings_output['earnings_calendar'])}")
+
+    output["fed_and_data_watch"]["confirmed_news_events"] = build_confirmed_prism_events(output)
 
     output_path = project_root / "data" / "macro" / "macro_collector_output.json"
     save_json(output, output_path)
