@@ -432,8 +432,8 @@ def build_markdown(data: dict, week_number: int) -> str:
     lines.append("")
     lines.append(
         f"> **Auto-generated:** Generated from `{data.get('collector', 'Macro Collector')}` output dated "
-        f"{data.get('generated_at', 'unknown')}. This report uses Prism automation outputs only; missing calendar, "
-        "earnings, and news data are marked as unavailable rather than filled from manual external sources."
+        f"{data.get('generated_at', 'unknown')}. This report mainly uses Prism automation outputs. "
+        f"Fields marked **manual review** were added by R4 after checking external sources."
     )
     if fed_data["errors"]:
         lines.append(f"> **FRED fetch warnings:** {'; '.join(fed_data['errors'])}")
@@ -444,7 +444,10 @@ def build_markdown(data: dict, week_number: int) -> str:
         lines.append(f"- Fed target rate: {fed_data['target_lower']:.2f}%–{fed_data['target_upper']:.2f}% (source: automated FRED fetch in Prism report builder)")
     else:
         lines.append("- Fed target rate: Not available from this Prism run")
-    lines.append("- Fed hold probability: Not automated (CME FedWatch has no free public API)")
+    lines.append(
+        "- Fed hold probability: **Manual review** — [fill FedWatch value here] "
+        "from CME FedWatch as of [date/time checked]"
+    )
     if fomc_date:
         lines.append(f"- Next FOMC: {fomc_date.strftime('%d %B %Y')} (from Prism's hardcoded FOMC schedule)")
     else:
