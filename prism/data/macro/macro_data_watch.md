@@ -5,6 +5,18 @@
 
 ## Fed Speakers
 
+- **Speaker hint:** Waller
+  - Title: Waller, Monetary Policy at a Crossroads
+  - Published: 2026-07-13T16:30:00+00:00
+  - Tone hint: neutral_or_unclear_keyword_hint
+  - Source: https://www.federalreserve.gov/newsevents/speech/waller20260713a.htm
+
+- **Speaker hint:** Bowman
+  - Title: Bowman, Modernizing Financial Regulation
+  - Published: 2026-07-13T09:25:00+00:00
+  - Tone hint: neutral_or_unclear_keyword_hint
+  - Source: https://www.federalreserve.gov/newsevents/speech/bowman20260713a.htm
+
 - **Speaker hint:** Bowman
   - Title: Bowman, Opening Remarks on Sound Practices for Artificial Intelligence
   - Published: 2026-07-07T11:00:00+00:00

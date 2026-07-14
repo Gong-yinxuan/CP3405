@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-07-13T02:50:51Z",
+    "generated_at": "2026-07-14T02:03:02Z",
     "collector": "Macro Collector",
     "agent_input_for": "Macro Agent",
     "data_source": {
@@ -14,10 +14,10 @@
             "yahoo_ticker": "^TNX",
             "name": "US 10-Year Treasury Yield",
             "category": "yield",
-            "latest_trading_date": "2026-07-10",
-            "close": 0.4569,
-            "weekly_change_pct": 1.87,
-            "change_5d": 0.0084,
+            "latest_trading_date": "2026-07-13",
+            "close": 0.4609,
+            "weekly_change_pct": 2.9,
+            "change_5d": 0.013,
             "direction_5d": "Up",
             "history_file": "macro/history/US_10Y_YIELD.json"
         },
@@ -26,10 +26,10 @@
             "yahoo_ticker": "^TYX",
             "name": "US 30-Year Treasury Yield",
             "category": "yield",
-            "latest_trading_date": "2026-07-10",
-            "close": 0.5071,
-            "weekly_change_pct": 1.73,
-            "change_5d": 0.0086,
+            "latest_trading_date": "2026-07-13",
+            "close": 0.5098,
+            "weekly_change_pct": 2.1,
+            "change_5d": 0.0105,
             "direction_5d": "Up",
             "history_file": "macro/history/US_30Y_YIELD.json"
         },
@@ -38,10 +38,10 @@
             "yahoo_ticker": "CL=F",
             "name": "Crude Oil WTI Futures",
             "category": "commodity",
-            "latest_trading_date": "2026-07-12",
-            "close": 74.27,
-            "weekly_change_pct": 8.34,
-            "change_5d": 5.72,
+            "latest_trading_date": "2026-07-13",
+            "close": 79.3,
+            "weekly_change_pct": 15.68,
+            "change_5d": 10.75,
             "direction_5d": "Up",
             "history_file": "macro/history/WTI.json"
         },
@@ -50,10 +50,10 @@
             "yahoo_ticker": "GC=F",
             "name": "Gold Futures",
             "category": "commodity",
-            "latest_trading_date": "2026-07-12",
-            "close": 4079.6001,
-            "weekly_change_pct": -1.82,
-            "change_5d": -75.5,
+            "latest_trading_date": "2026-07-13",
+            "close": 4011.1001,
+            "weekly_change_pct": -3.47,
+            "change_5d": -144.0,
             "direction_5d": "Down",
             "history_file": "macro/history/GOLD.json"
         },
@@ -62,10 +62,10 @@
             "yahoo_ticker": "DX-Y.NYB",
             "name": "US Dollar Index",
             "category": "currency_index",
-            "latest_trading_date": "2026-07-12",
-            "close": 101.112,
-            "weekly_change_pct": 0.26,
-            "change_5d": 0.262,
+            "latest_trading_date": "2026-07-13",
+            "close": 101.231,
+            "weekly_change_pct": 0.38,
+            "change_5d": 0.381,
             "direction_5d": "Up",
             "history_file": "macro/history/DXY.json"
         },
@@ -74,11 +74,11 @@
             "yahoo_ticker": "^VIX",
             "name": "CBOE Volatility Index",
             "category": "volatility",
-            "latest_trading_date": "2026-07-10",
-            "close": 15.03,
-            "weekly_change_pct": -6.93,
-            "change_5d": -1.12,
-            "direction_5d": "Down",
+            "latest_trading_date": "2026-07-13",
+            "close": 17.16,
+            "weekly_change_pct": 10.21,
+            "change_5d": 1.59,
+            "direction_5d": "Up",
             "history_file": "macro/history/VIX.json"
         },
         "BTC": {
@@ -86,10 +86,10 @@
             "yahoo_ticker": "BTC-USD",
             "name": "Bitcoin USD",
             "category": "crypto",
-            "latest_trading_date": "2026-07-13",
-            "close": 63424.0391,
-            "weekly_change_pct": 0.2,
-            "change_5d": 126.6446,
+            "latest_trading_date": "2026-07-14",
+            "close": 62442.3086,
+            "weekly_change_pct": 0.3,
+            "change_5d": 184.7344,
             "direction_5d": "Up",
             "history_file": "macro/history/BTC.json"
         }
@@ -98,6 +98,24 @@
         "week_commencing": "2026-07-13",
         "week_ending": "2026-07-19",
         "fed_speakers": [
+            {
+                "speaker_hint": "Waller",
+                "title": "Waller, Monetary Policy at a Crossroads",
+                "published_at": "2026-07-13T16:30:00+00:00",
+                "source_url": "https://www.federalreserve.gov/newsevents/speech/waller20260713a.htm",
+                "summary": "Speech At the New York Association for Business Economics, New York, New York",
+                "tone_hint": "neutral_or_unclear_keyword_hint",
+                "r4_note": "Keyword hint only. R4 should verify the actual Fed speaker message."
+            },
+            {
+                "speaker_hint": "Bowman",
+                "title": "Bowman, Modernizing Financial Regulation",
+                "published_at": "2026-07-13T09:25:00+00:00",
+                "source_url": "https://www.federalreserve.gov/newsevents/speech/bowman20260713a.htm",
+                "summary": "Speech At a Bank Policy Institute London Conference, London, United Kingdom",
+                "tone_hint": "neutral_or_unclear_keyword_hint",
+                "r4_note": "Keyword hint only. R4 should verify the actual Fed speaker message."
+            },
             {
                 "speaker_hint": "Bowman",
                 "title": "Bowman, Opening Remarks on Sound Practices for Artificial Intelligence",
@@ -117,7 +135,7 @@
                 "r4_note": "Keyword hint only. R4 should verify the actual Fed speaker message."
             }
         ],
-        "fed_speaker_count": 2,
+        "fed_speaker_count": 4,
         "inflation_data": [],
         "major_data_releases": [],
         "data_release_errors": {
@@ -126,6 +144,66 @@
             "IMPORT_EXPORT_PRICES": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/ximpim.rss",
             "REAL_EARNINGS": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/realer.rss",
             "EMPLOYMENT_SITUATION": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/empsit.rss"
-        }
+        },
+        "earnings_calendar": [
+            {
+                "ticker": "JPM",
+                "company": "JPMorgan Chase",
+                "date": "2026-07-14",
+                "why_it_matters": "Large U.S. bank; credit quality, loan demand, trading revenue, and economic outlook.",
+                "source": "yfinance calendar"
+            },
+            {
+                "ticker": "BAC",
+                "company": "Bank of America",
+                "date": "2026-07-14",
+                "why_it_matters": "Consumer banking, deposits, net interest income, and credit stress.",
+                "source": "yfinance calendar"
+            },
+            {
+                "ticker": "C",
+                "company": "Citigroup",
+                "date": "2026-07-14",
+                "why_it_matters": "Global banking, credit trends, and risk appetite.",
+                "source": "yfinance calendar"
+            },
+            {
+                "ticker": "WFC",
+                "company": "Wells Fargo",
+                "date": "2026-07-14",
+                "why_it_matters": "Consumer credit, loan demand, and deposit pressure.",
+                "source": "yfinance calendar"
+            },
+            {
+                "ticker": "GS",
+                "company": "Goldman Sachs",
+                "date": "2026-07-14",
+                "why_it_matters": "Investment banking, trading activity, and market-risk appetite.",
+                "source": "yfinance calendar"
+            },
+            {
+                "ticker": "MS",
+                "company": "Morgan Stanley",
+                "date": "2026-07-15",
+                "why_it_matters": "Investment banking, wealth management, and capital markets sentiment.",
+                "source": "yfinance calendar"
+            }
+        ],
+        "earnings_errors": {},
+        "confirmed_news_events": [
+            "Fed speech captured: Waller \u2014 Waller, Monetary Policy at a Crossroads (neutral_or_unclear_keyword_hint).",
+            "Fed speech captured: Bowman \u2014 Bowman, Modernizing Financial Regulation (neutral_or_unclear_keyword_hint).",
+            "Fed speech captured: Bowman \u2014 Bowman, Opening Remarks on Sound Practices for Artificial Intelligence (neutral_or_unclear_keyword_hint).",
+            "Fed speech captured: Waller \u2014 Waller, Two Thoughts on the Transmission of Monetary Policy (neutral_or_unclear_keyword_hint).",
+            "Earnings calendar item captured: JPMorgan Chase on 2026-07-14.",
+            "Earnings calendar item captured: Bank of America on 2026-07-14.",
+            "Earnings calendar item captured: Citigroup on 2026-07-14.",
+            "Earnings calendar item captured: Wells Fargo on 2026-07-14.",
+            "Earnings calendar item captured: Goldman Sachs on 2026-07-14.",
+            "Earnings calendar item captured: Morgan Stanley on 2026-07-15.",
+            "Treasury yield pressure confirmed: average 10Y/30Y weekly change is +2.50%.",
+            "Oil inflation-risk signal confirmed: WTI weekly change is +15.68%.",
+            "Gold weakness confirmed: gold weekly change is -3.47%."
+        ]
     }
 }
