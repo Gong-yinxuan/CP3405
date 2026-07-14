@@ -368,6 +368,89 @@ def build_macro_fed_data_watch_chart(project_root: Path) -> None:
     save_chart(output_path)
 
 
+def infer_macro_relevance(item) -> str:
+    """
+    Infer macro relevance when the collector did not explicitly provide macro_relevance.
+    This prevents the chart from putting every event into Unknown.
+    """
+
+    valid_levels = {"High", "Medium", "Low", "Unknown"}
+
+    if isinstance(item, dict):
+        existing = item.get("macro_relevance")
+        if existing in valid_levels:
+            return existing
+
+        importance = item.get("importance")
+        if importance in valid_levels:
+            return importance
+
+        text = " ".join([
+            str(item.get("title", "")),
+            str(item.get("event", "")),
+            str(item.get("summary", "")),
+            str(item.get("expected", "")),
+            str(item.get("why_it_matters", "")),
+            str(item.get("company", "")),
+            str(item.get("feed", "")),
+            str(item.get("tone_hint", ""))
+        ]).lower()
+
+    else:
+        text = str(item).lower()
+
+    high_keywords = [
+        "cpi",
+        "ppi",
+        "inflation",
+        "employment",
+        "payroll",
+        "jobs",
+        "fomc",
+        "rate decision",
+        "fed decision",
+        "retail sales",
+        "treasury yield",
+        "10y",
+        "30y"
+    ]
+
+    medium_keywords = [
+        "fed",
+        "speech",
+        "waller",
+        "bowman",
+        "monetary policy",
+        "yield",
+        "oil",
+        "wti",
+        "vix",
+        "gold",
+        "dxy",
+        "btc",
+        "earnings",
+        "bank"
+    ]
+
+    low_keywords = [
+        "not available",
+        "not collected",
+        "rss error",
+        "403"
+    ]
+
+    if any(keyword in text for keyword in high_keywords):
+        return "High"
+
+    if any(keyword in text for keyword in medium_keywords):
+        return "Medium"
+
+    if any(keyword in text for keyword in low_keywords):
+        return "Low"
+
+    return "Unknown"
+
+
 def build_macro_relevance_chart(project_root: Path) -> None:
     input_path = project_root / "data" / "macro" / "macro_collector_output.json"
     output_path = project_root / "data" / "macro" / "charts" / "macro_relevance_summary.png"
@@ -389,12 +472,19 @@ def build_macro_relevance_chart(project_root: Path) -> None:
         watch.get("fed_events", []),
         watch.get("fed_speakers", []),
         watch.get("inflation_data", []),
-        watch.get("major_data_releases", [])
+        watch.get("major_data_releases", []),
+        watch.get("earnings_calendar", []),
+        watch.get("confirmed_news_events", []),
+        data.get("earnings_calendar", []),
+        data.get("confirmed_news_events", [])
     ]
 
     for group in event_groups:
+        if isinstance(group, dict):
+            group = list(group.values())
+
         for item in group:
-            relevance = item.get("macro_relevance", "Unknown")
+            relevance = infer_macro_relevance(item)
 
             if relevance not in relevance_counts:
                 relevance = "Unknown"
