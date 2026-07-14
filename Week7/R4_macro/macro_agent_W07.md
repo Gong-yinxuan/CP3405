@@ -4,7 +4,7 @@
 
 ## FED & RATES
 - Fed target rate: 3.50%–3.75% (source: automated FRED fetch in Prism report builder)
-- Fed hold probability: **Manual review** — [fill FedWatch value here] from CME FedWatch as of [date/time checked]
+- Fed hold probability: **Manual review** — approximately **60% hold probability** for the 29 July 2026 FOMC meeting.
 - Next FOMC: 29 July 2026 (from Prism's hardcoded FOMC schedule)
 - 2Y Yield: 4.21% (source: automated FRED fetch in Prism report builder)
 - 10Y Yield: 4.61%
