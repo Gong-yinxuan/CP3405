@@ -7,17 +7,17 @@
 
 ### 🛠️ Upstream Research Agents (The Wednesday Gate)
 *   **R3 (Almanac Research Analyst):** 
-    *   **Status:** [Started / Completed / Late / Blocked]
-    *   **Commit Status:** [Not yet committed / Committed on Date & Time]
-    *   **Notes:** [e.g., Confirmed Almanac output is generated and ready for synthesis]
+    *   **Status:** Completed
+    *   **Commit Status:** Automated via GitHub Actions
+    *   **Notes:** Confirmed that the Almanac report generation is fully integrated into the pipeline via `generate_almanac.py`. Verified that the workflow successfully builds the Markdown report and archives necessary chart assets dynamically.
 *   **R4 (Macro Analyst):** 
-    *   **Status:** [Started / Completed / Late / Blocked]
-    *   **Commit Status:** [Not yet committed / Committed on Date & Time]
-    *   **Notes:** [e.g., Macro events for w/c 14 Jul successfully tracked]
+    *   **Status:** Completed
+    *   **Commit Status:** Committed on Tuesday July 14 via Pull Request #1
+    *   **Notes:** R4 successfully merged macro features, updated `macro_agent_W07.md`, and validated `generate_macro.py`.
 *   **R5 (Technical Data Analyst):** 
-    *   **Status:** [Started / Completed / Late / Blocked]
-    *   **Commit Status:** [Not yet committed / Committed on Date & Time]
-    *   **Notes:** [e.g., Technical indicators read from Sat 12 Jul close processed]
+    *   **Status:** Completed
+    *   **Commit Status:** Committed on Wednesday July 15 at ~09:00 SGT
+    *   **Notes:** R5 pushed updated monthly stats for major indices and finalized the technical analysis report.
 
 ### ⚙️ Pipeline, Synthesis & Logistics Roles
 *   **R1 (Product Owner):** 
@@ -25,19 +25,19 @@
     *   **Notes:** `sprint_goal_W29.md` successfully committed on Monday.
 *   **R6 (Data Engineer):** 
     *   **Status:** [In Progress / Completed]
-    *   **Notes:** [e.g., Added all 11 sector S&P ETFs to the fetch pipeline script]
+    *   **Notes:** Confirmed team member understands the new Sprint 7 scope expansion. Script modifications to include all 11 sector ETFs are underway ahead of Friday's automated fetch.
 *   **R7 (Senior Analyst):** 
     *   **Status:** [Waiting on R8 / Sourcing Wild Card]
-    *   **Notes:** [e.g., Reviewing potential unique market indicators for the Wild Card override]
+    *   **Notes:** Currently still reviewing potential unique market indicators for the Wild Card override and for LLM be pushed
 *   **R8 (AI/ML Engineer):** 
     *   **Status:** [Waiting on R3-R5 / Running Tests]
-    *   **Notes:** [e.g., API local tests prepared with small prompts to save rate limits]
+    *   **Notes:** Confirmed readiness to trigger the GitHub Actions synthesis workflow on Thursday. Provided role guidance on navigating the Actions interface to ensure smooth execution once the Wednesday gate clears.
 *   **R9 (DevOps Engineer):** 
     *   **Status:** [In Progress]
-    *   **Notes:** [e.g., Verified Friday automated cron configuration is active]
+    *   **Notes:** Confirmed with R9 that branch merging and finalization are scheduled for Saturday. This ensures integration testing happens early and prevents a Sunday crunch prior to the final submission.
 *   **R10 (Product Analyst):** 
     *   **Status:** [In Progress]
-    *   **Notes:** [e.g., Reviewing Sat 12 Jul actuals to build cumulative accuracy metrics]
+    *   **Notes:** Confirmed readiness for the weekend calibration loop. Reviewing Saturday July 12 data to prepare the `delta_W28.md` metrics template.
 
 ---
 
