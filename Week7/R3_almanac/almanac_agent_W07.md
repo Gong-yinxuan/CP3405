@@ -59,10 +59,10 @@
 
 | Index / Asset | July Seasonal Rank | July Avg % Return | Cycle-Year Rank | Cycle-Year Avg % Return | R3 Interpretation |
 | --- | :---: | :---: | :---: | :---: | --- |
-| **S&P 500** | Not automated | Not automated | Not automated | Not automated | No collector-based monthly statistic available. |
-| **DJIA / Dow** | Not automated | Not automated | Not automated | Not automated | No collector-based monthly statistic available. |
-| **NASDAQ** | Not automated | Not automated | Not automated | Not automated | Use sector leadership as the stronger evidence source instead of unsupported monthly stats. |
-| **Russell 2000 / IWM** | Not automated | Not automated | Not automated | Not automated | No collector-based monthly statistic available. |
+| **S&P 500** | 4 | +1.43% | 6 | +0.63% | Historical seasonal rank and average return computed from full price history. |
+| **DJIA / Dow** | 4 | +1.61% | 3 | +1.69% | Historical seasonal rank and average return computed from full price history. |
+| **NASDAQ** | 6 | +1.30% | 7 | -0.45% | Historical seasonal rank and average return computed from full price history. |
+| **Russell 2000 / IWM** | 8 | +0.50% | 11 | -1.80% | Historical seasonal rank and average return computed from full price history. |
 
 **Net monthly signal:** **Mildly risk-on.**
 
