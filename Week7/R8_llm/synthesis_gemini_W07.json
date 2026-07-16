@@ -1,0 +1,25 @@
+{
+  "weekly_regime": "Risk-On / Moderately Bullish, albeit with underlying sector and seasonal divergences.",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "0.5% to 1.5% Up",
+  "ndx_pct_estimate": "-0.5% to 0.5% Flat/Mixed",
+  "iwm_pct_estimate": "-0.5% to 0.5% Flat/Mixed",
+  "top_supporting_reason": "Bullish technical momentum in broad market (SPX, IWM) and decreasing volatility (VIX).",
+  "top_contradiction_cited": "Divergence in technical bias with Nasdaq (NDX) showing bearish EMA alignment, compounded by historical midterm year seasonality suggesting weaker July performance for tech and small caps.",
+  "invalidation_condition": "SPX close below 7294.18 or NDX close below 28814.57.",
+  "tone_caveat_language": "Cautious long exposure on broad market, defensive on tech, acknowledging seasonal headwinds.",
+  "consensus_bias": "MIXED",
+  "consensus_read_summary": "The market presents a mixed outlook, with broad market indices (SPX, IWM) showing bullish technicals and declining volatility, suggesting continued upward momentum. However, the Nasdaq 100 exhibits a bearish EMA condition and neutral bias, contrasting with historical midterm year seasonality which implies weaker performance for tech and small caps in July.",
+  "point_of_maximum_divergence": "The stark contrast between the bullish technical momentum of the S&P 500 and Russell 2000 versus the Nasdaq 100's bearish EMA condition and neutral technical bias.",
+  "key_supporting_factors": [
+    "SPX and IWM exhibiting 'Zone 1 Bullish' EMA conditions.",
+    "Significant weekly decline in VIX (-7.28%) indicating decreasing market fear.",
+    "Strong weekly performance in risk-on sectors like Communication Services (+3.58%) and Financials (+2.89%)."
+  ],
+  "main_contradiction_risk": "The Nasdaq 100's 'Zone 3 Bearish' EMA condition and neutral bias, coupled with historical midterm year underperformance for July in tech and small caps.",
+  "invalidation_summary": "A weekly close for the S&P 500 below 7294.18 or the Nasdaq 100 below 28814.57 would invalidate the current mixed-to-bullish outlook.",
+  "r7_human_score_question": "To what extent will the bullish momentum in SPX and IWM outweigh the bearish technicals in NDX and the historical midterm July seasonality?",
+  "r6_slide_bullet_1": "Broad market (SPX, IWM) shows bullish technicals, supported by falling VIX and strong financial/communication sectors.",
+  "r6_slide_bullet_2": "Nasdaq 100 (NDX) exhibits bearish EMA conditions and neutral bias, contrasting with broader market strength.",
+  "r6_slide_bullet_3": "Midterm year July seasonality poses a headwind, particularly for tech and small caps, while WTI surge signals potential inflation risk."
+}

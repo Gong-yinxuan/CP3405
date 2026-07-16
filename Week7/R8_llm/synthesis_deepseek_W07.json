@@ -1,0 +1,23 @@
+{
+  "weekly_regime": "Cautious Bullish with Sector Rotation",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "+0.5% to +1.5%",
+  "ndx_pct_estimate": "-1.0% to +0.5%",
+  "iwm_pct_estimate": "+0.5% to +1.5%",
+  "top_supporting_reason": "SPX and IWM in Zone 1 Bullish EMA configuration with volatility compression (VIX -7.28%) supporting risk assets",
+  "top_contradiction_cited": "NDX in Zone 3 Bearish EMA condition conflicts with typical July midterm tech underperformance",
+  "invalidation_condition": "SPX close below 7530.89 (8 EMA) or NDX close above 29559.69 (21 EMA)",
+  "tone_caveat_language": "Risk-on bias tempered by midterm seasonal headwinds for small caps and tech",
+  "consensus_bias": "MIXED",
+  "consensus_read_summary": "Technical indicators show SPX and IWM bullish while NDX neutral-bearish, aligning with midterm July seasonality favoring large caps. Macro data reveals volatility compression and yield curve dynamics supporting risk assets, though WTI's +8.85% surge presents inflation risk. Sector leadership favors Financials and Communication Services over defensive holdings.",
+  "point_of_maximum_divergence": "IWM's bullish technical setup (Zone 1) conflicts with historical July midterm weakness (-1.85% average) and NDX's bearish EMA condition amid tech sector underperformance",
+  "key_supporting_factors": [
+    "SPX and IWM in Zone 1 Bullish EMA configuration with price above both 8 and 21 EMAs"
+  ],
+  "main_contradiction_risk": "Fed speaker tone shifts toward dovish concerns could reverse volatility compression and dollar weakness, pressuring risk assets",
+  "invalidation_summary": "SPX closing below 7530.89 (8 EMA) or NDX closing above 29559.69 (21 EMA) would invalidate the consensus bias",
+  "r7_human_score_question": "How much weight should be given to the bullish EMA configurations versus historical July midterm patterns showing small cap and tech underperformance?",
+  "r6_slide_bullet_1": "SPX and IWM in bullish EMA zones with VIX at 15.67 (lowest in 30 days) supporting risk assets",
+  "r6_slide_bullet_2": "NDX bearish technicals align with midterm tech underperformance; Financials (XLF +2.89%) leading sector rotation",
+  "r6_slide_bullet_3": "Key invalidation: SPX below 7530.89 or NDX above 29559.69; WTI +8.85% inflation signal monitors dollar weakness"
+}

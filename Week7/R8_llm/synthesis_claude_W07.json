@@ -1,0 +1,24 @@
+{
+  "weekly_regime": "Low-volatility bullish drift with sector rotation into financials, communication services, and energy; midterm-year July seasonality mildly positive but historically weak for small caps.",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "+0.5% to +1.5%",
+  "ndx_pct_estimate": "-0.5% to +0.5%",
+  "iwm_pct_estimate": "0.0% to +1.0%",
+  "top_supporting_reason": "SPX and IWM in Zone 1 Bullish EMA alignment with VIX down 7.28% and DXY softening supports continued risk-on index drift.",
+  "top_contradiction_cited": "NDX below both 8- and 21-EMA in Zone 3 Bearish with Nasdaq midterm July avg return -0.43% conflicts with broad bullish index tone.",
+  "invalidation_condition": "SPX close below 7490.84 (21-EMA) or NDX hold below 29559.69 (21-EMA) with VIX > 18.",
+  "tone_caveat_language": "Lean long large-cap and small-cap barbell vs neutral Nasdaq; favor XLF/XLC/XLE over XLV/XLP.",
+  "consensus_bias": "MIXED",
+  "consensus_read_summary": "Technical leg shows SPX/IWM bullish and NDX neutral-bearish; macro leg shows volatility compression and lower dollar supporting risk assets while WTI +8.85% flags inflation risk; almanac midterm July ranks S&P +0.66% and Russell -1.85% avg. Models agree on low-vol bullish large-cap bias but split on NDX and small-cap seasonal weakness.",
+  "point_of_maximum_divergence": "NDX technical Zone 3 Bearish and midterm July negative seasonality vs macro low-VIX/DXY-down risk-on confirmation.",
+  "key_supporting_factors": [
+    "SPX above 8/21 EMA (Zone 1 Bullish) and IWM above 8/21 EMA (Zone 1 Bullish)",
+    "VIX -7.28% and DXY -0.56% with 10Y yield -0.53% easing financial conditions"
+  ],
+  "main_contradiction_risk": "WTI crude +8.85% weekly may revive inflation expectations and pressure long-duration tech while BLS data feeds failed (403) leaving macro confirmation gaps.",
+  "invalidation_summary": "SPX losing 7490.84 21-EMA or NDX remaining sub 29559.69 with VIX reclaiming 18+ breaks the bullish-drift consensus.",
+  "r7_human_score_question": "Given failed BLS CPI/PPI feeds and neutral Fed speaker hints, how should the team weight confirmed WTI inflation signal vs missing official inflation data for next week's exposure?",
+  "r6_slide_bullet_1": "SPX/IWM bullish EMA Zones + VIX compression signal low-vol large/small-cap drift; NDX below EMAs is the weak link.",
+  "r6_slide_bullet_2": "Sector leadership: XLC +3.58%, XLF +2.89%, XLE +1.62% lead; XLV -2.47% and XLP -1.09% lag into midterm July.",
+  "r6_slide_bullet_3": "Macro risk: WTI +8.85% inflation flag and BLS feed 403 errors create confirmation void vs soft DXY/10Y yield backdrop."
+}
