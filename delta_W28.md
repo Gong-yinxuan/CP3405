@@ -2,7 +2,7 @@
 
 **Week:** W28
 **Forecast week:** 2026-07-13 to 2026-07-17
-**Generated at:** 2026-07-12 21:19:57
+**Generated at:** 2026-07-17 22:43:11
 **Actuals source:** `prism/data/actuals/vW28_actuals.json`
 
 ## Summary

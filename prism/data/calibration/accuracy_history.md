@@ -11,5 +11,5 @@
 - Average direction accuracy: 58.9%
 - Average range accuracy: 37.3%
 - Average error size: 3.51%
-- Calibration bias: R10 observed a slight large-cap bullish bias in the team’s forecast. The forecast was better at identifying direction than estimating the exact weekly percentage change.
-- Improvement: For the next sprint, the team should create and commit `vWxx_prediction.json` before the forecast week begins. This will give R10 a clean sealed prediction to score after Friday close and avoid needing to reconstruct predictions later.
+- Calibration bias: [R10 to review across weeks]
+- Improvement: [R10 to write next action]
