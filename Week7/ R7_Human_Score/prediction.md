@@ -1,6 +1,6 @@
 # Team [05] – Weekly Prediction Submission
 
-**Submission time:** 2026-07-19 [14:49] SGT
+**Submission time:** 2026-07-19 [14:48] SGT
 **Forecast week:** 2026-07-21 to 2026-07-25
 
 ---
@@ -59,30 +59,24 @@ We expect the broad stock market (S&P 500 and small caps) to drift higher this w
 ### External Market Intelligence Inputs
 
 **Broad Market Outlook & Financial News Feed:**
-- CNBC Markets (July 2026)
+- [CNBC Stock Market Outlook — Week of July 20–24, 2026](https://www.cnbc.com/2026/07/17/stock-market-next-week-outlook-for-july-20-24-2026.html)
+- [CNBC Stock Market News — July 17, 2026](https://www.cnbc.com/2026/07/16/stock-market-today-live-updates.html)
 
-**Global Economic Calendar Data:**
+**Global Economic Calendar & Weekly Trader Outlook:**
+- [Charles Schwab Weekly Trader's Outlook](https://www.schwab.com/learn/story/weekly-traders-outlook)
+- [Charles Schwab Market Update — Open](https://www.schwab.com/learn/story/stock-market-update-open)
 - FRED / Prism Automated Data Pipeline (W07 output dated 2026-07-14)
 
 **Corporate Earnings & Institutional Data:**
-- Q2 2026 Earnings Season Calendar — DayTradingToolkit
+- [Q2 2026 Earnings Season Calendar — DayTradingToolkit](https://daytradingtoolkit.com/market-insights/q2-2026-earnings-season-day-trading-preview)
 
 ### Institutional Architecture & Technical Constraints
 
 **Course Assignment Engineering Guidelines:**
-- CP3405 Course Roadmap
+- [CP3405 DT3 TR2 2026 — Sprint 7 · vW29](https://dt3-tr2-26-market-intelligence.pages.dev/sprint7/)
 
 **System Operations Role Alignment:**
-- R7: Human Score Core Manual
+- [R7: Human Score Core Manual — CP3405 System Page](https://dt3-tr2-26-market-intelligence.pages.dev/system/)
 
 **Friday Closing Data:**
-- W07 Friday Closing Data Log
-
-### 👥 Internal Scrum Operational Data (R7 Qualitative Baseline)
-
-**Team Consensus & Participation Metrics:**
-- Discord Poll — [attach image]
-Friday Closing Data:
-
-
-W07 Friday Closing Data Log
+- [W07 Friday Closing Data Log](https://github.com/Gong-yinxuan/CP3405/blob/main/prism/data/output.json)
