@@ -46,7 +46,7 @@
 
 ## Override Paragraph
 
-> Write this only if the team's final call differs from AI consensus.*
+> Write this only if the team's final call differs from AI consensus.
 
 The AI models collectively underweighted three factors our team considers significant this week:
 
@@ -58,7 +58,7 @@ The AI models collectively underweighted three factors our team considers signif
 
 For these reasons, our team adjusts the final regime call from **Neutral-Bullish** to **Bullish Override**, and our S&P 500 % range from +0.5% to +1.5% to **+0.8% to +2.0%**.
 
-*Note: This override may be wrong. We document our reasoning so we can learn from the outcome either way.
+*Note: This override may be wrong. We document our reasoning so we can learn from the outcome either way.*
 
 ---
 
