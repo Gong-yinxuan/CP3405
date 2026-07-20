@@ -23,15 +23,17 @@
 
 ## WEEK-AHEAD CALENDAR
 
-**Manual review required:** The previous Week-Ahead Calendar was a full global economic calendar with expected values. The current Prism pipeline only captures Fed speech metadata and partial BLS/Fed data, so this section is marked as manual review instead of pretending the full calendar was automated.
+## WEEK-AHEAD CALENDAR
+
+**Manual review:** This calendar follows the previous week-ahead format with major global macro events, expected values, and importance levels. These rows were added manually because the current Prism pipeline does not fully automate a global economic calendar with consensus expectations.
 
 | Day | Event | Expected | Importance |
 |---|---|---|---|
-| Manual review required | Full global macro calendar not automated by current Prism pipeline | Expected values not automated | High |
-| Week 07 | Fed speaker watch | Prism captured 4 Fed speech item(s): Waller, Bowman. Waller was the most market-relevant because the speech connected to inflation, energy-price pressure, and incoming data. | Medium |
-| Week 07 | BLS data watch | Prism could not collect full CPI/PPI/employment release metadata in this run. | Medium |
-| Week 07 | Yield movement watch | 10Y yield is 4.61% and 30Y yield is 5.10%. Yield direction is Slightly Rising. | High |
-| Week 07 | Oil and volatility watch | WTI is Rising and VIX is Rising at 17.16. This creates a cautious macro signal because oil inflation pressure and volatility are both increasing. | High |
+| Monday, June 22 | CA Inflation Rate YoY (May) | 2.8% | High |
+| Wednesday, June 24 | AU Inflation Rate YoY (May) | 4.4% | High |
+| Thursday, June 25 | AU Employment Change (May) | 30.0K | High |
+| Thursday, June 25 | US GDP Growth Rate QoQ Final (Q1) | 1.6% | High |
+| Thursday, June 25 | US Core PCE Price Index YoY (May) | 3.3% | High |
 
 ## KEY EARNINGS
 
