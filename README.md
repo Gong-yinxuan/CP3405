@@ -1,4 +1,4 @@
-# PRISM — Sprint 13 (vW29) Final Release
+# PRISM — Sprint 7 (vW29) Final Release
 
 ## Project Overview
 
@@ -15,7 +15,7 @@ The system focuses on predicting:
 
 ---
 
-## Sprint 13 (vW29) Deliverables
+## Sprint 7 (vW29) Deliverables
 
 **Sprint Goal:** Deliver an audit-ready vW29 market-intelligence increment by Sunday 19 July 2026, 23:59 SGT, with blockers surfaced by Wednesday, R3/R4/R5 outputs finalized before R8 synthesis, all 11 S&P sector ETFs included, at least two valid LLM API responses committed, R7 Human Score connected to the final prediction, a successful automated Friday-close workflow, verified calibration evidence, and the final prediction sealed with the exact `vW29` release tag.
 
