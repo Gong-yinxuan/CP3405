@@ -1,11 +1,11 @@
 {
-    "generated_at": "2026-07-13T02:50:51Z",
+    "generated_at": "2026-07-20T01:40:21Z",
     "collector": "Macro Collector",
     "agent_input_for": "Macro Agent",
     "data_source": {
         "market_data": "Yahoo Finance via yfinance",
         "fed_speakers": "Federal Reserve speeches RSS feed",
-        "economic_data_releases": "BLS RSS feeds"
+        "economic_data_releases": "BLS RSS feeds with BLS release calendar ICS fallback"
     },
     "note": "This collector gathers automatic macro market data and Fed + Data Watch metadata. FedWatch probability is not collected here.",
     "macro_market_data": {
@@ -14,11 +14,11 @@
             "yahoo_ticker": "^TNX",
             "name": "US 10-Year Treasury Yield",
             "category": "yield",
-            "latest_trading_date": "2026-07-10",
-            "close": 0.4569,
-            "weekly_change_pct": 1.87,
-            "change_5d": 0.0084,
-            "direction_5d": "Up",
+            "latest_trading_date": "2026-07-17",
+            "close": 0.4541,
+            "weekly_change_pct": -0.61,
+            "change_5d": -0.0028,
+            "direction_5d": "Down",
             "history_file": "macro/history/US_10Y_YIELD.json"
         },
         "US_30Y_YIELD": {
@@ -26,11 +26,11 @@
             "yahoo_ticker": "^TYX",
             "name": "US 30-Year Treasury Yield",
             "category": "yield",
-            "latest_trading_date": "2026-07-10",
-            "close": 0.5071,
-            "weekly_change_pct": 1.73,
-            "change_5d": 0.0086,
-            "direction_5d": "Up",
+            "latest_trading_date": "2026-07-17",
+            "close": 0.5064,
+            "weekly_change_pct": -0.14,
+            "change_5d": -0.0007,
+            "direction_5d": "Down",
             "history_file": "macro/history/US_30Y_YIELD.json"
         },
         "WTI": {
@@ -38,10 +38,10 @@
             "yahoo_ticker": "CL=F",
             "name": "Crude Oil WTI Futures",
             "category": "commodity",
-            "latest_trading_date": "2026-07-12",
-            "close": 74.27,
-            "weekly_change_pct": 8.34,
-            "change_5d": 5.72,
+            "latest_trading_date": "2026-07-19",
+            "close": 83.63,
+            "weekly_change_pct": 7.03,
+            "change_5d": 5.49,
             "direction_5d": "Up",
             "history_file": "macro/history/WTI.json"
         },
@@ -50,11 +50,11 @@
             "yahoo_ticker": "GC=F",
             "name": "Gold Futures",
             "category": "commodity",
-            "latest_trading_date": "2026-07-12",
-            "close": 4079.6001,
-            "weekly_change_pct": -1.82,
-            "change_5d": -75.5,
-            "direction_5d": "Down",
+            "latest_trading_date": "2026-07-19",
+            "close": 4007.8,
+            "weekly_change_pct": 0.27,
+            "change_5d": 10.8,
+            "direction_5d": "Up",
             "history_file": "macro/history/GOLD.json"
         },
         "DXY": {
@@ -62,11 +62,11 @@
             "yahoo_ticker": "DX-Y.NYB",
             "name": "US Dollar Index",
             "category": "currency_index",
-            "latest_trading_date": "2026-07-12",
-            "close": 101.112,
-            "weekly_change_pct": 0.26,
-            "change_5d": 0.262,
-            "direction_5d": "Up",
+            "latest_trading_date": "2026-07-19",
+            "close": 100.769,
+            "weekly_change_pct": -0.5,
+            "change_5d": -0.511,
+            "direction_5d": "Down",
             "history_file": "macro/history/DXY.json"
         },
         "VIX": {
@@ -74,11 +74,11 @@
             "yahoo_ticker": "^VIX",
             "name": "CBOE Volatility Index",
             "category": "volatility",
-            "latest_trading_date": "2026-07-10",
-            "close": 15.03,
-            "weekly_change_pct": -6.93,
-            "change_5d": -1.12,
-            "direction_5d": "Down",
+            "latest_trading_date": "2026-07-17",
+            "close": 18.77,
+            "weekly_change_pct": 24.88,
+            "change_5d": 3.74,
+            "direction_5d": "Up",
             "history_file": "macro/history/VIX.json"
         },
         "BTC": {
@@ -86,38 +86,74 @@
             "yahoo_ticker": "BTC-USD",
             "name": "Bitcoin USD",
             "category": "crypto",
-            "latest_trading_date": "2026-07-13",
-            "close": 63424.0391,
-            "weekly_change_pct": 0.2,
-            "change_5d": 126.6446,
-            "direction_5d": "Up",
+            "latest_trading_date": "2026-07-20",
+            "close": 64852.6797,
+            "weekly_change_pct": -0.16,
+            "change_5d": -103.4336,
+            "direction_5d": "Down",
             "history_file": "macro/history/BTC.json"
         }
     },
     "fed_and_data_watch": {
-        "week_commencing": "2026-07-13",
-        "week_ending": "2026-07-19",
+        "week_commencing": "2026-07-20",
+        "week_ending": "2026-07-26",
         "fed_speakers": [
             {
+                "speaker_hint": "Jefferson",
+                "title": "Jefferson, Navigating Economic Shocks: A Monetary Policymaker\u2019s Perspective",
+                "published_at": "2026-07-16T23:00:00+00:00",
+                "source_url": "https://www.federalreserve.gov/newsevents/speech/jefferson20260716a.htm",
+                "summary": "Speech At the Stanford Institute for Economic Policy Research, Stanford University, Stanford, California",
+                "tone_hint": "neutral_or_unclear_keyword_hint",
+                "r4_note": "Keyword hint only. R4 should verify the actual Fed speaker message."
+            },
+            {
+                "speaker_hint": "Cook",
+                "title": "Cook, Economic Outlook",
+                "published_at": "2026-07-15T17:00:00+00:00",
+                "source_url": "https://www.federalreserve.gov/newsevents/speech/cook20260715a.htm",
+                "summary": "Speech At The Exchequer Club of Washington D.C., Washington, D.C.",
+                "tone_hint": "neutral_or_unclear_keyword_hint",
+                "r4_note": "Keyword hint only. R4 should verify the actual Fed speaker message."
+            },
+            {
                 "speaker_hint": "Bowman",
-                "title": "Bowman, Opening Remarks on Sound Practices for Artificial Intelligence",
-                "published_at": "2026-07-07T11:00:00+00:00",
-                "source_url": "https://www.federalreserve.gov/newsevents/speech/bowman20260707a.htm",
-                "summary": "Speech At the Financial Stability Board Virtual Outreach Event",
+                "title": "Bowman, Responsible Innovation and Financial Inclusion",
+                "published_at": "2026-07-14T18:55:00+00:00",
+                "source_url": "https://www.federalreserve.gov/newsevents/speech/bowman20260714a.htm",
+                "summary": "Speech At \u201cNext-Gen Financial Inclusion,\u201d the third annual Financial Inclusion Conference hosted by the Federal Reserve Board, Washington, D.C. (via pre-recorded video)",
+                "tone_hint": "neutral_or_unclear_keyword_hint",
+                "r4_note": "Keyword hint only. R4 should verify the actual Fed speaker message."
+            },
+            {
+                "speaker_hint": "Barr",
+                "title": "Barr, Will Artificial Intelligence Broadly Raise Living Standards or Drive Income and Wealth Inequality?",
+                "published_at": "2026-07-14T16:40:00+00:00",
+                "source_url": "https://www.federalreserve.gov/newsevents/speech/barr20260714a.htm",
+                "summary": "Speech At \u201cNext-Gen Financial Inclusion,\u201d the third annual Financial Inclusion Conference hosted by the Federal Reserve Board",
                 "tone_hint": "neutral_or_unclear_keyword_hint",
                 "r4_note": "Keyword hint only. R4 should verify the actual Fed speaker message."
             },
             {
                 "speaker_hint": "Waller",
-                "title": "Waller, Two Thoughts on the Transmission of Monetary Policy",
-                "published_at": "2026-07-06T15:00:00+00:00",
-                "source_url": "https://www.federalreserve.gov/newsevents/speech/waller20260706a.htm",
-                "summary": "Speech At &quot;Challenges for Monetary Policy Transmission in a Changing World,&quot; a conference sponsored by the Bank of Italy for the research network initiated by the European System of Central Banks, Rome, Italy",
+                "title": "Waller, Monetary Policy at a Crossroads",
+                "published_at": "2026-07-13T16:30:00+00:00",
+                "source_url": "https://www.federalreserve.gov/newsevents/speech/waller20260713a.htm",
+                "summary": "Speech At the New York Association for Business Economics, New York, New York",
+                "tone_hint": "neutral_or_unclear_keyword_hint",
+                "r4_note": "Keyword hint only. R4 should verify the actual Fed speaker message."
+            },
+            {
+                "speaker_hint": "Bowman",
+                "title": "Bowman, Modernizing Financial Regulation",
+                "published_at": "2026-07-13T09:25:00+00:00",
+                "source_url": "https://www.federalreserve.gov/newsevents/speech/bowman20260713a.htm",
+                "summary": "Speech At a Bank Policy Institute London Conference, London, United Kingdom",
                 "tone_hint": "neutral_or_unclear_keyword_hint",
                 "r4_note": "Keyword hint only. R4 should verify the actual Fed speaker message."
             }
         ],
-        "fed_speaker_count": 2,
+        "fed_speaker_count": 6,
         "inflation_data": [],
         "major_data_releases": [],
         "data_release_errors": {
@@ -125,7 +161,17 @@
             "PPI": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/ppi.rss",
             "IMPORT_EXPORT_PRICES": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/ximpim.rss",
             "REAL_EARNINGS": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/realer.rss",
+            "EMPLOYMENT_SITUATION": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/empsit.rss",
+            "BLS_CALENDAR_ICS": "403 Client Error: Forbidden for url: https://www.bls.gov/schedule/news_release/bls.ics"
+        },
+        "rss_errors": {
+            "CPI": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/cpi.rss",
+            "PPI": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/ppi.rss",
+            "IMPORT_EXPORT_PRICES": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/ximpim.rss",
+            "REAL_EARNINGS": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/realer.rss",
             "EMPLOYMENT_SITUATION": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/empsit.rss"
-        }
+        },
+        "calendar_source": "BLS RSS feeds + BLS release calendar ICS fallback",
+        "calendar_source_url": "https://www.bls.gov/schedule/news_release/bls.ics"
     }
 }

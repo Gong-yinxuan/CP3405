@@ -1,49 +1,56 @@
 # R4 Macro Agent — Week 07
 
-> **Auto-generated:** Generated from `Macro Collector` output dated 2026-07-13T02:50:51Z. Fields marked *Not automated* need to be filled in by hand -- see the script docstring for why.
+> **Auto-generated:** Generated from `Macro Collector` output dated 2026-07-20T01:40:21Z. This report mainly uses Prism automation outputs. Fields marked **manual review** were added by R4 after checking external sources.
 
 ## FED & RATES
 - Fed target rate: 3.50%–3.75% (source: FRED DFEDTARL/DFEDTARU)
-- Fed hold probability: Not automated (CME FedWatch has no free public API)
+- Fed hold probability: **Manual review** — [fill FedWatch value here] from CME FedWatch as of [date/time checked]
 - Next FOMC: 29 July 2026
 - 2Y Yield: 4.16% (source: FRED DGS2)
-- 10Y Yield: 4.57%
-- 30Y Yield: 5.07%
-- Yield curve: [normal], 2Y 4.16% / 10Y 4.57% / 30Y 5.07%
-- Yield direction: Slightly Rising
+- 10Y Yield: 4.54%
+- 30Y Yield: 5.06%
+- Yield curve: [normal], 2Y 4.16% / 10Y 4.54% / 30Y 5.06%
+- Yield direction: Flat
 
 ## COMMODITIES & DOLLAR
-- Crude Oil WTI: $74.27, Rising
-- Gold: $4,079.60, Slightly Falling
-- DXY: 101.11, Flat
-- VIX: 15.03, Falling
-- BTC: $63,424.04, Flat
+- Crude Oil WTI: $83.63, Rising
+- Gold: $4,007.80, Flat
+- DXY: 100.77, Slightly Falling
+- VIX: 18.77, Rising
+- BTC: $64,852.68, Flat
 
 ## WEEK-AHEAD CALENDAR
-*Not automated — BLS RSS feeds returned errors this run (CPI, PPI, IMPORT_EXPORT_PRICES, REAL_EARNINGS, EMPLOYMENT_SITUATION). Fill in manually from a calendar source (e.g. Investing.com, ForexFactory).*
+*Not automated — BLS release metadata could not be collected this run (CPI, PPI, IMPORT_EXPORT_PRICES, REAL_EARNINGS, EMPLOYMENT_SITUATION, BLS_CALENDAR_ICS).*
 
 | Day | Event | Expected | Importance |
 |---|---|---|---|
-| _fill manually_ | | | |
+| Week 07 | BLS data watch | BLS release metadata was not available from Prism automation. | Medium |
 
 ## KEY EARNINGS
-*Not automated — no earnings calendar collected. Fill in manually.*
 
 | Company | Date | Why It Matters |
 |---|---|---|
-| _fill manually_ | | |
+| Not available from Prism automation | Not available | The current Prism run did not collect earnings calendar data. |
 
 ## CONFIRMED NEWS EVENTS
-*Not automated — no news collection wired up yet. Fill in manually.*
+- Fed speech captured: Jefferson — Jefferson, Navigating Economic Shocks: A Monetary Policymaker’s Perspective (neutral_or_unclear_keyword_hint).
+- Fed speech captured: Cook — Cook, Economic Outlook (neutral_or_unclear_keyword_hint).
+- Fed speech captured: Bowman — Bowman, Responsible Innovation and Financial Inclusion (neutral_or_unclear_keyword_hint).
+- Fed speech captured: Barr — Barr, Will Artificial Intelligence Broadly Raise Living Standards or Drive Income and Wealth Inequality? (neutral_or_unclear_keyword_hint).
+- Fed speech captured: Waller — Waller, Monetary Policy at a Crossroads (neutral_or_unclear_keyword_hint).
+- Fed speech captured: Bowman — Bowman, Modernizing Financial Regulation (neutral_or_unclear_keyword_hint).
+- Treasury yield pressure confirmed: average 10Y/30Y weekly change is -0.38%.
+- Oil inflation-risk signal confirmed: WTI weekly change is +7.03%.
+- Gold weakness confirmed: gold weekly change is +0.27%.
 
 ## MACRO BIAS
-**Slightly Bearish** _(auto-drafted from yields/VIX/oil/gold/DXY only -- no Fed, calendar, or news signal was available; review and rewrite once those sections are filled in)_
+**Slightly Bearish / Cautious** _(auto-drafted from Prism automation data)_
 
-Yields are rising on the week (avg +1.80%), with VIX at 15.0. Oil, gold, and dollar moves were weighed alongside these to produce a rough slightly bearish lean (1 risk-on signal(s) vs 2 risk-off signal(s)). This draft does NOT reflect any Fed policy stance, scheduled data releases, earnings, or news events, since none of those are currently automated -- update this paragraph once those sections are filled in.
+The macro bias is **slightly bearish** because Treasury yields are roughly flat (average 10Y/30Y weekly change -0.38%). WTI is Rising, gold is Flat, DXY is Slightly Falling, and VIX at 18.8. Prism counted 0 risk-on signal(s) and 1 risk-off signal(s). Because the signals are mixed, R4 should treat this as a cautious macro read rather than a strong directional call.
 
 ## CONFIDENCE
-**Low** _(auto-drafted)_
-This confidence is capped at Low because Fed hold probability, the Week-Ahead Calendar, Key Earnings, and Confirmed News Events sections are still not automated (Fed target rate, 2Y yield, and next FOMC date now are). Once the remaining sections are completed by hand, confidence should be reassessed.
+**Medium-Low** _(auto-drafted from Prism automation completeness)_
+Confidence is **Medium-Low** because Prism collected the main market data, Fed speech metadata, BLS schedule metadata when available, and earnings calendar items when available. However, FedWatch probability and some detailed macro context may still require manual review.
 
 ## INVALIDATION
-_Not automated — write this once the Fed/Rates, calendar, and news sections above are filled in by hand, since invalidation conditions depend on those events._
+The cautious macro bias would be invalidated if Treasury yields stop rising, WTI loses upward momentum, and VIX remains low or continues falling. The cautious view would be strengthened if the 10Y and 30Y yields continue rising, WTI keeps moving higher, gold continues falling, or VIX begins rising from its current level.
