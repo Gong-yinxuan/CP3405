@@ -21,12 +21,17 @@
 
 ## WEEK-AHEAD CALENDAR
 
+## WEEK-AHEAD CALENDAR
+
+**Manual review required:** The previous Week-Ahead Calendar was a full global economic calendar with expected values. The current Prism pipeline only captures Fed speech metadata and partial BLS/Fed data, so this section is marked as manual review instead of pretending the full calendar was automated.
+
 | Day | Event | Expected | Importance |
 |---|---|---|---|
-| Week 07 | Fed speaker watch | Prism captured 4 Fed speech item(s): Waller, Bowman. The tone hints were neutral or unclear. | Medium |
-| Week 07 | BLS data watch | Prism could not collect CPI/PPI/employment release metadata because BLS RSS returned errors for CPI, PPI, IMPORT_EXPORT_PRICES, REAL_EARNINGS, EMPLOYMENT_SITUATION. | Medium |
+| Manual review required | Full global macro calendar not automated by current Prism pipeline | Expected values not automated | High |
+| Week 07 | Fed speaker watch | Prism captured 4 Fed speech item(s): Waller, Bowman. Waller was the most market-relevant because the speech connected to inflation, energy-price pressure, and incoming data. | Medium |
+| Week 07 | BLS data watch | Prism could not collect full CPI/PPI/employment release metadata in this run. | Medium |
 | Week 07 | Yield movement watch | 10Y yield is 4.61% and 30Y yield is 5.10%. Yield direction is Slightly Rising. | High |
-| Week 07 | Oil and volatility watch | WTI is Rising; VIX is Rising at 17.16. This creates a mixed macro signal. | High |
+| Week 07 | Oil and volatility watch | WTI is Rising and VIX is Rising at 17.16. This creates a cautious macro signal because oil inflation pressure and volatility are both increasing. | High |
 
 ## KEY EARNINGS
 
