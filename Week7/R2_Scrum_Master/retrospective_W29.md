@@ -31,4 +31,4 @@
 
 ## 🚀 Key Takeaways for Sprint 8
 1. **Freeze System Tags:** Establish a hard rule that the DevOps Lead (R9) will only cut the final release tag after a final verbal or written sign-off from the Scrum Master on Sunday evening.
-2. **Document Custom Scripts Early:** Maintain our excellent workflow automation strategy by prioritizing script-based execution over manual report generation early in the sprint cycle.
+2. **Enhance Backlog Clarity:** Improve backlog grooming prior to the next sprint by embedding strict Definitions of Done (DoD) and explicit fulfillment conditions for each role to prevent role-swap confusion.
