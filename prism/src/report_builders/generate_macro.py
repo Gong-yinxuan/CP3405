@@ -164,6 +164,22 @@ def direction_word(weekly_change_pct: float, up_word="Rising", down_word="Fallin
     return f"{magnitude}{word}".strip()
 
 
+def format_release_day(value: str, fallback: str = "Week") -> str:
+    """
+    Format an ISO datetime/date string from collector output for the markdown table.
+    """
+
+    if not value:
+        return fallback
+
+    try:
+        clean_value = value.replace("Z", "+00:00")
+        parsed = datetime.fromisoformat(clean_value)
+        return parsed.strftime("%Y-%m-%d")
+    except Exception:
+        return value[:10] if len(value) >= 10 else fallback
+
+
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from week_utils import detect_next_week_number  # noqa: E402
@@ -225,189 +241,6 @@ def build_macro_bias(market: dict) -> tuple:
     return bias, avg_yield_change, vix_level, risk_on_points, risk_off_points
 
 
-
-def fmt_asset_line(label: str, entry: dict | None, prefix: str = "", suffix: str = "") -> str:
-    if not entry:
-        return f"- {label}: Not available from Prism automation"
-    close = entry.get("close")
-    change = entry.get("weekly_change_pct")
-    direction = direction_word(change)
-    if isinstance(close, (int, float)):
-        if prefix == "$":
-            return f"- {label}: ${close:,.2f}, {direction}"
-        return f"- {label}: {prefix}{close:.2f}{suffix}, {direction}"
-    return f"- {label}: Not available from Prism automation"
-
-
-def describe_fed_speakers(fdw: dict) -> str:
-    speakers = fdw.get("fed_speakers", [])
-    if not speakers:
-        return "No Fed speech metadata was collected by Prism in this run."
-
-    names = []
-    tones = set()
-
-    for item in speakers:
-        name = item.get("speaker_hint", "Unknown")
-        tone = item.get("tone_hint", "unknown")
-        if name not in names:
-            names.append(name)
-        tones.add(tone)
-
-    names_text = ", ".join(names)
-    if tones == {"neutral_or_unclear_keyword_hint"}:
-        tone_text = "tone hints were neutral or unclear"
-    else:
-        tone_text = "tone hints were mixed"
-
-    return f"Prism captured {len(speakers)} Fed speech item(s): {names_text}. The {tone_text}."
-
-
-def build_automation_calendar_rows(market: dict, fdw: dict, week_number: int) -> list[dict]:
-    y10 = get(market, "US_10Y_YIELD")
-    y30 = get(market, "US_30Y_YIELD")
-    wti = get(market, "WTI")
-    vix = get(market, "VIX")
-    errors = fdw.get("data_release_errors", {})
-    data_items = fdw.get("inflation_data", []) + fdw.get("major_data_releases", [])
-
-    week_label = f"Week {int(week_number):02d}"
-
-    rows = [
-        {
-            "day": week_label,
-            "event": "Fed speaker watch",
-            "expected": describe_fed_speakers(fdw),
-            "importance": "Medium"
-        }
-    ]
-
-    if data_items:
-        for item in data_items:
-            feed = item.get("feed", "BLS")
-            title = item.get("title", "BLS release")
-            published = item.get("published_at", "date unavailable")
-            rows.append({
-                "day": week_label,
-                "event": f"{feed} release metadata",
-                "expected": f"{title}. Published/dated: {published}.",
-                "importance": "High" if feed in {"CPI", "PPI", "EMPLOYMENT_SITUATION"} else "Medium"
-            })
-    elif errors:
-        rows.append({
-            "day": week_label,
-            "event": "BLS data watch",
-            "expected": (
-                f"Prism could not collect CPI/PPI/employment release metadata because "
-                f"BLS RSS returned errors for {', '.join(errors.keys())}."
-            ),
-            "importance": "Medium"
-        })
-    else:
-        rows.append({
-            "day": week_label,
-            "event": "BLS data watch",
-            "expected": "No CPI/PPI/employment release metadata was collected by Prism in this run.",
-            "importance": "Medium"
-        })
-
-    if y10 and y30:
-        rows.append({
-            "day": week_label,
-            "event": "Yield movement watch",
-            "expected": (
-                f"10Y yield is {fmt_yield_pct(y10)} and 30Y yield is {fmt_yield_pct(y30)}. "
-                f"Yield direction is {direction_word((y10.get('weekly_change_pct', 0) + y30.get('weekly_change_pct', 0)) / 2)}."
-            ),
-            "importance": "High"
-        })
-    else:
-        rows.append({
-            "day": week_label,
-            "event": "Yield movement watch",
-            "expected": "Yield data was incomplete in the Prism macro run.",
-            "importance": "High"
-        })
-
-    if wti and vix:
-        rows.append({
-            "day": week_label,
-            "event": "Oil and volatility watch",
-            "expected": (
-                f"WTI is {direction_word(wti.get('weekly_change_pct'))}; "
-                f"VIX is {direction_word(vix.get('weekly_change_pct'))} at {vix.get('close'):.2f}. "
-                "This creates a mixed macro signal."
-            ),
-            "importance": "High"
-        })
-
-    return rows
-
-def build_macro_bias_text(bias: str, avg_yield_change: float, vix_level, risk_on_pts: int, risk_off_pts: int, market: dict) -> str:
-    y10 = get(market, "US_10Y_YIELD")
-    y30 = get(market, "US_30Y_YIELD")
-    wti = get(market, "WTI")
-    gold = get(market, "GOLD")
-    dxy = get(market, "DXY")
-    vix = get(market, "VIX")
-    btc = get(market, "BTC")
-
-    yield_desc = "rising" if avg_yield_change > 0.5 else ("falling" if avg_yield_change < -0.5 else "mostly flat")
-    vix_desc = f"VIX is {direction_word(vix.get('weekly_change_pct'))} at {vix_level:.2f}" if vix and vix_level is not None else "VIX data is unavailable"
-
-    return (
-        f"The macro bias is **{bias.lower()}** because Treasury yields are {yield_desc} "
-        f"(average 10Y/30Y weekly change {avg_yield_change:+.2f}%). "
-        f"WTI is {direction_word(wti.get('weekly_change_pct')) if wti else 'not available'}, "
-        f"gold is {direction_word(gold.get('weekly_change_pct')) if gold else 'not available'}, "
-        f"DXY is {direction_word(dxy.get('weekly_change_pct')) if dxy else 'not available'}, "
-        f"and {vix_desc}. BTC is {direction_word(btc.get('weekly_change_pct')) if btc else 'not available'}. "
-        f"Prism counted {risk_on_pts} risk-on signal(s) and {risk_off_pts} risk-off signal(s). "
-        "Because the signals are mixed, R4 should treat this as a cautious macro read rather than a strong directional call."
-    )
-
-
-def build_confidence_text(fdw: dict) -> str:
-    missing_items = []
-
-    if not fdw.get("fed_speakers"):
-        missing_items.append("Fed speech metadata")
-    if fdw.get("data_release_errors"):
-        missing_items.append("BLS release metadata")
-    if not fdw.get("inflation_data"):
-        missing_items.append("inflation release details")
-    if not fdw.get("major_data_releases"):
-        missing_items.append("major data release details")
-
-    if missing_items:
-        return (
-            "Confidence is **Medium-Low** because Prism collected the main market data "
-            "but some macro context is incomplete: "
-            + ", ".join(missing_items)
-            + ". The output still follows the automation-only rule by marking missing fields as unavailable instead of using manual external sources."
-        )
-
-    return (
-        "Confidence is **Medium** because Prism collected market data plus Fed/data-watch metadata. "
-        "R4 should still avoid high confidence because macro conditions can change quickly."
-    )
-
-
-def build_invalidation_text(market: dict) -> str:
-    y10 = get(market, "US_10Y_YIELD")
-    y30 = get(market, "US_30Y_YIELD")
-    wti = get(market, "WTI")
-    vix = get(market, "VIX")
-    gold = get(market, "GOLD")
-
-    return (
-        "The cautious macro bias would be invalidated if Treasury yields stop rising, "
-        "WTI loses upward momentum, and VIX remains low or continues falling. "
-        "The cautious view would be strengthened if the 10Y and 30Y yields continue rising, "
-        "WTI keeps moving higher, gold continues falling, or VIX begins rising from its current level."
-    )
-
-
 def build_markdown(data: dict, week_number: int) -> str:
     market = data.get("macro_market_data", {})
     fdw = data.get("fed_and_data_watch", {})
@@ -438,24 +271,20 @@ def build_markdown(data: dict, week_number: int) -> str:
     if fed_data["errors"]:
         lines.append(f"> **FRED fetch warnings:** {'; '.join(fed_data['errors'])}")
     lines.append("")
-
     lines.append("## FED & RATES")
     if fed_data["target_lower"] is not None and fed_data["target_upper"] is not None:
-        lines.append(f"- Fed target rate: {fed_data['target_lower']:.2f}%–{fed_data['target_upper']:.2f}% (source: automated FRED fetch in Prism report builder)")
+        lines.append(f"- Fed target rate: {fed_data['target_lower']:.2f}%–{fed_data['target_upper']:.2f}% (source: FRED DFEDTARL/DFEDTARU)")
     else:
-        lines.append("- Fed target rate: Not available from this Prism run")
-    lines.append(
-        "- Fed hold probability: **Manual review** — [fill FedWatch value here] "
-        "from CME FedWatch as of [date/time checked]"
-    )
+        lines.append("- Fed target rate: Not automated (FRED fetch failed this run — see warning above)")
+    lines.append("- Fed hold probability: **Manual review** — [fill FedWatch value here] from CME FedWatch as of [date/time checked]")
     if fomc_date:
-        lines.append(f"- Next FOMC: {fomc_date.strftime('%d %B %Y')} (from Prism's hardcoded FOMC schedule)")
+        lines.append(f"- Next FOMC: {fomc_date.strftime('%d %B %Y')}")
     else:
-        lines.append("- Next FOMC: Not available from this Prism run")
+        lines.append("- Next FOMC: Not automated (hardcoded calendar has no more upcoming dates — extend FOMC_DECISION_DATES)")
     if fed_data["y2"] is not None:
-        lines.append(f"- 2Y Yield: {fed_data['y2']:.2f}% (source: automated FRED fetch in Prism report builder)")
+        lines.append(f"- 2Y Yield: {fed_data['y2']:.2f}% (source: FRED DGS2)")
     else:
-        lines.append("- 2Y Yield: Not available from this Prism run")
+        lines.append("- 2Y Yield: Not automated (FRED fetch failed this run — see warning above)")
     lines.append(f"- 10Y Yield: {fmt_yield_pct(y10)}")
     lines.append(f"- 30Y Yield: {fmt_yield_pct(y30)}")
     if fed_data["y2"] is not None and y10 and y30:
@@ -472,84 +301,92 @@ def build_markdown(data: dict, week_number: int) -> str:
     elif y10 and y30:
         y10_pct = y10["close"] * YIELD_DISPLAY_MULTIPLIER
         y30_pct = y30["close"] * YIELD_DISPLAY_MULTIPLIER
-        curve_note = "10Y < 30Y" if y10_pct < y30_pct else "10Y >= 30Y"
+        curve_note = "10Y < 30Y" if y10_pct < y30_pct else "10Y >= 30Y (inverted vs 30Y)"
         lines.append(f"- Yield curve: 2Y unavailable this run — {curve_note}")
     else:
-        lines.append("- Yield curve: Not available from this Prism run")
+        lines.append("- Yield curve: Not automated")
     lines.append(f"- Yield direction: {direction_word(avg_yield_change)}")
     lines.append("")
-
     lines.append("## COMMODITIES & DOLLAR")
-    lines.append(fmt_asset_line("Crude Oil WTI", wti, prefix="$"))
-    lines.append(fmt_asset_line("Gold", gold, prefix="$"))
-    lines.append(fmt_asset_line("DXY", dxy))
-    lines.append(fmt_asset_line("VIX", vix))
-    lines.append(fmt_asset_line("BTC", btc, prefix="$"))
+    if wti:
+        lines.append(f"- Crude Oil WTI: ${wti['close']:.2f}, {direction_word(wti['weekly_change_pct'])}")
+    else:
+        lines.append("- Crude Oil WTI: Not automated")
+    if gold:
+        lines.append(f"- Gold: ${gold['close']:,.2f}, {direction_word(gold['weekly_change_pct'])}")
+    else:
+        lines.append("- Gold: Not automated")
+    if dxy:
+        lines.append(f"- DXY: {dxy['close']:.2f}, {direction_word(dxy['weekly_change_pct'])}")
+    else:
+        lines.append("- DXY: Not automated")
+    if vix:
+        lines.append(f"- VIX: {vix['close']:.2f}, {direction_word(vix['weekly_change_pct'])}")
+    if btc:
+        lines.append(f"- BTC: ${btc['close']:,.2f}, {direction_word(btc['weekly_change_pct'])}")
     lines.append("")
-
     lines.append("## WEEK-AHEAD CALENDAR")
+    bls_events = fdw.get("inflation_data", []) + fdw.get("major_data_releases", [])
+    calendar_source = fdw.get("calendar_source", "Prism BLS collector")
+    errors = fdw.get("data_release_errors", {})
+
+    if bls_events:
+        lines.append(f"*BLS release schedule collected automatically from {calendar_source}. Expected consensus values are not automated.*")
+    elif errors:
+        lines.append(f"*Not automated — BLS release metadata could not be collected this run ({', '.join(errors.keys())}).*")
+    else:
+        lines.append("*Not automated — no BLS calendar data collected this run.*")
+
     lines.append("")
     lines.append("| Day | Event | Expected | Importance |")
     lines.append("|---|---|---|---|")
-    for row in build_automation_calendar_rows(market, fdw, week_number):
-        lines.append(f"| {row['day']} | {row['event']} | {row['expected']} | {row['importance']} |")
-    lines.append("")
 
+    if bls_events:
+        for item in bls_events:
+            day = format_release_day(item.get("published_at", ""), fallback=f"Week {week_str}")
+            title = item.get("title", item.get("event", "BLS release"))
+            expected = item.get("expected", "Scheduled BLS release collected by Prism. Expected value is not automated.")
+            importance = item.get("importance", "Medium")
+            lines.append(f"| {day} | {title} | {expected} | {importance} |")
+    else:
+        lines.append(f"| Week {week_str} | BLS data watch | BLS release metadata was not available from Prism automation. | Medium |")
+
+    lines.append("")
     lines.append("## KEY EARNINGS")
+    lines.append("*Not automated — no earnings calendar collected. Fill in manually.*")
     lines.append("")
     lines.append("| Company | Date | Why It Matters |")
     lines.append("|---|---|---|")
-    earnings = fdw.get("earnings_calendar", [])
-    if earnings:
-        for item in earnings:
-            company = item.get("company", item.get("ticker", "Unknown"))
-            date_text = item.get("date", "Date unavailable")
-            why = item.get("why_it_matters", "Macro relevance not provided by Prism.")
-            lines.append(f"| {company} | {date_text} | {why} |")
-    else:
-        err_count = len(fdw.get("earnings_errors", {}))
-        reason = f"Prism checked the yfinance earnings watchlist, but no Week {week_str} earnings dates were returned."
-        if err_count:
-            reason += f" Earnings lookup also recorded {err_count} ticker-level warning(s)."
-        lines.append(f"| Not available from Prism automation | Not available | {reason} |")
+    lines.append("| _fill manually_ | | |")
     lines.append("")
-
     lines.append("## CONFIRMED NEWS EVENTS")
+    lines.append("*Not automated — no news collection wired up yet. Fill in manually.*")
     lines.append("")
-    confirmed_events = fdw.get("confirmed_news_events", [])
-    if confirmed_events:
-        for event in confirmed_events:
-            lines.append(f"- {event}")
-    else:
-        lines.append("- No confirmed news events were collected by the current Prism automation run.")
-        lines.append(f"- {describe_fed_speakers(fdw)}")
-        lines.append(
-            f"- Main automated macro signals: yields are {direction_word(avg_yield_change)}, "
-            f"WTI is {direction_word(wti.get('weekly_change_pct')) if wti else 'not available'}, "
-            f"gold is {direction_word(gold.get('weekly_change_pct')) if gold else 'not available'}, "
-            f"DXY is {direction_word(dxy.get('weekly_change_pct')) if dxy else 'not available'}, "
-            f"VIX is {direction_word(vix.get('weekly_change_pct')) if vix else 'not available'}, "
-            f"and BTC is {direction_word(btc.get('weekly_change_pct')) if btc else 'not available'}."
-        )
-        if fdw.get("data_release_errors"):
-            lines.append(f"- BLS data release collection returned errors for: {', '.join(fdw.get('data_release_errors', {}).keys())}.")
-    lines.append("")
-
     lines.append("## MACRO BIAS")
-    lines.append(f"**{bias} / Cautious** _(auto-drafted from Prism automation data)_")
+    lines.append(f"**{bias}** _(auto-drafted from Prism automation data)_")
     lines.append("")
-    lines.append(build_macro_bias_text(bias, avg_yield_change, vix_level, risk_on_pts, risk_off_pts, market))
+    yield_desc = "falling" if avg_yield_change < -0.5 else ("rising" if avg_yield_change > 0.5 else "roughly flat")
+    vix_desc = f"VIX at {vix_level:.1f}" if vix_level is not None else "VIX data unavailable"
+    lines.append(f"Yields are {yield_desc} on the week (avg {avg_yield_change:+.2f}%), with {vix_desc}. "
+                 f"Oil, gold, and dollar moves were weighed alongside these to produce a rough {bias.lower()} lean "
+                 f"({risk_on_pts} risk-on signal(s) vs {risk_off_pts} risk-off signal(s)). "
+                 f"BLS scheduled release metadata is included when available from Prism, but FedWatch probability, "
+                 f"earnings details, and confirmed news still require manual review if your team chooses to add them.")
     lines.append("")
-
     lines.append("## CONFIDENCE")
     lines.append("**Medium-Low** _(auto-drafted from Prism automation completeness)_")
-    lines.append(build_confidence_text(fdw))
+    lines.append("Confidence is Medium-Low because Prism collected the main market data and BLS release schedule metadata when available, "
+                 "but FedWatch probability, earnings details, and confirmed news are still incomplete or require manual review.")
     lines.append("")
-
     lines.append("## INVALIDATION")
-    lines.append(build_invalidation_text(market))
+    lines.append(
+        "The cautious macro bias would be invalidated if Treasury yields stop rising, WTI loses upward momentum, "
+        "and VIX remains low or continues falling. The cautious view would be strengthened if the 10Y and 30Y "
+        "yields continue rising, WTI keeps moving higher, gold continues falling, or VIX begins rising from its current level."
+    )
 
     return "\n".join(lines) + "\n"
+
 
 def main():
     parser = argparse.ArgumentParser(description="Generate R4 Macro Agent markdown from collector JSON.")
