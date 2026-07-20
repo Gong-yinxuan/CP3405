@@ -21,10 +21,6 @@
 
 ## WEEK-AHEAD CALENDAR
 
-## WEEK-AHEAD CALENDAR
-
-## WEEK-AHEAD CALENDAR
-
 **Manual review:** This calendar follows the previous week-ahead format with major global macro events, expected values, and importance levels. These rows were added manually because the current Prism pipeline does not fully automate a global economic calendar with consensus expectations.
 
 | Day | Event | Expected | Importance |
