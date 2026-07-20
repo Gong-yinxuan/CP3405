@@ -1,0 +1,27 @@
+{
+  "weekly_regime": "Risk-Off / Corrective Phase",
+  "confidence_score": "High",
+  "spx_pct_estimate": "-0.5% to -2.0%",
+  "ndx_pct_estimate": "-2.0% to -5.0%",
+  "iwm_pct_estimate": "-1.0% to -3.0%",
+  "top_supporting_reason": "Nasdaq 100 (NDX) in a confirmed 'Zone 3 Bearish' technical breakdown with Technology (XLK) leading weekly sector declines (-5.48%), reinforced by a 24.88% surge in the VIX.",
+  "top_contradiction_cited": "SPX and IWM maintain 'Zone 2 Pullback' EMA conditions with neutral technical biases, suggesting potential for consolidation rather than an immediate steep market-wide collapse for broader indices.",
+  "invalidation_condition": "SPX closing meaningfully above its 8-day EMA (7515.12) or NDX reclaiming its 21-day EMA (29427.65).",
+  "tone_caveat_language": "Favoring defensive and commodity-linked assets while exercising caution in growth-oriented sectors.",
+  "consensus_bias": "BEARISH",
+  "consensus_read_summary": "The market is entering a risk-off and corrective phase, primarily driven by a significant technical breakdown in the Nasdaq 100 and sharp underperformance of the Technology sector. A surge in the VIX and defensive sector rotation further underscore a cautious sentiment, aligning with historical midterm July weakness for growth indices.",
+  "point_of_maximum_divergence": "The primary divergence lies between the outright bearish technical posture of the Nasdaq 100 versus the more neutral 'Zone 2 Pullback' status of the S&P 500 and Russell 2000, suggesting a nuanced rather than uniform market correction.",
+  "key_supporting_factors": [
+    "NDX in 'Zone 3 Bearish' with 8 EMA below 21 EMA and a -4.13% weekly change.",
+    "VIX up 24.88% weekly, indicating increased market fear.",
+    "Technology (XLK) is the leading lagging sector, down -5.48% for the week.",
+    "Midterm year July seasonality is negative for NDX (-0.42%) and IWM (-1.85%).",
+    "US 10Y & 30Y yields trending down, and WTI up 7.0%, suggesting flight to safety and commodity inflation pressures."
+  ],
+  "main_contradiction_risk": "Despite broad weakness, SPX and IWM technically remain in a 'Zone 2 Pullback' with SPX's 8 EMA still above 21 EMA, implying a potential for these broader indices to find support and consolidate rather than follow NDX into a deeper correction immediately.",
+  "invalidation_summary": "The bearish consensus would be invalidated if the S&P 500 reclaims and closes above its 8-day EMA (7515.12) or if the Nasdaq 100 manages to close above its recent 20-day low support candidate (28231.32).",
+  "r7_human_score_question": "How much weight should be given to the strong technical breakdown in NDX and XLK's severe underperformance, versus the less definitive 'Zone 2 Pullback' status of SPX and IWM and SPX's slightly positive midterm July seasonality?",
+  "r6_slide_bullet_1": "Market enters Risk-Off / Corrective Phase; VIX up 24.88% as fear gauge surges.",
+  "r6_slide_bullet_2": "Nasdaq 100 (NDX) confirmed Bearish ('Zone 3'), Technology (XLK) leads sector declines at -5.48% weekly.",
+  "r6_slide_bullet_3": "Defensive (XLP, XLRE) and Commodity (XLE) sectors show strength amidst broader market weakness and negative midterm July seasonality for growth."
+}
