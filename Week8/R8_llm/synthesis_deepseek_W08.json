@@ -1,0 +1,24 @@
+{
+  "weekly_regime": "Mixed Risk-Off with Sector Rotation",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "-1.5% to -2.5%",
+  "ndx_pct_estimate": "-4.0% to -6.0%",
+  "iwm_pct_estimate": "-0.5% to -1.5%",
+  "top_supporting_reason": "Energy sector outperformance (XLE +4.72%) and oil price surge (WTI +7.0%) provide defensive offset to tech weakness",
+  "top_contradiction_cited": "Nasdaq's bearish technicals (Zone 3 Bearish, -4.13% weekly) conflict with midterm-year July seasonal strength (historical +0.66% avg)",
+  "invalidation_condition": "10Y yield closing above 0.55% or VIX breaking below 16.0",
+  "tone_caveat_language": "Defensive tilt with energy/commodity bias offsetting tech underperformance",
+  "consensus_bias": "MIXED",
+  "consensus_read_summary": "Technical indicators show Nasdaq in bearish territory while S&P 500 and Russell 2000 exhibit neutral pullbacks. Macro data reveals rising volatility (VIX +24.88%) and commodity strength (oil +7.0%, gold +0.8%) amid declining yields. Almanac confirms midterm-year July seasonality with energy leading and tech lagging, creating a sector rotation dynamic rather than broad market direction.",
+  "point_of_maximum_divergence": "Aggressive view sees energy/commodity rally as risk-on signal while defensive view interprets VIX spike and tech collapse as risk-off confirmation",
+  "key_supporting_factors": [
+    "Energy sector XLE +4.72% weekly gain aligning with WTI crude +7.0% surge",
+    "VIX at 18.77 signaling elevated volatility premium despite S&P 500's neutral technical bias"
+  ],
+  "main_contradiction_risk": "Tech sector's -5.48% weekly decline in XLK ETF versus historical midterm-year July seasonal strength (+0.66% avg for SPX) creates timing uncertainty",
+  "invalidation_summary": "10Y yield breaking above 0.55% would invalidate the yield-curve-steepener defensive thesis while simultaneously confirming inflation concerns that could pressure tech further",
+  "r7_human_score_question": "Does the energy/commodity rotation reflect genuine risk-on momentum or defensive safe-haven flows, and how should this inform position sizing between tech shorts and energy longs?",
+  "r6_slide_bullet_1": "Nasdaq bearish (Zone 3) while SPX/IWM neutral - expect continued tech weakness with energy offset",
+  "r6_slide_bullet_2": "VIX +25% surge signals volatility premium; energy/gold up 7%/0.8% as defensive hedges",
+  "r6_slide_bullet_3": "Midterm-year July seasonal rank #6 for SPX; sector rotation from tech lag to energy leadership"
+}
