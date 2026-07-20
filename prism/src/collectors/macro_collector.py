@@ -15,7 +15,7 @@ No fake calendar/news data.
 
 import json
 import xml.etree.ElementTree as ET
-from datetime import datetime, timezone, timedelta, date
+from datetime import datetime, timezone, timedelta
 from email.utils import parsedate_to_datetime
 from pathlib import Path
 
@@ -79,27 +79,36 @@ BLS_RELEASE_FEEDS = {
     "EMPLOYMENT_SITUATION": "https://www.bls.gov/feed/empsit.rss"
 }
 
+# Official BLS release calendar fallback.
+# Use this when BLS RSS feeds return 403 or no usable release items.
+BLS_RELEASE_CALENDAR_URL = "https://www.bls.gov/schedule/news_release/bls.ics"
 
-REQUEST_HEADERS = {
-    "User-Agent": "Mozilla/5.0 (compatible; PrismMacroCollector/1.0; +https://github.com/)",
-    "Accept": "application/rss+xml, application/xml, text/xml, text/html;q=0.9,*/*;q=0.8"
-}
-
-
-EARNINGS_WATCHLIST = {
-    # Banks / financials
-    "JPM": {"company": "JPMorgan Chase", "why_it_matters": "Large U.S. bank; credit quality, loan demand, trading revenue, and economic outlook."},
-    "BAC": {"company": "Bank of America", "why_it_matters": "Consumer banking, deposits, net interest income, and credit stress."},
-    "C": {"company": "Citigroup", "why_it_matters": "Global banking, credit trends, and risk appetite."},
-    "WFC": {"company": "Wells Fargo", "why_it_matters": "Consumer credit, loan demand, and deposit pressure."},
-    "GS": {"company": "Goldman Sachs", "why_it_matters": "Investment banking, trading activity, and market-risk appetite."},
-    "MS": {"company": "Morgan Stanley", "why_it_matters": "Investment banking, wealth management, and capital markets sentiment."},
-
-    # Mega-cap / macro-sensitive growth
-    "AAPL": {"company": "Apple", "why_it_matters": "Mega-cap demand signal and large weight in SPX/NDX."},
-    "MSFT": {"company": "Microsoft", "why_it_matters": "Cloud/AI demand and large-cap technology leadership."},
-    "NVDA": {"company": "NVIDIA", "why_it_matters": "AI semiconductor demand and high-beta technology leadership."},
-    "TSLA": {"company": "Tesla", "why_it_matters": "Consumer discretionary risk appetite and high-beta growth sentiment."}
+BLS_RELEASE_CALENDAR_KEYWORDS = {
+    "CPI": {
+        "keywords": ["Consumer Price Index", "CPI"],
+        "bucket": "inflation_data",
+        "importance": "High"
+    },
+    "PPI": {
+        "keywords": ["Producer Price Index", "PPI"],
+        "bucket": "inflation_data",
+        "importance": "High"
+    },
+    "IMPORT_EXPORT_PRICES": {
+        "keywords": ["Import and Export Price Indexes", "U.S. Import and Export Price Indexes"],
+        "bucket": "inflation_data",
+        "importance": "Medium"
+    },
+    "REAL_EARNINGS": {
+        "keywords": ["Real Earnings"],
+        "bucket": "inflation_data",
+        "importance": "Medium"
+    },
+    "EMPLOYMENT_SITUATION": {
+        "keywords": ["Employment Situation"],
+        "bucket": "major_data_releases",
+        "importance": "High"
+    }
 }
 
 
@@ -307,7 +316,7 @@ def fetch_fed_speeches(week_window: dict, max_items: int = 10) -> list[dict]:
     Fetch Fed speaker metadata from the Federal Reserve speeches RSS feed.
     """
 
-    response = requests.get(FED_SPEECHES_RSS_URL, timeout=30, headers=REQUEST_HEADERS)
+    response = requests.get(FED_SPEECHES_RSS_URL, timeout=30)
     response.raise_for_status()
 
     root = ET.fromstring(response.content)
@@ -354,7 +363,7 @@ def fetch_bls_feed(feed_name: str, feed_url: str, week_window: dict, max_items: 
     Fetch BLS release metadata from one BLS RSS feed.
     """
 
-    response = requests.get(feed_url, timeout=30, headers=REQUEST_HEADERS)
+    response = requests.get(feed_url, timeout=30)
     response.raise_for_status()
 
     root = ET.fromstring(response.content)
@@ -394,15 +403,177 @@ def fetch_bls_feed(feed_name: str, feed_url: str, week_window: dict, max_items: 
     return releases
 
 
-def fetch_bls_releases(week_window: dict) -> dict:
+
+def parse_ics_datetime(value: str) -> datetime | None:
     """
-    Fetch CPI/inflation-related and major data-release metadata from BLS RSS feeds.
+    Parse simple ICS date formats used by the BLS release calendar.
+    Supports YYYYMMDD and YYYYMMDDTHHMMSSZ.
+    """
+
+    if not value:
+        return None
+
+    value = value.strip()
+
+    try:
+        if "T" in value:
+            value = value.replace("Z", "")
+            parsed = datetime.strptime(value, "%Y%m%dT%H%M%S")
+        else:
+            parsed = datetime.strptime(value, "%Y%m%d")
+
+        return parsed.replace(tzinfo=timezone.utc)
+
+    except Exception:
+        return None
+
+
+def unfold_ics_lines(text: str) -> list[str]:
+    """
+    ICS files can wrap long lines. A wrapped line starts with a space or tab.
+    This function joins wrapped lines before parsing VEVENT blocks.
+    """
+
+    unfolded = []
+
+    for raw_line in text.splitlines():
+        if raw_line.startswith((" ", "\t")) and unfolded:
+            unfolded[-1] += raw_line[1:]
+        else:
+            unfolded.append(raw_line.strip())
+
+    return unfolded
+
+
+def unescape_ics_text(text: str) -> str:
+    """
+    Clean common ICS escape sequences so report output is readable.
+    """
+
+    return (
+        text.replace("\\,", ",")
+        .replace("\\;", ";")
+        .replace("\\n", " ")
+        .replace("\\N", " ")
+        .strip()
+    )
+
+
+def detect_bls_calendar_category(summary: str) -> tuple[str, str, str] | None:
+    """
+    Return (feed_name, bucket, importance) for BLS calendar event summary.
+    """
+
+    lowered = summary.lower()
+
+    for feed_name, config in BLS_RELEASE_CALENDAR_KEYWORDS.items():
+        for keyword in config["keywords"]:
+            if keyword.lower() in lowered:
+                return feed_name, config["bucket"], config["importance"]
+
+    return None
+
+
+def fetch_bls_release_calendar(week_window: dict) -> dict:
+    """
+    Fetch scheduled BLS release metadata from the official BLS calendar ICS file.
+    This is used as a fallback when the individual BLS RSS feeds are blocked.
     """
 
     output = {
         "inflation_data": [],
         "major_data_releases": [],
-        "errors": {}
+        "errors": {},
+        "source": "BLS release calendar ICS",
+        "source_url": BLS_RELEASE_CALENDAR_URL
+    }
+
+    headers = {
+        "User-Agent": "Mozilla/5.0 (compatible; PrismMacroCollector/1.0; +https://github.com/)",
+        "Accept": "text/calendar,text/plain,*/*"
+    }
+
+    try:
+        response = requests.get(BLS_RELEASE_CALENDAR_URL, timeout=30, headers=headers)
+        response.raise_for_status()
+    except Exception as error:
+        output["errors"]["BLS_CALENDAR_ICS"] = str(error)
+        return output
+
+    lines = unfold_ics_lines(response.text)
+    events = []
+    current_event = None
+
+    for line in lines:
+        if line == "BEGIN:VEVENT":
+            current_event = {}
+            continue
+
+        if line == "END:VEVENT":
+            if current_event:
+                events.append(current_event)
+            current_event = None
+            continue
+
+        if current_event is None or ":" not in line:
+            continue
+
+        key, value = line.split(":", 1)
+        key_name = key.split(";", 1)[0]
+        current_event[key_name] = unescape_ics_text(value)
+
+    week_start = week_window["start"].date()
+    week_end = week_window["end"].date()
+
+    for event in events:
+        summary = event.get("SUMMARY", "")
+        start_value = event.get("DTSTART", "")
+        event_dt = parse_ics_datetime(start_value)
+
+        if not summary or event_dt is None:
+            continue
+
+        event_date = event_dt.date()
+
+        if not (week_start <= event_date <= week_end):
+            continue
+
+        category = detect_bls_calendar_category(summary)
+        if category is None:
+            continue
+
+        feed_name, bucket, importance = category
+
+        item = {
+            "feed": feed_name,
+            "title": summary,
+            "published_at": event_dt.isoformat(),
+            "source_url": BLS_RELEASE_CALENDAR_URL,
+            "summary": "Scheduled BLS release collected automatically from the official BLS release calendar.",
+            "expected": "Scheduled BLS release. Expected consensus value is not automated.",
+            "importance": importance,
+            "source_type": "bls_ics_calendar_fallback"
+        }
+
+        output[bucket].append(item)
+
+    return output
+
+
+def fetch_bls_releases(week_window: dict) -> dict:
+    """
+    Fetch CPI/inflation-related and major data-release metadata.
+
+    First tries the existing BLS RSS feeds. If those feeds return 403 or no
+    usable items, falls back to the official BLS release calendar ICS file.
+    """
+
+    output = {
+        "inflation_data": [],
+        "major_data_releases": [],
+        "errors": {},
+        "rss_errors": {},
+        "calendar_source": "BLS RSS feeds"
     }
 
     inflation_feeds = [
@@ -428,7 +599,7 @@ def fetch_bls_releases(week_window: dict) -> dict:
             output["inflation_data"].extend(items)
 
         except Exception as error:
-            output["errors"][feed_name] = str(error)
+            output["rss_errors"][feed_name] = str(error)
 
     for feed_name in major_data_feeds:
         try:
@@ -442,189 +613,36 @@ def fetch_bls_releases(week_window: dict) -> dict:
             output["major_data_releases"].extend(items)
 
         except Exception as error:
-            output["errors"][feed_name] = str(error)
+            output["rss_errors"][feed_name] = str(error)
 
-    return output
+    has_rss_items = bool(output["inflation_data"] or output["major_data_releases"])
 
+    if has_rss_items:
+        output["calendar_source"] = "BLS RSS feeds"
+        output["errors"] = output["rss_errors"]
+        return output
 
+    print("[WARN] BLS RSS produced no usable items. Trying official BLS calendar ICS fallback...")
 
+    calendar_output = fetch_bls_release_calendar(week_window)
 
-def normalise_earnings_date(value) -> date | None:
-    """
-    yfinance calendar formats can change. This function accepts strings,
-    datetime/date objects, pandas timestamps, or list-like values and returns a date.
-    """
+    if calendar_output["inflation_data"] or calendar_output["major_data_releases"]:
+        output["inflation_data"] = calendar_output["inflation_data"]
+        output["major_data_releases"] = calendar_output["major_data_releases"]
+        output["calendar_source"] = calendar_output["source"]
+        output["calendar_source_url"] = calendar_output["source_url"]
+        output["errors"] = {}
+        output["rss_errors"] = output["rss_errors"]
+        return output
 
-    if value is None:
-        return None
-
-    if isinstance(value, (list, tuple)):
-        if not value:
-            return None
-        value = value[0]
-
-    if hasattr(value, "to_pydatetime"):
-        value = value.to_pydatetime()
-
-    if isinstance(value, datetime):
-        return value.date()
-
-    if isinstance(value, date):
-        return value
-
-    if isinstance(value, str):
-        text = value.strip()
-        if not text:
-            return None
-        # Keep only the date part if yfinance returns a timestamp string.
-        text = text.replace("Z", "").split("T")[0].split(" ")[0]
-        try:
-            return datetime.fromisoformat(text).date()
-        except Exception:
-            return None
-
-    return None
-
-
-def extract_earnings_date_from_calendar(calendar_data) -> date | None:
-    """
-    Best-effort extraction for yfinance calendar output.
-    Handles dict-like and DataFrame-like structures.
-    """
-
-    if calendar_data is None:
-        return None
-
-    # Newer yfinance often returns a dict.
-    if isinstance(calendar_data, dict):
-        for key in ["Earnings Date", "Earnings High", "Earnings Low"]:
-            if key in calendar_data:
-                parsed = normalise_earnings_date(calendar_data.get(key))
-                if parsed:
-                    return parsed
-
-    # Older yfinance sometimes returns a DataFrame with index labels.
-    try:
-        if hasattr(calendar_data, "loc"):
-            for key in ["Earnings Date", "Earnings High", "Earnings Low"]:
-                try:
-                    value = calendar_data.loc[key].iloc[0]
-                    parsed = normalise_earnings_date(value)
-                    if parsed:
-                        return parsed
-                except Exception:
-                    pass
-    except Exception:
-        pass
-
-    # Last fallback: scan values looking for a date.
-    try:
-        values = calendar_data.values.flatten() if hasattr(calendar_data, "values") else []
-        for value in values:
-            parsed = normalise_earnings_date(value)
-            if parsed:
-                return parsed
-    except Exception:
-        pass
-
-    return None
-
-
-def fetch_earnings_calendar(week_window: dict) -> dict:
-    """
-    Fetch upcoming earnings dates for a small macro-relevant watchlist using yfinance.
-    This is best-effort. If yfinance does not return a date, the item is skipped and
-    the error is recorded instead of inventing an earnings event.
-    """
-
-    start_date = week_window["start"].date()
-    end_date = week_window["end"].date()
-
-    output = {
-        "earnings_calendar": [],
-        "errors": {}
+    output["calendar_source"] = "BLS RSS feeds + BLS release calendar ICS fallback"
+    output["calendar_source_url"] = calendar_output.get("source_url", BLS_RELEASE_CALENDAR_URL)
+    output["errors"] = {
+        **output["rss_errors"],
+        **calendar_output.get("errors", {})
     }
-
-    for ticker, info in EARNINGS_WATCHLIST.items():
-        try:
-            yf_ticker = yf.Ticker(ticker)
-            calendar_data = yf_ticker.calendar
-            earnings_date = extract_earnings_date_from_calendar(calendar_data)
-
-            if earnings_date is None:
-                output["errors"][ticker] = "No earnings date returned by yfinance calendar."
-                continue
-
-            if start_date <= earnings_date <= end_date:
-                output["earnings_calendar"].append({
-                    "ticker": ticker,
-                    "company": info["company"],
-                    "date": earnings_date.isoformat(),
-                    "why_it_matters": info["why_it_matters"],
-                    "source": "yfinance calendar"
-                })
-
-        except Exception as error:
-            output["errors"][ticker] = str(error)
-
     return output
 
-
-def build_confirmed_prism_events(output: dict) -> list[str]:
-    """
-    Build a confirmed-events list using only things Prism actually collected.
-    This is not a general news scraper. It summarizes Fed RSS items, BLS release
-    metadata, earnings calendar hits, and large macro-market moves.
-    """
-
-    events = []
-    watch = output.get("fed_and_data_watch", {})
-    market = output.get("macro_market_data", {})
-
-    for speech in watch.get("fed_speakers", []):
-        speaker = speech.get("speaker_hint", "Fed speaker")
-        title = speech.get("title", "Fed speech")
-        tone = speech.get("tone_hint", "unknown tone")
-        events.append(f"Fed speech captured: {speaker} — {title} ({tone}).")
-
-    for item in watch.get("inflation_data", []) + watch.get("major_data_releases", []):
-        feed = item.get("feed", "BLS")
-        title = item.get("title", "BLS release")
-        published = item.get("published_at", "date unavailable")
-        events.append(f"BLS release metadata captured: {feed} — {title} ({published}).")
-
-    for earning in watch.get("earnings_calendar", []):
-        company = earning.get("company", earning.get("ticker", "Company"))
-        date_text = earning.get("date", "date unavailable")
-        events.append(f"Earnings calendar item captured: {company} on {date_text}.")
-
-    y10 = market.get("US_10Y_YIELD", {})
-    y30 = market.get("US_30Y_YIELD", {})
-    wti = market.get("WTI", {})
-    vix = market.get("VIX", {})
-    gold = market.get("GOLD", {})
-
-    yield_changes = [item.get("weekly_change_pct") for item in [y10, y30] if isinstance(item.get("weekly_change_pct"), (int, float))]
-    if yield_changes:
-        avg_yield_change = sum(yield_changes) / len(yield_changes)
-        if avg_yield_change > 1.0:
-            events.append(f"Treasury yield pressure confirmed: average 10Y/30Y weekly change is +{avg_yield_change:.2f}%.")
-        elif avg_yield_change < -1.0:
-            events.append(f"Treasury yield relief confirmed: average 10Y/30Y weekly change is {avg_yield_change:.2f}%.")
-
-    if isinstance(wti.get("weekly_change_pct"), (int, float)) and wti["weekly_change_pct"] > 3:
-        events.append(f"Oil inflation-risk signal confirmed: WTI weekly change is +{wti['weekly_change_pct']:.2f}%.")
-
-    if isinstance(vix.get("weekly_change_pct"), (int, float)) and vix["weekly_change_pct"] < -5:
-        events.append(f"Volatility compression confirmed: VIX weekly change is {vix['weekly_change_pct']:.2f}%.")
-
-    if isinstance(gold.get("weekly_change_pct"), (int, float)) and gold["weekly_change_pct"] < -1.5:
-        events.append(f"Gold weakness confirmed: gold weekly change is {gold['weekly_change_pct']:.2f}%.")
-
-    if not events:
-        events.append("No confirmed macro events were collected by Prism automation in this run.")
-
-    return events
 
 def build_macro_record(symbol: str, info: dict, history: list[dict]) -> dict:
     latest = history[-1]
@@ -723,7 +741,7 @@ def main() -> None:
         "data_source": {
             "market_data": "Yahoo Finance via yfinance",
             "fed_speakers": "Federal Reserve speeches RSS feed",
-            "economic_data_releases": "BLS RSS feeds"
+            "economic_data_releases": "BLS RSS feeds with BLS release calendar ICS fallback"
         },
         "note": (
             "This collector gathers automatic macro market data and Fed + Data Watch metadata. "
@@ -737,10 +755,7 @@ def main() -> None:
             "fed_speaker_count": 0,
             "inflation_data": [],
             "major_data_releases": [],
-            "data_release_errors": {},
-            "earnings_calendar": [],
-            "earnings_errors": {},
-            "confirmed_news_events": []
+            "data_release_errors": {}
         }
     }
 
@@ -807,17 +822,13 @@ def main() -> None:
     output["fed_and_data_watch"]["inflation_data"] = bls_releases["inflation_data"]
     output["fed_and_data_watch"]["major_data_releases"] = bls_releases["major_data_releases"]
     output["fed_and_data_watch"]["data_release_errors"] = bls_releases["errors"]
+    output["fed_and_data_watch"]["rss_errors"] = bls_releases.get("rss_errors", {})
+    output["fed_and_data_watch"]["calendar_source"] = bls_releases.get("calendar_source", "Unknown")
+    output["fed_and_data_watch"]["calendar_source_url"] = bls_releases.get("calendar_source_url", "")
 
+    print(f"[OK] BLS calendar source used: {bls_releases.get('calendar_source', 'Unknown')}")
     print(f"[OK] Inflation releases collected: {len(bls_releases['inflation_data'])}")
     print(f"[OK] Major data releases collected: {len(bls_releases['major_data_releases'])}")
-
-    print("Fetching earnings calendar from yfinance watchlist...")
-    earnings_output = fetch_earnings_calendar(week_window)
-    output["fed_and_data_watch"]["earnings_calendar"] = earnings_output["earnings_calendar"]
-    output["fed_and_data_watch"]["earnings_errors"] = earnings_output["errors"]
-    print(f"[OK] Earnings calendar items collected: {len(earnings_output['earnings_calendar'])}")
-
-    output["fed_and_data_watch"]["confirmed_news_events"] = build_confirmed_prism_events(output)
 
     output_path = project_root / "data" / "macro" / "macro_collector_output.json"
     save_json(output, output_path)
