@@ -5,6 +5,11 @@
 ## 🎯 Sprint Goal
 Deliver an audit-ready, structurally flawless vW30 market-intelligence prediction package before Sunday 26 July 2026, 23:59 SGT. This sprint focuses on eliminating file-path duplication, standardizing naming suffixes, embedding robust programmatic date validation, and securing the tencent/Hy3 model execution layer under the Claude infrastructure harness.
 
+### ❓ Context & Rationale for Directory Constraints
+To ensure pipeline stability across our newly rotated roles, we are treating folder architecture as core engineering infrastructure this sprint:
+*   **Preventing Cross-OS Git Stalls:** Because Linux GitHub runners are case-sensitive while Windows/macOS local machines are not, strict case enforcement (e.g., lowercase `R8_llm`) completely eliminates directory duplication and cross-OS merge locks.
+*   **Protecting Pipeline Pathing:** Automated script steps (e.g., `generate_almanac.py` and downstream LLM hooks) rely on hardcoded paths. Strict folder constraints guarantee zero `FileNotFoundError` execution crashes.
+*   **Enforcing a Single Source of Truth:** Banning outer root file duplication prevents team members from editing out-of-date data snapshots, ensuring R9 seals only verified, finalized metrics tonight.
 ---
 
 ## ⏳ Pipeline Gates & Deadlines
@@ -53,7 +58,7 @@ All roles must place files exactly according to the structure below. No outer ro
         *   📄 `synthesis_chatgpt_W08.json`
         *   📄 `synthesis_deepseek_W08.json`
         *   📄 `synthesis_gemini_W08.json`
-        *   📄 `synthesis_claude_hy3_W08.json`
+        *   📄 `synthesis_claude_W08.json`
     *   📂 **`R10_Calibration/`**
         *   📄 `delta_W29.md` *(Tracks week 29 calibration performance)*
         *   📄 `r10_calibration_W30.md`
