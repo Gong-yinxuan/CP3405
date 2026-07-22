@@ -214,7 +214,131 @@ def call_openrouter_base(prompt, model_name):
         return fallback_metrics(model_name)
 
 def call_claude(prompt):
-    return call_openrouter_base(prompt, "tencent/hy3")
+    """
+    Real Claude call via the Anthropic SDK (ANTHROPIC_API_KEY, already provisioned
+    as a repository secret). This is also the safety fallback source for call_hy3()
+    below, so it must resolve to an actual model response, not a stand-in.
+    """
+    api_key = os.getenv("ANTHROPIC_API_KEY")
+    if not api_key:
+        print("[PRISM] ANTHROPIC_API_KEY missing. Skipping model: Claude")
+        return fallback_metrics("Claude")
+
+    try:
+        client = Anthropic(api_key=api_key)
+        response = client.messages.create(
+            model="claude-sonnet-5",
+            max_tokens=1024,
+            temperature=0.1,
+            system=(
+                "You are a rigid automation server. You must output ONLY a valid raw "
+                "JSON object matching the requested schema keys. Do not include "
+                "conversational notes or markdown wrappers."
+            ),
+            messages=[{"role": "user", "content": prompt}],
+        )
+        raw_text = "".join(
+            block.text for block in response.content if getattr(block, "type", None) == "text"
+        )
+        return json.loads(clean_json_string(raw_text))
+    except Exception as e:
+        print(f"[PRISM] Claude call failed: {e}")
+        return fallback_metrics("Claude")
+
+
+# Matches <think>...</think>, <reasoning>...</reasoning>, <scratchpad>...</scratchpad>
+# style internal-monologue blocks that reasoning-tuned models like tencent/hy3 can leak
+# into the response ahead of (or instead of) the final JSON answer.
+_HY3_REASONING_TAG_PATTERN = re.compile(
+    r"<(think|reasoning|scratchpad|analysis)[^>]*>.*?</\1>",
+    re.IGNORECASE | re.DOTALL,
+)
+
+
+def clean_hy3_reasoning(raw_text):
+    """Strips internal reasoning/thinking tags before the normal JSON extraction runs."""
+    text = _HY3_REASONING_TAG_PATTERN.sub("", raw_text)
+    return clean_json_string(text)
+
+
+def call_hy3(prompt, claude_fallback_result):
+    """
+    Calls tencent/hy3 via OpenRouter, running it "under the Claude infrastructure
+    harness": the same authenticated request pattern the other models use, but with
+    strict hyperparameter boundaries (capped max_tokens/temperature/top_p) to stop
+    internal reasoning tokens from leaking into the output, plus an explicit cleanup
+    pass for any reasoning tags that slip through anyway.
+
+    If the live call fails for any reason (quota/HTTP errors, malformed output, no
+    key configured), it falls back to the Claude result computed this same run, so a
+    single flaky model can never blank out the weekend synthesis pipeline.
+    """
+    api_key = os.getenv("OPENROUTER_API_KEY")
+    if not api_key:
+        print("[PRISM] OPENROUTER_API_KEY missing. Hy3 falling back to Claude backup.")
+        return claude_fallback_result
+
+    url = "https://openrouter.ai/api/v1/chat/completions"
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json",
+        "HTTP-Referer": "https://localhost:3000",
+        "X-Title": "Prism Analytical Synthesis Matrix",
+    }
+    payload = {
+        "model": "tencent/hy3",
+        "messages": [
+            {
+                "role": "system",
+                "content": (
+                    "You are a rigid automation server. Respond with ONLY a valid raw "
+                    "JSON object matching the requested schema keys. Never include your "
+                    "internal reasoning, chain-of-thought, or <think> tags — final answer only."
+                ),
+            },
+            {"role": "user", "content": prompt},
+        ],
+        # Strict hyperparameter boundaries: keep the model tight and deterministic,
+        # and cap max_tokens so a runaway internal-reasoning trace can't leak through
+        # (and can't quietly burn the sprint's OpenRouter budget either).
+        "temperature": 0.1,
+        "top_p": 0.9,
+        "max_tokens": 700,
+    }
+
+    try:
+        response = requests.post(url, headers=headers, json=payload, timeout=45)
+        if response.status_code != 200:
+            print(f"[PRISM] Hy3 HTTP Error: {response.status_code}. Falling back to Claude backup.")
+            return claude_fallback_result
+
+        res_json = response.json()
+        raw_content = ""
+        if "choices" in res_json and res_json["choices"]:
+            raw_content = str(res_json["choices"][0]["message"]["content"]).strip()
+        else:
+            raw_content = str(res_json).strip()
+
+        cleaned = clean_hy3_reasoning(raw_content)
+        start_idx = cleaned.find("{")
+        end_idx = cleaned.rfind("}")
+        if start_idx == -1 or end_idx == -1:
+            print("[PRISM] Hy3 output had no parsable JSON after cleaning. Falling back to Claude backup.")
+            return claude_fallback_result
+
+        pristine_json = cleaned[start_idx:end_idx + 1]
+        pristine_json = re.sub(r",\s*([\}\]])", r"\1", pristine_json)
+
+        try:
+            return json.loads(pristine_json)
+        except Exception:
+            print("[PRISM] Hy3 produced malformed JSON even after cleaning. Falling back to Claude backup.")
+            return claude_fallback_result
+
+    except Exception as e:
+        print(f"[PRISM] Hy3 call failed ({e}). Falling back to Claude backup.")
+        return claude_fallback_result
+
 
 def call_chatgpt(prompt):
     return call_openrouter_base(prompt, "openai/gpt-oss-120b")
@@ -269,7 +393,7 @@ def fallback_metrics(model_name):
              "top_supporting_reason", "top_contradiction_cited", "invalidation_condition", "tone_caveat_language"]}
 
 
-def generate_markdown_report(c, gpt, gem, ds, raw_data):
+def generate_markdown_report(c, gpt, gem, ds, raw_data, week_suffix_file="W08"):
     """Fully automated: Every table row and conclusion block is generated from live data."""
     # Dynamic Week Calculation: Extract week from almanac data or calculate it
     almanac_window = raw_data.get("almanac", {}).get("forecast_window", {})
@@ -400,10 +524,11 @@ def generate_markdown_report(c, gpt, gem, ds, raw_data):
         "---",
         "### Raw responses saved as:",
         # FIXED: References transformed from .txt to .json to align with your artifact updates
-        f"* `synthesis_chatgpt_{current_week_label.replace(' ', '')}.json`",
-        f"* `synthesis_claude_{current_week_label.replace(' ', '')}.json`",
-        f"* `synthesis_gemini_{current_week_label.replace(' ', '')}.json`",
-        f"* `synthesis_deepseek_{current_week_label.replace(' ', '')}.json`"
+        f"* `synthesis_chatgpt_{week_suffix_file}.json`",
+        f"* `synthesis_claude_{week_suffix_file}.json`",
+        f"* `synthesis_gemini_{week_suffix_file}.json`",
+        f"* `synthesis_deepseek_{week_suffix_file}.json`",
+        f"* `synthesis_claude_hy3_{week_suffix_file}.json`",
     ]
     return "\n".join(lines)
 
@@ -433,6 +558,22 @@ def main():
     # Standardize string representations to follow two-digit padding rule ("W06")
     week_suffix_file = f"W{week_num:02d}"
 
+    # 3b. Sprint/release tag suffix — a SEPARATE counter from the Week{N} folder number
+    # above. Per the Sprint DoD: research/prediction modules (ai_prompt, synthesis_*.json)
+    # keep the agent-week suffix (e.g. _W08), but synthesis *outcomes* like the compiled
+    # markdown report use the sprint/release suffix instead (e.g. _W30). There's no
+    # reliable field in the collector data for this, so it's passed explicitly as the
+    # 2nd CLI argument. Bump this number in the workflow call every sprint.
+    if len(sys.argv) > 2:
+        try:
+            sprint_suffix_file = f"W{int(sys.argv[2]):02d}"
+        except ValueError:
+            print(f"[WARN] Could not parse sprint tag number '{sys.argv[2]}'. Using {week_suffix_file} instead.")
+            sprint_suffix_file = week_suffix_file
+    else:
+        print(f"[WARN] No sprint tag number passed as 2nd argument. Using {week_suffix_file} for the report filename.")
+        sprint_suffix_file = week_suffix_file
+
     # 4. Bind the execution path directly inside your specified structural node: Week{N}/R8_llm/
     target_dir = os.path.join(".", parent_week_dir, "R8_llm")
     os.makedirs(target_dir, exist_ok=True)
@@ -459,12 +600,20 @@ def main():
     gem_res = future_gemini.result()
     ds_res = future_deepseek.result()
 
+    # Hy3 runs under the Claude infrastructure harness: same call pattern as the
+    # other models, strict hyperparameter bounds, reasoning-tag cleanup, and — if the
+    # live call fails — falls back to the Claude result already computed above, so a
+    # single flaky model never blanks out the weekend synthesis pipeline.
+    print("[PRISM] Running tencent/hy3 under the Claude infrastructure harness...")
+    hy3_res = call_hy3(prompt, c_res)
+
     # Align model handles cleanly with your folder structure naming patterns
     responses_map = {
         "chatgpt": gpt_res,
         "claude": c_res,
         "gemini": gem_res,
-        "deepseek": ds_res
+        "deepseek": ds_res,
+        "claude_hy3": hy3_res,
     }
 
     # 6. Save every independent raw agent text ledger as structured JSON into target folder tree
@@ -476,8 +625,10 @@ def main():
         print(f"[OK] Stored raw validation token logs: {out_path}")
 
     # 7. Generate and output the final compiled dashboard markdown file
-    report_content = generate_markdown_report(c_res, gpt_res, gem_res, ds_res, data)
-    report_file_path = os.path.join(target_dir, f"llm_synthesis_{week_suffix_file}.md")
+    # NOTE: this file uses sprint_suffix_file (e.g. _W30), not week_suffix_file
+    # (e.g. _W08) — see the Uniform Suffix Policy in the Sprint 8 (vW30) DoD.
+    report_content = generate_markdown_report(c_res, gpt_res, gem_res, ds_res, data, week_suffix_file)
+    report_file_path = os.path.join(target_dir, f"llm_synthesis_{sprint_suffix_file}.md")
     with open(report_file_path, "w", encoding="utf-8") as report_file:
         report_file.write(report_content)
     print(f"[PRISM] Complete! Synthesis markdown generated cleanly at: {report_file_path}")
