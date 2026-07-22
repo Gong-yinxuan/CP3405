@@ -16,7 +16,7 @@
 *   **R5 (Technical Data Analyst):** 
     *   **Status:** In Progress
     *   **Commit Status:** Didn't commit
-    *   **Notes:** Agent responded
+    *   **Notes:** Agent responded / Doing it
 
 ### ⚙️ Pipeline, Synthesis & Logistics Roles
 *   **R1 (Product Owner):** 
