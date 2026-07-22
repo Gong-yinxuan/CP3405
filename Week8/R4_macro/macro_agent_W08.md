@@ -4,7 +4,7 @@
 
 ## FED & RATES
 - Fed target rate: 3.50%–3.75% (source: FRED DFEDTARL/DFEDTARU)
-- Fed hold probability: **Manual review** — [fill FedWatch value here] from CME FedWatch as of [date/time checked]
+- Fed hold probability: [74.9%] from CME FedWatch as of [22 july 2026]
 - Next FOMC: 29 July 2026
 - 2Y Yield: 4.16% (source: FRED DGS2)
 - 10Y Yield: 4.54%
@@ -20,21 +20,36 @@
 - BTC: $64,786.40, Flat
 
 ## WEEK-AHEAD CALENDAR
-*Not automated — BLS release metadata could not be collected this run (CPI, PPI, IMPORT_EXPORT_PRICES, REAL_EARNINGS, EMPLOYMENT_SITUATION, BLS_CALENDAR_ICS).*
 
 | Day | Event | Expected | Importance |
 |---|---|---|---|
-| Week 08 | BLS data watch | BLS release metadata was not available from Prism automation. | Medium |
+| Thursday, July 30 | US Fed Interest Rate Decision | 3.75% | High |
+| Thursday, July 30 | US GDP Growth Rate QoQ Advance | 1.1% | High |
+| Thursday, July 30 | US Core PCE Price Index YoY | 3.2% | High |
+| Thursday, July 30 | GB BoE Interest Rate Decision | 3.75% | High |
+| Friday, July 31 | JP BoJ Interest Rate Decision | 1.00% | High |
 
 ## KEY EARNINGS
 *Not automated — no earnings calendar collected. Fill in manually.*
 
 | Company | Date | Why It Matters |
 |---|---|---|
-| _fill manually_ | | |
+| Visa (V) | Tuesday, July 28 (After Close) | Investors will watch consumer spending trends and payment transaction growth for signs of economic strength. |
+| Microsoft (MSFT) | Wednesday, July 29 (After Close) | Markets will focus on Azure cloud growth and AI investment momentum, which remain key drivers of the technology sector. |
+| Apple (AAPL) | Thursday, July 30 (After Close) | Investors will monitor iPhone demand, services revenue, and AI strategy updates for future growth expectations. |
 
 ## CONFIRMED NEWS EVENTS
-*Not automated — no news collection wired up yet. Fill in manually.*
+
+- **AP News:** President Trump announced a **50% tariff on Canadian goods**, escalating U.S.-Canada trade tensions ahead of the new trading week.
+- **Source:** Associated Press (AP News)
+- **Date:** July 21, 2026
+- **Market implication:** Higher trade tensions could increase market volatility, support the U.S. dollar, and pressure sectors exposed to cross-border trade.
+
+
+- **AP News:** The **U.S. House passed a temporary government funding bill**, reducing the risk of a government shutdown before the midterm election season.
+- **Source:** Associated Press (AP News)
+- **Date:** July 21, 2026
+- **Market implication:** Lower political uncertainty may provide modest support for investor sentiment, though markets will remain focused on key economic data and central bank decisions.
 
 ## MACRO BIAS
 **Slightly Bearish** _(auto-drafted from Prism automation data)_
