@@ -141,7 +141,10 @@ jobs:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: |
-          python prism/src/llm_synthesis.py "Week${{ steps.week.outputs.number }}"
+          # 2nd argument (30) is this sprint's release/tag number (vW30) — it is a
+          # separate counter from the Week{N} folder number above, so it must be
+          # bumped by hand every sprint (vW31 next sprint, and so on).
+          python prism/src/llm_synthesis.py "Week${{ steps.week.outputs.number }}" 30
 
       # Manual runs keep generated files as a downloadable artifact.
       # Nothing is committed or pushed.
