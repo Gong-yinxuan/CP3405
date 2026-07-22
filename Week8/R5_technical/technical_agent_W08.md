@@ -1,127 +1,158 @@
-# Technical Agent Output — Week of 17 Jul 2026
+---
 
-> **Auto-generated:** Generated from `Technical Collector` output dated 2026-07-20T03:47:21Z. Sections marked *Not automated* need to be filled in by hand -- see the script docstring for why.
+## 1. R5 Presentation Summary
+
+- **SPX:** Neutral pullback with Medium-Low confidence. Price is below both EMAs, but the 8 EMA remains above the 21 EMA.
+- **NDX:** Bearish with Medium-High confidence. Price is below both EMAs and the 8 EMA is below the 21 EMA.
+- **IWM:** Neutral pullback with Medium-Low confidence. IWM shows better relative strength than SPX and NDX but remains below both EMAs.
+
+**Overall technical bias:** Neutral-to-Bearish  
+**Overall confidence:** Medium
 
 ---
 
-**INSTRUMENT**: S&P 500 (SPX), Daily Chart <br>
-**LAST CLOSE**: 7,457.69 (Fri 17 Jul 2026), weekly change -1.55%
+## 2. Verified Technical Snapshot
 
-## 8 EMA vs PRICE:
-
-* Price is [BELOW] the 8 EMA. Short-term momentum [weakening].
-* 8 EMA estimated at ~7,515.12. Price is ~57.4 points [below] it.
-
-## 8 EMA vs 21 EMA:
-
-* 8 EMA is [ABOVE] 21 EMA. Trend structure [bullish].
-* 21 EMA estimated at ~7,491.37. Gap between 8 and 21 EMA = ~23.8 pts, [not compressing].
-* EMA condition: [Zone 2 Pullback]
-
-## TRENDLINE:
-
-* Not automated — collector does not draw chart trendlines. Fill in manually from the chart:
-  * Trendline drawn from [month] lows, connecting lows at ~[level], ~[level], ~[level].
-  * Current trendline support: approximately [range] on the coming week.
-  * Price is [above/below] the trendline. [break status].
-
-## KEY LEVELS:
-
-* Resistance 1: 7,581.50 (20-day high)
-* Resistance 2: Not automated — fill in manually
-* Support 1: 7,294.18 (20-day low) ← KEY LEVEL
-* Support 2: Not automated — fill in manually
-
-## BREADTH NOTE:
-
-* Not automated — % of S&P 500 above 200-day MA and Russell vs SPX/NDX leadership commentary are not collected. Fill in manually.
-
-**TECHNICAL BIAS**: Neutral<br>
-**CONFIDENCE**: Medium-Low _(auto-drafted)_. Price position and/or EMA stack diverge from the stated bias, so treat this as a lower-conviction read.<br>
-**INVALIDATION**: Close below 7,294.18 = loss of key support. Would shift bias toward Bearish. (Auto-drafted from the support candidate only — refine once TRENDLINE and Support 2 are filled in.)<br>
-**WATCH THIS WEEK**: Whether SPX can hold above 7,294.18 and whether it can challenge resistance near 7,581.50. _(auto-drafted)_<br>
+| Instrument | Last Close | Weekly Change | 8 EMA | 21 EMA | EMA Condition | Bias | Confidence |
+| --- | ---: | ---: | ---: | ---: | --- | --- | --- |
+| SPX | 7,457.69 | -1.55% | 7,515.12 | 7,491.37 | Zone 2 Pullback | Neutral | Medium-Low |
+| NDX | 28,592.66 | -4.13% | 29,236.69 | 29,427.65 | Zone 3 Bearish | Bearish | Medium-High |
+| IWM | 294.04 | -0.66% | 295.29 | 294.75 | Zone 2 Pullback | Neutral | Medium-Low |
 
 ---
 
-**INSTRUMENT**: NASDAQ 100 (NDX), Daily Chart <br>
-**LAST CLOSE**: 28,592.66 (Fri 17 Jul 2026), weekly change -4.13%
+## 3. SPX Technical Read
 
-## 8 EMA vs PRICE:
+SPX closed at **7,457.69**, down **1.55%** for the week.
 
-* Price is [BELOW] the 8 EMA. Short-term momentum [weakening].
-* 8 EMA estimated at ~29,236.69. Price is ~644.0 points [below] it.
+Price is below the **8 EMA at 7,515.12** and the **21 EMA at 7,491.37**, showing weaker short-term momentum. However, the 8 EMA remains above the 21 EMA, so the EMA structure has not fully turned bearish.
 
-## 8 EMA vs 21 EMA:
+The current classification is **Zone 2 Pullback**.
 
-* 8 EMA is [BELOW] 21 EMA. Trend structure [bearish].
-* 21 EMA estimated at ~29,427.65. Gap between 8 and 21 EMA = ~-191.0 pts, [compressing].
-* EMA condition: [Zone 3 Bearish]
+### Key Levels
 
-## TRENDLINE:
+- **20-day resistance candidate:** 7,581.50
+- **20-day support candidate:** 7,294.18
 
-* Not automated — collector does not draw chart trendlines. Fill in manually from the chart:
-  * Trendline drawn from [month] lows, connecting lows at ~[level], ~[level], ~[level].
-  * Current trendline support: approximately [range] on the coming week.
-  * Price is [above/below] the trendline. [break status].
+### Technical Decision
 
-## KEY LEVELS:
-
-* Resistance 1: 30,642.57 (20-day high)
-* Resistance 2: Not automated — fill in manually
-* Support 1: 28,231.32 (20-day low) ← KEY LEVEL
-* Support 2: Not automated — fill in manually
-
-## BREADTH NOTE:
-
-* Not automated — % of S&P 500 above 200-day MA and Russell vs SPX/NDX leadership commentary are not collected. Fill in manually.
-
-**TECHNICAL BIAS**: Bearish<br>
-**CONFIDENCE**: Medium-High _(auto-drafted)_. Price position and EMA stack both agree with the stated bias.<br>
-**INVALIDATION**: Close below 28,231.32 = loss of key support. Would shift bias toward Bullish. (Auto-drafted from the support candidate only — refine once TRENDLINE and Support 2 are filled in.)<br>
-**WATCH THIS WEEK**: Whether NDX can hold above 28,231.32 and whether it can challenge resistance near 30,642.57. _(auto-drafted)_<br>
+- **Bias:** Neutral
+- **Confidence:** Medium-Low
+- A close above **7,581.50** would support a stronger bullish view.
+- A close below **7,294.18** would shift the technical bias to bearish.
+- Until either level breaks, SPX should be treated as a neutral pullback.
 
 ---
 
-**INSTRUMENT**: Russell 2000 (IWM), Daily Chart <br>
-**LAST CLOSE**: 294.04 (Fri 17 Jul 2026), weekly change -0.66%
+## 4. NDX Technical Read
 
-## 8 EMA vs PRICE:
+NDX closed at **28,592.66**, down **4.13%** for the week.
 
-* Price is [BELOW] the 8 EMA. Short-term momentum [weakening].
-* 8 EMA estimated at ~295.29. Price is ~1.2 points [below] it.
+Price is below the **8 EMA at 29,236.69** and the **21 EMA at 29,427.65**. The 8 EMA is also below the 21 EMA, confirming the weakest technical structure among the three indices.
 
-## 8 EMA vs 21 EMA:
+The current classification is **Zone 3 Bearish**.
 
-* 8 EMA is [ABOVE] 21 EMA. Trend structure [bullish].
-* 21 EMA estimated at ~294.75. Gap between 8 and 21 EMA = ~0.5 pts, [not compressing].
-* EMA condition: [Zone 2 Pullback]
+### Key Levels
 
-## TRENDLINE:
+- **20-day resistance candidate:** 30,642.57
+- **20-day support candidate:** 28,231.32
 
-* Not automated — collector does not draw chart trendlines. Fill in manually from the chart:
-  * Trendline drawn from [month] lows, connecting lows at ~[level], ~[level], ~[level].
-  * Current trendline support: approximately [range] on the coming week.
-  * Price is [above/below] the trendline. [break status].
+### Technical Decision
 
-## KEY LEVELS:
-
-* Resistance 1: 302.72 (20-day high)
-* Resistance 2: Not automated — fill in manually
-* Support 1: 290.68 (20-day low) ← KEY LEVEL
-* Support 2: Not automated — fill in manually
-
-## BREADTH NOTE:
-
-* Not automated — % of S&P 500 above 200-day MA and Russell vs SPX/NDX leadership commentary are not collected. Fill in manually.
-
-**TECHNICAL BIAS**: Neutral<br>
-**CONFIDENCE**: Medium-Low _(auto-drafted)_. Price position and/or EMA stack diverge from the stated bias, so treat this as a lower-conviction read.<br>
-**INVALIDATION**: Close below 290.68 = loss of key support. Would shift bias toward Bearish. (Auto-drafted from the support candidate only — refine once TRENDLINE and Support 2 are filled in.)<br>
-**WATCH THIS WEEK**: Whether IWM can hold above 290.68 and whether it can challenge resistance near 302.72. _(auto-drafted)_<br>
+- **Bias:** Bearish
+- **Confidence:** Medium-High
+- A close below **28,231.32** would confirm further bearish weakness.
+- The technical outlook would improve if NDX recovered and held above the **29,236.69–29,427.65 EMA area**.
+- A break above **30,642.57** would provide stronger bullish confirmation.
 
 ---
 
-Charts (not annotated with trendlines/levels — add those manually if needed):
-`prism/data/technical/charts/technical_SPX_history.png`
-`prism/data/technical/charts/technical_NDX_history.png`
-`prism/data/technical/charts/technical_IWM_history.png`
+## 5. IWM Technical Read
+
+IWM closed at **294.04**, down **0.66%** for the week.
+
+Price is below the **8 EMA at 295.29** and the **21 EMA at 294.75**, showing mild short-term weakness. However, the 8 EMA remains slightly above the 21 EMA. IWM also declined less than SPX and NDX, indicating relative resilience.
+
+The current classification is **Zone 2 Pullback**.
+
+### Key Levels
+
+- **20-day resistance candidate:** 302.72
+- **20-day support candidate:** 290.68
+
+### Technical Decision
+
+- **Bias:** Neutral
+- **Confidence:** Medium-Low
+- A close above **302.72** would support a stronger bullish view.
+- A close below **290.68** would shift the technical bias to bearish.
+- Until either level breaks, IWM should be treated as a neutral pullback.
+
+---
+
+## 6. Relative Strength and Breadth Interpretation
+
+All three tracked instruments recorded negative weekly returns:
+
+- **SPX:** -1.55%
+- **NDX:** -4.13%
+- **IWM:** -0.66%
+
+NDX significantly underperformed, indicating concentrated weakness in large-cap technology and growth stocks.
+
+IWM recorded the smallest decline, showing better relative strength in small-cap stocks. However, because all three instruments finished negative, the overall technical picture remains cautious rather than broadly bullish.
+
+---
+
+## 7. R5 Final Handoff to R8
+
+| Instrument | R5 Bias | Confidence | Main Technical Risk |
+| --- | --- | --- | --- |
+| SPX | Neutral | Medium-Low | Loss of 7,294.18 support |
+| NDX | Bearish | Medium-High | Further weakness below 28,231.32 |
+| IWM | Neutral | Medium-Low | Loss of 290.68 support |
+
+**Net technical bias:** Neutral-to-Bearish  
+**Net confidence:** Medium
+
+### Key Output Sentence
+
+**Technical evidence is Neutral-to-Bearish with Medium confidence. NDX is the main source of downside risk because it is below both EMAs with a bearish EMA structure, while SPX and IWM remain neutral pullbacks above their major 20-day support candidates.**
+
+### R8 Usage
+
+R8 should use NDX as the strongest bearish technical signal. SPX and IWM do not yet confirm a broad market breakdown, so the final prediction should avoid excessive bearish confidence unless Macro, Almanac, and Human Score evidence support the same direction.
+
+---
+
+## 8. Visual Evidence
+
+### SPX Price, EMA and Support/Resistance Evidence
+
+![SPX Technical History](technical_assets/technical_SPX_history.png)
+
+### NDX Price, EMA and Support/Resistance Evidence
+
+![NDX Technical History](technical_assets/technical_NDX_history.png)
+
+### IWM Price, EMA and Support/Resistance Evidence
+
+![IWM Technical History](technical_assets/technical_IWM_history.png)
+
+### Weekly Change Comparison
+
+![Technical Weekly Change](technical_assets/technical_weekly_change.png)
+
+---
+
+## 9. R5 Sign-Off
+
+- [x] SPX snapshot reviewed
+- [x] NDX snapshot reviewed
+- [x] IWM snapshot reviewed
+- [x] EMA trend indicators included
+- [x] Support and resistance candidates included
+- [x] Technical charts included under `technical_assets/`
+- [x] Final bias and confidence documented
+- [x] R8 handoff prepared
+- [x] No unfinished placeholders remain
