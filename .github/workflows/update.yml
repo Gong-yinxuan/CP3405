@@ -15,6 +15,11 @@ on:
     - cron: "0 0 1 * *"
 
   workflow_dispatch:
+    inputs:
+      target_week:
+        description: "Force a specific week number (e.g. 8). Leave blank to auto-detect the next week."
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -101,9 +106,14 @@ jobs:
         if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 0 * * 1'
         id: week
         run: |
-          WEEK_NUMBER=$(python -c "import sys; sys.path.insert(0, 'prism/src/report_builders'); from pathlib import Path; from week_utils import detect_next_week_number; print(detect_next_week_number(Path('.')))")
+          if [ -n "${{ github.event.inputs.target_week }}" ]; then
+            WEEK_NUMBER="${{ github.event.inputs.target_week }}"
+            echo "Using manually specified week number: $WEEK_NUMBER"
+          else
+            WEEK_NUMBER=$(python -c "import sys; sys.path.insert(0, 'prism/src/report_builders'); from pathlib import Path; from week_utils import detect_next_week_number; print(detect_next_week_number(Path('.')))")
+            echo "Detected week number: $WEEK_NUMBER"
+          fi
           echo "number=$WEEK_NUMBER" >> "$GITHUB_OUTPUT"
-          echo "Detected week number: $WEEK_NUMBER"
 
       - name: Build almanac agent report (R3)
         if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 0 * * 1'
