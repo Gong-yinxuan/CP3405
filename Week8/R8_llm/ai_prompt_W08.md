@@ -4,7 +4,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
 1. MASTER MARKET DATA (Verified by Data Pipeline)
 [TECHNICAL INDICATOR AGENT DATA]: 
 {
-  "generated_at": "2026-07-20T03:47:21Z",
+  "generated_at": "2026-07-23T10:02:17Z",
   "collector": "Technical Collector",
   "agent_input_for": "Technical Agent",
   "data_source": "Yahoo Finance via yfinance",
@@ -14,16 +14,16 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
       "symbol": "SPX",
       "yahoo_ticker": "^GSPC",
       "name": "S&P 500 Index",
-      "latest_trading_date": "2026-07-17",
-      "last_close": 7457.69,
-      "weekly_change_pct": -1.55,
-      "ema_8": 7515.12,
-      "ema_21": 7491.37,
+      "latest_trading_date": "2026-07-22",
+      "last_close": 7498.96,
+      "weekly_change_pct": -0.97,
+      "ema_8": 7500.85,
+      "ema_21": 7489.92,
       "price_vs_8ema": "below",
       "ema_8_vs_21ema": "above",
-      "distance_from_8ema": -57.43,
-      "distance_from_21ema": -33.68,
-      "ema_gap": 23.75,
+      "distance_from_8ema": -1.89,
+      "distance_from_21ema": 9.04,
+      "ema_gap": 10.93,
       "ema_condition": "Zone 2 Pullback",
       "recent_20d_high": 7581.5,
       "recent_20d_low": 7294.18,
@@ -36,20 +36,20 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
       "symbol": "NDX",
       "yahoo_ticker": "^NDX",
       "name": "Nasdaq 100 Index",
-      "latest_trading_date": "2026-07-17",
-      "last_close": 28592.66,
-      "weekly_change_pct": -4.13,
-      "ema_8": 29236.69,
-      "ema_21": 29427.65,
+      "latest_trading_date": "2026-07-22",
+      "last_close": 28998.1,
+      "weekly_change_pct": -1.71,
+      "ema_8": 29084.56,
+      "ema_21": 29304.22,
       "price_vs_8ema": "below",
       "ema_8_vs_21ema": "below",
-      "distance_from_8ema": -644.03,
-      "distance_from_21ema": -834.99,
-      "ema_gap": -190.96,
+      "distance_from_8ema": -86.46,
+      "distance_from_21ema": -306.12,
+      "ema_gap": -219.66,
       "ema_condition": "Zone 3 Bearish",
-      "recent_20d_high": 30642.57,
+      "recent_20d_high": 30328.79,
       "recent_20d_low": 28231.32,
-      "resistance_candidate": 30642.57,
+      "resistance_candidate": 30328.79,
       "support_candidate": 28231.32,
       "technical_bias": "Bearish",
       "history_file": "technical/history/NDX.json"
@@ -58,16 +58,16 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
       "symbol": "IWM",
       "yahoo_ticker": "IWM",
       "name": "Russell 2000 ETF Proxy",
-      "latest_trading_date": "2026-07-17",
-      "last_close": 294.04,
-      "weekly_change_pct": -0.66,
-      "ema_8": 295.29,
-      "ema_21": 294.75,
+      "latest_trading_date": "2026-07-22",
+      "last_close": 293.79,
+      "weekly_change_pct": -0.67,
+      "ema_8": 294.77,
+      "ema_21": 294.63,
       "price_vs_8ema": "below",
       "ema_8_vs_21ema": "above",
-      "distance_from_8ema": -1.25,
-      "distance_from_21ema": -0.71,
-      "ema_gap": 0.54,
+      "distance_from_8ema": -0.98,
+      "distance_from_21ema": -0.84,
+      "ema_gap": 0.14,
       "ema_condition": "Zone 2 Pullback",
       "recent_20d_high": 302.72,
       "recent_20d_low": 290.68,
@@ -81,7 +81,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
 
 [MACROECONOMIC DATA AGENT DATA]: 
 {
-  "generated_at": "2026-07-20T03:47:23Z",
+  "generated_at": "2026-07-23T10:02:18Z",
   "collector": "Macro Collector",
   "agent_input_for": "Macro Agent",
   "data_source": {
@@ -96,11 +96,11 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
       "yahoo_ticker": "^TNX",
       "name": "US 10-Year Treasury Yield",
       "category": "yield",
-      "latest_trading_date": "2026-07-17",
-      "close": 0.4541,
-      "weekly_change_pct": -0.61,
-      "change_5d": -0.0028,
-      "direction_5d": "Down",
+      "latest_trading_date": "2026-07-22",
+      "close": 0.4657,
+      "weekly_change_pct": 2.46,
+      "change_5d": 0.0112,
+      "direction_5d": "Up",
       "history_file": "macro/history/US_10Y_YIELD.json"
     },
     "US_30Y_YIELD": {
@@ -108,11 +108,11 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
       "yahoo_ticker": "^TYX",
       "name": "US 30-Year Treasury Yield",
       "category": "yield",
-      "latest_trading_date": "2026-07-17",
-      "close": 0.5064,
-      "weekly_change_pct": -0.14,
-      "change_5d": -0.0007,
-      "direction_5d": "Down",
+      "latest_trading_date": "2026-07-22",
+      "close": 0.5147,
+      "weekly_change_pct": 1.26,
+      "change_5d": 0.0064,
+      "direction_5d": "Up",
       "history_file": "macro/history/US_30Y_YIELD.json"
     },
     "WTI": {
@@ -120,10 +120,10 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
       "yahoo_ticker": "CL=F",
       "name": "Crude Oil WTI Futures",
       "category": "commodity",
-      "latest_trading_date": "2026-07-19",
-      "close": 83.61,
-      "weekly_change_pct": 7.0,
-      "change_5d": 5.47,
+      "latest_trading_date": "2026-07-23",
+      "close": 90.14,
+      "weekly_change_pct": 14.17,
+      "change_5d": 11.19,
       "direction_5d": "Up",
       "history_file": "macro/history/WTI.json"
     },
@@ -132,10 +132,10 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
       "yahoo_ticker": "GC=F",
       "name": "Gold Futures",
       "category": "commodity",
-      "latest_trading_date": "2026-07-19",
-      "close": 4028.8,
-      "weekly_change_pct": 0.8,
-      "change_5d": 31.8,
+      "latest_trading_date": "2026-07-23",
+      "close": 4093.5,
+      "weekly_change_pct": 2.71,
+      "change_5d": 107.8999,
       "direction_5d": "Up",
       "history_file": "macro/history/GOLD.json"
     },
@@ -144,11 +144,11 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
       "yahoo_ticker": "DX-Y.NYB",
       "name": "US Dollar Index",
       "category": "currency_index",
-      "latest_trading_date": "2026-07-19",
-      "close": 100.725,
-      "weekly_change_pct": -0.55,
-      "change_5d": -0.555,
-      "direction_5d": "Down",
+      "latest_trading_date": "2026-07-23",
+      "close": 101.141,
+      "weekly_change_pct": 0.41,
+      "change_5d": 0.411,
+      "direction_5d": "Up",
       "history_file": "macro/history/DXY.json"
     },
     "VIX": {
@@ -156,10 +156,10 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
       "yahoo_ticker": "^VIX",
       "name": "CBOE Volatility Index",
       "category": "volatility",
-      "latest_trading_date": "2026-07-17",
-      "close": 18.77,
-      "weekly_change_pct": 24.88,
-      "change_5d": 3.74,
+      "latest_trading_date": "2026-07-23",
+      "close": 17.62,
+      "weekly_change_pct": 5.32,
+      "change_5d": 0.89,
       "direction_5d": "Up",
       "history_file": "macro/history/VIX.json"
     },
@@ -168,11 +168,11 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
       "yahoo_ticker": "BTC-USD",
       "name": "Bitcoin USD",
       "category": "crypto",
-      "latest_trading_date": "2026-07-20",
-      "close": 64786.3984,
-      "weekly_change_pct": -0.26,
-      "change_5d": -169.7149,
-      "direction_5d": "Down",
+      "latest_trading_date": "2026-07-23",
+      "close": 65585.5938,
+      "weekly_change_pct": 1.22,
+      "change_5d": 788.9922,
+      "direction_5d": "Up",
       "history_file": "macro/history/BTC.json"
     }
   },
@@ -260,13 +260,13 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
 
 [ALMANAC & HISTORICAL SEASONALITY AGENT DATA]: 
 {
-  "generated_at": "2026-07-20T03:47:29Z",
+  "generated_at": "2026-07-23T10:02:21Z",
   "collector": "Almanac Collector",
   "agent_input_for": "Almanac Agent",
   "data_source": "Yahoo Finance via yfinance + automatic date rules",
   "note": "This collector automates calendar flags and sector ranking. It does not manually interpret seasonal patterns or news.",
   "forecast_window": {
-    "generated_from_date_utc": "2026-07-20",
+    "generated_from_date_utc": "2026-07-23",
     "start": "2026-07-27",
     "end": "2026-07-31"
   },
@@ -284,89 +284,89 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
     "XLK": {
       "ticker": "XLK",
       "sector": "Technology",
-      "latest_trading_date": "2026-07-17",
-      "close": 175.59,
-      "weekly_change_pct": -5.48,
+      "latest_trading_date": "2026-07-22",
+      "close": 180.27,
+      "weekly_change_pct": -0.72,
       "history_file": "almanac/sector_history/XLK.json"
     },
     "XLF": {
       "ticker": "XLF",
       "sector": "Financials",
-      "latest_trading_date": "2026-07-17",
-      "close": 56.26,
-      "weekly_change_pct": 0.99,
+      "latest_trading_date": "2026-07-22",
+      "close": 56.05,
+      "weekly_change_pct": -0.9,
       "history_file": "almanac/sector_history/XLF.json"
     },
     "XLV": {
       "ticker": "XLV",
       "sector": "Healthcare",
-      "latest_trading_date": "2026-07-17",
-      "close": 161.09,
-      "weekly_change_pct": 0.16,
+      "latest_trading_date": "2026-07-22",
+      "close": 159.43,
+      "weekly_change_pct": 0.72,
       "history_file": "almanac/sector_history/XLV.json"
     },
     "XLE": {
       "ticker": "XLE",
       "sector": "Energy",
-      "latest_trading_date": "2026-07-17",
-      "close": 57.68,
-      "weekly_change_pct": 4.72,
+      "latest_trading_date": "2026-07-22",
+      "close": 59.2,
+      "weekly_change_pct": 4.78,
       "history_file": "almanac/sector_history/XLE.json"
     },
     "XLB": {
       "ticker": "XLB",
       "sector": "Materials",
-      "latest_trading_date": "2026-07-17",
-      "close": 50.53,
-      "weekly_change_pct": -0.71,
+      "latest_trading_date": "2026-07-22",
+      "close": 50.82,
+      "weekly_change_pct": 0.63,
       "history_file": "almanac/sector_history/XLB.json"
     },
     "XLI": {
       "ticker": "XLI",
       "sector": "Industrials",
-      "latest_trading_date": "2026-07-17",
-      "close": 179.41,
-      "weekly_change_pct": -1.38,
+      "latest_trading_date": "2026-07-22",
+      "close": 178.85,
+      "weekly_change_pct": -0.67,
       "history_file": "almanac/sector_history/XLI.json"
     },
     "XLY": {
       "ticker": "XLY",
       "sector": "Consumer Discretionary",
-      "latest_trading_date": "2026-07-17",
-      "close": 115.44,
-      "weekly_change_pct": -1.54,
+      "latest_trading_date": "2026-07-22",
+      "close": 114.02,
+      "weekly_change_pct": -2.55,
       "history_file": "almanac/sector_history/XLY.json"
     },
     "XLP": {
       "ticker": "XLP",
       "sector": "Consumer Staples",
-      "latest_trading_date": "2026-07-17",
-      "close": 85.19,
-      "weekly_change_pct": 1.27,
+      "latest_trading_date": "2026-07-22",
+      "close": 84.38,
+      "weekly_change_pct": 1.09,
       "history_file": "almanac/sector_history/XLP.json"
     },
     "XLU": {
       "ticker": "XLU",
       "sector": "Utilities",
-      "latest_trading_date": "2026-07-17",
-      "close": 45.17,
-      "weekly_change_pct": -0.53,
+      "latest_trading_date": "2026-07-22",
+      "close": 45.93,
+      "weekly_change_pct": 1.57,
       "history_file": "almanac/sector_history/XLU.json"
     },
     "XLC": {
       "ticker": "XLC",
       "sector": "Communication Services",
-      "latest_trading_date": "2026-07-17",
-      "close": 110.65,
-      "weekly_change_pct": -0.89,
+      "latest_trading_date": "2026-07-22",
+      "close": 109.2,
+      "weekly_change_pct": -3.69,
       "history_file": "almanac/sector_history/XLC.json"
     },
     "XLRE": {
       "ticker": "XLRE",
       "sector": "Real Estate",
-      "latest_trading_date": "2026-07-17",
-      "close": 45.42,
-      "weekly_change_pct": 2.18,
+      "latest_trading_date": "2026-07-22",
+      "close": 45.01,
+      "weekly_change_pct": 1.01,
       "history_file": "almanac/sector_history/XLRE.json"
     }
   },
@@ -375,40 +375,40 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
       {
         "ticker": "XLE",
         "sector": "Energy",
-        "weekly_change_pct": 4.72
+        "weekly_change_pct": 4.78
       },
       {
-        "ticker": "XLRE",
-        "sector": "Real Estate",
-        "weekly_change_pct": 2.18
+        "ticker": "XLU",
+        "sector": "Utilities",
+        "weekly_change_pct": 1.57
       },
       {
         "ticker": "XLP",
         "sector": "Consumer Staples",
-        "weekly_change_pct": 1.27
+        "weekly_change_pct": 1.09
       }
     ],
     "lagging_sectors": [
       {
-        "ticker": "XLK",
-        "sector": "Technology",
-        "weekly_change_pct": -5.48
+        "ticker": "XLC",
+        "sector": "Communication Services",
+        "weekly_change_pct": -3.69
       },
       {
         "ticker": "XLY",
         "sector": "Consumer Discretionary",
-        "weekly_change_pct": -1.54
+        "weekly_change_pct": -2.55
       },
       {
-        "ticker": "XLI",
-        "sector": "Industrials",
-        "weekly_change_pct": -1.38
+        "ticker": "XLF",
+        "sector": "Financials",
+        "weekly_change_pct": -0.9
       }
     ]
   }
 }
 {
-  "generated_at": "2026-07-12T12:18:18Z",
+  "generated_at": "2026-07-23T10:02:16Z",
   "collector": "Monthly Seasonality Collector",
   "data_source": "Yahoo Finance via yfinance (full available monthly history)",
   "note": "Historical average % return and seasonal rank per calendar month, and the same broken out by US presidential-cycle-year phase. Rank 1 = highest average return for that grouping.",
@@ -421,7 +421,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
         "4": 1.6,
         "5": 1.46,
         "6": 0.35,
-        "7": 1.44,
+        "7": 1.41,
         "8": -0.26,
         "9": -0.9,
         "10": 0.99,
@@ -513,7 +513,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
             "4": -0.27,
             "5": 0.98,
             "6": -1.63,
-            "7": 0.66,
+            "7": 0.57,
             "8": -1.27,
             "9": -2.04,
             "10": 3.38,
@@ -580,7 +580,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
         "4": 2.17,
         "5": 0.49,
         "6": -0.11,
-        "7": 1.62,
+        "7": 1.59,
         "8": -0.51,
         "9": -0.7,
         "10": 1.75,
@@ -672,7 +672,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
             "4": 0.76,
             "5": -0.55,
             "6": -1.97,
-            "7": 1.72,
+            "7": 1.63,
             "8": -1.66,
             "9": -0.88,
             "10": 4.91,
@@ -739,7 +739,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
         "4": 1.36,
         "5": 1.89,
         "6": 1.1,
-        "7": 1.31,
+        "7": 1.25,
         "8": 0.27,
         "9": -0.8,
         "10": 0.98,
@@ -831,7 +831,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
             "4": -0.67,
             "5": 0.46,
             "6": -1.68,
-            "7": -0.42,
+            "7": -0.63,
             "8": -2.08,
             "9": -1.38,
             "10": 2.68,
@@ -898,7 +898,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
         "4": 1.24,
         "5": 1.38,
         "6": 0.8,
-        "7": 0.49,
+        "7": 0.47,
         "8": -0.36,
         "9": -0.43,
         "10": -0.54,
@@ -990,7 +990,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
             "4": 0.31,
             "5": -0.69,
             "6": -1.48,
-            "7": -1.85,
+            "7": -1.9,
             "8": -2.87,
             "9": -1.65,
             "10": 1.86,

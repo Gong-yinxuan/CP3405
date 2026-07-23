@@ -1,24 +1,11 @@
 {
-  "weekly_regime": "Cautious Bearish with elevated volatility",
-  "confidence_score": "Medium",
-  "spx_pct_estimate": "-1% to -2%",
-  "ndx_pct_estimate": "-3% to -5%",
-  "iwm_pct_estimate": "-0.5% to -1.5%",
-  "top_supporting_reason": "Bearish technical signals on NDX and rising VIX indicate downside pressure despite softer yields.",
-  "top_contradiction_cited": "Falling dollar and yields plus strong energy sector could buoy equities.",
-  "invalidation_condition": "SPX closing above 7580 or 10Y yield climbing above 0.55% would break the bearish case.",
-  "tone_caveat_language": "Maintain defensive bias, consider long energy and short tech.",
-  "consensus_bias": "BEARISH",
-  "consensus_read_summary": "Technical, macro, and almanac data align on a modestly negative outlook: NDX\u2019s deep pullback, high volatility, and midterm year modest July returns suggest downside, while only limited bullish counter\u2011forces from a weaker dollar and energy strength temper the view.",
-  "point_of_maximum_divergence": "Energy sector strength versus overall market weakness creates the biggest split.",
-  "key_supporting_factors": [
-    "NDX EMA 8 below EMA 21 and price 644 points under EMA 8",
-    "VIX up 24.88% week over week"
-  ],
-  "main_contradiction_risk": "Rapid dollar rebound or unexpected rate\u2011cut optimism could reverse risk sentiment.",
-  "invalidation_summary": "If SPX breaches 7581.5 resistance or VIX falls below 15, the bearish consensus collapses.",
-  "r7_human_score_question": "Does the strength in energy and a weakening dollar outweigh the bearish technical and volatility signals for a net bullish stance?",
-  "r6_slide_bullet_1": "NDX in Zone 3 Bearish with price far below EMA 8, signaling strong downside.",
-  "r6_slide_bullet_2": "VIX spikes 24.9% week, indicating heightened risk aversion.",
-  "r6_slide_bullet_3": "Energy sector leads (+4.7%) while tech lags (-5.5%), suggesting sector rotation."
+  "weekly_regime": "Error loading openai/gpt-oss-120b value",
+  "confidence_score": "Error loading openai/gpt-oss-120b value",
+  "spx_pct_estimate": "Error loading openai/gpt-oss-120b value",
+  "ndx_pct_estimate": "Error loading openai/gpt-oss-120b value",
+  "iwm_pct_estimate": "Error loading openai/gpt-oss-120b value",
+  "top_supporting_reason": "Error loading openai/gpt-oss-120b value",
+  "top_contradiction_cited": "Error loading openai/gpt-oss-120b value",
+  "invalidation_condition": "Error loading openai/gpt-oss-120b value",
+  "tone_caveat_language": "Error loading openai/gpt-oss-120b value"
 }
