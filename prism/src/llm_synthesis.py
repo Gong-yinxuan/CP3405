@@ -214,10 +214,11 @@ def call_openrouter_base(prompt, model_name):
         return fallback_metrics(model_name)
 
 # Last-resort fallback model when Claude itself fails outright (not just Hy3).
-# Per teammate suggestion: instead of the raw "Error loading ... value" placeholder,
-# route the same prompt through a free OpenRouter model so the report still has real
-# content, and surface a visible warning wherever this substitution happened.
-FREE_FALLBACK_MODEL = "meta-llama/llama-3.1-70b-instruct:free"
+# Uses OpenRouter's own auto-router ID ("openrouter/free") instead of a specific
+# model name — OpenRouter picks whatever free model is currently live behind this
+# ID, so this fallback can't go stale/404 the way a hardcoded free model ID can
+# once that specific model gets rotated out or renamed.
+FREE_FALLBACK_MODEL = "openrouter/free"
 
 
 def call_free_fallback_model(prompt, failed_model_label):
