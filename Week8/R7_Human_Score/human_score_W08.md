@@ -1,4 +1,4 @@
-# Human Score — Week 07 (20 July 2026)
+# Human Score — Week 08 (27 July 2026)
 
 > Score each dimension independently as a team before writing the override paragraph.
 > Scale: −2 (strongly bearish) → 0 (neutral) → +2 (strongly bullish)
@@ -9,12 +9,12 @@
 
 | Dimension | Team Score | AI Consensus | Difference |
 |---|---|---|---|
-| Macro / News Weight | +1 | 0 | +1 |
-| Technical Structure | +2 | +1 | +1 |
+| Macro / News Weight | -1 | -1 | 0 |
+| Technical Structure | 0 | -1 | +1 |
 | Almanac Seasonal Weight | 0 | 0 | 0 |
-| AI Model Agreement Quality | +1 | +1 | 0 |
-| Wild Card / Human Observation | +2 | 0 | +2 |
-| **TOTAL** | **+6** | **+2** | **+4** |
+| AI Model Agreement Quality | -1 | 0 | -1 |
+| Wild Card / Human Observation | +1 | 0 | +1 |
+| **TOTAL** | **-1** | **-2** | **+1** |
 
 ---
 
@@ -28,7 +28,7 @@
 | −5 to −2 | Leans Neutral-Bearish |
 | −10 to −6 | Bearish Override |
 
-**Our total: +6 → Bullish Override**
+**Our total: -1 → Neutral / Uncertain**
 
 ---
 
@@ -36,11 +36,11 @@
 
 *(Only required where team score differs from AI consensus)*
 
-**Macro / News Weight (Team: +1 vs AI: 0):** The AI models remained neutral on macro, partially due to BLS data feed failures (403 errors) that left official CPI/PPI confirmation gaps. The team scores this modestly positive because the confirmed macro signals — VIX -7.28%, DXY -0.56%, and 10Y yield -0.53% — represent a genuine easing of financial conditions that supports risk assets, even without the missing inflation data. The WTI +8.85% spike is a real risk but is already partially priced in through the energy sector leadership (XLE +1.62%).
+**Macro / News Weight (Team: 0 vs AI: -1):** The AI models (Claude and Gemini) both flag bearish conditions, with NDX in Zone 3 Bearish EMA alignment and VIX surging to 18.77. However, the team scores this neutral rather than bearish because SPX remains near its 21-EMA support at ~7,294 — a level that has historically attracted buyers. A close above this level through mid-week would keep the technical picture mixed rather than outright bearish.
 
-**Technical Structure (Team: +2 vs AI: +1):** All four models acknowledge SPX and IWM are in Zone 1 Bullish EMA alignment with trendlines intact. The team scores this strongly bullish rather than modestly bullish because the combination of clean EMA structure across both SPX and IWM — with VIX compressing simultaneously — is a historically high-conviction setup. The NDX Zone 3 Bearish condition is a genuine concern but does not override the broad-market bullish read when large-cap financials (XLF +2.89%) and communications (XLC +3.58%) are leading with this kind of weekly strength.
+**Technical Structure (Team: -1 vs AI: 0):** The team down-weighted this dimension significantly because only 2 of 4 models produced valid outputs this week — ChatGPT and DeepSeek both returned API errors ("Error loading openai/gpt-oss-120b value" and "Error loading poolside/laguna-xs-2.1 value"). A 2-model consensus is materially weaker than a 4-model consensus, and the team cannot treat it as a reliable directional signal with the same confidence as prior weeks.
 
-**Wild Card — what did our team observe that no AI raised?** None of the four AI models flagged the extraordinary earnings-and-Fed convergence happening next week (July 28–29): the FOMC rate decision and Fed Chair Kevin Warsh's debut press conference fall on the **exact same day** as Microsoft and Meta earnings after the close, followed by Apple and Amazon on July 30. This creates an unprecedented dual catalyst window — a hawkish or dovish surprise from Warsh combined with mega-cap tech forward guidance on AI capex will either confirm or sharply reprice the current bullish drift. The AI models were working with this week's data only and did not account for how this looming catalyst stack could pull forward positioning into this week, with traders likely building long exposure ahead of next week rather than waiting.
+**Wild Card — what did our team observe that no AI raised?** The AI models did not flag the extraordinary catalyst convergence happening this week: on Thursday July 30, the US Fed Interest Rate Decision (Warsh's first rate call), US GDP Growth Rate QoQ Advance, US Core PCE Price Index YoY, AND the Bank of England rate decision all land on the same day — followed by the Bank of Japan decision on Friday July 31. Additionally, Microsoft reports Wednesday July 29 and Apple reports Thursday July 30 after close. This is the most densely packed macro + earnings week of 2026, and no AI model explicitly identified the compounding risk of all these events landing simultaneously. Combined with Trump's surprise 50% tariff on Canada announced July 21, the team assessed this week as genuinely uncertain rather than directionally bearish.
 
 ---
 
@@ -48,13 +48,13 @@
 
 > Write this only if the team's final call differs from AI consensus.
 
-The AI models collectively underweighted three factors our team considers significant this week:
+The team did not apply a full override this week. The AI consensus of Leans Neutral-Bearish is partially accepted, but the team adjusts the final call upward to Neutral / Uncertain for the following reasons:
 
-1. **Confirmed Financial Conditions Easing:** The models flagged BLS data gaps as a reason for caution, but the team treats the confirmed VIX compression, DXY softening, and 10Y yield decline as sufficient evidence of loosening financial conditions — a net positive for risk assets that the neutral AI consensus undersells.
+1. **SPX Technical Support Intact:** SPX remains near 21-EMA support at ~7,294. The AI models flagged this as a potential bounce level — the team agrees this creates two-sided risk rather than a clean bearish directional call.
 
-2. **Clean Broad-Market Technical Structure:** While all models noted NDX Zone 3 Bearish as a concern, the team places greater weight on the SPX/IWM dual Zone 1 Bullish alignment as the primary regime signal, with sector leadership in XLC, XLF, and XLE confirming rotation rather than deterioration.
+2. **Degraded AI Signal Quality:** With only 2 of 4 models functioning this week, the team cannot place the same weight on the AI consensus as in prior weeks. The bearish lean from Claude and Gemini alone is directionally informative but not sufficient for a confident override in either direction.
 
-3. **(Wild Card) FOMC + Mega-Cap Tech Convergence Next Week:** The market is likely pre-positioning this week ahead of the July 28–29 FOMC decision and Microsoft/Meta/Apple/Amazon earnings cluster. Historically, markets drift higher in the week before major catalyst convergence events when the underlying technical structure is bullish — a dynamic none of the four AI models identified.
+3. **(Wild Card) Catalyst Overload on July 30:** The simultaneous arrival of Fed rate decision, GDP, Core PCE, BoE decision, Warsh press conference, and Microsoft/Apple earnings on the same day creates extreme binary risk — markets could move sharply in either direction. In this environment, Neutral / Uncertain is the most honest and defensible call.
 
 For these reasons, our team adjusts the final regime call from **Neutral-Bullish** to **Bullish Override**, and our S&P 500 % range from +0.5% to +1.5% to **+0.8% to +2.0%**.
 
@@ -66,13 +66,13 @@ For these reasons, our team adjusts the final regime call from **Neutral-Bullish
 
 | Asset | Direction | % Range | Confidence |
 |---|---|---|---|
-| SPX (S&P 500) | Up | +0.8% to +2.0% | Medium–High |
-| NDX (Nasdaq 100) | Flat/Up | -0.2% to +0.8% | Low–Medium |
-| IWM (Russell 2000) | Up | +0.3% to +1.2% | Medium |
+| SPX (S&P 500) | Flat | -1.0% to +0.5% | Medium–High |
+| NDX (Nasdaq 100) | Down | -2.5% to -0.5% | Low–Medium |
+| IWM (Russell 2000) | Flat | -1.0% to +1.0% | Medium |
 
-**Leading sector this week:** Financials (XLF) and Communication Services (XLC) — reflecting confirmed weekly leadership and pre-positioning ahead of the mega-cap earnings and FOMC catalyst week next week.
+**Leading sector this week:** Energy (XLE) — WTI rising to $83.61 confirms Energy as the only sector with clear macro tailwind this week amid broad uncertainty.
 
-**Lagging sector this week:** Healthcare (XLV) and Consumer Staples (XLP) — defensive sectors underperforming in a risk-on rotation environment, consistent with the Almanac's midterm July seasonal pattern.
+**Lagging sector this week:** Technology (XLK) / Communication Services (XLC) — NDX Zone 3 Bearish EMA alignment and rising VIX (18.77) pressure high-beta tech ahead of the massive July 30 catalyst day.
 
 ---
 
