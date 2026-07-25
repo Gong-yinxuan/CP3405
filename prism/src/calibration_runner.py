@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Prism Calibration Runner — R6/R10
 
@@ -111,7 +112,12 @@ def get_prediction_path(prism_root: Path, release: str) -> Path:
 
 
 def forecast_end_date(prediction_data: dict) -> str | None:
-    """Extract the final YYYY-MM-DD date from forecast_week metadata."""
+    """
+    Extract the final YYYY-MM-DD date from forecast_week metadata.
+
+    Example:
+        "2026-07-06 to 2026-07-10" -> "2026-07-10"
+    """
     text = str(prediction_data.get("forecast_week", ""))
     dates = re.findall(r"\d{4}-\d{2}-\d{2}", text)
     return dates[-1] if dates else None
@@ -126,14 +132,19 @@ def get_actuals_path_for_release(
     """
     Return a release-specific actuals snapshot with date-integrity protection.
 
-    For the latest release, an existing snapshot is refreshed only when:
-    1. its date does not match the prediction forecast end date, and
-    2. output.json has the exact expected date.
-
-    Old releases are never silently rebuilt from the latest output.
+    Rules:
+    1. If the snapshot exists and its date matches the prediction forecast end date,
+       use it.
+    2. If the snapshot exists but its date does not match the expected forecast end
+       date, only refresh it if:
+       - this release is the latest prediction release, and
+       - output.json has the exact expected date.
+    3. Old releases are never silently rebuilt from current output.json.
     """
+
     actuals_dir = prism_root / "data" / "actuals"
     actuals_dir.mkdir(parents=True, exist_ok=True)
+
     snapshot_path = actuals_dir / f"{release}_actuals.json"
 
     expected_date = forecast_end_date(prediction_data)
@@ -167,21 +178,25 @@ def get_actuals_path_for_release(
             archive_path = actuals_dir / (
                 f"{release}_actuals_{snapshot_date}_stale.json"
             )
+
             if snapshot_date and not archive_path.exists():
                 copy2(snapshot_path, archive_path)
                 print(f"[WARN] Archived stale snapshot: {archive_path}")
 
             copy2(output_path, snapshot_path)
+
             print(
                 f"[OK] Refreshed {release} actuals from "
                 f"{snapshot_date} to {output_date}"
             )
+
             return snapshot_path
 
         print(
             f"[INFO] Using validated actuals snapshot: "
             f"{snapshot_path} ({snapshot_date})"
         )
+
         return snapshot_path
 
     if release != latest_release:
@@ -198,7 +213,9 @@ def get_actuals_path_for_release(
 
     copy2(output_path, snapshot_path)
     print(f"[OK] Created actuals snapshot: {snapshot_path}")
+
     return snapshot_path
+
 
 def normalise_direction(direction: str) -> str:
     direction = str(direction).strip().lower()
@@ -478,20 +495,24 @@ def build_delta_markdown(result: dict) -> str:
     lines.append("")
     lines.append("## R6/R10 Notes")
     lines.append("")
+
     valid_rows = [
         row for row in result["asset_results"]
         if row.get("status") == "ok"
     ]
+
     if valid_rows:
         largest = max(valid_rows, key=lambda row: row["error_size_pct"])
         too_bullish = sum(1 for row in valid_rows if row["bias"] == "Too bullish")
         too_bearish = sum(1 for row in valid_rows if row["bias"] == "Too bearish")
+
         if too_bullish > too_bearish:
             main_bias = "Too bullish"
         elif too_bearish > too_bullish:
             main_bias = "Too bearish"
         else:
             main_bias = "Balanced by count"
+
         lines.append(
             f"- Largest error: {largest['symbol']} "
             f"({largest['error_size_pct']} percentage points)"
@@ -506,6 +527,7 @@ def build_delta_markdown(result: dict) -> str:
         )
     else:
         lines.append("- No valid assets were available for calibration.")
+
     lines.append("")
 
     return "\n".join(lines)
@@ -579,11 +601,14 @@ def build_accuracy_history_markdown(history: list) -> str:
     lines.append(f"- Average direction accuracy: {average_direction_accuracy}%")
     lines.append(f"- Average range accuracy: {average_range_accuracy}%")
     lines.append(f"- Average error size: {average_error}%")
+
     total_assets = sum(row.get("total_assets_scored", 0) for row in history)
     total_correct = sum(row.get("direction_correct_count", 0) for row in history)
     total_range_hits = sum(row.get("range_hit_count", 0) for row in history)
+
     weighted_direction = round((total_correct / total_assets) * 100, 1) if total_assets else 0
     weighted_range = round((total_range_hits / total_assets) * 100, 1) if total_assets else 0
+
     lines.append(f"- Asset-weighted direction accuracy: {weighted_direction}%")
     lines.append(f"- Asset-weighted range accuracy: {weighted_range}%")
     lines.append(
