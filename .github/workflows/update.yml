@@ -54,10 +54,27 @@ jobs:
         run: |
           python prism/src/data_collector.py
 
-      - name: Run R6/R10 calibration runner
+      - name: Save R6 actuals snapshot
         if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 22 * * 5'
+        shell: bash
         run: |
-          python prism/src/calibration_runner.py
+          RELEASE=$(python - <<'PY'
+          import json
+          from pathlib import Path
+          from datetime import date
+
+          output_path = Path("prism/data/output.json")
+          data = json.loads(output_path.read_text(encoding="utf-8"))
+
+          output_date = date.fromisoformat(data["date"])
+          week_number = output_date.isocalendar().week
+
+          print(f"vW{week_number}")
+          PY
+          )
+
+          echo "Saving actuals for release: $RELEASE"
+          python prism/src/save_actuals.py "$RELEASE"
 
       # -----------------------------
       # MONTHLY SEASONALITY COLLECTOR
