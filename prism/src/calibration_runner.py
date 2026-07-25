@@ -22,9 +22,11 @@ Generates:
 """
 
 import json
+import re
 import sys
 from pathlib import Path
 from datetime import datetime
+from decimal import Decimal, ROUND_HALF_UP
 from shutil import copy2
 
 
@@ -108,38 +110,95 @@ def get_prediction_path(prism_root: Path, release: str) -> Path:
     return prediction_path
 
 
-def get_actuals_path_for_release(prism_root: Path, release: str, output_path: Path) -> Path:
+def forecast_end_date(prediction_data: dict) -> str | None:
+    """Extract the final YYYY-MM-DD date from forecast_week metadata."""
+    text = str(prediction_data.get("forecast_week", ""))
+    dates = re.findall(r"\d{4}-\d{2}-\d{2}", text)
+    return dates[-1] if dates else None
+
+
+def get_actuals_path_for_release(
+    prism_root: Path,
+    release: str,
+    output_path: Path,
+    prediction_data: dict,
+) -> Path:
     """
-    Use release-specific actuals if it already exists.
-    Only create a new actuals snapshot if it does not exist yet.
-    This prevents old weeks like vW25 from being overwritten by current output.json.
+    Return a release-specific actuals snapshot with date-integrity protection.
+
+    For the latest release, an existing snapshot is refreshed only when:
+    1. its date does not match the prediction forecast end date, and
+    2. output.json has the exact expected date.
+
+    Old releases are never silently rebuilt from the latest output.
     """
     actuals_dir = prism_root / "data" / "actuals"
     actuals_dir.mkdir(parents=True, exist_ok=True)
-
     snapshot_path = actuals_dir / f"{release}_actuals.json"
 
-    # Safety rule: never overwrite existing actuals snapshot
-    if snapshot_path.exists():
-        print(f"[INFO] Using existing actuals snapshot: {snapshot_path}")
-        return snapshot_path
-
+    expected_date = forecast_end_date(prediction_data)
     latest_release = detect_latest_release(prism_root)
-
-    if release != latest_release:
-        raise FileNotFoundError(
-            f"Missing actuals file for old release: {snapshot_path}\n"
-            f"Cannot create old actuals from output.json because output.json only contains latest data."
-        )
 
     if not output_path.exists():
         raise FileNotFoundError(f"Missing actuals output file: {output_path}")
 
+    output_data = load_json(output_path)
+    output_date = str(output_data.get("date", ""))
+
+    if snapshot_path.exists():
+        snapshot_data = load_json(snapshot_path)
+        snapshot_date = str(snapshot_data.get("date", ""))
+
+        if expected_date and snapshot_date != expected_date:
+            if release != latest_release:
+                raise ValueError(
+                    f"Stale actuals for old release {release}: "
+                    f"snapshot={snapshot_date}, expected={expected_date}. "
+                    "Do not rebuild old releases from current output.json."
+                )
+
+            if output_date != expected_date:
+                raise ValueError(
+                    f"Actuals date mismatch for {release}: "
+                    f"snapshot={snapshot_date}, output={output_date}, "
+                    f"expected={expected_date}. Calibration stopped."
+                )
+
+            archive_path = actuals_dir / (
+                f"{release}_actuals_{snapshot_date}_stale.json"
+            )
+            if snapshot_date and not archive_path.exists():
+                copy2(snapshot_path, archive_path)
+                print(f"[WARN] Archived stale snapshot: {archive_path}")
+
+            copy2(output_path, snapshot_path)
+            print(
+                f"[OK] Refreshed {release} actuals from "
+                f"{snapshot_date} to {output_date}"
+            )
+            return snapshot_path
+
+        print(
+            f"[INFO] Using validated actuals snapshot: "
+            f"{snapshot_path} ({snapshot_date})"
+        )
+        return snapshot_path
+
+    if release != latest_release:
+        raise FileNotFoundError(
+            f"Missing actuals file for old release: {snapshot_path}. "
+            "Cannot create old actuals from the latest output.json."
+        )
+
+    if expected_date and output_date != expected_date:
+        raise ValueError(
+            f"Cannot create {release} snapshot: output date {output_date} "
+            f"does not match forecast end date {expected_date}."
+        )
+
     copy2(output_path, snapshot_path)
-    print(f"[OK] Created new actuals snapshot: {snapshot_path}")
-
+    print(f"[OK] Created actuals snapshot: {snapshot_path}")
     return snapshot_path
-
 
 def normalise_direction(direction: str) -> str:
     direction = str(direction).strip().lower()
@@ -282,9 +341,14 @@ def compare_prediction_to_actuals(
     if total_scored > 0:
         direction_accuracy_pct = round((correct_count / total_scored) * 100, 1)
         range_accuracy_pct = round((range_hit_count / total_scored) * 100, 1)
-        average_error_pct = round(
-            sum(row["error_size_pct"] for row in valid_results) / total_scored,
-            2
+        error_total = sum(
+            Decimal(str(row["error_size_pct"])) for row in valid_results
+        )
+        average_error_pct = float(
+            (error_total / Decimal(total_scored)).quantize(
+                Decimal("0.01"),
+                rounding=ROUND_HALF_UP,
+            )
         )
     else:
         direction_accuracy_pct = 0
@@ -414,9 +478,34 @@ def build_delta_markdown(result: dict) -> str:
     lines.append("")
     lines.append("## R6/R10 Notes")
     lines.append("")
-    lines.append("- Largest error: [R6/R10 to review from table]")
-    lines.append("- Main bias: [Too bullish / too bearish / balanced]")
-    lines.append("- Improvement for next prediction: [write short action]")
+    valid_rows = [
+        row for row in result["asset_results"]
+        if row.get("status") == "ok"
+    ]
+    if valid_rows:
+        largest = max(valid_rows, key=lambda row: row["error_size_pct"])
+        too_bullish = sum(1 for row in valid_rows if row["bias"] == "Too bullish")
+        too_bearish = sum(1 for row in valid_rows if row["bias"] == "Too bearish")
+        if too_bullish > too_bearish:
+            main_bias = "Too bullish"
+        elif too_bearish > too_bullish:
+            main_bias = "Too bearish"
+        else:
+            main_bias = "Balanced by count"
+        lines.append(
+            f"- Largest error: {largest['symbol']} "
+            f"({largest['error_size_pct']} percentage points)"
+        )
+        lines.append(
+            f"- Main bias: {main_bias} "
+            f"({too_bullish} too bullish vs {too_bearish} too bearish)"
+        )
+        lines.append(
+            "- Improvement: validate actuals date, reduce correlated "
+            "confidence, and widen ranges for high-volatility assets."
+        )
+    else:
+        lines.append("- No valid assets were available for calibration.")
     lines.append("")
 
     return "\n".join(lines)
@@ -490,8 +579,17 @@ def build_accuracy_history_markdown(history: list) -> str:
     lines.append(f"- Average direction accuracy: {average_direction_accuracy}%")
     lines.append(f"- Average range accuracy: {average_range_accuracy}%")
     lines.append(f"- Average error size: {average_error}%")
-    lines.append("- Calibration bias: [R10 to review across weeks]")
-    lines.append("- Improvement: [R10 to write next action]")
+    total_assets = sum(row.get("total_assets_scored", 0) for row in history)
+    total_correct = sum(row.get("direction_correct_count", 0) for row in history)
+    total_range_hits = sum(row.get("range_hit_count", 0) for row in history)
+    weighted_direction = round((total_correct / total_assets) * 100, 1) if total_assets else 0
+    weighted_range = round((total_range_hits / total_assets) * 100, 1) if total_assets else 0
+    lines.append(f"- Asset-weighted direction accuracy: {weighted_direction}%")
+    lines.append(f"- Asset-weighted range accuracy: {weighted_range}%")
+    lines.append(
+        "- Improvement: seal predictions before outcomes and require "
+        "actuals-date validation before updating history."
+    )
     lines.append("")
 
     return "\n".join(lines)
@@ -513,15 +611,17 @@ def main() -> None:
     print(f"[INFO] Prediction file: {prediction_path}")
     print(f"[INFO] Latest output file: {output_path}")
 
+    prediction_data = load_json(prediction_path)
+
     actuals_snapshot_path = get_actuals_path_for_release(
         prism_root=prism_root,
         release=release,
-        output_path=output_path
+        output_path=output_path,
+        prediction_data=prediction_data,
     )
 
     print(f"[INFO] Actuals snapshot file: {actuals_snapshot_path}")
 
-    prediction_data = load_json(prediction_path)
     actual_data = load_json(actuals_snapshot_path)
 
     result = compare_prediction_to_actuals(
