@@ -74,7 +74,7 @@ jobs:
           )
 
           echo "Saving actuals for release: $RELEASE"
-          python prism/src/save_actuals.py "$RELEASE"
+          python prism/src/save_actuals.py "$RELEASE" --overwrite
 
       # -----------------------------
       # MONTHLY SEASONALITY COLLECTOR
