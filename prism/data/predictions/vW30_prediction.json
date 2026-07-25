@@ -1,1 +1,193 @@
-
+{
+  "release": "vW30",
+  "week": "W30",
+  "sprint_week": "W07",
+  "forecast_week": "2026-07-21 to 2026-07-25",
+  "source_type": "human_scored_prediction_from_W07_agent_outputs",
+  "note": "This JSON was produced from W07 R3 Almanac, R4 Macro, R5 Technical, R8 LLM Synthesis, and R7 Human Score outputs. Human Score applied Bullish Override (+6) based on clean broad-market EMA alignment, confirmed bank earnings beats, and Wild Card identification of FOMC + mega-cap earnings convergence on July 28-29.",
+  "overall_bias": "Bullish Override — broad-market large/small-cap continuation with NDX as weak link",
+  "overall_confidence": "Medium",
+  "assets": {
+    "SPX": {
+      "name": "S&P 500",
+      "predicted_direction": "Up",
+      "expected_change_pct": 1.4,
+      "range_low_pct": 0.8,
+      "range_high_pct": 2.0,
+      "confidence": 72,
+      "rationale": "SPX in Zone 1 Bullish EMA alignment above 8 EMA and 21 EMA with VIX compression and easing financial conditions supporting low-volatility drift higher. Pre-FOMC positioning expected to pull bullish momentum forward this week."
+    },
+    "NDX": {
+      "name": "Nasdaq 100",
+      "predicted_direction": "Neutral",
+      "expected_change_pct": 0.3,
+      "range_low_pct": -0.2,
+      "range_high_pct": 0.8,
+      "confidence": 60,
+      "rationale": "NDX remains in Zone 3 Bearish EMA condition below both 8 EMA and 21 EMA, with midterm July tech seasonal headwinds capping meaningful upside despite broad market strength."
+    },
+    "IWM": {
+      "name": "Russell 2000",
+      "predicted_direction": "Up",
+      "expected_change_pct": 0.8,
+      "range_low_pct": 0.3,
+      "range_high_pct": 1.2,
+      "confidence": 65,
+      "rationale": "IWM holds Zone 1 Bullish EMA alignment and rising WTI supports energy-linked small caps, though midterm July seasonal small-cap weakness limits conviction."
+    },
+    "XLK": {
+      "name": "Technology",
+      "predicted_direction": "Neutral",
+      "expected_change_pct": 0.2,
+      "range_low_pct": -0.5,
+      "range_high_pct": 0.8,
+      "confidence": 58,
+      "rationale": "Technology faces NDX Zone 3 Bearish headwinds and midterm July seasonal weakness; sector is not expected to lead this week."
+    },
+    "XLE": {
+      "name": "Energy",
+      "predicted_direction": "Up",
+      "expected_change_pct": 2.0,
+      "range_low_pct": 0.5,
+      "range_high_pct": 3.5,
+      "confidence": 68,
+      "rationale": "WTI surged +15.68% last week on geopolitical supply risk; energy sector leadership confirmed with XLE +1.62% and momentum remains bullish."
+    },
+    "XLV": {
+      "name": "Healthcare",
+      "predicted_direction": "Down",
+      "expected_change_pct": -1.0,
+      "range_low_pct": -2.0,
+      "range_high_pct": 0.0,
+      "confidence": 62,
+      "rationale": "Healthcare confirmed as lagging sector with XLV -2.47% last week; defensive rotation out of healthcare continues in risk-on environment."
+    },
+    "XLF": {
+      "name": "Financials",
+      "predicted_direction": "Up",
+      "expected_change_pct": 1.5,
+      "range_low_pct": 0.5,
+      "range_high_pct": 2.5,
+      "confidence": 70,
+      "rationale": "Financials confirmed weekly leadership with XLF +2.89%; strong Q2 bank earnings from JPM, BAC, Goldman, and Citi support continued sector strength."
+    },
+    "XLC": {
+      "name": "Communication Services",
+      "predicted_direction": "Up",
+      "expected_change_pct": 1.8,
+      "range_low_pct": 0.8,
+      "range_high_pct": 3.0,
+      "confidence": 68,
+      "rationale": "Communication Services confirmed strongest weekly leadership with XLC +3.58%; pre-positioning ahead of Microsoft and Meta earnings on July 29 may sustain momentum."
+    },
+    "XLP": {
+      "name": "Consumer Staples",
+      "predicted_direction": "Down",
+      "expected_change_pct": -0.5,
+      "range_low_pct": -1.2,
+      "range_high_pct": 0.2,
+      "confidence": 60,
+      "rationale": "Consumer Staples confirmed as lagging sector with XLP -1.09%; defensive sectors underperforming in risk-on rotation environment."
+    },
+    "XLU": {
+      "name": "Utilities",
+      "predicted_direction": "Down",
+      "expected_change_pct": -0.8,
+      "range_low_pct": -1.5,
+      "range_high_pct": 0.2,
+      "confidence": 60,
+      "rationale": "Utilities are rate-sensitive and rising 10Y yield at 4.61% limits upside; defensive sector underperforms in current risk-on rotation."
+    },
+    "XLRE": {
+      "name": "Real Estate",
+      "predicted_direction": "Down",
+      "expected_change_pct": -1.0,
+      "range_low_pct": -2.0,
+      "range_high_pct": 0.0,
+      "confidence": 62,
+      "rationale": "Real Estate is highly rate-sensitive; rising 10Y/30Y yields (4.61%/5.10%) create structural headwind for the sector."
+    },
+    "XLB": {
+      "name": "Materials",
+      "predicted_direction": "Down",
+      "expected_change_pct": -0.7,
+      "range_low_pct": -1.5,
+      "range_high_pct": 0.2,
+      "confidence": 60,
+      "rationale": "Materials identified as lagging sector in almanac and macro outputs; no catalyst for outperformance this week."
+    },
+    "XLI": {
+      "name": "Industrials",
+      "predicted_direction": "Down",
+      "expected_change_pct": -0.6,
+      "range_low_pct": -1.4,
+      "range_high_pct": 0.2,
+      "confidence": 60,
+      "rationale": "Industrials identified as lagging sector; mixed macro backdrop and rising yields limit cyclical upside."
+    },
+    "XLY": {
+      "name": "Consumer Discretionary",
+      "predicted_direction": "Down",
+      "expected_change_pct": -0.6,
+      "range_low_pct": -1.5,
+      "range_high_pct": 0.2,
+      "confidence": 60,
+      "rationale": "Consumer Discretionary identified as lagging sector; rising yields pressure consumer spending sentiment."
+    },
+    "WTI": {
+      "name": "Crude Oil WTI",
+      "predicted_direction": "Up",
+      "expected_change_pct": 2.5,
+      "range_low_pct": 0.5,
+      "range_high_pct": 4.0,
+      "confidence": 68,
+      "rationale": "WTI surged +15.68% last week on Iran/geopolitical supply risk; momentum remains bullish though mid-week pullback from overbought levels is possible."
+    },
+    "GOLD": {
+      "name": "Gold",
+      "predicted_direction": "Down",
+      "expected_change_pct": -1.0,
+      "range_low_pct": -2.0,
+      "range_high_pct": 0.5,
+      "confidence": 65,
+      "rationale": "Gold confirmed -3.47% weekly decline as rising Treasury yields and flat DXY reduce safe-haven demand while rate-hike bets stay firm."
+    },
+    "US10Y": {
+      "name": "10-Year Yield",
+      "predicted_direction": "Up",
+      "expected_change_pct": 1.5,
+      "range_low_pct": 0.5,
+      "range_high_pct": 3.0,
+      "confidence": 68,
+      "rationale": "Rising yield trend confirmed with average 10Y/30Y weekly change of +2.50%; markets pricing in sticky inflation ahead of Warsh debut FOMC press conference."
+    },
+    "TLT": {
+      "name": "US Bonds TLT",
+      "predicted_direction": "Down",
+      "expected_change_pct": -1.5,
+      "range_low_pct": -2.5,
+      "range_high_pct": 0.0,
+      "confidence": 68,
+      "rationale": "Rising yields structurally pressure long-duration bonds; TLT likely continues declining as the 30Y approaches and potentially exceeds 5.10%."
+    },
+    "VIX": {
+      "name": "VIX",
+      "predicted_direction": "Neutral",
+      "expected_change_pct": 1.5,
+      "range_low_pct": -2.0,
+      "range_high_pct": 5.0,
+      "confidence": 62,
+      "rationale": "VIX at 17.16 and rising; pre-FOMC and mega-cap earnings positioning next week may keep implied volatility elevated rather than compressing further."
+    },
+    "BTC": {
+      "name": "Bitcoin",
+      "predicted_direction": "Neutral",
+      "expected_change_pct": 0.0,
+      "range_low_pct": -4.0,
+      "range_high_pct": 4.0,
+      "confidence": 60,
+      "rationale": "BTC flat at $62,442 with no strong macro catalyst this week; range-bound behaviour expected until FOMC next week resolves rate path uncertainty."
+    }
+  },
+  "invalidation": "SPX closing below the 21-EMA (~7,490) on rising volume, or the 10-year yield sustaining above 4.75%, would invalidate the Bullish Override thesis and shift the regime to Neutral or Bearish."
+}
