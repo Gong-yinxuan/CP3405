@@ -1,31 +1,61 @@
-# Sprint 8 Retrospective Report (vW29)
-**Date:** 
-**Scrum Master:** R2 - To Hoang Gia
+# Sprint 8 Retrospective Report (vW30)
+
+**Date:** Sunday 26 July 2026  
+**Scrum Master:** R2 - Hoang To
+
+---
 
 ## 🎯 Sprint Goal Evaluation
-* **Goal Status:** In Progress
-* **Summary:** Successfully delivered an audit-ready vW30 market-intelligence increment before the 23:59 SGT deadline. All 11 S&P sector ETFs were integrated into the pipeline, and the final prediction has been successfully sealed under the `vW29` release tag.
+
+* **Goal Status:** Achieved
+* **Summary:** The team successfully continued the Prism market-intelligence automation work for `vW30`. The team delievered everything before deadline.
 
 ---
 
 ## 📈 Metric & Process Performance
 
-### 🔄 1. The Role Rotation & Blocker Resolution
-**Blocker:** Both `tencent/hy3` on OpenRouter and Claude on Anthropic required paid account credits that the team did not have institutional or personal-payment access to fund for coursework. OpenRouter's promotional free tier for Hy3 ended July 21, one day before this sprint's synthesis run, and the newly created Anthropic Console account did not carry usable trial credits. This is a policy/access constraint, not a technical one.
+### 🔄 1. Workflow
 
-**Response:** Separated the Claude and Hy3 call paths in `llm_synthesis.py`, added strict hyperparameter bounds and a reasoning-tag cleanup pass for Hy3's output, and built a three-layer fallback chain: Hy3 → Claude → OpenRouter's free-tier auto-router (`openrouter/free`), with an automatic retry on the free tier since it routes to a different model each call. Every substitution is logged and surfaced as a visible warning in the generated report, so no fallback is silent.
+* **What Happened:** The team found that the normal calibration runner could fail when the matching prediction file was not ready yet.
+* **Scrum Master Intervention:** Coordinated the testing of a separate `save_actuals.py` workflow so actuals could be saved first without depending on `vW30_prediction.json`.
+* **Outcome:** Actuals saving became clearer and safer. The team can now run the workflow in two stages: first save actuals, then run calibration only after the matching prediction file exists.
 
-**Outcome:** Verified via a live manual run on July 23 — with both Hy3 and Claude unavailable, the pipeline still completed successfully with zero crashes, produced all required output files (`synthesis_claude_hy3_W08.json`, `llm_synthesis_W30.md`, plus the four other per-model JSON files), and clearly flagged every fallback substitution in both the raw JSON (`_fallback_warning` field) and the human-readable report ("⚠️ Fallback Notices" section). This demonstrates the resilience the Sprint Goal required, independent of any single vendor's payment status.
+### ⚙️ 2. API Key Invalidation
 
-### ⚙️ 2. Workflow & Automation Highlights
+* **What Happened:** When team running for LLM-synthesis the tencent/Hy3 one of the model ran into errors.
 
+* **What Went Well:** Team figured out the model we used last week jsut announced no longer free so we went looking for new model
+
+* **Outcome:** Team found a new free model and moved on with it.
+
+### 🧪 3. Calibration Validation
+
+* **What Happened:** When calibration was run for `vW30`, the script detected a date mismatch between the actuals date and the prediction forecast week.
+* **Result:** The calibration runner correctly stopped instead of producing an inaccurate score. This showed that the date-integrity logic is working as intended.
+* **Learning:** The issue was not caused by the actuals file. The problem was that the prediction file had the wrong `forecast_week`, ending on `2026-08-01` instead of matching the actuals date `2026-07-24`.
 
 ---
 
 ## 🛑 Engineering Pitfalls & Course Corrections
 
-### ⚠️ Premature Release Tagging
+### ⚠️ Prediction and Actuals Date Mismatch
+
+* **Problem Encountered:** The `vW30_prediction.json` file had a forecast week that did not match the actuals data date. The actuals snapshot was dated `2026-07-24`, but the prediction expected an end date of `2026-08-01`.
+* **Immediate Correction:** The team identified that the correct forecast week should be `2026-07-20 to 2026-07-24`. Calibration should only be run after the prediction file and actuals file are confirmed to refer to the same forecast period.
+* **Outcome:** The team avoided generating an incorrect calibration score.
+
+### ⚠️ GitHub Actions Workflow Reliability
+
+* **Problem Encountered:** The GitHub Actions update workflow still needed refinement because the automated process could save actuals but should not blindly run calibration when the matching prediction file is missing or incorrectly dated.
+* **Immediate Correction:** The workflow was updated so that `save_actuals.py` saves the actuals snapshot first, and calibration only runs if the matching prediction file exists.
+* **Outcome:** The workflow is safer because missing prediction files no longer break the entire actuals collection process.
 
 ---
 
-## 🚀 Key Takeaways for Sprint 8
+## 🚀 Key Takeaways for Sprint 9
+
+1. **Separate Actuals Saving from Calibration:** Keep `save_actuals.py` as a separate R6 step so actuals can be saved even before prediction scoring is ready.
+
+2. **Validate Forecast Week Before Calibration:** Before running `calibration_runner.py`, confirm that the prediction `forecast_week` end date matches the actuals `date`.
+
+3. **Avoid Hardcoded Release Mistakes:** The workflow should avoid permanently hardcoding releases such as `vW30`. Each sprint should either auto-detect the release safely or allow a manual release input.
