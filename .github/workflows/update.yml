@@ -17,7 +17,12 @@ on:
   workflow_dispatch:
     inputs:
       target_week:
-        description: "Force a specific week number (e.g. 8). Leave blank to auto-detect the next week."
+        description: "Force a specific Week folder number, e.g. 8. Leave blank to auto-detect the next week."
+        required: false
+        default: ""
+
+      target_release:
+        description: "Force a specific Prism release, e.g. vW30. Leave blank to auto-detect from output.json date."
         required: false
         default: ""
 
@@ -54,11 +59,18 @@ jobs:
         run: |
           python prism/src/data_collector.py
 
-      - name: Save R6 actuals snapshot
+      - name: Determine R6 release
         if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 22 * * 5'
+        id: actuals_release
         shell: bash
+        env:
+          TARGET_RELEASE: ${{ github.event.inputs.target_release }}
         run: |
-          RELEASE=$(python - <<'PY'
+          if [ -n "$TARGET_RELEASE" ]; then
+            RELEASE="$TARGET_RELEASE"
+            echo "Using manually specified release: $RELEASE"
+          else
+            RELEASE=$(python - <<'PY'
           import json
           from pathlib import Path
           from datetime import date
@@ -72,9 +84,36 @@ jobs:
           print(f"vW{week_number}")
           PY
           )
+            echo "Detected release from output.json: $RELEASE"
+          fi
+
+          echo "release=$RELEASE" >> "$GITHUB_OUTPUT"
+
+      - name: Save R6 actuals snapshot
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 22 * * 5'
+        shell: bash
+        run: |
+          RELEASE="${{ steps.actuals_release.outputs.release }}"
 
           echo "Saving actuals for release: $RELEASE"
           python prism/src/save_actuals.py "$RELEASE" --overwrite
+
+      - name: Run R6/R10 calibration if prediction exists
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 22 * * 5'
+        shell: bash
+        run: |
+          RELEASE="${{ steps.actuals_release.outputs.release }}"
+          PREDICTION_FILE="prism/data/predictions/${RELEASE}_prediction.json"
+
+          echo "Checking prediction file: $PREDICTION_FILE"
+
+          if [ -f "$PREDICTION_FILE" ]; then
+            echo "Prediction file found. Running calibration for $RELEASE"
+            python prism/src/calibration_runner.py "$RELEASE"
+          else
+            echo "Prediction file not found. Skipping calibration for $RELEASE"
+            echo "Actuals were still saved successfully."
+          fi
 
       # -----------------------------
       # MONTHLY SEASONALITY COLLECTOR
@@ -122,14 +161,18 @@ jobs:
       - name: Determine week number
         if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 0 * * 1'
         id: week
+        shell: bash
+        env:
+          TARGET_WEEK: ${{ github.event.inputs.target_week }}
         run: |
-          if [ -n "${{ github.event.inputs.target_week }}" ]; then
-            WEEK_NUMBER="${{ github.event.inputs.target_week }}"
+          if [ -n "$TARGET_WEEK" ]; then
+            WEEK_NUMBER="$TARGET_WEEK"
             echo "Using manually specified week number: $WEEK_NUMBER"
           else
             WEEK_NUMBER=$(python -c "import sys; sys.path.insert(0, 'prism/src/report_builders'); from pathlib import Path; from week_utils import detect_next_week_number; print(detect_next_week_number(Path('.')))")
             echo "Detected week number: $WEEK_NUMBER"
           fi
+
           echo "number=$WEEK_NUMBER" >> "$GITHUB_OUTPUT"
 
       - name: Build almanac agent report (R3)

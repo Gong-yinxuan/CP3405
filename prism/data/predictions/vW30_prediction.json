@@ -2,7 +2,7 @@
   "release": "vW30",
   "week": "W30",
   "sprint_week": "W08",
-  "forecast_week": "2026-07-28 to 2026-08-01",
+  "forecast_week": "2026-07-20 to 2026-07-24",
   "source_type": "human_scored_prediction_from_W08_agent_outputs",
   "note": "This JSON was produced from W08 R3 Almanac, R4 Macro, R5 Technical, R8 LLM Synthesis, and R7 Human Score outputs. Human Score applied Neutral / Uncertain (-1) due to degraded AI signal quality (only 2 of 4 models functional), rising VIX, and the extraordinary July 30 catalyst convergence (FOMC + GDP + PCE + BoE + Microsoft/Apple earnings on the same day).",
   "overall_bias": "Neutral / Uncertain — two-sided risk dominates ahead of July 30 catalyst overload",
