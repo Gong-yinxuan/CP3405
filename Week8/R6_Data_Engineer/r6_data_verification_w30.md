@@ -1,81 +1,50 @@
 # R6 Data Engineer — Automation Verification (Sprint 8 / W30)
 **Role:** R6 Data Engineer
-**Verification date:** 25 July 2026
-**Scheduled run checked:** Update Market Data — Friday actuals collector, run committed 2026-07-24 22:56:56 UTC
+**Verification date:** 27 July 2026
+**Scope:** R6 (data collection) status + handoff resolution check on the calibration defects reported this sprint
 
-## 1. Eleven-Sector Coverage
-The collector (`prism/src/data_collector.py`) still maps all 11 required S&P 500 sector ETFs:
+## 1. Eleven-Sector Coverage — unchanged, still correct
+`prism/src/data_collector.py` maps all 11 required S&P 500 sector ETFs. No regression across the sprint.
 
-| Sector | ETF | Present in collector | Present in 24 July output |
-|---|---|---|---|
-| Technology | XLK | Yes | Yes |
-| Health Care | XLV | Yes | Yes |
-| Financials | XLF | Yes | Yes |
-| Consumer Discretionary | XLY | Yes | Yes |
-| Communication Services | XLC | Yes | Yes |
-| Industrials | XLI | Yes | Yes |
-| Consumer Staples | XLP | Yes | Yes |
-| Energy | XLE | Yes | Yes |
-| Materials | XLB | Yes | Yes |
-| Real Estate | XLRE | Yes | Yes |
-| Utilities | XLU | Yes | Yes |
+## 2. Automation Verification — two consecutive successful Friday runs
+- **07-24 run** (commit `788351a`, 22:56:56 UTC): `output.json` updated 2026-07-17 → 2026-07-24. Success.
+- The Monday R3/R4/R5 cron also ran cleanly this week (commit `0a84ec4`, 2026-07-27, produced `Week9/R3_almanac`, `Week9/R4_macro`, `Week9/R5_technical`).
+- No Friday run has failed or been skipped since verification began. R6 collection is stable.
 
-**Coverage result:** 11/11 sector ETFs. No regression.
+## 3. Schema Validation — unchanged, still correct
+`output.json` continues to carry the full required schema (date, SPX/NDX/IWM, 11 sectors, 6 supporting assets, `close` + `weekly_change_pct` per asset) on every run checked.
 
-## 2. Automation Verification
-The workflow schedule is unchanged:
-```yaml
-- cron: "0 22 * * 5"
-```
-Friday 22:00 UTC, i.e. Saturday 06:00 Singapore time, after the US Friday close.
+## 4. Handoff Items — Status of the Three Defects Flagged This Sprint
 
-The scheduled run has now occurred:
-- **Trigger:** Schedule (`0 22 * * 5`)
-- **Commit:** `788351a` — "chore: update Prism data 2026-07-24", authored by `github-actions[bot]`
-- **Committed:** 2026-07-24 22:56:56 UTC (≈57 min after the cron fired, consistent with collector + calibration runner execution time)
-- **Branch:** `main`
-- **Files touched:** `prism/data/output.json`, `delta_W28.md`, `prism/data/calibration/delta_W28.json`
+### 4a. Stale-actuals / date-integrity bug (originally flagged Week 7)
+**Fixed in production, but not retroactive.** Two PRs merged the corrected logic into `prism/src/calibration_runner.py`:
+- PR #7 `fix-calibration` (merged 2026-07-25 12:36 SGT)
+- PR #8 `fix_calibration_2` (merged 2026-07-26 08:48 SGT)
 
-`prism/data/output.json` is now dated **2026-07-24**, confirming both the R6 actuals collector and the git commit/push step completed successfully. I could not pull the exact run number/duration/status badge from the Actions API this time (GitHub's unauthenticated rate limit was exhausted from repeated checks), but the pushed commit is direct, verifiable evidence the run completed end-to-end.
+I confirmed the live file now contains `forecast_end_date()` and the full date-validation path described in the earlier reports. This is real and correctly written — it validates a snapshot's date against the prediction's forecast end date, and refuses to silently rebuild an **old** (non-latest) release from the current `output.json`, raising instead.
 
-## 3. Schema Validation
-The new `output.json` (2026-07-24) contains:
-- one `date` field in `YYYY-MM-DD` format;
-- three core index assets: SPX (7411.98, -0.6%), NDX (28128.34, -1.6%) and IWM (291.17, -1.0%);
-- all 11 sector ETFs;
-- six supporting assets: GOLD, WTI, US10Y, TLT, VIX and BTC;
-- a numeric `close` and `weekly_change_pct` for every asset.
+**However, this only protects releases going forward.** `main()` only ever processes `detect_latest_release()` — a single release per run. Since `vW30_prediction.json` now exists, **vW28 is no longer "latest"** and is permanently frozen: `prism/data/actuals/vW28_actuals.json` is still dated **2026-07-10**, and `prism/data/calibration/accuracy_history.json` still records vW28 at the wrong **85.0%** direction accuracy. The fix prevents new corruption; it does not repair the vW28 entry already in the pipeline. A corrected vW28 score (50.0%) exists, but only in R10's separately-delivered package (`Week8/R10/...`), not in the file the pipeline actually reads.
 
-**Schema result:** Complete and suitable for downstream calibration.
+### 4b. vW29 (Team 05) never scored automatically
+**Still true — by design, not by omission.** No `vW29_prediction.json` was ever added to `prism/data/predictions/`, so vW29 was never eligible for automated calibration at all; it's a human/Team submission outside that pipeline. It has since been scored manually twice — once in my reconstruction (`delta_W29.md`, committed 2026-07-27) and once independently by R10 (`Week8/R10/Week8/R10_Calibration/delta_W29.md` + `r10_calibration_W30.md`) — both landing on the same figures: **55.6% direction accuracy (5/9), 33.3% range accuracy (3/9)**. Neither of these lives in `prism/data/calibration/accuracy_history.json`.
 
-## 4. Important Defect — Confirmed Still Live (Week 7 fix was never merged)
-Week 7 identified that the calibration runner reuses a stale `vW28_actuals.json` instead of refreshing it, and reported that a corrected, date-validated runner had been supplied. My check on 24 July found that corrected version sitting unmerged in `Week7/R10/prism/src/calibration_runner.py`, while the production file `prism/src/calibration_runner.py` still had the old "never overwrite an existing snapshot" logic.
-
-Tonight's run is direct proof the defect is still live:
-- `prism/data/actuals/vW28_actuals.json` is **still dated 2026-07-10** after the run — untouched, despite fresh 2026-07-24 data being available.
-- `prism/data/calibration/delta_W28.json` **was rewritten by the run**, but the only field that changed is `generated_at` (07-17 22:43:11 → 07-24 22:56:56). `actuals_source` still points at the same stale `vW28_actuals.json`, and `direction_accuracy_pct` is unchanged at **85.0%**.
-- In other words, the calibration runner re-scored vW28 (forecast window 2026-07-13 to 2026-07-17) against the same 2026-07-10 actuals a second time, one week later, producing a re-timestamped but substantively identical — and still wrong — result.
-
-Therefore:
-- R6 collection is fully successful for a second consecutive week;
-- the R10 calibration step has now reused the wrong actuals week **twice** on the same unmerged codebase;
-- this is no longer a one-off defect but a recurring one, because the fix exists but was never deployed.
-
-**Recommended action:** merge `Week7/R10/prism/src/calibration_runner.py`'s date-integrity logic into `prism/src/calibration_runner.py` before next Friday's run, then manually re-run the calibration step once against the current `output.json` (2026-07-24) so vW28 is either correctly archived as stale or correctly re-scored.
+### 4c. Neutral/Flat direction-matching inconsistency (flagged in passing, not yet investigated)
+**Not yet looked at.** Still open — worth a dedicated check of the direction-scoring function if R10 wants it chased down.
 
 ## 5. R6 Final Status
 | Requirement | Result |
 |---|---|
 | Collector covers all 11 sector ETFs | Complete |
 | Friday post-close cron configured | Complete |
-| Scheduled run occurred | Complete |
-| Scheduled run successful | Complete |
+| Scheduled runs occurred (2 consecutive weeks) | Complete |
+| Scheduled runs successful | Complete |
 | JSON contains all required assets | Complete |
 | Numeric schema valid | Complete |
-| Downstream date integrity | **Still broken** — fix written in Week 7 but never merged; confirmed recurring this sprint |
+| Calibration date-integrity fix merged | Complete (PR #7, PR #8) |
+| vW28 score corrected in the live pipeline | **Not done** — frozen at 85.0%, correct 50.0% only exists outside the pipeline |
+| vW29 scored in the live pipeline | **Not applicable** — never entered the automated pipeline; manually scored outside it |
+| vW30 scored correctly end-to-end | Complete (60.0%, in `accuracy_history.json`) |
 
-**R6 conclusion:** The data collection task remains complete and reliable — two consecutive successful Friday runs, full sector coverage, valid schema. The outstanding issue is unchanged from Week 7 and has now reproduced a second time: the calibration runner's stale-actuals bug, because the corrected runner supplied last sprint was never merged into the production code path. This is a deployment gap, not a data-collection gap, and should be closed before it affects a third release.
-
-
-**R6 conclusion:** Data collection code is unchanged and remains correct — 11/11 sector coverage and full schema validity hold. The open item carried over from Week 7 is not collector reliability but deployment discipline: the actuals-date integrity fix was written last sprint but never merged into the file the workflow actually executes, so the stale-snapshot defect is still active in production. This should be merged before tonight's scheduled run, and the run's outcome (status, duration, resulting `output.json` date) should be confirmed once it fires.
+**R6 conclusion:** Data collection is fully healthy and requires no further changes. The calibration fix reported as missing last sprint has now been merged and is working correctly for new releases — vW30 is proof it works end-to-end. The remaining gap is not R6 or R10's code, but that two already-corrupted/skipped entries (vW28, vW29) sit outside the automated system's memory: their correct figures exist only in side documents. If the team wants `accuracy_history.json` itself to be the source of truth, someone needs to manually splice in the corrected vW28 (50.0%) and vW29 (55.6%) rows — the fixed code will not do this on its own, by design.
+n, and the run's outcome (status, duration, resulting `output.json` date) should be confirmed once it fires.
 
