@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Prism Dashboard</title>
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body data-page="home">
@@ -36,6 +38,7 @@
           <p class="channel-label"># overview</p>
           <h2>Prism Market Intelligence Dashboard</h2>
         </div>
+
         <div class="date-pill">
           Latest data: <strong id="latest-date">Loading...</strong>
         </div>
@@ -46,8 +49,9 @@
           <p class="eyebrow">CP3405 · Team 5</p>
           <h3>Automated market intelligence workspace</h3>
           <p>
-            This dashboard displays generated Prism outputs for R3 Almanac,
-            R4 Macro, R5 Technical, and R6 calibration/actuals tracking.
+            Discord-style dashboard for Prism market intelligence outputs,
+            including R3 Almanac, R4 Macro, R5 Technical, R6 actuals,
+            and calibration history.
           </p>
         </div>
       </section>
@@ -56,13 +60,13 @@
         <a class="role-card" href="r3.html">
           <span class="role-tag">R3</span>
           <h3>Almanac Agent</h3>
-          <p>Seasonality, calendar pattern, and historical bias overview.</p>
+          <p>Seasonality, calendar patterns, and historical bias overview.</p>
         </a>
 
         <a class="role-card" href="r4.html">
           <span class="role-tag">R4</span>
           <h3>Macro Agent</h3>
-          <p>Rates, yields, Fed watch, commodities, and macro risk signals.</p>
+          <p>Rates, Fed watch, commodities, yields, and macro risk signals.</p>
         </a>
 
         <a class="role-card" href="r5.html">
@@ -77,6 +81,7 @@
           <h3>Latest Market Snapshot</h3>
           <p>Loaded from <code>prism/data/output.json</code></p>
         </div>
+
         <div id="market-grid" class="market-grid">
           <p class="muted">Loading market data...</p>
         </div>
@@ -85,10 +90,44 @@
       <section class="panel">
         <div class="panel-heading">
           <h3>Calibration History</h3>
-          <p>Latest accuracy summary from Prism calibration output.</p>
+          <p>Latest accuracy summary and previous sprint calibration records.</p>
         </div>
+
         <div id="calibration-summary" class="summary-card">
           Loading calibration history...
+        </div>
+
+        <div class="table-wrap">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>Release</th>
+                <th>Forecast Week</th>
+                <th>Direction Accuracy</th>
+                <th>Correct / Total</th>
+                <th>Range Accuracy</th>
+                <th>Average Error</th>
+              </tr>
+            </thead>
+            <tbody id="history-table">
+              <tr>
+                <td colspan="6">Loading calibration history...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-heading">
+          <h3>Quick Data Links</h3>
+          <p>Open generated Prism data files directly.</p>
+        </div>
+
+        <div class="link-grid">
+          <a href="../data/output.json" target="_blank">Latest Output JSON</a>
+          <a href="../data/calibration/accuracy_history.json" target="_blank">Accuracy History JSON</a>
+          <a href="../data/calibration/accuracy_history.md" target="_blank">Accuracy History MD</a>
         </div>
       </section>
     </main>

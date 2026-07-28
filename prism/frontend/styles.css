@@ -4,16 +4,20 @@
   --bg-panel: #2b2d31;
   --bg-card: #383a40;
   --bg-hover: #404249;
+
   --text-main: #f2f3f5;
   --text-muted: #b5bac1;
   --text-soft: #949ba4;
+
   --border: #3f4147;
+
   --accent: #5865f2;
   --accent-light: #7289da;
+  --purple: #9b59ff;
+
   --green: #23a559;
   --red: #f23f43;
   --orange: #f0b232;
-  --purple: #9b59ff;
 }
 
 * {
@@ -163,6 +167,10 @@ a {
   background: var(--accent);
   border-color: var(--accent);
   font-weight: 700;
+}
+
+.button:hover {
+  background: var(--accent-light);
 }
 
 .hero-card {
@@ -317,6 +325,26 @@ code {
   color: var(--text-muted);
 }
 
+.link-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.link-grid a {
+  text-decoration: none;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 12px 14px;
+  border-radius: 12px;
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.link-grid a:hover {
+  background: var(--bg-hover);
+}
+
 .json-cards {
   display: grid;
   gap: 14px;
@@ -359,6 +387,47 @@ code {
 .value {
   color: var(--text-main);
   word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin-top: 18px;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.history-table th,
+.history-table td {
+  padding: 13px 14px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  color: var(--text-muted);
+}
+
+.history-table th {
+  background: #1e1f22;
+  color: var(--text-main);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.history-table tr:last-child td {
+  border-bottom: none;
+}
+
+.history-table td:first-child {
+  color: var(--text-main);
+  font-weight: 800;
 }
 
 @media (max-width: 900px) {

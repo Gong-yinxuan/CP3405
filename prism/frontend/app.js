@@ -8,6 +8,15 @@ const paths = {
   r5: "../data/technical/technical_collector_output.json",
 };
 
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
 async function loadJson(path) {
   const response = await fetch(path);
 
@@ -62,7 +71,7 @@ function friendlyValue(value) {
     }
 
     return value
-      .slice(0, 6)
+      .slice(0, 8)
       .map((item) => {
         if (typeof item === "object") {
           return JSON.stringify(item, null, 2);
@@ -112,10 +121,10 @@ async function loadMarketSnapshot() {
 
         return `
           <article class="asset-card">
-            <div class="asset-symbol">${asset.symbol}</div>
-            <div class="asset-name">${asset.name}</div>
+            <div class="asset-symbol">${escapeHtml(asset.symbol)}</div>
+            <div class="asset-name">${escapeHtml(asset.name)}</div>
             <div class="change ${changeClass}">
-              ${formatPercent(asset.change)}
+              ${escapeHtml(formatPercent(asset.change))}
             </div>
           </article>
         `;
@@ -123,17 +132,20 @@ async function loadMarketSnapshot() {
       .join("");
   } catch (error) {
     latestDateEl.textContent = "Error";
+
     marketGridEl.innerHTML = `
       <p class="muted">
         Could not load market snapshot. Check that prism/data/output.json exists.
       </p>
     `;
+
     console.error(error);
   }
 }
 
 async function loadCalibrationSummary() {
   const calibrationSummaryEl = document.getElementById("calibration-summary");
+  const historyTableEl = document.getElementById("history-table");
 
   if (!calibrationSummaryEl) {
     return;
@@ -146,25 +158,61 @@ async function loadCalibrationSummary() {
       calibrationSummaryEl.innerHTML = `
         <p class="muted">No calibration history available yet.</p>
       `;
+
+      if (historyTableEl) {
+        historyTableEl.innerHTML = `
+          <tr>
+            <td colspan="6">No calibration history available.</td>
+          </tr>
+        `;
+      }
+
       return;
     }
 
     const latest = history[history.length - 1];
 
     calibrationSummaryEl.innerHTML = `
-      <span class="summary-number">${latest.direction_accuracy_pct || 0}%</span>
+      <span class="summary-number">${escapeHtml(latest.direction_accuracy_pct || 0)}%</span>
       <strong>Latest direction accuracy</strong>
       <p class="muted">
-        ${latest.release || "-"} · ${latest.direction_correct_count || 0}/${latest.total_assets_scored || 0} correct ·
-        average error ${latest.average_error_pct || 0}%
+        ${escapeHtml(latest.release || "-")} ·
+        ${escapeHtml(latest.direction_correct_count || 0)}/${escapeHtml(latest.total_assets_scored || 0)} correct ·
+        average error ${escapeHtml(latest.average_error_pct || 0)}%
       </p>
     `;
+
+    if (historyTableEl) {
+      historyTableEl.innerHTML = history
+        .map((row) => {
+          return `
+            <tr>
+              <td>${escapeHtml(row.release || "-")}</td>
+              <td>${escapeHtml(row.forecast_week || "-")}</td>
+              <td>${escapeHtml(row.direction_accuracy_pct ?? 0)}%</td>
+              <td>${escapeHtml(row.direction_correct_count ?? 0)}/${escapeHtml(row.total_assets_scored ?? 0)}</td>
+              <td>${escapeHtml(row.range_accuracy_pct ?? 0)}%</td>
+              <td>${escapeHtml(row.average_error_pct ?? 0)}%</td>
+            </tr>
+          `;
+        })
+        .join("");
+    }
   } catch (error) {
     calibrationSummaryEl.innerHTML = `
       <p class="muted">
         No calibration history file found yet. This is normal before calibration runs.
       </p>
     `;
+
+    if (historyTableEl) {
+      historyTableEl.innerHTML = `
+        <tr>
+          <td colspan="6">No calibration history file found.</td>
+        </tr>
+      `;
+    }
+
     console.error(error);
   }
 }
@@ -196,10 +244,11 @@ function renderRoleData(data, roleName) {
   priorityKeys.forEach((key) => {
     if (Object.prototype.hasOwnProperty.call(data, key)) {
       shownKeys.add(key);
+
       cards.push(`
         <article class="data-card">
-          <h4>${key}</h4>
-          <p>${friendlyValue(data[key])}</p>
+          <h4>${escapeHtml(key)}</h4>
+          <p>${escapeHtml(friendlyValue(data[key]))}</p>
         </article>
       `);
     }
@@ -207,12 +256,12 @@ function renderRoleData(data, roleName) {
 
   const remainingRows = Object.entries(data)
     .filter(([key]) => !shownKeys.has(key))
-    .slice(0, 12)
+    .slice(0, 14)
     .map(([key, value]) => {
       return `
         <div class="key-value-row">
-          <div class="key">${key}</div>
-          <div class="value">${friendlyValue(value)}</div>
+          <div class="key">${escapeHtml(key)}</div>
+          <div class="value">${escapeHtml(friendlyValue(value))}</div>
         </div>
       `;
     })
@@ -220,7 +269,7 @@ function renderRoleData(data, roleName) {
 
   cards.push(`
     <article class="data-card">
-      <h4>${roleName} Raw Fields</h4>
+      <h4>${escapeHtml(roleName)} Raw Fields</h4>
       <div class="key-value-list">
         ${remainingRows || `<p class="muted">No extra fields found.</p>`}
       </div>
@@ -264,11 +313,12 @@ async function loadRolePage() {
   } catch (error) {
     roleOutputEl.innerHTML = `
       <p class="muted">
-        Could not load ${config.name} data. Check that this file exists:
+        Could not load ${escapeHtml(config.name)} data. Check that this file exists:
         <br />
-        <code>${config.path}</code>
+        <code>${escapeHtml(config.path)}</code>
       </p>
     `;
+
     console.error(error);
   }
 }
