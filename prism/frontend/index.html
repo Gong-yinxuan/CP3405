@@ -45,15 +45,13 @@
       </header>
 
       <section class="hero-card">
-        <div>
-          <p class="eyebrow">CP3405 · Team 5</p>
-          <h3>Automated market intelligence workspace</h3>
-          <p>
-            Discord-style dashboard for Prism market intelligence outputs,
-            including R3 Almanac, R4 Macro, R5 Technical, R6 actuals,
-            and calibration history.
-          </p>
-        </div>
+        <p class="eyebrow">CP3405 · Team 5</p>
+        <h3>Automated market intelligence workspace</h3>
+        <p>
+          Discord-style dashboard for Prism market intelligence outputs,
+          including R3 Almanac, R4 Macro, R5 Technical, R6 actuals,
+          and calibration history.
+        </p>
       </section>
 
       <section class="grid three">
@@ -85,6 +83,26 @@
         <div id="market-grid" class="market-grid">
           <p class="muted">Loading market data...</p>
         </div>
+      </section>
+
+      <section class="grid two">
+        <section class="panel chart-panel">
+          <div class="panel-heading">
+            <h3>Market Movement Chart</h3>
+            <p>Top asset moves by weekly percentage change.</p>
+          </div>
+
+          <canvas id="market-chart" height="320"></canvas>
+        </section>
+
+        <section class="panel chart-panel">
+          <div class="panel-heading">
+            <h3>Calibration Accuracy Chart</h3>
+            <p>Direction accuracy trend across previous releases.</p>
+          </div>
+
+          <canvas id="calibration-chart" height="320"></canvas>
+        </section>
       </section>
 
       <section class="panel">
