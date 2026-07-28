@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Prism Market Intelligence Dashboard</title>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div>
+      <p class="eyebrow">CP3405 Market Intelligence</p>
+      <h1>Prism Dashboard</h1>
+      <p class="subtitle">
+        Automated market snapshot, actuals tracking, and calibration overview.
+      </p>
+    </div>
+
+    <div class="status-card">
+      <span class="status-label">Latest Data Date</span>
+      <strong id="latest-date">Loading...</strong>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <h2>Market Snapshot</h2>
+          <p>Latest collected asset movement from <code>output.json</code>.</p>
+        </div>
+      </div>
+
+      <div id="market-grid" class="market-grid">
+        <p class="muted">Loading market data...</p>
+      </div>
+    </section>
+
+    <section class="panel two-column">
+      <div>
+        <h2>Calibration Summary</h2>
+        <p>
+          Shows previous calibration results when
+          <code>accuracy_history.json</code> exists.
+        </p>
+
+        <div id="calibration-summary" class="summary-box">
+          Loading calibration history...
+        </div>
+      </div>
+
+      <div>
+        <h2>Workflow Status</h2>
+        <div class="workflow-list">
+          <div class="workflow-item">
+            <span class="dot done"></span>
+            <div>
+              <strong>R6 Actuals</strong>
+              <p>Collected by <code>data_collector.py</code> and saved by <code>save_actuals.py</code>.</p>
+            </div>
+          </div>
+
+          <div class="workflow-item">
+            <span class="dot warning"></span>
+            <div>
+              <strong>Calibration</strong>
+              <p>Runs only when matching prediction and actuals dates are aligned.</p>
+            </div>
+          </div>
+
+          <div class="workflow-item">
+            <span class="dot done"></span>
+            <div>
+              <strong>Reports</strong>
+              <p>R3, R4, and R5 reports are generated from Prism collector outputs.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Calibration History</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Release</th>
+              <th>Forecast Week</th>
+              <th>Direction Accuracy</th>
+              <th>Correct / Total</th>
+              <th>Range Accuracy</th>
+              <th>Average Error</th>
+            </tr>
+          </thead>
+          <tbody id="history-table">
+            <tr>
+              <td colspan="6">Loading...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Quick Links</h2>
+      <div class="link-grid">
+        <a href="../data/output.json" target="_blank">Latest Output JSON</a>
+        <a href="../data/calibration/accuracy_history.json" target="_blank">Accuracy History JSON</a>
+        <a href="../data/calibration/accuracy_history.md" target="_blank">Accuracy History MD</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Prism dashboard frontend · Static HTML/CSS/JS</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
