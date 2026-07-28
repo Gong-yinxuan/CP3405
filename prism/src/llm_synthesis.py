@@ -18,7 +18,7 @@ DEEPSEEK_MODEL = "deepseek/deepseek-chat"
 FREE_FALLBACK_MODEL = "openrouter/free"
 
 # System Endpoint Assets
-OPEN_ROUTER_URL = "https://openrouter.ai"
+OPEN_ROUTER_URL = ""https://openrouter.ai/api/v1/chat/completions""
 
 
 def clean_json_stream(raw_text):
