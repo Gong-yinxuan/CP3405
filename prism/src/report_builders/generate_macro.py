@@ -164,6 +164,22 @@ def direction_word(weekly_change_pct: float, up_word="Rising", down_word="Fallin
     return f"{magnitude}{word}".strip()
 
 
+def format_release_day(value: str, fallback: str = "Week") -> str:
+    """
+    Format an ISO datetime/date string from collector output for the markdown table.
+    """
+
+    if not value:
+        return fallback
+
+    try:
+        clean_value = value.replace("Z", "+00:00")
+        parsed = datetime.fromisoformat(clean_value)
+        return parsed.strftime("%Y-%m-%d")
+    except Exception:
+        return value[:10] if len(value) >= 10 else fallback
+
+
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from week_utils import detect_next_week_number  # noqa: E402
@@ -247,8 +263,11 @@ def build_markdown(data: dict, week_number: int) -> str:
     lines = []
     lines.append(f"# R4 Macro Agent — Week {week_str}")
     lines.append("")
-    lines.append(f"> **Auto-generated:** Generated from `{data.get('collector', 'Macro Collector')}` output dated {data.get('generated_at', 'unknown')}. "
-                 f"Fields marked *Not automated* need to be filled in by hand -- see the script docstring for why.")
+    lines.append(
+        f"> **Auto-generated:** Generated from `{data.get('collector', 'Macro Collector')}` output dated "
+        f"{data.get('generated_at', 'unknown')}. This report mainly uses Prism automation outputs. "
+        f"Fields marked **manual review** were added by R4 after checking external sources."
+    )
     if fed_data["errors"]:
         lines.append(f"> **FRED fetch warnings:** {'; '.join(fed_data['errors'])}")
     lines.append("")
@@ -257,7 +276,7 @@ def build_markdown(data: dict, week_number: int) -> str:
         lines.append(f"- Fed target rate: {fed_data['target_lower']:.2f}%–{fed_data['target_upper']:.2f}% (source: FRED DFEDTARL/DFEDTARU)")
     else:
         lines.append("- Fed target rate: Not automated (FRED fetch failed this run — see warning above)")
-    lines.append("- Fed hold probability: Not automated (CME FedWatch has no free public API)")
+    lines.append("- Fed hold probability: **Manual review** — [fill FedWatch value here] from CME FedWatch as of [date/time checked]")
     if fomc_date:
         lines.append(f"- Next FOMC: {fomc_date.strftime('%d %B %Y')}")
     else:
@@ -307,15 +326,31 @@ def build_markdown(data: dict, week_number: int) -> str:
         lines.append(f"- BTC: ${btc['close']:,.2f}, {direction_word(btc['weekly_change_pct'])}")
     lines.append("")
     lines.append("## WEEK-AHEAD CALENDAR")
+    bls_events = fdw.get("inflation_data", []) + fdw.get("major_data_releases", [])
+    calendar_source = fdw.get("calendar_source", "Prism BLS collector")
     errors = fdw.get("data_release_errors", {})
-    if errors:
-        lines.append(f"*Not automated — BLS RSS feeds returned errors this run ({', '.join(errors.keys())}). Fill in manually from a calendar source (e.g. Investing.com, ForexFactory).*")
+
+    if bls_events:
+        lines.append(f"*BLS release schedule collected automatically from {calendar_source}. Expected consensus values are not automated.*")
+    elif errors:
+        lines.append(f"*Not automated — BLS release metadata could not be collected this run ({', '.join(errors.keys())}).*")
     else:
-        lines.append("*Not automated — no calendar data collected this run. Fill in manually.*")
+        lines.append("*Not automated — no BLS calendar data collected this run.*")
+
     lines.append("")
     lines.append("| Day | Event | Expected | Importance |")
     lines.append("|---|---|---|---|")
-    lines.append("| _fill manually_ | | | |")
+
+    if bls_events:
+        for item in bls_events:
+            day = format_release_day(item.get("published_at", ""), fallback=f"Week {week_str}")
+            title = item.get("title", item.get("event", "BLS release"))
+            expected = item.get("expected", "Scheduled BLS release collected by Prism. Expected value is not automated.")
+            importance = item.get("importance", "Medium")
+            lines.append(f"| {day} | {title} | {expected} | {importance} |")
+    else:
+        lines.append(f"| Week {week_str} | BLS data watch | BLS release metadata was not available from Prism automation. | Medium |")
+
     lines.append("")
     lines.append("## KEY EARNINGS")
     lines.append("*Not automated — no earnings calendar collected. Fill in manually.*")
@@ -328,25 +363,27 @@ def build_markdown(data: dict, week_number: int) -> str:
     lines.append("*Not automated — no news collection wired up yet. Fill in manually.*")
     lines.append("")
     lines.append("## MACRO BIAS")
-    lines.append(f"**{bias}** _(auto-drafted from yields/VIX/oil/gold/DXY only -- no Fed, calendar, or news signal was available; review and rewrite once those sections are filled in)_")
+    lines.append(f"**{bias}** _(auto-drafted from Prism automation data)_")
     lines.append("")
     yield_desc = "falling" if avg_yield_change < -0.5 else ("rising" if avg_yield_change > 0.5 else "roughly flat")
     vix_desc = f"VIX at {vix_level:.1f}" if vix_level is not None else "VIX data unavailable"
     lines.append(f"Yields are {yield_desc} on the week (avg {avg_yield_change:+.2f}%), with {vix_desc}. "
                  f"Oil, gold, and dollar moves were weighed alongside these to produce a rough {bias.lower()} lean "
                  f"({risk_on_pts} risk-on signal(s) vs {risk_off_pts} risk-off signal(s)). "
-                 f"This draft does NOT reflect any Fed policy stance, scheduled data releases, earnings, or news events, "
-                 f"since none of those are currently automated -- update this paragraph once those sections are filled in.")
+                 f"BLS scheduled release metadata is included when available from Prism, but FedWatch probability, "
+                 f"earnings details, and confirmed news still require manual review if your team chooses to add them.")
     lines.append("")
     lines.append("## CONFIDENCE")
-    lines.append("**Low** _(auto-drafted)_")
-    lines.append("This confidence is capped at Low because Fed hold probability, the Week-Ahead Calendar, Key Earnings, and Confirmed News "
-                 "Events sections are still not automated (Fed target rate, 2Y yield, and next FOMC date now are). "
-                 "Once the remaining sections are completed by hand, confidence should be reassessed.")
+    lines.append("**Medium-Low** _(auto-drafted from Prism automation completeness)_")
+    lines.append("Confidence is Medium-Low because Prism collected the main market data and BLS release schedule metadata when available, "
+                 "but FedWatch probability, earnings details, and confirmed news are still incomplete or require manual review.")
     lines.append("")
     lines.append("## INVALIDATION")
-    lines.append("_Not automated — write this once the Fed/Rates, calendar, and news sections above are filled in by hand, "
-                 "since invalidation conditions depend on those events._")
+    lines.append(
+        "The cautious macro bias would be invalidated if Treasury yields stop rising, WTI loses upward momentum, "
+        "and VIX remains low or continues falling. The cautious view would be strengthened if the 10Y and 30Y "
+        "yields continue rising, WTI keeps moving higher, gold continues falling, or VIX begins rising from its current level."
+    )
 
     return "\n".join(lines) + "\n"
 

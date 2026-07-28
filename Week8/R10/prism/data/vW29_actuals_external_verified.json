@@ -1,0 +1,58 @@
+{
+  "release": "vW29",
+  "forecast_week": "2026-07-21 to 2026-07-25",
+  "market_close_used": "2026-07-24",
+  "note": "25 July 2026 was Saturday; Friday 24 July was the final US market close.",
+  "source_status": "external_verified_because_repository_output_json_remained_stale_at_2026-07-17",
+  "assets": {
+    "SPX": {
+      "actual_change_pct": -0.6,
+      "close": 7411.98
+    },
+    "NDX": {
+      "actual_change_pct": -0.8,
+      "close": 28362.15
+    },
+    "IWM": {
+      "actual_change_pct": -1.0,
+      "close": 291.17
+    },
+    "GOLD": {
+      "actual_change_pct": 1.2,
+      "close": 4070.8
+    },
+    "WTI": {
+      "actual_change_pct": 9.2,
+      "close": 89.31
+    },
+    "US10Y": {
+      "actual_change_pct": 4.2,
+      "close": 4.69
+    },
+    "TLT": {
+      "actual_change_pct": -1.5,
+      "close": 83.25
+    },
+    "VIX": {
+      "actual_change_pct": -1.0,
+      "close": 18.58
+    },
+    "BTC": {
+      "actual_change_pct": 0.7,
+      "close": 64342.0
+    }
+  },
+  "sectors": {
+    "XLK": 0.2,
+    "XLV": 0.9,
+    "XLF": 0.1,
+    "XLY": -5.2,
+    "XLC": -3.9,
+    "XLI": 1.8,
+    "XLP": -1.2,
+    "XLE": 3.4,
+    "XLB": 1.4,
+    "XLRE": 1.2,
+    "XLU": 2.5
+  }
+}

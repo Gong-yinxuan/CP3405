@@ -4,7 +4,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
 1. MASTER MARKET DATA (Verified by Data Pipeline)
 [TECHNICAL INDICATOR AGENT DATA]: 
 {
-  "generated_at": "2026-07-13T02:50:50Z",
+  "generated_at": "2026-07-16T01:02:35Z",
   "collector": "Technical Collector",
   "agent_input_for": "Technical Agent",
   "data_source": "Yahoo Finance via yfinance",
@@ -14,21 +14,21 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
       "symbol": "SPX",
       "yahoo_ticker": "^GSPC",
       "name": "S&P 500 Index",
-      "latest_trading_date": "2026-07-10",
-      "last_close": 7575.39,
-      "weekly_change_pct": 1.23,
-      "ema_8": 7511.06,
-      "ema_21": 7472.72,
+      "latest_trading_date": "2026-07-15",
+      "last_close": 7572.4,
+      "weekly_change_pct": 1.2,
+      "ema_8": 7530.89,
+      "ema_21": 7490.84,
       "price_vs_8ema": "above",
       "ema_8_vs_21ema": "above",
-      "distance_from_8ema": 64.33,
-      "distance_from_21ema": 102.67,
-      "ema_gap": 38.34,
+      "distance_from_8ema": 41.51,
+      "distance_from_21ema": 81.56,
+      "ema_gap": 40.05,
       "ema_condition": "Zone 1 Bullish",
-      "recent_20d_high": 7579.93,
-      "recent_20d_low": 7257.33,
-      "resistance_candidate": 7579.93,
-      "support_candidate": 7257.33,
+      "recent_20d_high": 7581.5,
+      "recent_20d_low": 7294.18,
+      "resistance_candidate": 7581.5,
+      "support_candidate": 7294.18,
       "technical_bias": "Bullish",
       "history_file": "technical/history/SPX.json"
     },
@@ -36,44 +36,44 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
       "symbol": "NDX",
       "yahoo_ticker": "^NDX",
       "name": "Nasdaq 100 Index",
-      "latest_trading_date": "2026-07-10",
-      "last_close": 29825.11,
-      "weekly_change_pct": 1.69,
-      "ema_8": 29605.75,
-      "ema_21": 29593.23,
-      "price_vs_8ema": "above",
-      "ema_8_vs_21ema": "above",
-      "distance_from_8ema": 219.36,
-      "distance_from_21ema": 231.88,
-      "ema_gap": 12.52,
-      "ema_condition": "Zone 1 Bullish",
+      "latest_trading_date": "2026-07-15",
+      "last_close": 29502.6,
+      "weekly_change_pct": 0.85,
+      "ema_8": 29533.53,
+      "ema_21": 29559.69,
+      "price_vs_8ema": "below",
+      "ema_8_vs_21ema": "below",
+      "distance_from_8ema": -30.93,
+      "distance_from_21ema": -57.09,
+      "ema_gap": -26.16,
+      "ema_condition": "Zone 3 Bearish",
       "recent_20d_high": 30642.57,
-      "recent_20d_low": 28548.5,
+      "recent_20d_low": 28814.57,
       "resistance_candidate": 30642.57,
-      "support_candidate": 28548.5,
-      "technical_bias": "Bullish",
+      "support_candidate": 28814.57,
+      "technical_bias": "Neutral",
       "history_file": "technical/history/NDX.json"
     },
     "IWM": {
       "symbol": "IWM",
       "yahoo_ticker": "IWM",
       "name": "Russell 2000 ETF Proxy",
-      "latest_trading_date": "2026-07-10",
-      "last_close": 295.99,
-      "weekly_change_pct": -0.53,
-      "ema_8": 296.66,
-      "ema_21": 294.77,
-      "price_vs_8ema": "below",
+      "latest_trading_date": "2026-07-15",
+      "last_close": 295.77,
+      "weekly_change_pct": 0.78,
+      "ema_8": 295.67,
+      "ema_21": 294.74,
+      "price_vs_8ema": "above",
       "ema_8_vs_21ema": "above",
-      "distance_from_8ema": -0.67,
-      "distance_from_21ema": 1.22,
-      "ema_gap": 1.89,
-      "ema_condition": "Zone 2 Pullback",
+      "distance_from_8ema": 0.1,
+      "distance_from_21ema": 1.03,
+      "ema_gap": 0.93,
+      "ema_condition": "Zone 1 Bullish",
       "recent_20d_high": 302.72,
-      "recent_20d_low": 283.4,
+      "recent_20d_low": 288.93,
       "resistance_candidate": 302.72,
-      "support_candidate": 283.4,
-      "technical_bias": "Neutral",
+      "support_candidate": 288.93,
+      "technical_bias": "Bullish",
       "history_file": "technical/history/IWM.json"
     }
   }
@@ -81,7 +81,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
 
 [MACROECONOMIC DATA AGENT DATA]: 
 {
-  "generated_at": "2026-07-13T02:50:51Z",
+  "generated_at": "2026-07-16T01:02:36Z",
   "collector": "Macro Collector",
   "agent_input_for": "Macro Agent",
   "data_source": {
@@ -96,11 +96,11 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
       "yahoo_ticker": "^TNX",
       "name": "US 10-Year Treasury Yield",
       "category": "yield",
-      "latest_trading_date": "2026-07-10",
-      "close": 0.4569,
-      "weekly_change_pct": 1.87,
-      "change_5d": 0.0084,
-      "direction_5d": "Up",
+      "latest_trading_date": "2026-07-15",
+      "close": 0.4545,
+      "weekly_change_pct": -0.53,
+      "change_5d": -0.0024,
+      "direction_5d": "Down",
       "history_file": "macro/history/US_10Y_YIELD.json"
     },
     "US_30Y_YIELD": {
@@ -108,10 +108,10 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
       "yahoo_ticker": "^TYX",
       "name": "US 30-Year Treasury Yield",
       "category": "yield",
-      "latest_trading_date": "2026-07-10",
-      "close": 0.5071,
-      "weekly_change_pct": 1.73,
-      "change_5d": 0.0086,
+      "latest_trading_date": "2026-07-15",
+      "close": 0.5083,
+      "weekly_change_pct": 0.36,
+      "change_5d": 0.0018,
       "direction_5d": "Up",
       "history_file": "macro/history/US_30Y_YIELD.json"
     },
@@ -120,10 +120,10 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
       "yahoo_ticker": "CL=F",
       "name": "Crude Oil WTI Futures",
       "category": "commodity",
-      "latest_trading_date": "2026-07-12",
-      "close": 74.27,
-      "weekly_change_pct": 8.34,
-      "change_5d": 5.72,
+      "latest_trading_date": "2026-07-15",
+      "close": 80.03,
+      "weekly_change_pct": 8.85,
+      "change_5d": 6.51,
       "direction_5d": "Up",
       "history_file": "macro/history/WTI.json"
     },
@@ -132,10 +132,10 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
       "yahoo_ticker": "GC=F",
       "name": "Gold Futures",
       "category": "commodity",
-      "latest_trading_date": "2026-07-12",
-      "close": 4079.6001,
-      "weekly_change_pct": -1.82,
-      "change_5d": -75.5,
+      "latest_trading_date": "2026-07-15",
+      "close": 4066.3,
+      "weekly_change_pct": -0.11,
+      "change_5d": -4.5999,
       "direction_5d": "Down",
       "history_file": "macro/history/GOLD.json"
     },
@@ -144,11 +144,11 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
       "yahoo_ticker": "DX-Y.NYB",
       "name": "US Dollar Index",
       "category": "currency_index",
-      "latest_trading_date": "2026-07-12",
-      "close": 101.112,
-      "weekly_change_pct": 0.26,
-      "change_5d": 0.262,
-      "direction_5d": "Up",
+      "latest_trading_date": "2026-07-15",
+      "close": 100.482,
+      "weekly_change_pct": -0.56,
+      "change_5d": -0.568,
+      "direction_5d": "Down",
       "history_file": "macro/history/DXY.json"
     },
     "VIX": {
@@ -156,10 +156,10 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
       "yahoo_ticker": "^VIX",
       "name": "CBOE Volatility Index",
       "category": "volatility",
-      "latest_trading_date": "2026-07-10",
-      "close": 15.03,
-      "weekly_change_pct": -6.93,
-      "change_5d": -1.12,
+      "latest_trading_date": "2026-07-15",
+      "close": 15.67,
+      "weekly_change_pct": -7.28,
+      "change_5d": -1.23,
       "direction_5d": "Down",
       "history_file": "macro/history/VIX.json"
     },
@@ -168,10 +168,10 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
       "yahoo_ticker": "BTC-USD",
       "name": "Bitcoin USD",
       "category": "crypto",
-      "latest_trading_date": "2026-07-13",
-      "close": 63424.0391,
-      "weekly_change_pct": 0.2,
-      "change_5d": 126.6446,
+      "latest_trading_date": "2026-07-16",
+      "close": 64527.3711,
+      "weekly_change_pct": 0.62,
+      "change_5d": 400.2305,
       "direction_5d": "Up",
       "history_file": "macro/history/BTC.json"
     }
@@ -180,6 +180,51 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
     "week_commencing": "2026-07-13",
     "week_ending": "2026-07-19",
     "fed_speakers": [
+      {
+        "speaker_hint": "Cook",
+        "title": "Cook, Economic Outlook",
+        "published_at": "2026-07-15T17:00:00+00:00",
+        "source_url": "https://www.federalreserve.gov/newsevents/speech/cook20260715a.htm",
+        "summary": "Speech At The Exchequer Club of Washington D.C., Washington, D.C.",
+        "tone_hint": "neutral_or_unclear_keyword_hint",
+        "r4_note": "Keyword hint only. R4 should verify the actual Fed speaker message."
+      },
+      {
+        "speaker_hint": "Bowman",
+        "title": "Bowman, Responsible Innovation and Financial Inclusion",
+        "published_at": "2026-07-14T18:55:00+00:00",
+        "source_url": "https://www.federalreserve.gov/newsevents/speech/bowman20260714a.htm",
+        "summary": "Speech At \u201cNext-Gen Financial Inclusion,\u201d the third annual Financial Inclusion Conference hosted by the Federal Reserve Board, Washington, D.C. (via pre-recorded video)",
+        "tone_hint": "neutral_or_unclear_keyword_hint",
+        "r4_note": "Keyword hint only. R4 should verify the actual Fed speaker message."
+      },
+      {
+        "speaker_hint": "Barr",
+        "title": "Barr, Will Artificial Intelligence Broadly Raise Living Standards or Drive Income and Wealth Inequality?",
+        "published_at": "2026-07-14T16:40:00+00:00",
+        "source_url": "https://www.federalreserve.gov/newsevents/speech/barr20260714a.htm",
+        "summary": "Speech At \u201cNext-Gen Financial Inclusion,\u201d the third annual Financial Inclusion Conference hosted by the Federal Reserve Board",
+        "tone_hint": "neutral_or_unclear_keyword_hint",
+        "r4_note": "Keyword hint only. R4 should verify the actual Fed speaker message."
+      },
+      {
+        "speaker_hint": "Waller",
+        "title": "Waller, Monetary Policy at a Crossroads",
+        "published_at": "2026-07-13T16:30:00+00:00",
+        "source_url": "https://www.federalreserve.gov/newsevents/speech/waller20260713a.htm",
+        "summary": "Speech At the New York Association for Business Economics, New York, New York",
+        "tone_hint": "neutral_or_unclear_keyword_hint",
+        "r4_note": "Keyword hint only. R4 should verify the actual Fed speaker message."
+      },
+      {
+        "speaker_hint": "Bowman",
+        "title": "Bowman, Modernizing Financial Regulation",
+        "published_at": "2026-07-13T09:25:00+00:00",
+        "source_url": "https://www.federalreserve.gov/newsevents/speech/bowman20260713a.htm",
+        "summary": "Speech At a Bank Policy Institute London Conference, London, United Kingdom",
+        "tone_hint": "neutral_or_unclear_keyword_hint",
+        "r4_note": "Keyword hint only. R4 should verify the actual Fed speaker message."
+      },
       {
         "speaker_hint": "Bowman",
         "title": "Bowman, Opening Remarks on Sound Practices for Artificial Intelligence",
@@ -199,7 +244,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
         "r4_note": "Keyword hint only. R4 should verify the actual Fed speaker message."
       }
     ],
-    "fed_speaker_count": 2,
+    "fed_speaker_count": 7,
     "inflation_data": [],
     "major_data_releases": [],
     "data_release_errors": {
@@ -208,19 +253,41 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
       "IMPORT_EXPORT_PRICES": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/ximpim.rss",
       "REAL_EARNINGS": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/realer.rss",
       "EMPLOYMENT_SITUATION": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/empsit.rss"
-    }
+    },
+    "earnings_calendar": [
+      {
+        "ticker": "MS",
+        "company": "Morgan Stanley",
+        "date": "2026-07-15",
+        "why_it_matters": "Investment banking, wealth management, and capital markets sentiment.",
+        "source": "yfinance calendar"
+      }
+    ],
+    "earnings_errors": {},
+    "confirmed_news_events": [
+      "Fed speech captured: Cook \u2014 Cook, Economic Outlook (neutral_or_unclear_keyword_hint).",
+      "Fed speech captured: Bowman \u2014 Bowman, Responsible Innovation and Financial Inclusion (neutral_or_unclear_keyword_hint).",
+      "Fed speech captured: Barr \u2014 Barr, Will Artificial Intelligence Broadly Raise Living Standards or Drive Income and Wealth Inequality? (neutral_or_unclear_keyword_hint).",
+      "Fed speech captured: Waller \u2014 Waller, Monetary Policy at a Crossroads (neutral_or_unclear_keyword_hint).",
+      "Fed speech captured: Bowman \u2014 Bowman, Modernizing Financial Regulation (neutral_or_unclear_keyword_hint).",
+      "Fed speech captured: Bowman \u2014 Bowman, Opening Remarks on Sound Practices for Artificial Intelligence (neutral_or_unclear_keyword_hint).",
+      "Fed speech captured: Waller \u2014 Waller, Two Thoughts on the Transmission of Monetary Policy (neutral_or_unclear_keyword_hint).",
+      "Earnings calendar item captured: Morgan Stanley on 2026-07-15.",
+      "Oil inflation-risk signal confirmed: WTI weekly change is +8.85%.",
+      "Volatility compression confirmed: VIX weekly change is -7.28%."
+    ]
   }
 }
 
 [ALMANAC & HISTORICAL SEASONALITY AGENT DATA]: 
 {
-  "generated_at": "2026-07-13T02:50:55Z",
+  "generated_at": "2026-07-16T01:02:42Z",
   "collector": "Almanac Collector",
   "agent_input_for": "Almanac Agent",
   "data_source": "Yahoo Finance via yfinance + automatic date rules",
   "note": "This collector automates calendar flags and sector ranking. It does not manually interpret seasonal patterns or news.",
   "forecast_window": {
-    "generated_from_date_utc": "2026-07-13",
+    "generated_from_date_utc": "2026-07-16",
     "start": "2026-07-20",
     "end": "2026-07-24"
   },
@@ -238,130 +305,773 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
     "XLK": {
       "ticker": "XLK",
       "sector": "Technology",
-      "latest_trading_date": "2026-07-10",
-      "close": 185.78,
-      "weekly_change_pct": 2.87,
+      "latest_trading_date": "2026-07-15",
+      "close": 181.58,
+      "weekly_change_pct": 0.1,
       "history_file": "almanac/sector_history/XLK.json"
     },
     "XLF": {
       "ticker": "XLF",
       "sector": "Financials",
-      "latest_trading_date": "2026-07-10",
-      "close": 55.71,
-      "weekly_change_pct": 0.16,
+      "latest_trading_date": "2026-07-15",
+      "close": 56.56,
+      "weekly_change_pct": 2.89,
       "history_file": "almanac/sector_history/XLF.json"
     },
     "XLV": {
       "ticker": "XLV",
       "sector": "Healthcare",
-      "latest_trading_date": "2026-07-10",
-      "close": 160.84,
-      "weekly_change_pct": -1.77,
+      "latest_trading_date": "2026-07-15",
+      "close": 158.29,
+      "weekly_change_pct": -2.47,
       "history_file": "almanac/sector_history/XLV.json"
     },
     "XLE": {
       "ticker": "XLE",
       "sector": "Energy",
-      "latest_trading_date": "2026-07-10",
-      "close": 55.08,
-      "weekly_change_pct": 3.49,
+      "latest_trading_date": "2026-07-15",
+      "close": 56.5,
+      "weekly_change_pct": 1.62,
       "history_file": "almanac/sector_history/XLE.json"
     },
     "XLB": {
       "ticker": "XLB",
       "sector": "Materials",
-      "latest_trading_date": "2026-07-10",
-      "close": 50.89,
-      "weekly_change_pct": -2.15,
+      "latest_trading_date": "2026-07-15",
+      "close": 50.5,
+      "weekly_change_pct": 0.68,
       "history_file": "almanac/sector_history/XLB.json"
     },
     "XLI": {
       "ticker": "XLI",
       "sector": "Industrials",
-      "latest_trading_date": "2026-07-10",
-      "close": 181.92,
-      "weekly_change_pct": -1.08,
+      "latest_trading_date": "2026-07-15",
+      "close": 180.06,
+      "weekly_change_pct": -0.2,
       "history_file": "almanac/sector_history/XLI.json"
     },
     "XLY": {
       "ticker": "XLY",
       "sector": "Consumer Discretionary",
-      "latest_trading_date": "2026-07-10",
-      "close": 117.24,
-      "weekly_change_pct": 0.1,
+      "latest_trading_date": "2026-07-15",
+      "close": 117.0,
+      "weekly_change_pct": 1.47,
       "history_file": "almanac/sector_history/XLY.json"
     },
     "XLP": {
       "ticker": "XLP",
       "sector": "Consumer Staples",
-      "latest_trading_date": "2026-07-10",
-      "close": 84.12,
-      "weekly_change_pct": -1.02,
+      "latest_trading_date": "2026-07-15",
+      "close": 83.47,
+      "weekly_change_pct": -1.09,
       "history_file": "almanac/sector_history/XLP.json"
     },
     "XLU": {
       "ticker": "XLU",
       "sector": "Utilities",
-      "latest_trading_date": "2026-07-10",
-      "close": 45.41,
-      "weekly_change_pct": -0.76,
+      "latest_trading_date": "2026-07-15",
+      "close": 45.22,
+      "weekly_change_pct": -0.31,
       "history_file": "almanac/sector_history/XLU.json"
     },
     "XLC": {
       "ticker": "XLC",
       "sector": "Communication Services",
-      "latest_trading_date": "2026-07-10",
-      "close": 111.64,
-      "weekly_change_pct": 1.86,
+      "latest_trading_date": "2026-07-15",
+      "close": 113.38,
+      "weekly_change_pct": 3.58,
       "history_file": "almanac/sector_history/XLC.json"
     },
     "XLRE": {
       "ticker": "XLRE",
       "sector": "Real Estate",
-      "latest_trading_date": "2026-07-10",
-      "close": 44.45,
-      "weekly_change_pct": -0.51,
+      "latest_trading_date": "2026-07-15",
+      "close": 44.56,
+      "weekly_change_pct": 0.93,
       "history_file": "almanac/sector_history/XLRE.json"
     }
   },
   "sector_ranking": {
     "leading_sectors": [
       {
-        "ticker": "XLE",
-        "sector": "Energy",
-        "weekly_change_pct": 3.49
-      },
-      {
-        "ticker": "XLK",
-        "sector": "Technology",
-        "weekly_change_pct": 2.87
-      },
-      {
         "ticker": "XLC",
         "sector": "Communication Services",
-        "weekly_change_pct": 1.86
+        "weekly_change_pct": 3.58
+      },
+      {
+        "ticker": "XLF",
+        "sector": "Financials",
+        "weekly_change_pct": 2.89
+      },
+      {
+        "ticker": "XLE",
+        "sector": "Energy",
+        "weekly_change_pct": 1.62
       }
     ],
     "lagging_sectors": [
       {
-        "ticker": "XLB",
-        "sector": "Materials",
-        "weekly_change_pct": -2.15
-      },
-      {
         "ticker": "XLV",
         "sector": "Healthcare",
-        "weekly_change_pct": -1.77
+        "weekly_change_pct": -2.47
       },
       {
-        "ticker": "XLI",
-        "sector": "Industrials",
-        "weekly_change_pct": -1.08
+        "ticker": "XLP",
+        "sector": "Consumer Staples",
+        "weekly_change_pct": -1.09
+      },
+      {
+        "ticker": "XLU",
+        "sector": "Utilities",
+        "weekly_change_pct": -0.31
       }
     ]
   }
 }
-{}
+{
+  "generated_at": "2026-07-16T01:02:33Z",
+  "collector": "Monthly Seasonality Collector",
+  "data_source": "Yahoo Finance via yfinance (full available monthly history)",
+  "note": "Historical average % return and seasonal rank per calendar month, and the same broken out by US presidential-cycle-year phase. Rank 1 = highest average return for that grouping.",
+  "indices": {
+    "S&P 500": {
+      "monthly_avg_return_pct": {
+        "1": 0.98,
+        "2": 0.35,
+        "3": 0.87,
+        "4": 1.6,
+        "5": 1.46,
+        "6": 0.35,
+        "7": 1.44,
+        "8": -0.26,
+        "9": -0.9,
+        "10": 0.99,
+        "11": 1.91,
+        "12": 1.39
+      },
+      "monthly_rank": {
+        "1": 7,
+        "2": 10,
+        "3": 8,
+        "4": 2,
+        "5": 3,
+        "6": 9,
+        "7": 4,
+        "8": 11,
+        "9": 12,
+        "10": 6,
+        "11": 1,
+        "12": 5
+      },
+      "by_cycle_phase": {
+        "election_year": {
+          "avg_return_pct_by_month": {
+            "1": -0.35,
+            "2": 0.2,
+            "3": 0.3,
+            "4": 1.31,
+            "5": 0.74,
+            "6": 0.78,
+            "7": 0.42,
+            "8": 1.43,
+            "9": -0.28,
+            "10": -1.83,
+            "11": 1.7,
+            "12": 0.85
+          },
+          "rank_by_month": {
+            "1": 11,
+            "2": 9,
+            "3": 8,
+            "4": 3,
+            "5": 6,
+            "6": 5,
+            "7": 7,
+            "8": 2,
+            "9": 10,
+            "10": 12,
+            "11": 1,
+            "12": 4
+          },
+          "num_years_sampled": 10
+        },
+        "post_election_year": {
+          "avg_return_pct_by_month": {
+            "1": 1.47,
+            "2": -1.16,
+            "3": 0.15,
+            "4": 2.74,
+            "5": 3.25,
+            "6": 0.77,
+            "7": 3.35,
+            "8": -0.4,
+            "9": -0.0,
+            "10": 1.29,
+            "11": 3.0,
+            "12": 1.76
+          },
+          "rank_by_month": {
+            "1": 6,
+            "2": 12,
+            "3": 9,
+            "4": 4,
+            "5": 2,
+            "6": 8,
+            "7": 1,
+            "8": 11,
+            "9": 10,
+            "10": 7,
+            "11": 3,
+            "12": 5
+          },
+          "num_years_sampled": 11
+        },
+        "midterm_year": {
+          "avg_return_pct_by_month": {
+            "1": -0.63,
+            "2": 0.84,
+            "3": 1.39,
+            "4": -0.27,
+            "5": 0.98,
+            "6": -1.63,
+            "7": 0.66,
+            "8": -1.27,
+            "9": -2.04,
+            "10": 3.38,
+            "11": 2.68,
+            "12": -0.72
+          },
+          "rank_by_month": {
+            "1": 8,
+            "2": 5,
+            "3": 3,
+            "4": 7,
+            "5": 4,
+            "6": 11,
+            "7": 6,
+            "8": 10,
+            "9": 12,
+            "10": 1,
+            "11": 2,
+            "12": 9
+          },
+          "num_years_sampled": 11
+        },
+        "pre_election_year": {
+          "avg_return_pct_by_month": {
+            "1": 3.57,
+            "2": 1.6,
+            "3": 1.68,
+            "4": 2.7,
+            "5": 0.73,
+            "6": 1.64,
+            "7": 1.2,
+            "8": -0.76,
+            "9": -1.38,
+            "10": 1.11,
+            "11": 0.13,
+            "12": 3.66
+          },
+          "rank_by_month": {
+            "1": 2,
+            "2": 6,
+            "3": 4,
+            "4": 3,
+            "5": 9,
+            "6": 5,
+            "7": 7,
+            "8": 11,
+            "9": 12,
+            "10": 8,
+            "11": 10,
+            "12": 1
+          },
+          "num_years_sampled": 10
+        }
+      },
+      "data_start": "1985-02-01",
+      "data_end": "2026-07-01",
+      "num_years_total": 42
+    },
+    "DJIA / Dow": {
+      "monthly_avg_return_pct": {
+        "1": 0.28,
+        "2": -0.01,
+        "3": 0.54,
+        "4": 2.17,
+        "5": 0.49,
+        "6": -0.11,
+        "7": 1.62,
+        "8": -0.51,
+        "9": -0.7,
+        "10": 1.75,
+        "11": 2.69,
+        "12": 0.97
+      },
+      "monthly_rank": {
+        "1": 8,
+        "2": 9,
+        "3": 6,
+        "4": 2,
+        "5": 7,
+        "6": 10,
+        "7": 4,
+        "8": 11,
+        "9": 12,
+        "10": 3,
+        "11": 1,
+        "12": 5
+      },
+      "by_cycle_phase": {
+        "election_year": {
+          "avg_return_pct_by_month": {
+            "1": -0.7,
+            "2": -1.28,
+            "3": 0.44,
+            "4": 1.29,
+            "5": -0.1,
+            "6": -0.34,
+            "7": 0.97,
+            "8": 1.75,
+            "9": -0.56,
+            "10": -2.21,
+            "11": 3.16,
+            "12": 0.79
+          },
+          "rank_by_month": {
+            "1": 10,
+            "2": 11,
+            "3": 6,
+            "4": 3,
+            "5": 7,
+            "6": 8,
+            "7": 4,
+            "8": 2,
+            "9": 9,
+            "10": 12,
+            "11": 1,
+            "12": 5
+          },
+          "num_years_sampled": 9
+        },
+        "post_election_year": {
+          "avg_return_pct_by_month": {
+            "1": 0.47,
+            "2": -0.24,
+            "3": 0.28,
+            "4": 2.44,
+            "5": 2.66,
+            "6": 0.29,
+            "7": 3.11,
+            "8": -0.81,
+            "9": -0.51,
+            "10": 1.55,
+            "11": 3.08,
+            "12": 1.74
+          },
+          "rank_by_month": {
+            "1": 7,
+            "2": 10,
+            "3": 9,
+            "4": 4,
+            "5": 3,
+            "6": 8,
+            "7": 1,
+            "8": 12,
+            "9": 11,
+            "10": 6,
+            "11": 2,
+            "12": 5
+          },
+          "num_years_sampled": 9
+        },
+        "midterm_year": {
+          "avg_return_pct_by_month": {
+            "1": 0.19,
+            "2": 0.71,
+            "3": 0.12,
+            "4": 0.76,
+            "5": -0.55,
+            "6": -1.97,
+            "7": 1.72,
+            "8": -1.66,
+            "9": -0.88,
+            "10": 4.91,
+            "11": 2.22,
+            "12": -1.08
+          },
+          "rank_by_month": {
+            "1": 6,
+            "2": 5,
+            "3": 7,
+            "4": 4,
+            "5": 8,
+            "6": 12,
+            "7": 3,
+            "8": 11,
+            "9": 9,
+            "10": 1,
+            "11": 2,
+            "12": 10
+          },
+          "num_years_sampled": 9
+        },
+        "pre_election_year": {
+          "avg_return_pct_by_month": {
+            "1": 1.13,
+            "2": 0.86,
+            "3": 1.44,
+            "4": 4.43,
+            "5": -0.15,
+            "6": 1.77,
+            "7": 0.54,
+            "8": -1.55,
+            "9": -0.9,
+            "10": 3.27,
+            "11": 2.18,
+            "12": 2.37
+          },
+          "rank_by_month": {
+            "1": 7,
+            "2": 8,
+            "3": 6,
+            "4": 1,
+            "5": 10,
+            "6": 5,
+            "7": 9,
+            "8": 12,
+            "9": 11,
+            "10": 2,
+            "11": 4,
+            "12": 3
+          },
+          "num_years_sampled": 8
+        }
+      },
+      "data_start": "1992-02-01",
+      "data_end": "2026-07-01",
+      "num_years_total": 35
+    },
+    "NASDAQ": {
+      "monthly_avg_return_pct": {
+        "1": 2.12,
+        "2": 0.62,
+        "3": 0.56,
+        "4": 1.36,
+        "5": 1.89,
+        "6": 1.1,
+        "7": 1.3,
+        "8": 0.27,
+        "9": -0.8,
+        "10": 0.98,
+        "11": 2.18,
+        "12": 1.68
+      },
+      "monthly_rank": {
+        "1": 2,
+        "2": 9,
+        "3": 10,
+        "4": 5,
+        "5": 3,
+        "6": 7,
+        "7": 6,
+        "8": 11,
+        "9": 12,
+        "10": 8,
+        "11": 1,
+        "12": 4
+      },
+      "by_cycle_phase": {
+        "election_year": {
+          "avg_return_pct_by_month": {
+            "1": 0.4,
+            "2": 2.89,
+            "3": -0.38,
+            "4": -0.06,
+            "5": 0.94,
+            "6": 2.24,
+            "7": -0.62,
+            "8": 2.62,
+            "9": -0.61,
+            "10": -2.95,
+            "11": 0.5,
+            "12": 1.54
+          },
+          "rank_by_month": {
+            "1": 7,
+            "2": 1,
+            "3": 9,
+            "4": 8,
+            "5": 5,
+            "6": 3,
+            "7": 11,
+            "8": 2,
+            "9": 10,
+            "10": 12,
+            "11": 6,
+            "12": 4
+          },
+          "num_years_sampled": 10
+        },
+        "post_election_year": {
+          "avg_return_pct_by_month": {
+            "1": 2.7,
+            "2": -3.23,
+            "3": -1.16,
+            "4": 3.51,
+            "5": 4.54,
+            "6": 1.61,
+            "7": 3.57,
+            "8": 0.2,
+            "9": -0.1,
+            "10": 2.23,
+            "11": 3.05,
+            "12": 1.21
+          },
+          "rank_by_month": {
+            "1": 5,
+            "2": 12,
+            "3": 11,
+            "4": 3,
+            "5": 1,
+            "6": 7,
+            "7": 2,
+            "8": 9,
+            "9": 10,
+            "10": 6,
+            "11": 4,
+            "12": 8
+          },
+          "num_years_sampled": 11
+        },
+        "midterm_year": {
+          "avg_return_pct_by_month": {
+            "1": -0.28,
+            "2": 0.62,
+            "3": 1.23,
+            "4": -0.67,
+            "5": 0.46,
+            "6": -1.68,
+            "7": -0.43,
+            "8": -2.08,
+            "9": -1.38,
+            "10": 2.68,
+            "11": 3.69,
+            "12": -0.98
+          },
+          "rank_by_month": {
+            "1": 6,
+            "2": 4,
+            "3": 3,
+            "4": 8,
+            "5": 5,
+            "6": 11,
+            "7": 7,
+            "8": 12,
+            "9": 10,
+            "10": 2,
+            "11": 1,
+            "12": 9
+          },
+          "num_years_sampled": 11
+        },
+        "pre_election_year": {
+          "avg_return_pct_by_month": {
+            "1": 5.89,
+            "2": 2.6,
+            "3": 2.67,
+            "4": 2.66,
+            "5": 1.5,
+            "6": 2.45,
+            "7": 2.65,
+            "8": 0.33,
+            "9": -1.18,
+            "10": 1.85,
+            "11": 1.4,
+            "12": 4.99
+          },
+          "rank_by_month": {
+            "1": 1,
+            "2": 6,
+            "3": 3,
+            "4": 4,
+            "5": 9,
+            "6": 7,
+            "7": 5,
+            "8": 11,
+            "9": 12,
+            "10": 8,
+            "11": 10,
+            "12": 2
+          },
+          "num_years_sampled": 10
+        }
+      },
+      "data_start": "1985-02-01",
+      "data_end": "2026-07-01",
+      "num_years_total": 42
+    },
+    "Russell 2000 / IWM": {
+      "monthly_avg_return_pct": {
+        "1": 0.74,
+        "2": 1.01,
+        "3": 0.41,
+        "4": 1.24,
+        "5": 1.38,
+        "6": 0.8,
+        "7": 0.48,
+        "8": -0.36,
+        "9": -0.43,
+        "10": -0.54,
+        "11": 2.24,
+        "12": 2.38
+      },
+      "monthly_rank": {
+        "1": 7,
+        "2": 5,
+        "3": 9,
+        "4": 4,
+        "5": 3,
+        "6": 6,
+        "7": 8,
+        "8": 10,
+        "9": 11,
+        "10": 12,
+        "11": 2,
+        "12": 1
+      },
+      "by_cycle_phase": {
+        "election_year": {
+          "avg_return_pct_by_month": {
+            "1": -0.15,
+            "2": 2.72,
+            "3": -1.13,
+            "4": 0.3,
+            "5": 0.92,
+            "6": 0.96,
+            "7": 0.44,
+            "8": 1.89,
+            "9": 0.28,
+            "10": -2.99,
+            "11": 3.46,
+            "12": 3.24
+          },
+          "rank_by_month": {
+            "1": 10,
+            "2": 3,
+            "3": 11,
+            "4": 8,
+            "5": 6,
+            "6": 5,
+            "7": 7,
+            "8": 4,
+            "9": 9,
+            "10": 12,
+            "11": 1,
+            "12": 2
+          },
+          "num_years_sampled": 10
+        },
+        "post_election_year": {
+          "avg_return_pct_by_month": {
+            "1": 1.33,
+            "2": -1.84,
+            "3": -0.07,
+            "4": 1.91,
+            "5": 3.81,
+            "6": 2.02,
+            "7": 2.62,
+            "8": 1.03,
+            "9": 1.44,
+            "10": -0.32,
+            "11": 1.49,
+            "12": 2.09
+          },
+          "rank_by_month": {
+            "1": 8,
+            "2": 12,
+            "3": 10,
+            "4": 5,
+            "5": 1,
+            "6": 4,
+            "7": 2,
+            "8": 9,
+            "9": 7,
+            "10": 11,
+            "11": 6,
+            "12": 3
+          },
+          "num_years_sampled": 10
+        },
+        "midterm_year": {
+          "avg_return_pct_by_month": {
+            "1": -0.8,
+            "2": 1.35,
+            "3": 1.92,
+            "4": 0.31,
+            "5": -0.69,
+            "6": -1.48,
+            "7": -1.85,
+            "8": -2.87,
+            "9": -1.65,
+            "10": 1.86,
+            "11": 2.95,
+            "12": -0.16
+          },
+          "rank_by_month": {
+            "1": 8,
+            "2": 4,
+            "3": 2,
+            "4": 5,
+            "5": 7,
+            "6": 9,
+            "7": 11,
+            "8": 12,
+            "9": 10,
+            "10": 3,
+            "11": 1,
+            "12": 6
+          },
+          "num_years_sampled": 10
+        },
+        "pre_election_year": {
+          "avg_return_pct_by_month": {
+            "1": 2.77,
+            "2": 1.91,
+            "3": 0.97,
+            "4": 2.58,
+            "5": 1.47,
+            "6": 1.81,
+            "7": 0.76,
+            "8": -1.89,
+            "9": -2.09,
+            "10": -0.49,
+            "11": 1.15,
+            "12": 4.08
+          },
+          "rank_by_month": {
+            "1": 2,
+            "2": 4,
+            "3": 8,
+            "4": 3,
+            "5": 6,
+            "6": 5,
+            "7": 9,
+            "8": 11,
+            "9": 12,
+            "10": 10,
+            "11": 7,
+            "12": 1
+          },
+          "num_years_sampled": 10
+        }
+      },
+      "data_start": "1987-10-01",
+      "data_end": "2026-07-01",
+      "num_years_total": 40
+    }
+  }
+}
 
 2. YOUR REQUIRED EVALUATION OUTPUT FORMAT
 Provide a punchy, highly structured synthesis detailing the following dimensions:

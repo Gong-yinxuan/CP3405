@@ -1,0 +1,24 @@
+{
+  "weekly_regime": "Bullish risk-on continuation with moderate caution",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "0.8%\u20111.5%",
+  "ndx_pct_estimate": "-0.2%\u20110.5%",
+  "iwm_pct_estimate": "0.5%\u20111.2%",
+  "top_supporting_reason": "SPX trading well above both 8-day and 21-day EMAs in Zone\u202f1 Bullish, reinforced by falling 10-year yields, a weaker dollar and a 7% drop in VIX.",
+  "top_contradiction_cited": "Nasdaq 100 price below its short-term EMAs, signaling near-term tech weakness.",
+  "invalidation_condition": "SPX closing below its 8-EMA (~7530) or 10-year yield rising above 0.48% would negate the bullish case.",
+  "tone_caveat_language": "Overall bullish tilt but monitor tech weakness and any hawkish Fed signals.",
+  "consensus_bias": "BULLISH",
+  "consensus_read_summary": "Technicals show SPX and IWM in a bullish EMA zone, while macro data point to risk-on sentiment via lower yields, a softer dollar and compressed volatility. Seasonal factors add modest upside in July. The main discord is the Nasdaq\u2019s EMA breach, which could temper broader gains.",
+  "point_of_maximum_divergence": "Nasdaq\u2019s EMA-based bearish signal versus the broader market\u2019s bullish outlook.",
+  "key_supporting_factors": [
+    "SPX +41 pts above 8-EMA",
+    "VIX down 7.28% weekly"
+  ],
+  "main_contradiction_risk": "Tech sector weakness reflected in NDX could spill over to broader indices.",
+  "invalidation_summary": "Break below SPX 8-EMA (~7530) or a 10-year yield rise above 0.48% would invalidate the bullish outlook.",
+  "r7_human_score_question": "Given the Nasdaq\u2019s EMA weakness, should we reduce exposure to tech and increase defensive positioning despite the overall bullish regime?",
+  "r6_slide_bullet_1": "SPX in Zone\u202f1 Bullish \u2013 price >8\u202fEMA & >21\u202fEMA (+1.2% week).",
+  "r6_slide_bullet_2": "Macro risk-on: 10-year yield down 0.53%, dollar down 0.56%, VIX down 7.3%.",
+  "r6_slide_bullet_3": "Sector leadership: Communication Services & Financials leading; Tech (Nasdaq) showing early weakness."
+}

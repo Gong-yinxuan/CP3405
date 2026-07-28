@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>R4 Macro Agent</title>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="r4">
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon">P</div>
+        <div>
+          <h1>Prism</h1>
+          <p>Market Intel</p>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a class="nav-link" href="index.html"># overview</a>
+        <a class="nav-link" href="r3.html"># r3-almanac</a>
+        <a class="nav-link active" href="r4.html"># r4-macro</a>
+        <a class="nav-link" href="r5.html"># r5-technical</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <span class="online-dot"></span>
+        <span>R4 channel</span>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <p class="channel-label"># r4-macro</p>
+          <h2>R4 Macro Agent</h2>
+        </div>
+
+        <a class="button" href="../data/macro/macro_collector_output.json" target="_blank">
+          Open JSON
+        </a>
+      </header>
+
+      <section class="hero-card">
+        <p class="eyebrow">Role R4</p>
+        <h3>Macro, rates, Fed, commodities, and risk signals</h3>
+        <p>
+          This page displays Macro collector output used to support weekly
+          macro bias and market risk interpretation.
+        </p>
+      </section>
+
+      <section class="grid two">
+        <section class="panel chart-panel">
+          <div class="panel-heading">
+            <h3>R4 Agent Chart</h3>
+            <p>Auto-built from rates, yields, volatility, commodities, and other numeric macro fields.</p>
+          </div>
+
+          <canvas id="role-chart" height="340"></canvas>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading">
+            <h3>R4 Key Metrics</h3>
+            <p>Important numeric values found in the collector output.</p>
+          </div>
+
+          <div id="role-kpi-grid" class="kpi-grid">
+            <p class="muted">Loading metrics...</p>
+          </div>
+        </section>
+      </section>
+
+      <section class="panel">
+        <div class="panel-heading">
+          <h3>R4 Data Summary</h3>
+          <p>Loaded from <code>prism/data/macro/macro_collector_output.json</code></p>
+        </div>
+
+        <div id="role-output" class="json-cards">
+          <p class="muted">Loading R4 data...</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

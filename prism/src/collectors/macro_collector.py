@@ -79,6 +79,38 @@ BLS_RELEASE_FEEDS = {
     "EMPLOYMENT_SITUATION": "https://www.bls.gov/feed/empsit.rss"
 }
 
+# Official BLS release calendar fallback.
+# Use this when BLS RSS feeds return 403 or no usable release items.
+BLS_RELEASE_CALENDAR_URL = "https://www.bls.gov/schedule/news_release/bls.ics"
+
+BLS_RELEASE_CALENDAR_KEYWORDS = {
+    "CPI": {
+        "keywords": ["Consumer Price Index", "CPI"],
+        "bucket": "inflation_data",
+        "importance": "High"
+    },
+    "PPI": {
+        "keywords": ["Producer Price Index", "PPI"],
+        "bucket": "inflation_data",
+        "importance": "High"
+    },
+    "IMPORT_EXPORT_PRICES": {
+        "keywords": ["Import and Export Price Indexes", "U.S. Import and Export Price Indexes"],
+        "bucket": "inflation_data",
+        "importance": "Medium"
+    },
+    "REAL_EARNINGS": {
+        "keywords": ["Real Earnings"],
+        "bucket": "inflation_data",
+        "importance": "Medium"
+    },
+    "EMPLOYMENT_SITUATION": {
+        "keywords": ["Employment Situation"],
+        "bucket": "major_data_releases",
+        "importance": "High"
+    }
+}
+
 
 def get_project_root() -> Path:
     return Path(__file__).resolve().parents[2]
@@ -371,15 +403,177 @@ def fetch_bls_feed(feed_name: str, feed_url: str, week_window: dict, max_items: 
     return releases
 
 
-def fetch_bls_releases(week_window: dict) -> dict:
+
+def parse_ics_datetime(value: str) -> datetime | None:
     """
-    Fetch CPI/inflation-related and major data-release metadata from BLS RSS feeds.
+    Parse simple ICS date formats used by the BLS release calendar.
+    Supports YYYYMMDD and YYYYMMDDTHHMMSSZ.
+    """
+
+    if not value:
+        return None
+
+    value = value.strip()
+
+    try:
+        if "T" in value:
+            value = value.replace("Z", "")
+            parsed = datetime.strptime(value, "%Y%m%dT%H%M%S")
+        else:
+            parsed = datetime.strptime(value, "%Y%m%d")
+
+        return parsed.replace(tzinfo=timezone.utc)
+
+    except Exception:
+        return None
+
+
+def unfold_ics_lines(text: str) -> list[str]:
+    """
+    ICS files can wrap long lines. A wrapped line starts with a space or tab.
+    This function joins wrapped lines before parsing VEVENT blocks.
+    """
+
+    unfolded = []
+
+    for raw_line in text.splitlines():
+        if raw_line.startswith((" ", "\t")) and unfolded:
+            unfolded[-1] += raw_line[1:]
+        else:
+            unfolded.append(raw_line.strip())
+
+    return unfolded
+
+
+def unescape_ics_text(text: str) -> str:
+    """
+    Clean common ICS escape sequences so report output is readable.
+    """
+
+    return (
+        text.replace("\\,", ",")
+        .replace("\\;", ";")
+        .replace("\\n", " ")
+        .replace("\\N", " ")
+        .strip()
+    )
+
+
+def detect_bls_calendar_category(summary: str) -> tuple[str, str, str] | None:
+    """
+    Return (feed_name, bucket, importance) for BLS calendar event summary.
+    """
+
+    lowered = summary.lower()
+
+    for feed_name, config in BLS_RELEASE_CALENDAR_KEYWORDS.items():
+        for keyword in config["keywords"]:
+            if keyword.lower() in lowered:
+                return feed_name, config["bucket"], config["importance"]
+
+    return None
+
+
+def fetch_bls_release_calendar(week_window: dict) -> dict:
+    """
+    Fetch scheduled BLS release metadata from the official BLS calendar ICS file.
+    This is used as a fallback when the individual BLS RSS feeds are blocked.
     """
 
     output = {
         "inflation_data": [],
         "major_data_releases": [],
-        "errors": {}
+        "errors": {},
+        "source": "BLS release calendar ICS",
+        "source_url": BLS_RELEASE_CALENDAR_URL
+    }
+
+    headers = {
+        "User-Agent": "Mozilla/5.0 (compatible; PrismMacroCollector/1.0; +https://github.com/)",
+        "Accept": "text/calendar,text/plain,*/*"
+    }
+
+    try:
+        response = requests.get(BLS_RELEASE_CALENDAR_URL, timeout=30, headers=headers)
+        response.raise_for_status()
+    except Exception as error:
+        output["errors"]["BLS_CALENDAR_ICS"] = str(error)
+        return output
+
+    lines = unfold_ics_lines(response.text)
+    events = []
+    current_event = None
+
+    for line in lines:
+        if line == "BEGIN:VEVENT":
+            current_event = {}
+            continue
+
+        if line == "END:VEVENT":
+            if current_event:
+                events.append(current_event)
+            current_event = None
+            continue
+
+        if current_event is None or ":" not in line:
+            continue
+
+        key, value = line.split(":", 1)
+        key_name = key.split(";", 1)[0]
+        current_event[key_name] = unescape_ics_text(value)
+
+    week_start = week_window["start"].date()
+    week_end = week_window["end"].date()
+
+    for event in events:
+        summary = event.get("SUMMARY", "")
+        start_value = event.get("DTSTART", "")
+        event_dt = parse_ics_datetime(start_value)
+
+        if not summary or event_dt is None:
+            continue
+
+        event_date = event_dt.date()
+
+        if not (week_start <= event_date <= week_end):
+            continue
+
+        category = detect_bls_calendar_category(summary)
+        if category is None:
+            continue
+
+        feed_name, bucket, importance = category
+
+        item = {
+            "feed": feed_name,
+            "title": summary,
+            "published_at": event_dt.isoformat(),
+            "source_url": BLS_RELEASE_CALENDAR_URL,
+            "summary": "Scheduled BLS release collected automatically from the official BLS release calendar.",
+            "expected": "Scheduled BLS release. Expected consensus value is not automated.",
+            "importance": importance,
+            "source_type": "bls_ics_calendar_fallback"
+        }
+
+        output[bucket].append(item)
+
+    return output
+
+
+def fetch_bls_releases(week_window: dict) -> dict:
+    """
+    Fetch CPI/inflation-related and major data-release metadata.
+
+    First tries the existing BLS RSS feeds. If those feeds return 403 or no
+    usable items, falls back to the official BLS release calendar ICS file.
+    """
+
+    output = {
+        "inflation_data": [],
+        "major_data_releases": [],
+        "errors": {},
+        "rss_errors": {},
+        "calendar_source": "BLS RSS feeds"
     }
 
     inflation_feeds = [
@@ -405,7 +599,7 @@ def fetch_bls_releases(week_window: dict) -> dict:
             output["inflation_data"].extend(items)
 
         except Exception as error:
-            output["errors"][feed_name] = str(error)
+            output["rss_errors"][feed_name] = str(error)
 
     for feed_name in major_data_feeds:
         try:
@@ -419,8 +613,34 @@ def fetch_bls_releases(week_window: dict) -> dict:
             output["major_data_releases"].extend(items)
 
         except Exception as error:
-            output["errors"][feed_name] = str(error)
+            output["rss_errors"][feed_name] = str(error)
 
+    has_rss_items = bool(output["inflation_data"] or output["major_data_releases"])
+
+    if has_rss_items:
+        output["calendar_source"] = "BLS RSS feeds"
+        output["errors"] = output["rss_errors"]
+        return output
+
+    print("[WARN] BLS RSS produced no usable items. Trying official BLS calendar ICS fallback...")
+
+    calendar_output = fetch_bls_release_calendar(week_window)
+
+    if calendar_output["inflation_data"] or calendar_output["major_data_releases"]:
+        output["inflation_data"] = calendar_output["inflation_data"]
+        output["major_data_releases"] = calendar_output["major_data_releases"]
+        output["calendar_source"] = calendar_output["source"]
+        output["calendar_source_url"] = calendar_output["source_url"]
+        output["errors"] = {}
+        output["rss_errors"] = output["rss_errors"]
+        return output
+
+    output["calendar_source"] = "BLS RSS feeds + BLS release calendar ICS fallback"
+    output["calendar_source_url"] = calendar_output.get("source_url", BLS_RELEASE_CALENDAR_URL)
+    output["errors"] = {
+        **output["rss_errors"],
+        **calendar_output.get("errors", {})
+    }
     return output
 
 
@@ -521,7 +741,7 @@ def main() -> None:
         "data_source": {
             "market_data": "Yahoo Finance via yfinance",
             "fed_speakers": "Federal Reserve speeches RSS feed",
-            "economic_data_releases": "BLS RSS feeds"
+            "economic_data_releases": "BLS RSS feeds with BLS release calendar ICS fallback"
         },
         "note": (
             "This collector gathers automatic macro market data and Fed + Data Watch metadata. "
@@ -602,7 +822,11 @@ def main() -> None:
     output["fed_and_data_watch"]["inflation_data"] = bls_releases["inflation_data"]
     output["fed_and_data_watch"]["major_data_releases"] = bls_releases["major_data_releases"]
     output["fed_and_data_watch"]["data_release_errors"] = bls_releases["errors"]
+    output["fed_and_data_watch"]["rss_errors"] = bls_releases.get("rss_errors", {})
+    output["fed_and_data_watch"]["calendar_source"] = bls_releases.get("calendar_source", "Unknown")
+    output["fed_and_data_watch"]["calendar_source_url"] = bls_releases.get("calendar_source_url", "")
 
+    print(f"[OK] BLS calendar source used: {bls_releases.get('calendar_source', 'Unknown')}")
     print(f"[OK] Inflation releases collected: {len(bls_releases['inflation_data'])}")
     print(f"[OK] Major data releases collected: {len(bls_releases['major_data_releases'])}")
 

@@ -15,6 +15,16 @@ on:
     - cron: "0 0 1 * *"
 
   workflow_dispatch:
+    inputs:
+      target_week:
+        description: "Force a specific Week folder number, e.g. 8. Leave blank to auto-detect the next week."
+        required: false
+        default: ""
+
+      target_release:
+        description: "Force a specific Prism release, e.g. vW30. Leave blank to auto-detect from output.json date."
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -49,10 +59,61 @@ jobs:
         run: |
           python prism/src/data_collector.py
 
-      - name: Run R6/R10 calibration runner
+      - name: Determine R6 release
         if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 22 * * 5'
+        id: actuals_release
+        shell: bash
+        env:
+          TARGET_RELEASE: ${{ github.event.inputs.target_release }}
         run: |
-          python prism/src/calibration_runner.py
+          if [ -n "$TARGET_RELEASE" ]; then
+            RELEASE="$TARGET_RELEASE"
+            echo "Using manually specified release: $RELEASE"
+          else
+            RELEASE=$(python - <<'PY'
+          import json
+          from pathlib import Path
+          from datetime import date
+
+          output_path = Path("prism/data/output.json")
+          data = json.loads(output_path.read_text(encoding="utf-8"))
+
+          output_date = date.fromisoformat(data["date"])
+          week_number = output_date.isocalendar().week
+
+          print(f"vW{week_number}")
+          PY
+          )
+            echo "Detected release from output.json: $RELEASE"
+          fi
+
+          echo "release=$RELEASE" >> "$GITHUB_OUTPUT"
+
+      - name: Save R6 actuals snapshot
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 22 * * 5'
+        shell: bash
+        run: |
+          RELEASE="${{ steps.actuals_release.outputs.release }}"
+
+          echo "Saving actuals for release: $RELEASE"
+          python prism/src/save_actuals.py "$RELEASE" --overwrite
+
+      - name: Run R6/R10 calibration if prediction exists
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 22 * * 5'
+        shell: bash
+        run: |
+          RELEASE="${{ steps.actuals_release.outputs.release }}"
+          PREDICTION_FILE="prism/data/predictions/${RELEASE}_prediction.json"
+
+          echo "Checking prediction file: $PREDICTION_FILE"
+
+          if [ -f "$PREDICTION_FILE" ]; then
+            echo "Prediction file found. Running calibration for $RELEASE"
+            python prism/src/calibration_runner.py "$RELEASE"
+          else
+            echo "Prediction file not found. Skipping calibration for $RELEASE"
+            echo "Actuals were still saved successfully."
+          fi
 
       # -----------------------------
       # MONTHLY SEASONALITY COLLECTOR
@@ -100,10 +161,19 @@ jobs:
       - name: Determine week number
         if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 0 * * 1'
         id: week
+        shell: bash
+        env:
+          TARGET_WEEK: ${{ github.event.inputs.target_week }}
         run: |
-          WEEK_NUMBER=$(python -c "import sys; sys.path.insert(0, 'prism/src/report_builders'); from pathlib import Path; from week_utils import detect_next_week_number; print(detect_next_week_number(Path('.')))")
+          if [ -n "$TARGET_WEEK" ]; then
+            WEEK_NUMBER="$TARGET_WEEK"
+            echo "Using manually specified week number: $WEEK_NUMBER"
+          else
+            WEEK_NUMBER=$(python -c "import sys; sys.path.insert(0, 'prism/src/report_builders'); from pathlib import Path; from week_utils import detect_next_week_number; print(detect_next_week_number(Path('.')))")
+            echo "Detected week number: $WEEK_NUMBER"
+          fi
+
           echo "number=$WEEK_NUMBER" >> "$GITHUB_OUTPUT"
-          echo "Detected week number: $WEEK_NUMBER"
 
       - name: Build almanac agent report (R3)
         if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 0 * * 1'
@@ -141,7 +211,10 @@ jobs:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: |
-          python prism/src/llm_synthesis.py "Week${{ steps.week.outputs.number }}"
+          # 2nd argument (30) is this sprint's release/tag number (vW30) — it is a
+          # separate counter from the Week{N} folder number above, so it must be
+          # bumped by hand every sprint (vW31 next sprint, and so on).
+          python prism/src/llm_synthesis.py "Week${{ steps.week.outputs.number }}" 30
 
       # Manual runs keep generated files as a downloadable artifact.
       # Nothing is committed or pushed.
