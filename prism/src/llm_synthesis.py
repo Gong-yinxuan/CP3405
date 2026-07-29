@@ -285,91 +285,91 @@ def find_latest_collector_data():
 
 
 def build_synthesis_prompt(extracted_data):
-    """Assembles your live multi-agent payloads into the identical evaluation
+    """Assembles pipeline telemetry and structures rigid search instructions
 
-    prompt layout.
+    ordering models to perform real-time verification and spot collector omissions.
     """
+    # Extract the forward-looking calendar watch details parsed by macro_collector.py
+    fed_and_data_watch = extracted_data.get('macro', {}).get('fed_and_data_watch', {})
+
     return f"""
 You are acting as an advanced Multi-LLM Consensus Synthesis Engine for CP3405 DT3 Market Intelligence.
-Your task is to evaluate and synthesize three independent analysis legs into a forward-looking Weekly Prediction Brief.
+Your task is to evaluate three independent retrospective analysis legs, cross-reference them with live internet research, and deliver a forward-looking Weekly Prediction Brief.
 
-1. MASTER MARKET DATA (Verified by Data Pipeline)
+1. LOCAL SOURCE DATA PAYLOADS (Retrospective Pipeline Ingestion)
 [TECHNICAL INDICATOR AGENT DATA]:
 {json.dumps(extracted_data['technical'], indent=2)}
-
-[MACROECONOMIC DATA AGENT DATA]:
-{json.dumps(extracted_data['macro'], indent=2)}
 
 [ALMANAC & HISTORICAL SEASONALITY AGENT DATA]:
 {json.dumps(extracted_data['almanac'], indent=2)}
 {json.dumps(extracted_data['historical_seasonality'], indent=2)}
 
-2. YOUR REQUIRED EVALUATION OUTPUT FORMAT
-Provide a punchy, highly structured synthesis detailing the following dimensions:
-WEEKLY REGIME: Dominant expected market regime.
-INDEX OUTLOOK: Direction, Estimated % move, and Key reason for SPX, NDX, and IWM.
-SECTOR LEADERSHIP: Leading sector, Lagging sector, and why leadership matters this week.
-CORE SYNTHESIS MATRIX: Alignment/conflict points between Technical, Macro, and Almanac legs.
+[PIPELINE ECONOMIC CALENDAR CAPTURE]:
+{json.dumps(fed_and_data_watch, indent=2)}
 
-Rules:
-- Use only provided evidence. Do not invent external data points or trends.
-- Output strictly as valid, clean JSON matching the target keys below. No markdown wrappers.
+2. MANDATORY INDEPENDENT REAL-TIME RESEARCH INSTRUCTIONS
+Our local economic macro data collectors may have missed critical market events, unscheduled central bank updates, or breaking macroeconomic catalysts. 
+YOU ARE EXPLICITLY ORDERED TO USE YOUR WEB-SEARCH, LIVE-RETRIEVAL, AND PARAMETRIC KNOWLEDGE INFRASTRUCTURE TO PERFORM AN INDEPENDENT AUDIT OF CURRENT LIVE SECTORS AND EVENTS:
+- Research current breaking macroeconomic catalysts, geopolitical shifts, or sudden volatility vectors affecting broad market indices (SPX, NDX, IWM) for the upcoming tracking week.
+- Cross-reference the 'PIPELINE ECONOMIC CALENDAR CAPTURE' against actual public economic calendars to identify high-importance missing events (e.g., unscheduled central bank speeches, flash PMI data, emergency updates, or unexpected global inventory revisions).
+- Identify current consensus estimates for any major upcoming indicators to evaluate trend acceleration or trend exhaustion conditions.
+
+3. YOUR REQUIRED EVALUATION OUTPUT FORMAT
+Provide a punchy, highly structured synthesis detailing your findings. 
+
+Rules for Synthesis Compilation:
+- Do not invent past historical price metrics.
+- INTEGRATE YOUR INDEPENDENT RESEARCH FINDINGS directly into your index outlooks and regime evaluations to enhance accuracy beyond our local data collectors.
+- Explicitly log any discovered data collection gaps, omitted events, or missed macroeconomic parameters inside the dedicated 'pipeline_omissions_discovered' array key so we can update our collectors.
+
+Output strictly as valid, clean JSON matching the target keys below. No markdown wrappers.
 {{
-"weekly_regime": "text description here",
+"weekly_regime": "text description detailing expected market regime, incorporating both pipeline telemetry and your independent live research discoveries",
 "confidence_score": "High, Medium, or Low",
 "spx_pct_estimate": "Estimated percentage range",
 "ndx_pct_estimate": "Estimated percentage range",
 "iwm_pct_estimate": "Estimated percentage range",
-"top_supporting_reason": "Single strong statement summary",
-"top_contradiction_cited": "Single core threat summary",
-"invalidation_condition": "Specific closing level or yield target breaker",
-"tone_caveat_language": "Short description of target exposure alignment",
+"top_supporting_reason": "Single strong statement detailing your top core macro/technical catalyst trigger discovered",
+"top_contradiction_cited": "The primary scheduled risk or discovered missing calendar anomaly that could break this trend",
+"invalidation_condition": "Specific closing level or yield target breaker level",
+"tone_caveat_language": "Short description of target exposure alignment based on the complete risk calendar",
 "consensus_bias": "BULLISH / BEARISH / NEUTRAL / MIXED",
-"consensus_read_summary": "A 2-3 sentence paragraph summarizing model alignment and core agreements based on data...",
-"point_of_maximum_divergence": "The single biggest disagreement point between aggressive and defensive views...",
-"key_supporting_factors": ["Live factor 1 from data", "Live factor 2 from data"],
+"consensus_read_summary": "A 2-3 sentence paragraph summarizing model alignment, agreements, and specific missing market developments highlighted via your independent live search...",
+"point_of_maximum_divergence": "The single biggest disagreement point between aggressive and defensive views regarding upcoming event impacts...",
+"key_supporting_factors": ["Live factor from local data", "Macro driver or missed calendar event surfaced via independent search"],
 "main_contradiction_risk": "The top structural risk moving against the consensus trend this week...",
 "invalidation_summary": "The exact parameter or support level that breaks this consensus view...",
-"r7_human_score_question": "A critical evaluation question helping the human team weigh the conflicting data legs...",
-"r6_slide_bullet_1": "Core slide takeaway bullet 1...",
-"r6_slide_bullet_2": "Core slide takeaway bullet 2...",
-"r6_slide_bullet_3": "Core slide takeaway bullet 3..."
+"pipeline_omissions_discovered": ["List specific high-importance calendar events, indicators, central bank releases, or macro data points missed by our local macro/technical collectors that you discovered via real-time research"],
+"r7_human_score_question": "A critical evaluation question helping the human team weigh the conflicting local data legs against discovered external elements...",
+"r6_slide_bullet_1": "Core slide takeaway bullet 1 incorporating live research context...",
+"r6_slide_bullet_2": "Core slide takeaway bullet 2 incorporating live research context...",
+"r6_slide_bullet_3": "Core slide takeaway bullet 3 incorporating live research context..."
 }}
 """.strip()
 
 
 def generate_markdown_report(c, gpt, gem, ds, raw_data, week_suffix_file="W08"):
-    """Fully automated: Every table row and conclusion block is generated from
+    """Human-scannable dashboard briefing report compiler.
 
-    live data.
+    Fully automated: Every table row, fallback notice, and confluence matrix
+    block is calculated defensively from live operational datasets.
     """
-    # Dynamic Week Calculation: Extract week from almanac data or calculate it
+    # 1. Dynamic Tracking Week Calculation: Extract week indices from almanac metadata
     almanac_window = raw_data.get("almanac", {}).get("forecast_window", {})
-    start_date_str = almanac_window.get(
-        "start", datetime.now().strftime("%Y-%m-%d")
-    )
+    start_date_str = almanac_window.get("start", datetime.now().strftime("%Y-%m-%d"))
     try:
         dt_obj = datetime.strptime(start_date_str, "%Y-%m-%d")
-        display_date = dt_obj.strftime("%d %B %Y")
-        current_week_label = (
-            f"Week {almanac_window.get('sprint_week', '28')}"
-        )
+        display_date = dt_obj.strftime('%d %B %Y')
+        current_week_label = f"Week {almanac_window.get('sprint_week', '31')}"
     except Exception:
-        display_date = datetime.now().strftime("%d %B %Y")
-        current_week_label = "Week 28"
+        display_date = datetime.now().strftime('%d %B %Y')
+        current_week_label = "Week 31"
 
-    # --- DYNAMIC EVIDENCE CONFLUENCE CALCULATIONS ---
+    # 2. EVIDENCE CONFLUENCE CALCULATIONS: Retrospective Local Data Checks
     tech_instruments = raw_data.get("technical", {}).get("instruments", {})
-    bullish_count = sum(
-        1
-        for inst in tech_instruments.values()
-        if "Bullish" in inst.get("technical_bias", "")
-    )
-    bearish_count = sum(
-        1
-        for inst in tech_instruments.values()
-        if "Bearish" in inst.get("technical_bias", "")
-    )
+    bullish_count = sum(1 for inst in tech_instruments.values() if "Bullish" in inst.get("technical_bias", ""))
+    bearish_count = sum(1 for inst in tech_instruments.values() if "Bearish" in inst.get("technical_bias", ""))
+
     if bullish_count > bearish_count:
         tech_read, tech_align = "Bullish", "Aligned"
     elif bearish_count > bullish_count:
@@ -385,28 +385,42 @@ def generate_markdown_report(c, gpt, gem, ds, raw_data, week_suffix_file="W08"):
         macro_read, macro_align = "Stable / Supportive", "Aligned"
 
     almanac_flags = raw_data.get("almanac", {}).get("calendar_flags", {})
-    has_weakness = almanac_flags.get(
-        "june_seasonal_weakness_flag", False
-    ) or almanac_flags.get("midterm_year_flag", False)
+    has_weakness = almanac_flags.get("june_seasonal_weakness_flag", False) or almanac_flags.get("midterm_year_flag",
+                                                                                                False)
     if has_weakness:
         almanac_read, almanac_align = "Neutral-Cautious (Flags Active)", "Mixed"
     else:
-        almanac_read, almanac_align = (
-            "Neutral-Neutral (Clear Calendar)",
-            "Aligned",
-        )
+        almanac_read, almanac_align = "Neutral-Neutral (Clear Calendar)", "Aligned"
 
-    # --- LLM TEXT FIELDS SAFE FALLBACK EXTRACTOR ---
-    def get_field(obj, key, fallback="Dynamic calculation pending..."):
-        val = obj.get(key, fallback)
-        return val if val and "Error" not in str(val) else fallback
+    # 3. ADVANCED DEFENSIVE PARSING: Consensus Fallback Resolvers
+    # These functions dynamically crawl across all models to compile a unified,
+    # verified reading if an online search causes a single model's schema to drift.
+    def get_consensus_field(key, fallback="Dynamic text calculation pending across matrix paths..."):
+        for model_obj in [c, gpt, gem, ds]:
+            if isinstance(model_obj, dict):
+                val = model_obj.get(key)
+                if val and "Error" not in str(val) and "recovery substitution" not in str(val):
+                    return str(val).strip()
+        return fallback
 
-    def get_list_fields(obj, key):
-        items = obj.get(key, [])
-        if not isinstance(items, list) or not items:
-            return "* Data pattern synthesis ongoing across collector matrices."
-        return "\n".join([f"* {item}" for item in items])
+    def get_consensus_list(key):
+        for model_obj in [c, gpt, gem, ds]:
+            if isinstance(model_obj, dict):
+                items = model_obj.get(key, [])
+                if isinstance(items, list) and items and not any("Error" in str(i) for i in items):
+                    return "\n".join([f"* {str(item).strip()}" for item in items])
+        return "* Multi-engine matrix research sequence ongoing across active collector branches."
 
+    def get_model_cell(model_obj, key):
+        """Safely isolates discrete string parameters for individual cell matrices."""
+        if not isinstance(model_obj, dict):
+            return "N/A (Missing Payload)"
+        val = model_obj.get(key, "N/A")
+        if "Error loading" in str(val):
+            return "⚠️ Fallback Active"
+        return str(val).strip()
+
+    # 4. COMPILING DOCUMENT FRAME STRUCTURE
     lines = [
         f"# LLM Synthesis — {current_week_label} ({display_date})",
         "",
@@ -418,33 +432,25 @@ def generate_markdown_report(c, gpt, gem, ds, raw_data, week_suffix_file="W08"):
         "",
         "| Dimension | Claude | ChatGPT | Gemini | DeepSeek |",
         "| --------------------------- | ---------- | ---------- | ---------- | ---------- |",
-        f"| **Weekly Regime** | {c.get('weekly_regime')} | {gpt.get('weekly_regime')} | {gem.get('weekly_regime')} | {ds.get('weekly_regime')} |",
-        f"| **Confidence Score** | {c.get('confidence_score')} | {gpt.get('confidence_score')} | {gem.get('confidence_score')} | {ds.get('confidence_score')} |",
-        f"| **SPX % estimate** | {c.get('spx_pct_estimate')} | {gpt.get('spx_pct_estimate')} | {gem.get('spx_pct_estimate')} | {ds.get('spx_pct_estimate')} |",
-        f"| **NDX % estimate** | {c.get('ndx_pct_estimate')} | {gpt.get('ndx_pct_estimate')} | {gem.get('ndx_pct_estimate')} | {ds.get('ndx_pct_estimate')} |",
-        f"| **IWM % estimate** | {c.get('iwm_pct_estimate')} | {gpt.get('iwm_pct_estimate')} | {gem.get('iwm_pct_estimate')} | {ds.get('iwm_pct_estimate')} |",
-        f"| **Top supporting reason** | {c.get('top_supporting_reason')} | {gpt.get('top_supporting_reason')} | {gem.get('top_supporting_reason')} | {ds.get('top_supporting_reason')} |",
-        f"| **Top contradiction cited** | {c.get('top_contradiction_cited')} | {gpt.get('top_contradiction_cited')} | {gem.get('top_contradiction_cited')} | {ds.get('top_contradiction_cited')} |",
-        f"| **Invalidation condition** | {c.get('invalidation_condition')} | {gpt.get('invalidation_condition')} | {gem.get('invalidation_condition')} | {ds.get('invalidation_condition')} |",
-        f"| **Tone / caveat language** | {c.get('tone_caveat_language')} | {gpt.get('tone_caveat_language')} | {gem.get('tone_caveat_language')} | {ds.get('tone_caveat_language')} |",
+        f"| **Weekly Regime** | {get_model_cell(c, 'weekly_regime')} | {get_model_cell(gpt, 'weekly_regime')} | {get_model_cell(gem, 'weekly_regime')} | {get_model_cell(ds, 'weekly_regime')} |",
+        f"| **Confidence Score** | {get_model_cell(c, 'confidence_score')} | {get_model_cell(gpt, 'confidence_score')} | {get_model_cell(gem, 'confidence_score')} | {get_model_cell(ds, 'confidence_score')} |",
+        f"| **SPX % estimate** | {get_model_cell(c, 'spx_pct_estimate')} | {get_model_cell(gpt, 'spx_pct_estimate')} | {get_model_cell(gem, 'spx_pct_estimate')} | {get_model_cell(ds, 'spx_pct_estimate')} |",
+        f"| **NDX % estimate** | {get_model_cell(c, 'ndx_pct_estimate')} | {get_model_cell(gpt, 'ndx_pct_estimate')} | {get_model_cell(gem, 'ndx_pct_estimate')} | {get_model_cell(ds, 'ndx_pct_estimate')} |",
+        f"| **IWM % estimate** | {get_model_cell(c, 'iwm_pct_estimate')} | {get_model_cell(gpt, 'iwm_pct_estimate')} | {get_model_cell(gem, 'iwm_pct_estimate')} | {get_model_cell(ds, 'iwm_pct_estimate')} |",
+        f"| **Top supporting reason** | {get_model_cell(c, 'top_supporting_reason')} | {get_model_cell(gpt, 'top_supporting_reason')} | {get_model_cell(gem, 'top_supporting_reason')} | {get_model_cell(ds, 'top_supporting_reason')} |",
+        f"| **Top contradiction cited** | {get_model_cell(c, 'top_contradiction_cited')} | {get_model_cell(gpt, 'top_contradiction_cited')} | {get_model_cell(gem, 'top_contradiction_cited')} | {get_model_cell(ds, 'top_contradiction_cited')} |",
+        f"| **Invalidation condition** | {get_model_cell(c, 'invalidation_condition')} | {get_model_cell(gpt, 'invalidation_condition')} | {get_model_cell(gem, 'invalidation_condition')} | {get_model_cell(ds, 'invalidation_condition')} |",
+        f"| **Tone / caveat language** | {get_model_cell(c, 'tone_caveat_language')} | {get_model_cell(gpt, 'tone_caveat_language')} | {get_model_cell(gem, 'tone_caveat_language')} | {get_model_cell(ds, 'tone_caveat_language')} |",
         "",
     ]
 
-    # Surface any fallback substitutions plainly right under the table
+    # 5. DYNAMIC FAILOVER ATTESTATION FLAGS: Plainly surface network substitution drops
     fallback_notes = []
-    for label, model_result in (
-            ("Claude", c),
-            ("ChatGPT", gpt),
-            ("Gemini", gem),
-            ("DeepSeek", ds),
-    ):
-        note = (
-            model_result.get("_fallback_warning")
-            if isinstance(model_result, dict)
-            else None
-        )
-        if note:
-            fallback_notes.append(f"* ⚠️ **{label}:** {note}")
+    for label, model_result in (("Claude", c), ("ChatGPT", gpt), ("Gemini", gem), ("DeepSeek", ds)):
+        if isinstance(model_result, dict):
+            note = model_result.get("_fallback_warning")
+            if note:
+                fallback_notes.append(f"* ⚠️ **{label}:** {note}")
 
     if fallback_notes:
         lines.append("### ⚠️ Fallback Notices")
@@ -452,46 +458,47 @@ def generate_markdown_report(c, gpt, gem, ds, raw_data, week_suffix_file="W08"):
         lines.extend(fallback_notes)
         lines.append("")
 
+    # 6. BLENDED INTERPRETATION SUMMARY SECTIONS
     lines += [
         "## Consensus Read",
         "",
-        "**Models in agreement summary:**",
-        f"{get_field(c, 'consensus_read_summary')}",
+        "**Models in agreement summary (Blended Analysis Matrix):**",
+        f"{get_consensus_field('consensus_read_summary')}",
         "",
         "**Point of maximum divergence:**",
-        f"{get_field(c, 'point_of_maximum_divergence')}",
+        f"{get_consensus_field('point_of_maximum_divergence')}",
         "",
         "**Most credible model this week:**",
         "Claude",
         "",
         "**Why:**",
-        "Direct handling of multi-agent metrics conflict without filtering chart momentum or macro anomalies.",
+        "Direct handling of multi-agent metrics conflict, augmented by real-time validation of external macroeconomic events.",
         "",
         "---",
         "",
         "## Final Team Interpretation",
         "",
         "### Consensus Bias",
-        "**Neutral-Bullish**",
+        f"**{get_consensus_field('consensus_bias', 'MIXED / NEUTRAL')}**",
         "",
         "### Confidence",
-        "**Medium**",
+        f"**{get_consensus_field('confidence_score', 'Medium')}**",
         "",
-        "### Key Supporting Factors",
-        f"{get_list_fields(c, 'key_supporting_factors')}",
+        "### Key Supporting Factors (Combined Local & Discovered Elements)",
+        f"{get_consensus_list('key_supporting_factors')}",
         "",
-        "### Main Contradiction / Risk",
-        f"{get_field(c, 'main_contradiction_risk')}",
+        "### Main Contradiction / Risk Horizon",
+        f"{get_consensus_field('main_contradiction_risk')}",
         "",
-        "### Invalidation Condition",
-        f"{get_field(c, 'invalidation_summary')}",
+        "### Invalidation Condition Boundaries",
+        f"{get_consensus_field('invalidation_summary')}",
         "",
         "---",
         "",
         "## R6 Handoff to R7 Human Score",
         "",
         "### Key Human Score Question",
-        f"{get_field(c, 'r7_human_score_question')}",
+        f"{get_consensus_field('r7_human_score_question')}",
         "",
         "## Evidence Confluence Check",
         "",
@@ -503,11 +510,19 @@ def generate_markdown_report(c, gpt, gem, ds, raw_data, week_suffix_file="W08"):
         "",
         "---",
         "",
+        "## 🛠️ Data Collector Audit Ledger",
+        "",
+        "The following omissions or missing event constraints were surfaced by the multi-engine matrix research pass. Use this log to update upstream data collector modules in future sprint iterations:",
+        "",
+        f"{get_consensus_list('pipeline_omissions_discovered')}",
+        "",
+        "---",
+        "",
         "## R6 Slide Text",
         "",
-        f"* {get_field(c, 'r6_slide_bullet_1')}",
-        f"* {get_field(c, 'r6_slide_bullet_2', 'Macro layers generate visible divergence relative to valuations.')}",
-        f"* {get_field(c, 'r6_slide_bullet_3', 'Dynamic execution sequence completed across matrix tracks.')}",
+        f"* {get_consensus_field('r6_slide_bullet_1')}",
+        f"* {get_consensus_field('r6_slide_bullet_2', 'Macro layers generate visible divergence relative to valuations.')}",
+        f"* {get_consensus_field('r6_slide_bullet_3', 'Dynamic execution sequence completed across matrix tracks.')}",
         "",
         "---",
         "### Raw responses saved as:",
@@ -516,6 +531,7 @@ def generate_markdown_report(c, gpt, gem, ds, raw_data, week_suffix_file="W08"):
         f"* `synthesis_gemini_{week_suffix_file}.json`",
         f"* `synthesis_deepseek_{week_suffix_file}.json`",
     ]
+
     return "\n".join(lines)
 
 
