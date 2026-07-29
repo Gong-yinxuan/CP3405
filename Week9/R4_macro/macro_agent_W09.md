@@ -77,6 +77,3 @@ The cautious macro bias would be invalidated if Treasury yields stop rising, WTI
 
 *(Manual note: the confirmed news above shows WTI has actually already reversed sharply lower since the collector's snapshot, on the Iran de-escalation — this is the kind of shift that would tend to invalidate rather than strengthen the "Bearish" auto-drafted bias. Worth a human sanity-check on the bias line once the FOMC outcome and this week's GDP/PCE prints are in.)*
 
-
-## INVALIDATION
-The cautious macro bias would be invalidated if Treasury yields stop rising, WTI loses upward momentum, and VIX remains low or continues falling. The cautious view would be strengthened if the 10Y and 30Y yields continue rising, WTI keeps moving higher, gold continues falling, or VIX begins rising from its current level.
