@@ -18,7 +18,7 @@ DEEPSEEK_MODEL = "deepseek/deepseek-chat"
 FREE_FALLBACK_MODEL = "openrouter/free"
 
 # System Endpoint Assets
-OPEN_ROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
+OPEN_ROUTER_URL = "https://openrouter.ai"
 
 
 def clean_json_stream(raw_text):
@@ -98,20 +98,19 @@ def call_openrouter_free_fallback(prompt, failed_model_label, structural_error):
         try:
             res = requests.post(OPEN_ROUTER_URL, headers=headers, json=payload, timeout=30)
             if res.status_code != 200:
-                print(f"[WARN] Failover network attempt {attempt}/2 dropped with status: {res.status_code}")
+                print(
+                    f"[WARN] Fallback network attempt {attempt}/2 dropped with status: {res.status_code} | Raw text: {res.text}")
                 continue
-
             choices = res.json().get("choices", [])
             if not choices:
                 continue
-
             content = choices[0].get("message", {}).get("content", "")
             parsed_json = json.loads(strip_reasoning_tags(content))
             parsed_json[
                 "_fallback_warning"] = f"{failed_model_label} connection dropped. Swapped automatically with {FREE_FALLBACK_MODEL}."
             return parsed_json
         except Exception as e:
-            print(f"[WARN] Failover loop tracking engine variance on attempt {attempt}: {e}")
+            print(f"[WARN] Fallback loop tracking engine variance on attempt {attempt}: {e}")
             time.sleep(2)
 
     return get_safe_fallback_payload(failed_model_label,
@@ -124,7 +123,6 @@ def call_claude(prompt):
     if not api_key:
         print("[ERROR] ANTHROPIC_API_KEY variable missing from current environment runtime context.")
         return call_openrouter_free_fallback(prompt, "Claude", "Missing native API access credentials.")
-
     try:
         client = Anthropic(api_key=api_key)
         response = client.messages.create(
@@ -147,12 +145,10 @@ def call_gemini(prompt):
     if not api_key:
         print("[ERROR] GEMINI_API_KEY variable missing from current environment runtime context.")
         return call_openrouter_free_fallback(prompt, "Gemini", "Missing native API access credentials.")
-
     try:
         client = genai.Client(api_key=api_key)
         max_retries = 3
         delay = 5
-
         for attempt in range(max_retries):
             try:
                 res = client.models.generate_content(
@@ -164,8 +160,7 @@ def call_gemini(prompt):
             except Exception as e:
                 err_msg = str(e).lower()
                 if "503" in err_msg or "demand" in err_msg or "exhausted" in err_msg:
-                    print(
-                        f"[RETRY] Gemini congestion drop active (Attempt {attempt + 1}/{max_retries}). Retrying with backoff...")
+                    print(f"[RETRY] Gemini congestion drop active (Attempt {attempt + 1}/{max_retries}). Retrying with backoff...")
                     time.sleep(delay)
                     delay *= 2
                     continue
@@ -182,7 +177,6 @@ def call_openrouter_base(prompt, model_name, friendly_label):
     if not api_key:
         print(f"[ERROR] OPENROUTER_API_KEY missing. Skipping endpoint creation for: {friendly_label}")
         return call_openrouter_free_fallback(prompt, friendly_label, "Missing OpenRouter configuration secrets.")
-
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json",
@@ -191,23 +185,18 @@ def call_openrouter_base(prompt, model_name, friendly_label):
     payload = {
         "model": model_name,
         "messages": [
-            {"role": "system",
-             "content": "You are a rigid automation server. Output ONLY a valid raw JSON object matching requested schema keys."},
+            {"role": "system", "content": "You are a rigid automation server. Output ONLY a valid raw JSON object matching requested schema keys."},
             {"role": "user", "content": prompt}
         ],
         "temperature": 0.1
     }
-
     try:
         response = requests.post(OPEN_ROUTER_URL, headers=headers, json=payload, timeout=45)
         if response.status_code != 200:
-            raise RuntimeError(
-                f"OpenRouter target provider cluster returned error tracking flag status code: {response.status_code}")
-
+            raise RuntimeError(f"OpenRouter provider cluster error: {response.status_code} | Payload: {response.text}")
         choices = response.json().get("choices", [])
         if not choices:
-            raise ValueError("OpenRouter parsed response payload contains empty choice arrays.")
-
+            raise ValueError("OpenRouter response payload contains empty choice arrays.")
         raw_content = choices[0].get("message", {}).get("content", "")
         return json.loads(clean_json_stream(raw_content))
     except Exception as e:
@@ -225,7 +214,6 @@ def call_deepseek(prompt):
 
 def find_latest_collector_data():
     """Recursively maps your entire prism/data environment directory tree
-
     to extract files from both root indices and nested subdirectories.
     """
     data_payloads = {
@@ -237,56 +225,37 @@ def find_latest_collector_data():
     base_dir = "prism/data"
 
     if not os.path.exists(base_dir):
-        print(
-            f"[PRISM] Critical Link Warning: '{base_dir}' folder tree does not exist."
-        )
+        print(f"[PRISM] Critical Link Warning: '{base_dir}' folder tree does not exist.")
         return data_payloads
 
     for root, _, files in os.walk(base_dir):
         for file in files:
             file_path = os.path.join(root, file)
             try:
-                if "technical_collector_output" in file and file.endswith(
-                    ".json"
-                ):
+                if "technical_collector_output" in file and file.endswith(".json"):
                     with open(file_path, "r", encoding="utf-8") as f:
                         data_payloads["technical"] = json.load(f)
-                    print(
-                        f"[OK] Ingested Technical Agent Payload from: {file_path}"
-                    )
-                elif "macro_collector_output" in file and file.endswith(
-                    ".json"
-                ):
+                    print(f"[OK] Ingested Technical Agent Payload from: {file_path}")
+                elif "macro_collector_output" in file and file.endswith(".json"):
                     with open(file_path, "r", encoding="utf-8") as f:
                         data_payloads["macro"] = json.load(f)
-                    print(
-                        f"[OK] Ingested Macro Agent Payload from: {file_path}"
-                    )
-                elif "almanac_collector_output" in file and file.endswith(
-                    ".json"
-                ):
+                    print(f"[OK] Ingested Macro Agent Payload from: {file_path}")
+                elif "almanac_collector_output" in file and file.endswith(".json"):
                     with open(file_path, "r", encoding="utf-8") as f:
                         data_payloads["almanac"] = json.load(f)
-                    print(
-                        f"[OK] Ingested Weekly Almanac Agent Payload from: {file_path}"
-                    )
+                    print(f"[OK] Ingested Weekly Almanac Agent Payload from: {file_path}")
                 elif "monthly_seasonality" in file and file.endswith(".json"):
                     with open(file_path, "r", encoding="utf-8") as f:
                         data_payloads["historical_seasonality"] = json.load(f)
-                    print(
-                        f"[OK] Ingested Historical Monthly Seasonality Data from: {file_path}"
-                    )
+                    print(f"[OK] Ingested Historical Monthly Seasonality Data from: {file_path}")
             except Exception as e:
-                print(
-                    f"[WARN] Ingestion pipeline skipped parsing on file {file_path}: {e}"
-                )
+                print(f"[WARN] Ingestion pipeline skipped parsing on file {file_path}: {e}")
 
     return data_payloads
 
 
 def build_synthesis_prompt(extracted_data):
     """Assembles pipeline telemetry and structures rigid search instructions
-
     ordering models to perform real-time verification and spot collector omissions.
     """
     # Extract the forward-looking calendar watch details parsed by macro_collector.py
@@ -340,7 +309,7 @@ Output strictly as valid, clean JSON matching the target keys below. No markdown
 "main_contradiction_risk": "The top structural risk moving against the consensus trend this week...",
 "invalidation_summary": "The exact parameter or support level that breaks this consensus view...",
 "pipeline_omissions_discovered": ["List specific high-importance calendar events, indicators, central bank releases, or macro data points missed by our local macro/technical collectors that you discovered via real-time research"],
-"r7_human_score_question": "A critical evaluation question helping the human team weigh the conflicting local data legs against discovered external elements...",
+"r7_human_score_question": "A critical evaluation question helping the human team weigh the conflicting data legs against discovered external elements...",
 "r6_slide_bullet_1": "Core slide takeaway bullet 1 incorporating live research context...",
 "r6_slide_bullet_2": "Core slide takeaway bullet 2 incorporating live research context...",
 "r6_slide_bullet_3": "Core slide takeaway bullet 3 incorporating live research context..."
@@ -351,10 +320,9 @@ Output strictly as valid, clean JSON matching the target keys below. No markdown
 def generate_markdown_report(c, gpt, gem, ds, raw_data, week_suffix_file="W08"):
     """Human-scannable dashboard briefing report compiler.
 
-    Fully automated: Every table row, fallback notice, and confluence matrix
-    block is calculated defensively from live operational datasets.
+    Programmatically calculates the most credible model of the week using
+    a mathematical majority alignment matrix to eliminate chatbot guesswork.
     """
-    # 1. Dynamic Tracking Week Calculation: Extract week indices from almanac metadata
     almanac_window = raw_data.get("almanac", {}).get("forecast_window", {})
     start_date_str = almanac_window.get("start", datetime.now().strftime("%Y-%m-%d"))
     try:
@@ -365,62 +333,86 @@ def generate_markdown_report(c, gpt, gem, ds, raw_data, week_suffix_file="W08"):
         display_date = datetime.now().strftime('%d %B %Y')
         current_week_label = "Week 31"
 
-    # 2. EVIDENCE CONFLUENCE CALCULATIONS: Retrospective Local Data Checks
+    # --- ADVANCED LOGICAL RESOLVER: CONFLUENCE SCORING ENGINE ---
+    models_dict = {"Claude": c, "ChatGPT": gpt, "Gemini": gem, "DeepSeek": ds}
+
+    # 1. Track and calculate the majority market bias
+    bias_votes = []
+    for m_name, m_obj in models_dict.items():
+        if isinstance(m_obj, dict) and "_fallback_warning" not in m_obj:
+            bias = str(m_obj.get("consensus_bias", "")).upper()
+            if bias in ["BULLISH", "BEARISH", "NEUTRAL", "MIXED"]:
+                bias_votes.append(bias)
+    calculated_majority_bias = max(set(bias_votes), key=bias_votes.count) if bias_votes else "NEUTRAL"
+
+    # 2. Score each model based on structural consistency and alignment
+    model_scores = {}
+    for m_name, m_obj in models_dict.items():
+        if not isinstance(m_obj, dict):
+            model_scores[m_name] = -100
+            continue
+        if "_fallback_warning" in m_obj:
+            model_scores[m_name] = -50
+            continue
+        score = 0
+        if str(m_obj.get("consensus_bias", "")).upper() == calculated_majority_bias:
+            score += 40
+        if m_obj.get("invalidation_condition") and "N/A" not in str(m_obj.get("invalidation_condition")):
+            score += 30
+        omissions = m_obj.get("pipeline_omissions_discovered", [])
+        if isinstance(omissions, list) and len(omissions) > 0 and "List specific" not in str(omissions):
+            score += 30
+        model_scores[m_name] = score
+
+    most_credible_model = max(model_scores, key=model_scores.get)
+    highest_score = model_scores[most_credible_model]
+
+    if highest_score <= 0:
+        credibility_justification = "All primary models encountered service disruptions. System defaulted to basic structural fallback tracks."
+    else:
+        credibility_justification = f"Successfully matched the calculated majority market framework ({calculated_majority_bias}) while introducing active validation parameters and discovering uncaptured macro pipeline anomalies."
+
+    # --- RETROSPECTIVE LOCAL DATA EVIDENCE CHECK ---
     tech_instruments = raw_data.get("technical", {}).get("instruments", {})
     bullish_count = sum(1 for inst in tech_instruments.values() if "Bullish" in inst.get("technical_bias", ""))
     bearish_count = sum(1 for inst in tech_instruments.values() if "Bearish" in inst.get("technical_bias", ""))
-
-    if bullish_count > bearish_count:
-        tech_read, tech_align = "Bullish", "Aligned"
-    elif bearish_count > bullish_count:
-        tech_read, tech_align = "Bearish", "Aligned"
-    else:
-        tech_read, tech_align = "Neutral", "Mixed"
+    tech_read, tech_align = ("Bullish", "Aligned") if bullish_count > bearish_count else (
+        ("Bearish", "Aligned") if bearish_count > bullish_count else ("Neutral", "Mixed"))
 
     macro_instruments = raw_data.get("macro", {}).get("instruments", {})
     vix_direction = macro_instruments.get("VIX", {}).get("direction", "Flat")
-    if vix_direction == "Up":
-        macro_read, macro_align = "Slightly Bearish / Defensive", "Mixed"
-    else:
-        macro_read, macro_align = "Stable / Supportive", "Aligned"
+    macro_read, macro_align = ("Slightly Bearish / Defensive", "Mixed") if vix_direction == "Up" else (
+        "Stable / Supportive", "Aligned")
 
     almanac_flags = raw_data.get("almanac", {}).get("calendar_flags", {})
     has_weakness = almanac_flags.get("june_seasonal_weakness_flag", False) or almanac_flags.get("midterm_year_flag",
                                                                                                 False)
-    if has_weakness:
-        almanac_read, almanac_align = "Neutral-Cautious (Flags Active)", "Mixed"
-    else:
-        almanac_read, almanac_align = "Neutral-Neutral (Clear Calendar)", "Aligned"
+    almanac_read, almanac_align = ("Neutral-Cautious (Flags Active)", "Mixed") if has_weakness else (
+        "Neutral-Neutral (Clear Calendar)", "Aligned")
 
-    # 3. ADVANCED DEFENSIVE PARSING: Consensus Fallback Resolvers
-    # These functions dynamically crawl across all models to compile a unified,
-    # verified reading if an online search causes a single model's schema to drift.
+    # --- STANDARD BASE FIELD RESOLVERS ---
     def get_consensus_field(key, fallback="Dynamic text calculation pending across matrix paths..."):
         for model_obj in [c, gpt, gem, ds]:
-            if isinstance(model_obj, dict):
+            if isinstance(model_obj, dict) and "_fallback_warning" not in model_obj:
                 val = model_obj.get(key)
-                if val and "Error" not in str(val) and "recovery substitution" not in str(val):
+                if val and "Error" not in str(val):
                     return str(val).strip()
         return fallback
 
     def get_consensus_list(key):
         for model_obj in [c, gpt, gem, ds]:
-            if isinstance(model_obj, dict):
+            if isinstance(model_obj, dict) and "_fallback_warning" not in model_obj:
                 items = model_obj.get(key, [])
                 if isinstance(items, list) and items and not any("Error" in str(i) for i in items):
                     return "\n".join([f"* {str(item).strip()}" for item in items])
         return "* Multi-engine matrix research sequence ongoing across active collector branches."
 
     def get_model_cell(model_obj, key):
-        """Safely isolates discrete string parameters for individual cell matrices."""
-        if not isinstance(model_obj, dict):
-            return "N/A (Missing Payload)"
+        if not isinstance(model_obj, dict): return "N/A (Missing Payload)"
         val = model_obj.get(key, "N/A")
-        if "Error loading" in str(val):
-            return "⚠️ Fallback Active"
-        return str(val).strip()
+        return "⚠️ Fallback Active" if "Error loading" in str(val) else str(val).strip()
 
-    # 4. COMPILING DOCUMENT FRAME STRUCTURE
+    # --- COMPILE BRIEFING REPORT ---
     lines = [
         f"# LLM Synthesis — {current_week_label} ({display_date})",
         "",
@@ -444,21 +436,17 @@ def generate_markdown_report(c, gpt, gem, ds, raw_data, week_suffix_file="W08"):
         "",
     ]
 
-    # 5. DYNAMIC FAILOVER ATTESTATION FLAGS: Plainly surface network substitution drops
     fallback_notes = []
     for label, model_result in (("Claude", c), ("ChatGPT", gpt), ("Gemini", gem), ("DeepSeek", ds)):
-        if isinstance(model_result, dict):
-            note = model_result.get("_fallback_warning")
-            if note:
-                fallback_notes.append(f"* ⚠️ **{label}:** {note}")
+        if isinstance(model_result, dict) and model_result.get("_fallback_warning"):
+            fallback_notes.append(f"* ⚠️ **{label}:** {model_result.get('_fallback_warning')}")
 
     if fallback_notes:
-        lines.append("### ⚠️ Fallback Notices")
-        lines.append("")
-        lines.extend(fallback_notes)
+        lines.append("### ⚠️ Fallback Notices");
+        lines.append("");
+        lines.extend(fallback_notes);
         lines.append("")
 
-    # 6. BLENDED INTERPRETATION SUMMARY SECTIONS
     lines += [
         "## Consensus Read",
         "",
@@ -469,17 +457,17 @@ def generate_markdown_report(c, gpt, gem, ds, raw_data, week_suffix_file="W08"):
         f"{get_consensus_field('point_of_maximum_divergence')}",
         "",
         "**Most credible model this week:**",
-        "Claude",
+        f"**{most_credible_model}**",
         "",
         "**Why:**",
-        "Direct handling of multi-agent metrics conflict, augmented by real-time validation of external macroeconomic events.",
+        f"{credibility_justification}",
         "",
         "---",
         "",
         "## Final Team Interpretation",
         "",
         "### Consensus Bias",
-        f"**{get_consensus_field('consensus_bias', 'MIXED / NEUTRAL')}**",
+        f"**{calculated_majority_bias}**",
         "",
         "### Confidence",
         f"**{get_consensus_field('confidence_score', 'Medium')}**",
@@ -504,8 +492,7 @@ def generate_markdown_report(c, gpt, gem, ds, raw_data, week_suffix_file="W08"):
         "",
         "| Evidence Leg | Current Read | Alignment |",
         "| ------------ | ----------------------------- | --------------------------------- |",
-        f"| Technical | {tech_read} | {tech_align} |",
-        f"| Macro | {macro_read} | {macro_align} |",
+        f"| Technical | {tech_read} | {tech_align} |", f"| Macro | {macro_read} | {macro_align} |",
         f"| Almanac | {almanac_read} | {almanac_align} |",
         "",
         "---",
@@ -513,25 +500,13 @@ def generate_markdown_report(c, gpt, gem, ds, raw_data, week_suffix_file="W08"):
         "## 🛠️ Data Collector Audit Ledger",
         "",
         "The following omissions or missing event constraints were surfaced by the multi-engine matrix research pass. Use this log to update upstream data collector modules in future sprint iterations:",
-        "",
-        f"{get_consensus_list('pipeline_omissions_discovered')}",
-        "",
-        "---",
-        "",
-        "## R6 Slide Text",
-        "",
+        "", f"{get_consensus_list('pipeline_omissions_discovered')}", "", "---", "", "## R6 Slide Text", "",
         f"* {get_consensus_field('r6_slide_bullet_1')}",
         f"* {get_consensus_field('r6_slide_bullet_2', 'Macro layers generate visible divergence relative to valuations.')}",
         f"* {get_consensus_field('r6_slide_bullet_3', 'Dynamic execution sequence completed across matrix tracks.')}",
-        "",
-        "---",
-        "### Raw responses saved as:",
-        f"* `synthesis_chatgpt_{week_suffix_file}.json`",
-        f"* `synthesis_claude_{week_suffix_file}.json`",
-        f"* `synthesis_gemini_{week_suffix_file}.json`",
-        f"* `synthesis_deepseek_{week_suffix_file}.json`",
-    ]
-
+        "", "---", "### Raw responses saved as:", f"* synthesis_chatgpt_{week_suffix_file}.json",
+        f"* synthesis_claude_{week_suffix_file}.json", f"* synthesis_gemini_{week_suffix_file}.json",
+        f"* synthesis_deepseek_{week_suffix_file}.json", ]
     return "\n".join(lines)
 
 
@@ -540,20 +515,16 @@ def main():
     data = find_latest_collector_data()
     prompt = build_synthesis_prompt(data)
 
-    # 1. Defensively clean and resolve command line tracking variables
     if len(sys.argv) > 1 and sys.argv[1].strip():
-        # Strip out loose string quotes if wrapped accidentally by workflow calls
         parent_week_dir = sys.argv[1].replace('"', '').replace("'", '').strip()
     else:
         almanac_window = data.get("almanac", {}).get("forecast_window", {})
         parent_week_dir = f"Week{almanac_window.get('sprint_week', '6')}"
 
-    # 2. Extract context week numerical markers reliably
     week_digits = "".join(filter(str.isdigit, parent_week_dir))
     week_num = int(week_digits) if week_digits else 6
     week_suffix_file = f"W{week_num:02d}"
 
-    # 3. Resolve the release counter string layout parameter (e.g., vW30)
     if len(sys.argv) > 2 and sys.argv[2].strip():
         try:
             sprint_digits = "".join(filter(str.isdigit, sys.argv[2]))
@@ -566,12 +537,10 @@ def main():
         print(f"[WARN] Sprint release parameter missing from execution frame. Utilizing fallback: {week_suffix_file}")
         sprint_suffix_file = week_suffix_file
 
-    # 4. Initialize dynamic target directories matching your workspace conventions
     target_dir = os.path.join(".", parent_week_dir, "R8_llm")
     os.makedirs(target_dir, exist_ok=True)
     print(f"[OK] Workspace successfully pinned to dynamic ledger: {target_dir}")
 
-    # 5. Backup the master prompt snapshot state asset locally
     prompt_file_path = os.path.join(target_dir, f"ai_prompt_{week_suffix_file}.md")
     try:
         with open(prompt_file_path, "w", encoding="utf-8") as prompt_file:
@@ -580,7 +549,6 @@ def main():
     except Exception as e:
         print(f"[WARN] Drop frame exception encountered while writing prompt state file: {e}")
 
-    # 6. Fire asynchronous API calls to engine infrastructure clusters concurrently
     print("[PRISM] Spawning concurrent threads to execute multi-engine matrix evaluation...")
     with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
         future_claude = executor.submit(call_claude, prompt)
@@ -593,7 +561,6 @@ def main():
         gem_res = future_gemini.result()
         ds_res = future_deepseek.result()
 
-    # 7. Serialize runtime metadata dictionaries to your directory tracks
     responses_map = {
         "chatgpt": gpt_res,
         "claude": c_res,
@@ -607,7 +574,6 @@ def main():
             f.write(json.dumps(data_obj, indent=2))
         print(f"[OK] Stored raw validation token logs: {out_path}")
 
-    # 8. Render full compilation dashboard reporting page
     report_content = generate_markdown_report(c_res, gpt_res, gem_res, ds_res, data, week_suffix_file)
     report_file_path = os.path.join(target_dir, f"llm_synthesis_{sprint_suffix_file}.md")
     with open(report_file_path, "w", encoding="utf-8") as report_file:
