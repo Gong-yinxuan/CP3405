@@ -12,14 +12,13 @@ from anthropic import Anthropic
 from google import genai
 from google.genai import types
 
+# System Endpoint Assets [DO NOT TOUCH]
+OPEN_ROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
+
 # Stable, Production-grade Production IDs on OpenRouter
 CHATGPT_MODEL = "openai/gpt-4o-mini"
 DEEPSEEK_MODEL = "deepseek/deepseek-chat"
 FREE_FALLBACK_MODEL = "openrouter/free"
-
-# System Endpoint Assets
-OPEN_ROUTER_URL = "https://openrouter.ai"
-
 
 def clean_json_stream(raw_text):
     """Isolates and extracts valid JSON boundaries out of LLM text responses."""
