@@ -1,11 +1,28 @@
 {
-  "weekly_regime": "Error loading openai/gpt-oss-120b value",
-  "confidence_score": "Error loading openai/gpt-oss-120b value",
-  "spx_pct_estimate": "Error loading openai/gpt-oss-120b value",
-  "ndx_pct_estimate": "Error loading openai/gpt-oss-120b value",
-  "iwm_pct_estimate": "Error loading openai/gpt-oss-120b value",
-  "top_supporting_reason": "Error loading openai/gpt-oss-120b value",
-  "top_contradiction_cited": "Error loading openai/gpt-oss-120b value",
-  "invalidation_condition": "Error loading openai/gpt-oss-120b value",
-  "tone_caveat_language": "Error loading openai/gpt-oss-120b value"
+  "weekly_regime": "The market is expected to remain in a bearish regime as technical indicators show significant downward momentum across major indices, compounded by recent geopolitical tensions and economic uncertainty. The bearish sentiment is reinforced by the lack of positive macroeconomic catalysts and the discovery of missed critical economic data releases.",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "-2% to -4%",
+  "ndx_pct_estimate": "-5% to -7%",
+  "iwm_pct_estimate": "-1% to -3%",
+  "top_supporting_reason": "Technical indicators across major indices are firmly in bearish territory, with significant distance from key EMA levels.",
+  "top_contradiction_cited": "The absence of scheduled economic data releases this week, particularly inflation metrics, could lead to unexpected market reactions.",
+  "invalidating_condition": "A close above 7418.74 for SPX, 28143.94 for NDX, and 292.31 for IWM would invalidate the bearish outlook.",
+  "tone_caveat_language": "Caution is advised as the market is sensitive to any unexpected economic data or geopolitical developments.",
+  "consensus_bias": "BEARISH",
+  "consensus_read_summary": "The model aligns with a bearish consensus due to the prevailing technical indicators and the absence of positive macroeconomic news. However, the lack of scheduled economic releases could introduce volatility if unexpected data emerges.",
+  "point_of_maximum_divergence": "The biggest disagreement lies in the potential impact of any unscheduled economic data releases that could shift market sentiment unexpectedly.",
+  "key_supporting_factors": [
+    "Technical indicators show bearish momentum across SPX, NDX, and IWM.",
+    "Missed economic data releases could lead to volatility and uncertainty."
+  ],
+  "main_contradiction_risk": "The top structural risk is the potential for unexpected positive economic data that could reverse the current bearish sentiment.",
+  "invalidating_summary": "A break above the identified EMA levels would signal a shift in market sentiment and invalidate the bearish outlook.",
+  "pipeline_omissions_discovered": [
+    "Missing inflation data releases (CPI, PPI) that could significantly impact market sentiment.",
+    "Lack of scheduled central bank communications that may influence market expectations."
+  ],
+  "r7_human_score_question": "How should we weigh the potential impact of missed economic data against the current bearish technical indicators?",
+  "r6_slide_bullet_1": "Bearish technical indicators suggest continued downward pressure on major indices.",
+  "r6_slide_bullet_2": "Missed economic data releases could introduce volatility and unexpected market reactions.",
+  "r6_slide_bullet_3": "Caution is warranted as geopolitical tensions may exacerbate market uncertainty."
 }

@@ -1,10 +1,10 @@
 You are acting as an advanced Multi-LLM Consensus Synthesis Engine for CP3405 DT3 Market Intelligence.
-Your task is to evaluate and synthesize three independent analysis legs into a forward-looking Weekly Prediction Brief.
+Your task is to evaluate three independent retrospective analysis legs, cross-reference them with live internet research, and deliver a forward-looking Weekly Prediction Brief.
 
-1. MASTER MARKET DATA (Verified by Data Pipeline)
-[TECHNICAL INDICATOR AGENT DATA]: 
+1. LOCAL SOURCE DATA PAYLOADS (Retrospective Pipeline Ingestion)
+[TECHNICAL INDICATOR AGENT DATA]:
 {
-  "generated_at": "2026-07-27T02:57:44Z",
+  "generated_at": "2026-07-30T08:06:05Z",
   "collector": "Technical Collector",
   "agent_input_for": "Technical Agent",
   "data_source": "Yahoo Finance via yfinance",
@@ -14,21 +14,21 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
       "symbol": "SPX",
       "yahoo_ticker": "^GSPC",
       "name": "S&P 500 Index",
-      "latest_trading_date": "2026-07-24",
-      "last_close": 7411.98,
-      "weekly_change_pct": -0.61,
-      "ema_8": 7465.1,
-      "ema_21": 7476.09,
+      "latest_trading_date": "2026-07-29",
+      "last_close": 7316.15,
+      "weekly_change_pct": -2.44,
+      "ema_8": 7418.74,
+      "ema_21": 7452.91,
       "price_vs_8ema": "below",
       "ema_8_vs_21ema": "below",
-      "distance_from_8ema": -53.12,
-      "distance_from_21ema": -64.11,
-      "ema_gap": -10.99,
+      "distance_from_8ema": -102.59,
+      "distance_from_21ema": -136.76,
+      "ema_gap": -34.17,
       "ema_condition": "Zone 3 Bearish",
       "recent_20d_high": 7581.5,
-      "recent_20d_low": 7294.18,
+      "recent_20d_low": 7313.92,
       "resistance_candidate": 7581.5,
-      "support_candidate": 7294.18,
+      "support_candidate": 7313.92,
       "technical_bias": "Bearish",
       "history_file": "technical/history/SPX.json"
     },
@@ -36,21 +36,21 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
       "symbol": "NDX",
       "yahoo_ticker": "^NDX",
       "name": "Nasdaq 100 Index",
-      "latest_trading_date": "2026-07-24",
-      "last_close": 28128.34,
-      "weekly_change_pct": -1.62,
-      "ema_8": 28763.22,
-      "ema_21": 29127.12,
+      "latest_trading_date": "2026-07-29",
+      "last_close": 27192.31,
+      "weekly_change_pct": -6.23,
+      "ema_8": 28143.94,
+      "ema_21": 28756.76,
       "price_vs_8ema": "below",
       "ema_8_vs_21ema": "below",
-      "distance_from_8ema": -634.88,
-      "distance_from_21ema": -998.78,
-      "ema_gap": -363.9,
+      "distance_from_8ema": -951.63,
+      "distance_from_21ema": -1564.45,
+      "ema_gap": -612.82,
       "ema_condition": "Zone 3 Bearish",
-      "recent_20d_high": 30328.79,
-      "recent_20d_low": 28053.08,
-      "resistance_candidate": 30328.79,
-      "support_candidate": 28053.08,
+      "recent_20d_high": 30084.78,
+      "recent_20d_low": 27176.03,
+      "resistance_candidate": 30084.78,
+      "support_candidate": 27176.03,
       "technical_bias": "Bearish",
       "history_file": "technical/history/NDX.json"
     },
@@ -58,160 +58,36 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
       "symbol": "IWM",
       "yahoo_ticker": "IWM",
       "name": "Russell 2000 ETF Proxy",
-      "latest_trading_date": "2026-07-24",
-      "last_close": 291.17,
-      "weekly_change_pct": -0.98,
-      "ema_8": 293.51,
-      "ema_21": 294.1,
+      "latest_trading_date": "2026-07-29",
+      "last_close": 288.57,
+      "weekly_change_pct": -1.78,
+      "ema_8": 292.31,
+      "ema_21": 293.45,
       "price_vs_8ema": "below",
       "ema_8_vs_21ema": "below",
-      "distance_from_8ema": -2.34,
-      "distance_from_21ema": -2.93,
-      "ema_gap": -0.59,
+      "distance_from_8ema": -3.74,
+      "distance_from_21ema": -4.88,
+      "ema_gap": -1.14,
       "ema_condition": "Zone 3 Bearish",
       "recent_20d_high": 302.72,
-      "recent_20d_low": 290.17,
+      "recent_20d_low": 288.26,
       "resistance_candidate": 302.72,
-      "support_candidate": 290.17,
+      "support_candidate": 288.26,
       "technical_bias": "Bearish",
       "history_file": "technical/history/IWM.json"
     }
   }
 }
 
-[MACROECONOMIC DATA AGENT DATA]: 
+[ALMANAC & HISTORICAL SEASONALITY AGENT DATA]:
 {
-  "generated_at": "2026-07-27T02:57:45Z",
-  "collector": "Macro Collector",
-  "agent_input_for": "Macro Agent",
-  "data_source": {
-    "market_data": "Yahoo Finance via yfinance",
-    "fed_speakers": "Federal Reserve speeches RSS feed",
-    "economic_data_releases": "BLS RSS feeds with BLS release calendar ICS fallback"
-  },
-  "note": "This collector gathers automatic macro market data and Fed + Data Watch metadata. FedWatch probability is not collected here.",
-  "macro_market_data": {
-    "US_10Y_YIELD": {
-      "symbol": "US_10Y_YIELD",
-      "yahoo_ticker": "^TNX",
-      "name": "US 10-Year Treasury Yield",
-      "category": "yield",
-      "latest_trading_date": "2026-07-24",
-      "close": 0.4679,
-      "weekly_change_pct": 3.04,
-      "change_5d": 0.0138,
-      "direction_5d": "Up",
-      "history_file": "macro/history/US_10Y_YIELD.json"
-    },
-    "US_30Y_YIELD": {
-      "symbol": "US_30Y_YIELD",
-      "yahoo_ticker": "^TYX",
-      "name": "US 30-Year Treasury Yield",
-      "category": "yield",
-      "latest_trading_date": "2026-07-24",
-      "close": 0.5162,
-      "weekly_change_pct": 1.94,
-      "change_5d": 0.0098,
-      "direction_5d": "Up",
-      "history_file": "macro/history/US_30Y_YIELD.json"
-    },
-    "WTI": {
-      "symbol": "WTI",
-      "yahoo_ticker": "CL=F",
-      "name": "Crude Oil WTI Futures",
-      "category": "commodity",
-      "latest_trading_date": "2026-07-26",
-      "close": 85.53,
-      "weekly_change_pct": 2.76,
-      "change_5d": 2.3,
-      "direction_5d": "Up",
-      "history_file": "macro/history/WTI.json"
-    },
-    "GOLD": {
-      "symbol": "GOLD",
-      "yahoo_ticker": "GC=F",
-      "name": "Gold Futures",
-      "category": "commodity",
-      "latest_trading_date": "2026-07-26",
-      "close": 4097.6001,
-      "weekly_change_pct": 2.18,
-      "change_5d": 87.3001,
-      "direction_5d": "Up",
-      "history_file": "macro/history/GOLD.json"
-    },
-    "DXY": {
-      "symbol": "DXY",
-      "yahoo_ticker": "DX-Y.NYB",
-      "name": "US Dollar Index",
-      "category": "currency_index",
-      "latest_trading_date": "2026-07-26",
-      "close": 101.17,
-      "weekly_change_pct": 0.18,
-      "change_5d": 0.18,
-      "direction_5d": "Up",
-      "history_file": "macro/history/DXY.json"
-    },
-    "VIX": {
-      "symbol": "VIX",
-      "yahoo_ticker": "^VIX",
-      "name": "CBOE Volatility Index",
-      "category": "volatility",
-      "latest_trading_date": "2026-07-24",
-      "close": 18.58,
-      "weekly_change_pct": -1.01,
-      "change_5d": -0.19,
-      "direction_5d": "Down",
-      "history_file": "macro/history/VIX.json"
-    },
-    "BTC": {
-      "symbol": "BTC",
-      "yahoo_ticker": "BTC-USD",
-      "name": "Bitcoin USD",
-      "category": "crypto",
-      "latest_trading_date": "2026-07-27",
-      "close": 65107.9609,
-      "weekly_change_pct": -2.1,
-      "change_5d": -1397.1641,
-      "direction_5d": "Down",
-      "history_file": "macro/history/BTC.json"
-    }
-  },
-  "fed_and_data_watch": {
-    "week_commencing": "2026-07-27",
-    "week_ending": "2026-08-02",
-    "fed_speakers": [],
-    "fed_speaker_count": 0,
-    "inflation_data": [],
-    "major_data_releases": [],
-    "data_release_errors": {
-      "CPI": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/cpi.rss",
-      "PPI": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/ppi.rss",
-      "IMPORT_EXPORT_PRICES": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/ximpim.rss",
-      "REAL_EARNINGS": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/realer.rss",
-      "EMPLOYMENT_SITUATION": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/empsit.rss",
-      "BLS_CALENDAR_ICS": "403 Client Error: Forbidden for url: https://www.bls.gov/schedule/news_release/bls.ics"
-    },
-    "rss_errors": {
-      "CPI": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/cpi.rss",
-      "PPI": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/ppi.rss",
-      "IMPORT_EXPORT_PRICES": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/ximpim.rss",
-      "REAL_EARNINGS": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/realer.rss",
-      "EMPLOYMENT_SITUATION": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/empsit.rss"
-    },
-    "calendar_source": "BLS RSS feeds + BLS release calendar ICS fallback",
-    "calendar_source_url": "https://www.bls.gov/schedule/news_release/bls.ics"
-  }
-}
-
-[ALMANAC & HISTORICAL SEASONALITY AGENT DATA]: 
-{
-  "generated_at": "2026-07-27T02:57:48Z",
+  "generated_at": "2026-07-30T08:06:09Z",
   "collector": "Almanac Collector",
   "agent_input_for": "Almanac Agent",
   "data_source": "Yahoo Finance via yfinance + automatic date rules",
   "note": "This collector automates calendar flags and sector ranking. It does not manually interpret seasonal patterns or news.",
   "forecast_window": {
-    "generated_from_date_utc": "2026-07-27",
+    "generated_from_date_utc": "2026-07-30",
     "start": "2026-08-03",
     "end": "2026-08-07"
   },
@@ -229,131 +105,131 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
     "XLK": {
       "ticker": "XLK",
       "sector": "Technology",
-      "latest_trading_date": "2026-07-24",
-      "close": 175.88,
-      "weekly_change_pct": 0.17,
+      "latest_trading_date": "2026-07-29",
+      "close": 166.57,
+      "weekly_change_pct": -7.6,
       "history_file": "almanac/sector_history/XLK.json"
     },
     "XLF": {
       "ticker": "XLF",
       "sector": "Financials",
-      "latest_trading_date": "2026-07-24",
-      "close": 56.31,
-      "weekly_change_pct": 0.09,
+      "latest_trading_date": "2026-07-29",
+      "close": 56.68,
+      "weekly_change_pct": 1.12,
       "history_file": "almanac/sector_history/XLF.json"
     },
     "XLV": {
       "ticker": "XLV",
       "sector": "Healthcare",
-      "latest_trading_date": "2026-07-24",
-      "close": 162.57,
-      "weekly_change_pct": 0.92,
+      "latest_trading_date": "2026-07-29",
+      "close": 166.24,
+      "weekly_change_pct": 4.27,
       "history_file": "almanac/sector_history/XLV.json"
     },
     "XLE": {
       "ticker": "XLE",
       "sector": "Energy",
-      "latest_trading_date": "2026-07-24",
-      "close": 59.62,
-      "weekly_change_pct": 3.36,
+      "latest_trading_date": "2026-07-29",
+      "close": 58.65,
+      "weekly_change_pct": -0.93,
       "history_file": "almanac/sector_history/XLE.json"
     },
     "XLB": {
       "ticker": "XLB",
       "sector": "Materials",
-      "latest_trading_date": "2026-07-24",
-      "close": 51.26,
-      "weekly_change_pct": 1.44,
+      "latest_trading_date": "2026-07-29",
+      "close": 51.74,
+      "weekly_change_pct": 1.81,
       "history_file": "almanac/sector_history/XLB.json"
     },
     "XLI": {
       "ticker": "XLI",
       "sector": "Industrials",
-      "latest_trading_date": "2026-07-24",
-      "close": 182.66,
-      "weekly_change_pct": 1.81,
+      "latest_trading_date": "2026-07-29",
+      "close": 176.66,
+      "weekly_change_pct": -1.22,
       "history_file": "almanac/sector_history/XLI.json"
     },
     "XLY": {
       "ticker": "XLY",
       "sector": "Consumer Discretionary",
-      "latest_trading_date": "2026-07-24",
-      "close": 109.41,
-      "weekly_change_pct": -5.22,
+      "latest_trading_date": "2026-07-29",
+      "close": 111.61,
+      "weekly_change_pct": -2.11,
       "history_file": "almanac/sector_history/XLY.json"
     },
     "XLP": {
       "ticker": "XLP",
       "sector": "Consumer Staples",
-      "latest_trading_date": "2026-07-24",
-      "close": 84.13,
-      "weekly_change_pct": -1.24,
+      "latest_trading_date": "2026-07-29",
+      "close": 87.36,
+      "weekly_change_pct": 3.53,
       "history_file": "almanac/sector_history/XLP.json"
     },
     "XLU": {
       "ticker": "XLU",
       "sector": "Utilities",
-      "latest_trading_date": "2026-07-24",
-      "close": 46.29,
-      "weekly_change_pct": 2.48,
+      "latest_trading_date": "2026-07-29",
+      "close": 44.91,
+      "weekly_change_pct": -2.22,
       "history_file": "almanac/sector_history/XLU.json"
     },
     "XLC": {
       "ticker": "XLC",
       "sector": "Communication Services",
-      "latest_trading_date": "2026-07-24",
-      "close": 106.3,
-      "weekly_change_pct": -3.93,
+      "latest_trading_date": "2026-07-29",
+      "close": 109.51,
+      "weekly_change_pct": 0.28,
       "history_file": "almanac/sector_history/XLC.json"
     },
     "XLRE": {
       "ticker": "XLRE",
       "sector": "Real Estate",
-      "latest_trading_date": "2026-07-24",
-      "close": 45.95,
-      "weekly_change_pct": 1.17,
+      "latest_trading_date": "2026-07-29",
+      "close": 45.96,
+      "weekly_change_pct": 2.11,
       "history_file": "almanac/sector_history/XLRE.json"
     }
   },
   "sector_ranking": {
     "leading_sectors": [
       {
-        "ticker": "XLE",
-        "sector": "Energy",
-        "weekly_change_pct": 3.36
-      },
-      {
-        "ticker": "XLU",
-        "sector": "Utilities",
-        "weekly_change_pct": 2.48
-      },
-      {
-        "ticker": "XLI",
-        "sector": "Industrials",
-        "weekly_change_pct": 1.81
-      }
-    ],
-    "lagging_sectors": [
-      {
-        "ticker": "XLY",
-        "sector": "Consumer Discretionary",
-        "weekly_change_pct": -5.22
-      },
-      {
-        "ticker": "XLC",
-        "sector": "Communication Services",
-        "weekly_change_pct": -3.93
+        "ticker": "XLV",
+        "sector": "Healthcare",
+        "weekly_change_pct": 4.27
       },
       {
         "ticker": "XLP",
         "sector": "Consumer Staples",
-        "weekly_change_pct": -1.24
+        "weekly_change_pct": 3.53
+      },
+      {
+        "ticker": "XLRE",
+        "sector": "Real Estate",
+        "weekly_change_pct": 2.11
+      }
+    ],
+    "lagging_sectors": [
+      {
+        "ticker": "XLK",
+        "sector": "Technology",
+        "weekly_change_pct": -7.6
+      },
+      {
+        "ticker": "XLU",
+        "sector": "Utilities",
+        "weekly_change_pct": -2.22
+      },
+      {
+        "ticker": "XLY",
+        "sector": "Consumer Discretionary",
+        "weekly_change_pct": -2.11
       }
     ]
   }
 }
 {
-  "generated_at": "2026-07-12T12:18:18Z",
+  "generated_at": "2026-07-30T08:06:03Z",
   "collector": "Monthly Seasonality Collector",
   "data_source": "Yahoo Finance via yfinance (full available monthly history)",
   "note": "Historical average % return and seasonal rank per calendar month, and the same broken out by US presidential-cycle-year phase. Rank 1 = highest average return for that grouping.",
@@ -366,7 +242,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
         "4": 1.6,
         "5": 1.46,
         "6": 0.35,
-        "7": 1.44,
+        "7": 1.36,
         "8": -0.26,
         "9": -0.9,
         "10": 0.99,
@@ -380,12 +256,12 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
         "4": 2,
         "5": 3,
         "6": 9,
-        "7": 4,
+        "7": 5,
         "8": 11,
         "9": 12,
         "10": 6,
         "11": 1,
-        "12": 5
+        "12": 4
       },
       "by_cycle_phase": {
         "election_year": {
@@ -458,7 +334,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
             "4": -0.27,
             "5": 0.98,
             "6": -1.63,
-            "7": 0.66,
+            "7": 0.35,
             "8": -1.27,
             "9": -2.04,
             "10": 3.38,
@@ -525,7 +401,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
         "4": 2.17,
         "5": 0.49,
         "6": -0.11,
-        "7": 1.62,
+        "7": 1.56,
         "8": -0.51,
         "9": -0.7,
         "10": 1.75,
@@ -617,7 +493,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
             "4": 0.76,
             "5": -0.55,
             "6": -1.97,
-            "7": 1.72,
+            "7": 1.5,
             "8": -1.66,
             "9": -0.88,
             "10": 4.91,
@@ -684,7 +560,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
         "4": 1.36,
         "5": 1.89,
         "6": 1.1,
-        "7": 1.31,
+        "7": 1.14,
         "8": 0.27,
         "9": -0.8,
         "10": 0.98,
@@ -776,7 +652,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
             "4": -0.67,
             "5": 0.46,
             "6": -1.68,
-            "7": -0.42,
+            "7": -1.06,
             "8": -2.08,
             "9": -1.38,
             "10": 2.68,
@@ -787,15 +663,15 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
             "1": 6,
             "2": 4,
             "3": 3,
-            "4": 8,
+            "4": 7,
             "5": 5,
             "6": 11,
-            "7": 7,
+            "7": 9,
             "8": 12,
             "9": 10,
             "10": 2,
             "11": 1,
-            "12": 9
+            "12": 8
           },
           "num_years_sampled": 11
         },
@@ -843,7 +719,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
         "4": 1.24,
         "5": 1.38,
         "6": 0.8,
-        "7": 0.49,
+        "7": 0.42,
         "8": -0.36,
         "9": -0.43,
         "10": -0.54,
@@ -935,7 +811,7 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
             "4": 0.31,
             "5": -0.69,
             "6": -1.48,
-            "7": -1.85,
+            "7": -2.08,
             "8": -2.87,
             "9": -1.65,
             "10": 1.86,
@@ -997,36 +873,68 @@ Your task is to evaluate and synthesize three independent analysis legs into a f
   }
 }
 
-2. YOUR REQUIRED EVALUATION OUTPUT FORMAT
-Provide a punchy, highly structured synthesis detailing the following dimensions:
-WEEKLY REGIME: Dominant expected market regime.
-INDEX OUTLOOK: Direction, Estimated % move, and Key reason for SPX, NDX, and IWM.
-SECTOR LEADERSHIP: Leading sector, Lagging sector, and why leadership matters this week.
-CORE SYNTHESIS MATRIX: Alignment/conflict points between Technical, Macro, and Almanac legs.
-
-Rules:
-- Use only provided evidence. Do not invent external data points or trends.
-- Output strictly as valid, clean JSON matching the target keys below. No markdown wrappers.
-
+[PIPELINE ECONOMIC CALENDAR CAPTURE]:
 {
-  "weekly_regime": "text description here",
-  "confidence_score": "High, Medium, or Low",
-  "spx_pct_estimate": "Estimated percentage range",
-  "ndx_pct_estimate": "Estimated percentage range",
-  "iwm_pct_estimate": "Estimated percentage range",
-  "top_supporting_reason": "Single strong statement summary",
-  "top_contradiction_cited": "Single core threat summary",
-  "invalidation_condition": "Specific closing level or yield target breaker",
-  "tone_caveat_language": "Short description of target exposure alignment",
+  "week_commencing": "2026-07-27",
+  "week_ending": "2026-08-02",
+  "fed_speakers": [],
+  "fed_speaker_count": 0,
+  "inflation_data": [],
+  "major_data_releases": [],
+  "data_release_errors": {
+    "CPI": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/cpi.rss",
+    "PPI": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/ppi.rss",
+    "IMPORT_EXPORT_PRICES": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/ximpim.rss",
+    "REAL_EARNINGS": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/realer.rss",
+    "EMPLOYMENT_SITUATION": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/empsit.rss",
+    "BLS_CALENDAR_ICS": "403 Client Error: Forbidden for url: https://www.bls.gov/schedule/news_release/bls.ics"
+  },
+  "rss_errors": {
+    "CPI": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/cpi.rss",
+    "PPI": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/ppi.rss",
+    "IMPORT_EXPORT_PRICES": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/ximpim.rss",
+    "REAL_EARNINGS": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/realer.rss",
+    "EMPLOYMENT_SITUATION": "403 Client Error: Forbidden for url: https://www.bls.gov/feed/empsit.rss"
+  },
+  "calendar_source": "BLS RSS feeds + BLS release calendar ICS fallback",
+  "calendar_source_url": "https://www.bls.gov/schedule/news_release/bls.ics"
+}
 
-  "consensus_bias": "BULLISH / BEARISH / NEUTRAL / MIXED",
-  "consensus_read_summary": "A 2-3 sentence paragraph summarizing model alignment and core agreements based on data...",
-  "point_of_maximum_divergence": "The single biggest disagreement point between aggressive and defensive views...",
-  "key_supporting_factors": ["Live factor 1 from data", "Live factor 2 from data"],
-  "main_contradiction_risk": "The top structural risk moving against the consensus trend this week...",
-  "invalidation_summary": "The exact parameter or support level that breaks this consensus view...",
-  "r7_human_score_question": "A critical evaluation question helping the human team weigh the conflicting data legs...",
-  "r6_slide_bullet_1": "Core slide takeaway bullet 1...",
-  "r6_slide_bullet_2": "Core slide takeaway bullet 2...",
-  "r6_slide_bullet_3": "Core slide takeaway bullet 3..."
+2. MANDATORY INDEPENDENT REAL-TIME RESEARCH INSTRUCTIONS
+Our local economic macro data collectors may have missed critical market events, unscheduled central bank updates, or breaking macroeconomic catalysts. 
+YOU ARE EXPLICITLY ORDERED TO USE YOUR WEB-SEARCH, LIVE-RETRIEVAL, AND PARAMETRIC KNOWLEDGE INFRASTRUCTURE TO PERFORM AN INDEPENDENT AUDIT OF CURRENT LIVE SECTORS AND EVENTS:
+- Research current breaking macroeconomic catalysts, geopolitical shifts, or sudden volatility vectors affecting broad market indices (SPX, NDX, IWM) for the upcoming tracking week.
+- Cross-reference the 'PIPELINE ECONOMIC CALENDAR CAPTURE' against actual public economic calendars to identify high-importance missing events (e.g., unscheduled central bank speeches, flash PMI data, emergency updates, or unexpected global inventory revisions).
+- Identify current consensus estimates for any major upcoming indicators to evaluate trend acceleration or trend exhaustion conditions.
+
+3. YOUR REQUIRED EVALUATION OUTPUT FORMAT
+Provide a punchy, highly structured synthesis detailing your findings. 
+
+Rules for Synthesis Compilation:
+- Do not invent past historical price metrics.
+- INTEGRATE YOUR INDEPENDENT RESEARCH FINDINGS directly into your index outlooks and regime evaluations to enhance accuracy beyond our local data collectors.
+- Explicitly log any discovered data collection gaps, omitted events, or missed macroeconomic parameters inside the dedicated 'pipeline_omissions_discovered' array key so we can update our collectors.
+
+Output strictly as valid, clean JSON matching the target keys below. No markdown wrappers.
+{
+"weekly_regime": "text description detailing expected market regime, incorporating both pipeline telemetry and your independent live research discoveries",
+"confidence_score": "High, Medium, or Low",
+"spx_pct_estimate": "Estimated percentage range",
+"ndx_pct_estimate": "Estimated percentage range",
+"iwm_pct_estimate": "Estimated percentage range",
+"top_supporting_reason": "Single strong statement detailing your top core macro/technical catalyst trigger discovered",
+"top_contradiction_cited": "The primary scheduled risk or discovered missing calendar anomaly that could break this trend",
+"invalidation_condition": "Specific closing level or yield target breaker level",
+"tone_caveat_language": "Short description of target exposure alignment based on the complete risk calendar",
+"consensus_bias": "BULLISH / BEARISH / NEUTRAL / MIXED",
+"consensus_read_summary": "A 2-3 sentence paragraph summarizing model alignment, agreements, and specific missing market developments highlighted via your independent live search...",
+"point_of_maximum_divergence": "The single biggest disagreement point between aggressive and defensive views regarding upcoming event impacts...",
+"key_supporting_factors": ["Live factor from local data", "Macro driver or missed calendar event surfaced via independent search"],
+"main_contradiction_risk": "The top structural risk moving against the consensus trend this week...",
+"invalidation_summary": "The exact parameter or support level that breaks this consensus view...",
+"pipeline_omissions_discovered": ["List specific high-importance calendar events, indicators, central bank releases, or macro data points missed by our local macro/technical collectors that you discovered via real-time research"],
+"r7_human_score_question": "A critical evaluation question helping the human team weigh the conflicting data legs against discovered external elements...",
+"r6_slide_bullet_1": "Core slide takeaway bullet 1 incorporating live research context...",
+"r6_slide_bullet_2": "Core slide takeaway bullet 2 incorporating live research context...",
+"r6_slide_bullet_3": "Core slide takeaway bullet 3 incorporating live research context..."
 }

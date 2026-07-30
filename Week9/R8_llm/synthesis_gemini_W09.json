@@ -1,26 +1,33 @@
-{
-  "weekly_regime": "Defensive/Risk-Off, Bearish; market sentiment is driven by pervasive technical weakness, unfavorable historical seasonality, and persistent macroeconomic headwinds.",
-  "confidence_score": "High",
-  "spx_pct_estimate": "-1.5% to -2.5%",
-  "ndx_pct_estimate": "-2.0% to -3.0%",
-  "iwm_pct_estimate": "-2.5% to -3.5%",
-  "top_supporting_reason": "Overwhelming bearish technicals across all major indices are reinforced by August's historically poor performance in midterm years and rising inflationary pressures.",
-  "top_contradiction_cited": "The CBOE Volatility Index (VIX) saw a slight weekly decrease, suggesting some complacency or reduced market fear despite broad equity declines.",
-  "invalidation_condition": "A closing price of SPX above its 20-day high resistance candidate of 7581.5.",
-  "tone_caveat_language": "Cautionary positioning, favoring defensive assets and risk reduction due to confirmed downtrends and historical pressures.",
-  "consensus_bias": "BEARISH",
-  "consensus_read_summary": "The market is poised for a distinctly bearish week, with major indices (SPX, NDX, IWM) all exhibiting a 'Zone 3 Bearish' technical condition. This technical weakness is amplified by historical August seasonality in a midterm year, which is typically one of the weakest periods for equities, particularly growth and small-cap stocks. Macroeconomic signals, including rising bond yields and commodity prices, further support a risk-off environment, suggesting continued equity downside.",
-  "point_of_maximum_divergence": "The primary divergence lies in the VIX's slight weekly decline, which suggests some market participants may not be fully pricing in the severity of the technical breakdown or the historical seasonal weakness indicated by other data legs.",
-  "key_supporting_factors": [
-    "All major indices (SPX, NDX, IWM) are in a 'Zone 3 Bearish' EMA condition, with price and 8-day EMA below the 21-day EMA.",
-    "August in a midterm year is historically the worst-performing month for NASDAQ and Russell 2000, and second-worst for S&P 500.",
-    "Rising US 10-Year and 30-Year Treasury yields, coupled with increasing WTI and Gold prices, indicate persistent inflationary pressures.",
-    "Lagging sector performance in Consumer Discretionary and Communication Services confirms a rotation out of growth-oriented assets into more defensive sectors."
-  ],
-  "main_contradiction_risk": "The CBOE Volatility Index (VIX) slightly declining while equities fell presents a contradiction, potentially hinting at investor complacency or a belief that the selling may be temporary.",
-  "invalidation_summary": "The bearish consensus would be invalidated if the S&P 500 (SPX) closes decisively above its 20-day high resistance candidate of 7581.5, signaling a significant shift in market momentum.",
-  "r7_human_score_question": "Given the strong alignment between technical indicators and historical seasonality for August in a midterm year, how resilient is the current market sentiment to the rising macroeconomic headwinds without any major new data releases in the upcoming week?",
-  "r6_slide_bullet_1": "All major indices are technically 'Zone 3 Bearish', indicating sustained downtrends and increasing downside risk.",
-  "r6_slide_bullet_2": "August in a Midterm Year is historically a period of significant weakness for equities, reinforcing the bearish outlook.",
-  "r6_slide_bullet_3": "Rising bond yields and commodity prices, coupled with underperforming growth sectors, underscore a pervasive risk-off market regime."
-}
+# Delta Report — vW23
+
+**Week:** W23
+**Forecast week:** Week 3
+**Generated at:** 2026-07-10 19:33:53
+**Actuals source:** `prism/data/actuals/vW23_actuals.json`
+
+## Summary
+
+- Direction accuracy: 25.0%
+- Correct directions: 2 out of 8
+- Range accuracy: 12.5%
+- Range hits: 1 out of 8
+- Average error size: 6.34%
+
+## Asset Results
+
+| Asset | Prediction | Expected % | Range % | Actual direction | Actual % | Direction correct? | Range hit? | Error % | Bias |
+|---|---|---:|---:|---|---:|---|---|---:|---|
+| SPX | Down | -2.5 | -3.5 to -1.5 | Up | 0.46 | No | No | 2.96 | Too bearish |
+| NDX | Down | -3.0 | -4.0 to -2.0 | Up | 2.17 | No | No | 5.17 | Too bearish |
+| IWM | Down | -2.0 | -3.0 to -1.0 | Up | 3.93 | No | No | 5.93 | Too bearish |
+| BTC | Down | -6.0 | -8.0 to -4.0 | Up | 5.2 | No | No | 11.2 | Too bearish |
+| WTI | Down | -2.5 | -3.5 to -1.5 | Down | -6.25 | Yes | No | 3.75 | Too bullish |
+| GOLD | Down | -3.5 | -5.0 to -2.0 | Down | -2.9 | Yes | Yes | 0.6 | Too bearish |
+| VIX | Up | 11.5 | 8.0 to 15.0 | Down | -6.25 | No | No | 17.75 | Too bullish |
+| US10Y | Up | 3.0 | 2.0 to 4.0 | Down | -0.4 | No | No | 3.4 | Too bullish |
+
+## R6/R10 Notes
+
+- Largest error: [R6/R10 to review from table]
+- Main bias: [Too bullish / too bearish / balanced]
+- Improvement for next prediction: [write short action]

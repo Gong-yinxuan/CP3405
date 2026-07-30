@@ -1,11 +1,36 @@
 {
-  "weekly_regime": "Error loading poolside/laguna-xs-2.1 value",
-  "confidence_score": "Error loading poolside/laguna-xs-2.1 value",
-  "spx_pct_estimate": "Error loading poolside/laguna-xs-2.1 value",
-  "ndx_pct_estimate": "Error loading poolside/laguna-xs-2.1 value",
-  "iwm_pct_estimate": "Error loading poolside/laguna-xs-2.1 value",
-  "top_supporting_reason": "Error loading poolside/laguna-xs-2.1 value",
-  "top_contradiction_cited": "Error loading poolside/laguna-xs-2.1 value",
-  "invalidation_condition": "Error loading poolside/laguna-xs-2.1 value",
-  "tone_caveat_language": "Error loading poolside/laguna-xs-2.1 value"
+  "weekly_regime": "The market is entering a decisively bearish regime, characterized by deteriorating technicals, strong negative historical seasonality for August in a midterm year, and a significant rotation out of growth sectors into defensives. Independent research confirms recent hawkish Federal Reserve rhetoric and weaker-than-expected large-cap tech earnings are primary drivers. Volatility is expected to remain high, particularly leading into Friday's Non-Farm Payrolls report.",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "-1.5% to -3.0%",
+  "ndx_pct_estimate": "-2.5% to -5.0%",
+  "iwm_pct_estimate": "-2.0% to -4.5%",
+  "top_supporting_reason": "Overwhelming bearish technicals across all major indices ('Zone 3 Bearish'), combined with historically weak August seasonality during a midterm election year, and a significant rotation out of Technology (XLK -7.6%) driven by hawkish Fed sentiment and weak tech earnings.",
+  "top_contradiction_cited": "A significantly weaker-than-expected Non-Farm Payrolls (NFP) report on August 7th could trigger a 'bad news is good news' relief rally, temporarily alleviating pressure on the Fed for further aggressive tightening.",
+  "invalidation_condition": "SPX closes decisively above its 21-day EMA (7452.91) for two consecutive trading days, or if NFP data sparks a sustained bullish reversal that takes SPX above the 7450 level.",
+  "tone_caveat_language": "Maintain a defensive and cautious posture, with reduced exposure to growth-oriented sectors. Prioritize cash or defensive allocations pending clarity from key economic data releases, especially Friday's Non-Farm Payrolls.",
+  "consensus_bias": "BEARISH",
+  "consensus_read_summary": "All model legs align on a bearish outlook, with indices exhibiting 'Zone 3 Bearish' technicals and negative midterm August seasonality. This trend is reinforced by recent hawkish Federal Reserve statements and disappointing tech earnings, confirmed by independent real-time research. The primary market development to watch is the August 7th Non-Farm Payrolls report, which could introduce significant volatility or a counter-trend move.",
+  "point_of_maximum_divergence": "The biggest disagreement point concerns the market's reaction to Friday's Non-Farm Payrolls. Aggressive views might anticipate a 'bad news is good news' bounce if NFP is sufficiently weak to signal a Fed pivot, while defensive views anticipate further downside regardless, seeing any weakness as confirmation of recessionary pressures.",
+  "key_supporting_factors": [
+    "All major indices (SPX, NDX, IWM) are in a 'Zone 3 Bearish' technical condition with price below EMAs and EMAs crossed bearish.",
+    "August in a midterm year historically presents significant negative average returns across all major indices (e.g., SPX -1.27%, NASDAQ -2.08%).",
+    "Sharp rotation out of Technology (XLK -7.6% weekly change) into defensive sectors (Healthcare, Consumer Staples leading).",
+    "Independent research confirms recent hawkish statements from Federal Reserve officials, increasing rate hike expectations.",
+    "Recent weaker-than-expected earnings reports from bellwether technology companies are amplifying sector-specific weakness."
+  ],
+  "main_contradiction_risk": "The primary structural risk is a significantly lower-than-expected Non-Farm Payrolls print on Friday, August 7th, which could lead to a 'risk-on' rally based on hopes for a less aggressive Federal Reserve monetary policy.",
+  "invalidation_summary": "The bearish consensus will be invalidated if the S&P 500's closing price breaks above its 21-day Exponential Moving Average (7452.91) or if an unexpected positive catalyst, such as a dovish interpretation of NFP, leads to a sustained rally above established resistance levels.",
+  "pipeline_omissions_discovered": [
+    "Non-Farm Payrolls (NFP) report scheduled for August 7, 2026",
+    "Unemployment Rate report scheduled for August 7, 2026",
+    "Average Hourly Earnings report scheduled for August 7, 2026",
+    "ISM Manufacturing PMI (due early in the week)",
+    "JOLTS Job Openings (due early in the week)",
+    "All BLS RSS feeds (CPI, PPI, Import/Export Prices, Real Earnings, Employment Situation) reported 403 Client Error: Forbidden.",
+    "Absence of any specific FOMC meeting minutes release or scheduled Federal Reserve speeches for the upcoming week."
+  ],
+  "r7_human_score_question": "How heavily should the strong negative August midterm seasonality and current bearish technicals be weighted against the potential for a 'bad news is good news' reaction to a significantly weak Non-Farm Payrolls report, especially given recent hawkish Fed comments and the market's current oversold conditions?",
+  "r6_slide_bullet_1": "Market faces strong headwinds: 'Zone 3 Bearish' technicals, historically weak August seasonality (midterm year), and persistent rotation out of growth sectors.",
+  "r6_slide_bullet_2": "Independent research confirms recent hawkish Fed commentary and disappointing tech earnings are driving current market sentiment and sector weakness.",
+  "r6_slide_bullet_3": "Friday's Non-Farm Payrolls report is the week's critical event; a weak print could spark a relief rally, while a strong print reinforces the current bearish bias and Fed's hawkish stance."
 }
