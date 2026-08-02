@@ -1,0 +1,193 @@
+{
+  "release": "vW28",
+  "week": "W28",
+  "sprint_week": "W06",
+  "forecast_week": "2026-07-13 to 2026-07-17",
+  "source_type": "reconstructed_from_W06_agent_outputs_not_original_sealed_prediction",
+  "note": "This JSON was reconstructed from uploaded W06 R3 Almanac, R4 Macro, R5 Technical, and LLM synthesis files. It should be used as an official calibration input only if the team accepts these files as the pre-result evidence base for the vW28 forecast.",
+  "overall_bias": "Neutral-Bullish / top-heavy large-cap continuation",
+  "overall_confidence": "Medium",
+  "assets": {
+    "SPX": {
+      "name": "S&P 500",
+      "predicted_direction": "Up",
+      "expected_change_pct": 1.0,
+      "range_low_pct": 0.5,
+      "range_high_pct": 1.5,
+      "confidence": 65,
+      "rationale": "SPX technical structure is bullish above the 8 EMA and 21 EMA, with LLM consensus expecting large-cap continuation."
+    },
+    "NDX": {
+      "name": "Nasdaq 100",
+      "predicted_direction": "Up",
+      "expected_change_pct": 1.2,
+      "range_low_pct": 0.5,
+      "range_high_pct": 1.8,
+      "confidence": 65,
+      "rationale": "Large-cap growth remains favored, but NDX confidence is moderated by mixed EMA structure and cooling leadership."
+    },
+    "IWM": {
+      "name": "Russell 2000",
+      "predicted_direction": "Neutral",
+      "expected_change_pct": -0.2,
+      "range_low_pct": -0.8,
+      "range_high_pct": 0.5,
+      "confidence": 60,
+      "rationale": "Small caps are fragile because IWM is near support and remains sensitive to rising yields."
+    },
+    "XLK": {
+      "name": "Technology",
+      "predicted_direction": "Up",
+      "expected_change_pct": 1.3,
+      "range_low_pct": 0.5,
+      "range_high_pct": 2.2,
+      "confidence": 70,
+      "rationale": "Technology is expected to remain a large-cap leadership sector."
+    },
+    "XLE": {
+      "name": "Energy",
+      "predicted_direction": "Up",
+      "expected_change_pct": 1.5,
+      "range_low_pct": 0.5,
+      "range_high_pct": 2.5,
+      "confidence": 70,
+      "rationale": "Energy was one of the strongest almanac/sector leaders and WTI was rising."
+    },
+    "XLV": {
+      "name": "Healthcare",
+      "predicted_direction": "Up",
+      "expected_change_pct": 0.8,
+      "range_low_pct": 0.0,
+      "range_high_pct": 1.6,
+      "confidence": 65,
+      "rationale": "Healthcare appeared as one of the stronger sector leaders in the almanac evidence."
+    },
+    "XLF": {
+      "name": "Financials",
+      "predicted_direction": "Up",
+      "expected_change_pct": 0.7,
+      "range_low_pct": 0.0,
+      "range_high_pct": 1.4,
+      "confidence": 60,
+      "rationale": "Financials were a positive sector signal, although rising yields keep the risk mixed."
+    },
+    "XLC": {
+      "name": "Communication Services",
+      "predicted_direction": "Up",
+      "expected_change_pct": 0.6,
+      "range_low_pct": -0.2,
+      "range_high_pct": 1.4,
+      "confidence": 60,
+      "rationale": "Communication Services can benefit from large-cap growth leadership, but breadth risk keeps confidence medium."
+    },
+    "XLP": {
+      "name": "Consumer Staples",
+      "predicted_direction": "Neutral",
+      "expected_change_pct": 0.1,
+      "range_low_pct": -0.5,
+      "range_high_pct": 0.7,
+      "confidence": 55,
+      "rationale": "Staples were not highlighted as a leadership group, so the forecast is mostly neutral."
+    },
+    "XLU": {
+      "name": "Utilities",
+      "predicted_direction": "Neutral",
+      "expected_change_pct": -0.2,
+      "range_low_pct": -0.9,
+      "range_high_pct": 0.4,
+      "confidence": 55,
+      "rationale": "Utilities are rate-sensitive and rising yields limit upside."
+    },
+    "XLRE": {
+      "name": "Real Estate",
+      "predicted_direction": "Down",
+      "expected_change_pct": -0.6,
+      "range_low_pct": -1.4,
+      "range_high_pct": 0.1,
+      "confidence": 60,
+      "rationale": "Real Estate is rate-sensitive and vulnerable while Treasury yields are rising."
+    },
+    "XLB": {
+      "name": "Materials",
+      "predicted_direction": "Down",
+      "expected_change_pct": -0.7,
+      "range_low_pct": -1.6,
+      "range_high_pct": 0.1,
+      "confidence": 60,
+      "rationale": "Materials were identified as a lagging sector in the almanac output."
+    },
+    "XLI": {
+      "name": "Industrials",
+      "predicted_direction": "Down",
+      "expected_change_pct": -0.6,
+      "range_low_pct": -1.4,
+      "range_high_pct": 0.2,
+      "confidence": 60,
+      "rationale": "Industrials were identified as a lagging sector in the almanac output."
+    },
+    "XLY": {
+      "name": "Consumer Discretionary",
+      "predicted_direction": "Down",
+      "expected_change_pct": -0.6,
+      "range_low_pct": -1.5,
+      "range_high_pct": 0.2,
+      "confidence": 60,
+      "rationale": "Consumer Discretionary was identified as a lagging sector and may be pressured by rising yields."
+    },
+    "WTI": {
+      "name": "Crude Oil WTI",
+      "predicted_direction": "Up",
+      "expected_change_pct": 1.0,
+      "range_low_pct": 0.0,
+      "range_high_pct": 2.2,
+      "confidence": 60,
+      "rationale": "Macro data showed WTI rising and Energy leadership was strong."
+    },
+    "GOLD": {
+      "name": "Gold",
+      "predicted_direction": "Neutral",
+      "expected_change_pct": 0.0,
+      "range_low_pct": -0.8,
+      "range_high_pct": 0.8,
+      "confidence": 55,
+      "rationale": "Macro data showed gold flat, so the forecast is neutral."
+    },
+    "US10Y": {
+      "name": "10-Year Yield",
+      "predicted_direction": "Up",
+      "expected_change_pct": 1.0,
+      "range_low_pct": 0.3,
+      "range_high_pct": 2.0,
+      "confidence": 60,
+      "rationale": "Macro data showed yields slightly rising."
+    },
+    "TLT": {
+      "name": "US Bonds TLT",
+      "predicted_direction": "Down",
+      "expected_change_pct": -1.0,
+      "range_low_pct": -2.0,
+      "range_high_pct": 0.0,
+      "confidence": 60,
+      "rationale": "Rising yields create pressure on long-duration bonds."
+    },
+    "VIX": {
+      "name": "VIX",
+      "predicted_direction": "Down",
+      "expected_change_pct": -2.0,
+      "range_low_pct": -6.0,
+      "range_high_pct": 2.0,
+      "confidence": 55,
+      "rationale": "LLM synthesis highlighted volatility suppression, but options-expiry risk limits confidence."
+    },
+    "BTC": {
+      "name": "Bitcoin",
+      "predicted_direction": "Up",
+      "expected_change_pct": 1.0,
+      "range_low_pct": -0.5,
+      "range_high_pct": 2.5,
+      "confidence": 55,
+      "rationale": "Macro data showed BTC slightly rising, but confidence is low because crypto evidence was limited."
+    }
+  },
+  "invalidation": "A decisive multi-day close below SPX 7450-7511, or a breakdown below key IWM support near 290-293, would weaken the neutral-bullish continuation thesis."
+}

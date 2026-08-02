@@ -1,0 +1,25 @@
+{
+  "weekly_regime": "Top-heavy bullish drift with broadening divergence; technology and energy leading, but small-caps and defensive sectors lagging as yields rise and options expiry looms.",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "+0.5% to +1.2%",
+  "ndx_pct_estimate": "+0.8% to +1.8%",
+  "iwm_pct_estimate": "-0.5% to +0.5%",
+  "top_supporting_reason": "Strong technical momentum (SPX/NDX above rising EMAs) + bullish midterm July seasonality (SPX July rank #4, NDX July rank #6) + VIX at 15.03 (complacent) support further upside toward recent highs.",
+  "top_contradiction_cited": "Rising 10Y yield (2.1% WoW) + weakening breadth (IWM negative, defensive sectors lagging) + options expiry week (July 17) could trigger a volatility spike and profit-taking at resistance.",
+  "invalidation_condition": "SPX closes below 7,450 (8-EMA) OR 10Y yield breaks above 0.48% (accelerating) OR VIX spikes above 18.",
+  "tone_caveat_language": "Pro-risk but with tight stops; favor large-cap tech/energy over small-caps/rate-sensitive sectors; expect choppiness into Friday's options expiry.",
+  "consensus_bias": "BULLISH",
+  "consensus_read_summary": "Technical and Almanac legs are in strong agreement, pointing to a bullish week for SPX and NDX, supported by positive momentum, July seasonality (especially in post-election/midterm phases), and sector leadership from Tech and Energy. However, the Macro leg introduces a clear conflict via rising yields and a weakening IWM/defensive sector backdrop, which tempers the bullish conviction and suggests a top-heavy, narrow advance.",
+  "point_of_maximum_divergence": "The Macro leg's signal of rising yields and small-cap weakness directly contradicts the Almanac leg's otherwise bullish midterm July profile for the Russell 2000 (which historically shows a negative July bias in midterm years, rank #11). This is the single biggest disagreement: whether rising rates will choke the rally in rate-sensitive and cyclical areas.",
+  "key_supporting_factors": [
+    "SPX and NDX are in Zone 1 Bullish (price above rising 8 & 21 EMA), with positive weekly gains (SPX +1.23%, NDX +1.69%).",
+    "July ranks as a top-4 month for SPX and top-6 for NDX historically, with post-election year July being the #1 ranked month for both.",
+    "Sector leadership from Energy (XLE +3.49%) and Technology (XLK +2.87%) aligns with bullish technicals and rising oil/commodity prices."
+  ],
+  "main_contradiction_risk": "The steady rise in the 10-year Treasury yield (+2.1% WoW to 0.4569%) and the 30-year yield (+2.11%) could pressure growth/tech valuations and interest-rate-sensitive sectors, while the lagging IWM (-0.53% WoW) and defensive sectors (Healthcare -1.77%, Materials -2.15%) signal weakening breadth beneath the surface.",
+  "invalidation_summary": "A sustained break below SPX 7,450 (the 8-EMA) would negate the bullish technical setup, especially if accompanied by a VIX rise above 18 and the 10Y yield accelerating past 0.48%, confirming the macro headwind is overwhelming the bullish seasonal/technical tailwind.",
+  "r7_human_score_question": "Given the conflicting signals between a bullish technical/seasonal setup and a bearish macro breadth/yield divergence, does the strength in Tech/Energy leadership justify overweighting large-cap growth, or does the IWM/defensive weakness argue for a more defensive/hedged stance into options expiry?",
+  "r6_slide_bullet_1": "TECHNICALS BULLISH: SPX/NDX above rising EMAs; momentum favors test of 7,580 and 30,640 resistance.",
+  "r6_slide_bullet_2": "MACRO CONFLICT: Rising yields (+2%) and weak breadth (IWM -0.5%, defensives lagging) are the key risks to the upside.",
+  "r6_slide_bullet_3": "ALMANAC SUPPORT: July is historically a top-4 month for SPX, and post-election/midterm phases add further bullish weight, but options expiry (July 17) may increase volatility."
+}

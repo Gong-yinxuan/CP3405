@@ -1,0 +1,83 @@
+{
+  "date": "2026-07-17",
+  "SPX": {
+    "close": 7457.69,
+    "weekly_change_pct": -1.6
+  },
+  "NDX": {
+    "close": 28592.66,
+    "weekly_change_pct": -4.1
+  },
+  "IWM": {
+    "close": 294.04,
+    "weekly_change_pct": -0.7
+  },
+  "GOLD": {
+    "close": 4023.0,
+    "weekly_change_pct": -2.0
+  },
+  "WTI": {
+    "close": 81.77,
+    "weekly_change_pct": 14.5
+  },
+  "US10Y": {
+    "close": 0.45,
+    "weekly_change_pct": -2.2
+  },
+  "TLT": {
+    "close": 84.52,
+    "weekly_change_pct": 0.1
+  },
+  "VIX": {
+    "close": 18.77,
+    "weekly_change_pct": 24.9
+  },
+  "BTC": {
+    "close": 63915.58,
+    "weekly_change_pct": 0.2
+  },
+  "XLK": {
+    "close": 175.59,
+    "weekly_change_pct": -5.5
+  },
+  "XLF": {
+    "close": 56.26,
+    "weekly_change_pct": 1.0
+  },
+  "XLV": {
+    "close": 161.09,
+    "weekly_change_pct": 0.2
+  },
+  "XLE": {
+    "close": 57.68,
+    "weekly_change_pct": 4.7
+  },
+  "XLY": {
+    "close": 115.44,
+    "weekly_change_pct": -1.5
+  },
+  "XLP": {
+    "close": 85.19,
+    "weekly_change_pct": 1.3
+  },
+  "XLI": {
+    "close": 179.41,
+    "weekly_change_pct": -1.4
+  },
+  "XLU": {
+    "close": 45.17,
+    "weekly_change_pct": -0.5
+  },
+  "XLB": {
+    "close": 50.53,
+    "weekly_change_pct": -0.7
+  },
+  "XLRE": {
+    "close": 45.42,
+    "weekly_change_pct": 2.2
+  },
+  "XLC": {
+    "close": 110.65,
+    "weekly_change_pct": -0.9
+  }
+}

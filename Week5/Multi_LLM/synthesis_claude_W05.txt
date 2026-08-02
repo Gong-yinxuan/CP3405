@@ -1,0 +1,57 @@
+# Week 5 Market Intelligence Synthesis Brief
+---
+
+## 1. WEEKLY REGIME  
+**Hawkish-Fed recovery with rate-path sensitivity**
+The market absorbed a hawkish FOMC outcome under new Chair Kevin Warsh and recovered into the back half of the week on chip/AI strength, but the rate path has now replaced recession fear as the dominant swing factor. Technicals remain constructive, yet the macro backdrop has structurally shifted — rate-cut hopes are now pushed to 2027–2028, not 2026.
+
+---
+
+## 2. INDEX OUTLOOK
+
+| Index         | Direction   | Estimated % Move (Range) | Key Reason                                       |
+|---------------|-------------|--------------------------|-------------------------------------------------|
+| S&P 500 (SPX) | Mildly Up   | +0.5% to +1.5%           | Recovered most of FOMC-day loss; technicals intact above EMAs but capped by higher-for-longer repricing near all-time highs (~7,490)  |
+| Nasdaq 100 (NDX) | Moderate Up | +1.0% to +2.5%           | Chip/AI leadership reasserted post-Fed; semis and mega-cap tech driving the bounce with SOX at all-time highs            |
+| Russell 2000 (IWM) | Up, Two-Sided Risk   | +1.0% to +3.0%           | Technically strongest index with fresh all-time highs, but most rate-sensitive segment given hawkish dot plot — real two-sided risk |
+
+---
+
+## 3. SECTOR LEADERSHIP  
+- **Leading Sector:** Technology / Semiconductors — chip/AI strength drove the post-Fed recovery; NVDA, SOX, and mega-cap tech reasserting leadership with AI capex cycle intact 
+- **Lagging Sector:** Rate-sensitive and duration-heavy areas (REITs, Utilities/XLU) as short-end yields jumped on the hawkish dot plot
+**Why It Matters:** Chips up + yields up is a more fragile combination than a broad, low-rate-anxiety rally — the market is paying for AI conviction while simultaneously repricing the rate path higher. That distinction matters for position sizing.
+
+---
+
+## 4. CORE SYNTHESIS MATRIX  
+
+| Dimension   | Bias           | Alignment/Conflict                    | Notes                                         |
+|-------------|----------------|-------------------------------------|-----------------------------------------------|
+| Technical   | Bullish        | Conflicts with Macro | IWM at all-time highs, SPX/NDX recovering FOMC losses, breadth intact across major indices |
+| Macro       | Hawkish-Neutral | Conflicts with Technical | Dot plot now points to a possible 2026 hike, not a cut; May CPI ran 4.2% YoY; easing bias formally removed |
+| Almanac     | Caution | Partial alignment | Late-June/midterm volatility window remains; new-chair FOMC meetings carry above-average follow-through volatility |
+
+**Summary:**  
+A genuine technical/macro conflict has emerged this week — price action says risk-on, the Fed's own dot plot says rate-cut hopes are pushed to 2027–2028. That tension is now the primary source of caution, not seasonality alone. Earnings provide a meaningful fundamental floor but cannot fully resolve the monetary policy overhang.
+
+---
+
+## 5. TOP SUPPORTING REASON  
+The market absorbed a clearly hawkish Fed outcome — easing bias removed, 2026 cuts pushed to 2027–2028 — and still closed the week higher, with small caps making fresh all-time highs. That is meaningful resilience in the most rate-sensitive part of the market, and a signal that earnings-driven conviction is outweighing rate anxiety in the near term.
+
+---
+
+## 6. TOP CONTRADICTION / RISK  
+Rate-path repricing vs. small-cap leadership: IWM's strength is difficult to reconcile with a Fed that just removed its easing bias and is pricing a 2026 hike at approximately 60–77% odds for October per CME FedWatch. Secondary risk: the US–Iran ceasefire supporting lower oil remains fragile, and the Fed explicitly flagged the Middle East conflict as a live input to its inflation outlook.
+---
+
+## 7. INVALIDATION CONDITION  
+A decisive breakdown below SPX's 21 EMA or a close below the June 17 FOMC-day close (~7,420); IWM losing the $286–283 support zone or closing below ~$290; the 2-year Treasury yield sustaining a move above ~4.3%; or renewed Middle East escalation reigniting the oil spike and inflation expectations.
+---
+
+## 8. TONE / CAVEAT LANGUAGE  
+Positioning should be selectively cautious and rate-aware: tech/AI leadership remains a legitimate place to maintain exposure, but small-cap and broadly rate-sensitive positions now carry real two-sided risk. Watch the 2-year Treasury yield and CME FedWatch hike odds as the primary tells this week — they are more reliable signals than price action alone. Retain hedges and reduce position size in rate-sensitive longs until the yield picture stabilizes.
+---
+
+*End of Week 5 Prediction Brief*

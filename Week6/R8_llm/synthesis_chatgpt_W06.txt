@@ -1,0 +1,24 @@
+{
+"weekly_regime": "Moderately bullish risk-on continuation with selective leadership. Large-cap growth remains the primary driver while small caps lag amid rising Treasury yields and options expiry-related volatility.",
+"confidence_score": "Medium",
+"spx_pct_estimate": "+0.5% to +1.5%",
+"ndx_pct_estimate": "+0.8% to +2.0%",
+"iwm_pct_estimate": "-0.5% to +0.8%",
+"top_supporting_reason": "Technical momentum remains constructive with both SPX and NDX trading above rising 8- and 21-day EMAs while VIX continues to decline and July seasonality remains generally favorable.",
+"top_contradiction_cited": "Rising long-duration Treasury yields combined with Russell 2000 technical weakness create a narrowing market breadth risk that could limit broader upside.",
+"invalidation_condition": "A daily close below SPX 7257.33 support would invalidate the current bullish technical regime.",
+"tone_caveat_language": "Maintain constructive exposure while favoring quality large-cap leadership and remaining cautious toward weaker breadth-sensitive segments.",
+"consensus_bias": "BULLISH",
+"consensus_read_summary": "The three evidence legs generally align toward a bullish weekly outlook. Technical conditions are strongest for SPX and NDX, macro conditions remain supportive through falling volatility despite higher Treasury yields, and July seasonality together with historically favorable post-election July tendencies reinforce the positive bias. The primary limitation is weaker participation from small caps and yield-sensitive sectors.",
+"point_of_maximum_divergence": "The strongest disagreement is between bullish large-cap momentum and weakening small-cap participation as higher Treasury yields pressure broader market breadth.",
+"key_supporting_factors": [
+"SPX and NDX remain above both rising 8-day and 21-day EMAs with Zone 1 Bullish technical conditions.",
+"VIX declined 6.93% while Technology and Energy led sector performance during a historically favorable July seasonal window."
+],
+"main_contradiction_risk": "Continued increases in Treasury yields alongside options expiry week could trigger profit-taking, especially if market leadership remains narrowly concentrated in large-cap technology.",
+"invalidation_summary": "A decisive close below SPX support at 7257.33 or a broader technical breakdown from current bullish EMA structure would invalidate the bullish consensus.",
+"r7_human_score_question": "Does the strength in large-cap technical momentum outweigh the warning from rising Treasury yields and deteriorating small-cap participation during options expiry week?",
+"r6_slide_bullet_1": "Bullish technical trend remains intact with SPX and NDX holding above rising short-term EMAs.",
+"r6_slide_bullet_2": "Technology and Energy continue leading while small caps lag, suggesting narrow but healthy institutional leadership.",
+"r6_slide_bullet_3": "Monitor Treasury yields, SPX 7257 support, and options expiry volatility as the key risks to the bullish outlook."
+}

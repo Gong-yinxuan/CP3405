@@ -1,0 +1,64 @@
+{
+  "release": "vW23",
+  "week": "W23",
+  "forecast_week": "Week 3",
+  "source_type": "manual_backfill_from_w3_delta_report",
+  "assets": {
+    "SPX": {
+      "name": "S&P 500",
+      "predicted_direction": "Down",
+      "expected_change_pct": -2.5,
+      "range_low_pct": -3.5,
+      "range_high_pct": -1.5
+    },
+    "NDX": {
+      "name": "Nasdaq 100",
+      "predicted_direction": "Down",
+      "expected_change_pct": -3.0,
+      "range_low_pct": -4.0,
+      "range_high_pct": -2.0
+    },
+    "IWM": {
+      "name": "Russell 2000",
+      "predicted_direction": "Down",
+      "expected_change_pct": -2.0,
+      "range_low_pct": -3.0,
+      "range_high_pct": -1.0
+    },
+    "BTC": {
+      "name": "Bitcoin",
+      "predicted_direction": "Down",
+      "expected_change_pct": -6.0,
+      "range_low_pct": -8.0,
+      "range_high_pct": -4.0
+    },
+    "WTI": {
+      "name": "Crude Oil WTI",
+      "predicted_direction": "Down",
+      "expected_change_pct": -2.5,
+      "range_low_pct": -3.5,
+      "range_high_pct": -1.5
+    },
+    "GOLD": {
+      "name": "Gold",
+      "predicted_direction": "Down",
+      "expected_change_pct": -3.5,
+      "range_low_pct": -5.0,
+      "range_high_pct": -2.0
+    },
+    "VIX": {
+      "name": "VIX Index",
+      "predicted_direction": "Up",
+      "expected_change_pct": 11.5,
+      "range_low_pct": 8.0,
+      "range_high_pct": 15.0
+    },
+    "US10Y": {
+      "name": "10-Year Yield / Note",
+      "predicted_direction": "Up",
+      "expected_change_pct": 3.0,
+      "range_low_pct": 2.0,
+      "range_high_pct": 4.0
+    }
+  }
+}

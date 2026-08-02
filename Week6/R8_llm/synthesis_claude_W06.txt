@@ -1,0 +1,22 @@
+{
+  "weekly_regime": "Large-cap/tech-led bullish continuation with narrowing breadth; SPX and NDX remain in Zone 1 Bullish EMA alignment while IWM lags in a Zone 2 Pullback, all set against an options-expiry week with a partial macro data blackout.",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "+0.5% to +1.5%",
+  "ndx_pct_estimate": "+0.5% to +1.8%",
+  "iwm_pct_estimate": "-0.5% to +0.5%",
+  "top_supporting_reason": "SPX and NDX both sit in Zone 1 Bullish (price above 8EMA above 21EMA) with VIX collapsing 6.93% on the week, signaling risk-on positioning and vol compression supportive of continuation.",
+  "top_contradiction_cited": "10Y and 30Y yields both rose over 2% on the week while IWM slipped below its 8EMA into a Zone 2 Pullback, showing breadth narrowing beneath the large-cap/tech rally.",
+  "invalidation_condition": "A close below SPX's 21EMA (~7472.72) or a breach of the 20-day support candidate (7257.33) would break the bullish technical read; a sustained further spike in the 10Y yield would reinforce the bearish counter-case.",
+  "tone_caveat_language": "Maintain moderate, tactically hedged exposure rather than full-conviction sizing, given the options expiry (7/17) gamma risk and the BLS data blackout (CPI, PPI, employment situation all returned 403 errors) leaving a macro data gap into the print window.",
+
+  "consensus_bias": "MIXED",
+  "consensus_read_summary": "The Technical leg is unambiguously bullish for SPX and NDX, both cleanly above rising 8/21 EMAs, and falling VIX corroborates a risk-on tape. However, the Almanac leg shows breadth cracking (IWM in pullback, Materials/Healthcare/Industrials lagging) and only mid-pack midterm-year July seasonality (rank 6 of 12), while the Macro leg flags rising yields and an options-expiry week as friction points against a clean continuation.",
+  "point_of_maximum_divergence": "Technical strength in SPX/NDX (Zone 1 Bullish, fresh highs nearby) directly conflicts with IWM's Zone 2 Pullback and midterm-year July's only-average seasonal track record, raising the question of whether this is a broad rally or a narrow large-cap/tech advance.",
+  "key_supporting_factors": ["VIX down 6.93% on the week, signaling compressed volatility and risk-on sentiment", "SPX and NDX both above rising 8EMA and 21EMA in Zone 1 Bullish condition", "Energy (+3.49%) and Technology (+2.87%) leading sector performance, aligning with the bullish index technicals"],
+  "main_contradiction_risk": "Rising 10Y/30Y Treasury yields (+2.1%/+2.11% weekly) alongside IWM's break below its 8EMA suggest rate-sensitive small caps are diverging from large-cap/tech strength, a breadth warning sign heading into options expiry week.",
+  "invalidation_summary": "A close below SPX's 21EMA (~7472.72) or the 20-day support level (7257.33) invalidates the bullish technical read; continued sharp upside in the 10Y yield would validate the macro contradiction risk.",
+  "r7_human_score_question": "Given VIX compression argues for adding risk while rising yields and IWM's pullback argue for caution on breadth, how much weight should the team give to large-cap/tech technical strength versus small-cap divergence when the CPI/employment data needed to resolve the yield move is currently unavailable?",
+  "r6_slide_bullet_1": "SPX/NDX remain technically bullish (Zone 1, EMAs rising) with VIX down nearly 7% on the week supporting continued risk appetite.",
+  "r6_slide_bullet_2": "IWM's slip into a Zone 2 Pullback alongside rising 10Y/30Y yields signals breadth is narrowing beneath the large-cap/tech leadership.",
+  "r6_slide_bullet_3": "Options expiry (7/17) and a full BLS data blackout (CPI, PPI, employment) leave the week's macro backdrop unusually opaque, warranting moderated conviction sizing."
+}

@@ -1,0 +1,11 @@
+{
+  "weekly_regime": "Error loading Claude value",
+  "confidence_score": "Error loading Claude value",
+  "spx_pct_estimate": "Error loading Claude value",
+  "ndx_pct_estimate": "Error loading Claude value",
+  "iwm_pct_estimate": "Error loading Claude value",
+  "top_supporting_reason": "Error loading Claude value",
+  "top_contradiction_cited": "Error loading Claude value",
+  "invalidation_condition": "Error loading Claude value",
+  "tone_caveat_language": "Error loading Claude value"
+}

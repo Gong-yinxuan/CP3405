@@ -1,0 +1,11 @@
+{
+  "weekly_regime": "Error loading openai/gpt-oss-120b value",
+  "confidence_score": "Error loading openai/gpt-oss-120b value",
+  "spx_pct_estimate": "Error loading openai/gpt-oss-120b value",
+  "ndx_pct_estimate": "Error loading openai/gpt-oss-120b value",
+  "iwm_pct_estimate": "Error loading openai/gpt-oss-120b value",
+  "top_supporting_reason": "Error loading openai/gpt-oss-120b value",
+  "top_contradiction_cited": "Error loading openai/gpt-oss-120b value",
+  "invalidation_condition": "Error loading openai/gpt-oss-120b value",
+  "tone_caveat_language": "Error loading openai/gpt-oss-120b value"
+}

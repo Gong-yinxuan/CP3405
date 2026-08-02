@@ -1,21 +1,25 @@
 """
 Prism Macro Data Collector — W5
 
-Collects automatic macro market data only.
+Collects automatic macro market data and Fed + Data Watch information.
 
 Output:
-- prism/data/macro/macro_input.json
+- prism/data/macro/macro_collector_output.json
+- prism/data/macro/macro_data_watch.md
 - prism/data/macro/history/*.json
 
-No config file.
 No manual Fed probability.
+No FedWatch scraping.
 No fake calendar/news data.
 """
 
 import json
-from datetime import datetime, timezone
+import xml.etree.ElementTree as ET
+from datetime import datetime, timezone, timedelta
+from email.utils import parsedate_to_datetime
 from pathlib import Path
 
+import requests
 import yfinance as yf
 
 
@@ -65,6 +69,49 @@ MACRO_ASSETS = {
 }
 
 
+FED_SPEECHES_RSS_URL = "https://www.federalreserve.gov/feeds/speeches.xml"
+
+BLS_RELEASE_FEEDS = {
+    "CPI": "https://www.bls.gov/feed/cpi.rss",
+    "PPI": "https://www.bls.gov/feed/ppi.rss",
+    "IMPORT_EXPORT_PRICES": "https://www.bls.gov/feed/ximpim.rss",
+    "REAL_EARNINGS": "https://www.bls.gov/feed/realer.rss",
+    "EMPLOYMENT_SITUATION": "https://www.bls.gov/feed/empsit.rss"
+}
+
+# Official BLS release calendar fallback.
+# Use this when BLS RSS feeds return 403 or no usable release items.
+BLS_RELEASE_CALENDAR_URL = "https://www.bls.gov/schedule/news_release/bls.ics"
+
+BLS_RELEASE_CALENDAR_KEYWORDS = {
+    "CPI": {
+        "keywords": ["Consumer Price Index", "CPI"],
+        "bucket": "inflation_data",
+        "importance": "High"
+    },
+    "PPI": {
+        "keywords": ["Producer Price Index", "PPI"],
+        "bucket": "inflation_data",
+        "importance": "High"
+    },
+    "IMPORT_EXPORT_PRICES": {
+        "keywords": ["Import and Export Price Indexes", "U.S. Import and Export Price Indexes"],
+        "bucket": "inflation_data",
+        "importance": "Medium"
+    },
+    "REAL_EARNINGS": {
+        "keywords": ["Real Earnings"],
+        "bucket": "inflation_data",
+        "importance": "Medium"
+    },
+    "EMPLOYMENT_SITUATION": {
+        "keywords": ["Employment Situation"],
+        "bucket": "major_data_releases",
+        "importance": "High"
+    }
+}
+
+
 def get_project_root() -> Path:
     return Path(__file__).resolve().parents[2]
 
@@ -73,7 +120,16 @@ def save_json(data: dict | list, path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
 
     with open(path, "w", encoding="utf-8") as file:
-        json.dump(data, file, indent=4)
+        json.dump(data, file, indent=4, allow_nan=False)
+
+    print(f"[OK] Saved {path}")
+
+
+def save_text(text: str, path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+
+    with open(path, "w", encoding="utf-8") as file:
+        file.write(text)
 
     print(f"[OK] Saved {path}")
 
@@ -141,6 +197,453 @@ def classify_direction(change: float | None) -> str:
     return "Flat"
 
 
+def get_week_window(today: datetime | None = None) -> dict:
+    """
+    Calculates the current week commencing Monday.
+    Example:
+    If today is Wednesday, returns Monday to Sunday of that week.
+    """
+
+    if today is None:
+        today = datetime.now(timezone.utc)
+
+    start_of_week = today - timedelta(days=today.weekday())
+    start_of_week = start_of_week.replace(hour=0, minute=0, second=0, microsecond=0)
+
+    end_of_week = start_of_week + timedelta(days=6)
+    end_of_week = end_of_week.replace(hour=23, minute=59, second=59, microsecond=0)
+
+    return {
+        "week_commencing": start_of_week.strftime("%Y-%m-%d"),
+        "week_ending": end_of_week.strftime("%Y-%m-%d"),
+        "start": start_of_week,
+        "end": end_of_week
+    }
+
+
+def parse_rss_date(pub_date_text: str) -> datetime | None:
+    if not pub_date_text:
+        return None
+
+    try:
+        published_at = parsedate_to_datetime(pub_date_text)
+
+        if published_at.tzinfo is None:
+            published_at = published_at.replace(tzinfo=timezone.utc)
+
+        return published_at
+
+    except Exception:
+        return None
+
+
+def is_relevant_date(
+    published_at: datetime | None,
+    week_start: datetime,
+    week_end: datetime,
+    lookback_days: int = 7
+) -> bool:
+    """
+    Includes items from the target week plus a small lookback window.
+    This helps catch CPI/inflation data released just before the week.
+    """
+
+    if published_at is None:
+        return True
+
+    lower_bound = week_start - timedelta(days=lookback_days)
+    upper_bound = week_end + timedelta(days=1)
+
+    return lower_bound <= published_at <= upper_bound
+
+
+def clean_text(text: str) -> str:
+    return " ".join(text.replace("\n", " ").split())
+
+
+def extract_speaker_hint(title: str) -> str:
+    """
+    Fed speech titles often start with the speaker name.
+    This is only a simple hint.
+    """
+
+    if "," in title:
+        return title.split(",")[0].strip()
+
+    return "Unknown speaker"
+
+
+def classify_fed_speech_tone_hint(title: str, summary: str) -> str:
+    """
+    Simple keyword-based hint only.
+    R4 should still review the actual speech meaning manually or with LLM support.
+    """
+
+    text = f"{title} {summary}".lower()
+
+    hawkish_keywords = [
+        "inflation",
+        "price stability",
+        "restrictive",
+        "tightening",
+        "higher rates",
+        "labor market"
+    ]
+
+    dovish_keywords = [
+        "slowdown",
+        "softening",
+        "unemployment",
+        "easing",
+        "rate cut",
+        "downside risks"
+    ]
+
+    hawkish_score = sum(1 for word in hawkish_keywords if word in text)
+    dovish_score = sum(1 for word in dovish_keywords if word in text)
+
+    if hawkish_score > dovish_score:
+        return "hawkish_keyword_hint"
+
+    if dovish_score > hawkish_score:
+        return "dovish_keyword_hint"
+
+    return "neutral_or_unclear_keyword_hint"
+
+
+def fetch_fed_speeches(week_window: dict, max_items: int = 10) -> list[dict]:
+    """
+    Fetch Fed speaker metadata from the Federal Reserve speeches RSS feed.
+    """
+
+    response = requests.get(FED_SPEECHES_RSS_URL, timeout=30)
+    response.raise_for_status()
+
+    root = ET.fromstring(response.content)
+
+    speeches = []
+
+    for item in root.findall("./channel/item"):
+        title = clean_text(item.findtext("title", default=""))
+        link = clean_text(item.findtext("link", default=""))
+        summary = clean_text(item.findtext("description", default=""))
+        pub_date_text = clean_text(item.findtext("pubDate", default=""))
+
+        if not title:
+            continue
+
+        published_at = parse_rss_date(pub_date_text)
+
+        if not is_relevant_date(
+            published_at,
+            week_window["start"],
+            week_window["end"],
+            lookback_days=7
+        ):
+            continue
+
+        speeches.append({
+            "speaker_hint": extract_speaker_hint(title),
+            "title": title,
+            "published_at": published_at.isoformat() if published_at else pub_date_text,
+            "source_url": link,
+            "summary": summary,
+            "tone_hint": classify_fed_speech_tone_hint(title, summary),
+            "r4_note": "Keyword hint only. R4 should verify the actual Fed speaker message."
+        })
+
+        if len(speeches) >= max_items:
+            break
+
+    return speeches
+
+
+def fetch_bls_feed(feed_name: str, feed_url: str, week_window: dict, max_items: int = 5) -> list[dict]:
+    """
+    Fetch BLS release metadata from one BLS RSS feed.
+    """
+
+    response = requests.get(feed_url, timeout=30)
+    response.raise_for_status()
+
+    root = ET.fromstring(response.content)
+
+    releases = []
+
+    for item in root.findall("./channel/item"):
+        title = clean_text(item.findtext("title", default=""))
+        link = clean_text(item.findtext("link", default=""))
+        summary = clean_text(item.findtext("description", default=""))
+        pub_date_text = clean_text(item.findtext("pubDate", default=""))
+
+        if not title:
+            continue
+
+        published_at = parse_rss_date(pub_date_text)
+
+        if not is_relevant_date(
+            published_at,
+            week_window["start"],
+            week_window["end"],
+            lookback_days=7
+        ):
+            continue
+
+        releases.append({
+            "feed": feed_name,
+            "title": title,
+            "published_at": published_at.isoformat() if published_at else pub_date_text,
+            "source_url": link,
+            "summary": summary
+        })
+
+        if len(releases) >= max_items:
+            break
+
+    return releases
+
+
+
+def parse_ics_datetime(value: str) -> datetime | None:
+    """
+    Parse simple ICS date formats used by the BLS release calendar.
+    Supports YYYYMMDD and YYYYMMDDTHHMMSSZ.
+    """
+
+    if not value:
+        return None
+
+    value = value.strip()
+
+    try:
+        if "T" in value:
+            value = value.replace("Z", "")
+            parsed = datetime.strptime(value, "%Y%m%dT%H%M%S")
+        else:
+            parsed = datetime.strptime(value, "%Y%m%d")
+
+        return parsed.replace(tzinfo=timezone.utc)
+
+    except Exception:
+        return None
+
+
+def unfold_ics_lines(text: str) -> list[str]:
+    """
+    ICS files can wrap long lines. A wrapped line starts with a space or tab.
+    This function joins wrapped lines before parsing VEVENT blocks.
+    """
+
+    unfolded = []
+
+    for raw_line in text.splitlines():
+        if raw_line.startswith((" ", "\t")) and unfolded:
+            unfolded[-1] += raw_line[1:]
+        else:
+            unfolded.append(raw_line.strip())
+
+    return unfolded
+
+
+def unescape_ics_text(text: str) -> str:
+    """
+    Clean common ICS escape sequences so report output is readable.
+    """
+
+    return (
+        text.replace("\\,", ",")
+        .replace("\\;", ";")
+        .replace("\\n", " ")
+        .replace("\\N", " ")
+        .strip()
+    )
+
+
+def detect_bls_calendar_category(summary: str) -> tuple[str, str, str] | None:
+    """
+    Return (feed_name, bucket, importance) for BLS calendar event summary.
+    """
+
+    lowered = summary.lower()
+
+    for feed_name, config in BLS_RELEASE_CALENDAR_KEYWORDS.items():
+        for keyword in config["keywords"]:
+            if keyword.lower() in lowered:
+                return feed_name, config["bucket"], config["importance"]
+
+    return None
+
+
+def fetch_bls_release_calendar(week_window: dict) -> dict:
+    """
+    Fetch scheduled BLS release metadata from the official BLS calendar ICS file.
+    This is used as a fallback when the individual BLS RSS feeds are blocked.
+    """
+
+    output = {
+        "inflation_data": [],
+        "major_data_releases": [],
+        "errors": {},
+        "source": "BLS release calendar ICS",
+        "source_url": BLS_RELEASE_CALENDAR_URL
+    }
+
+    headers = {
+        "User-Agent": "Mozilla/5.0 (compatible; PrismMacroCollector/1.0; +https://github.com/)",
+        "Accept": "text/calendar,text/plain,*/*"
+    }
+
+    try:
+        response = requests.get(BLS_RELEASE_CALENDAR_URL, timeout=30, headers=headers)
+        response.raise_for_status()
+    except Exception as error:
+        output["errors"]["BLS_CALENDAR_ICS"] = str(error)
+        return output
+
+    lines = unfold_ics_lines(response.text)
+    events = []
+    current_event = None
+
+    for line in lines:
+        if line == "BEGIN:VEVENT":
+            current_event = {}
+            continue
+
+        if line == "END:VEVENT":
+            if current_event:
+                events.append(current_event)
+            current_event = None
+            continue
+
+        if current_event is None or ":" not in line:
+            continue
+
+        key, value = line.split(":", 1)
+        key_name = key.split(";", 1)[0]
+        current_event[key_name] = unescape_ics_text(value)
+
+    week_start = week_window["start"].date()
+    week_end = week_window["end"].date()
+
+    for event in events:
+        summary = event.get("SUMMARY", "")
+        start_value = event.get("DTSTART", "")
+        event_dt = parse_ics_datetime(start_value)
+
+        if not summary or event_dt is None:
+            continue
+
+        event_date = event_dt.date()
+
+        if not (week_start <= event_date <= week_end):
+            continue
+
+        category = detect_bls_calendar_category(summary)
+        if category is None:
+            continue
+
+        feed_name, bucket, importance = category
+
+        item = {
+            "feed": feed_name,
+            "title": summary,
+            "published_at": event_dt.isoformat(),
+            "source_url": BLS_RELEASE_CALENDAR_URL,
+            "summary": "Scheduled BLS release collected automatically from the official BLS release calendar.",
+            "expected": "Scheduled BLS release. Expected consensus value is not automated.",
+            "importance": importance,
+            "source_type": "bls_ics_calendar_fallback"
+        }
+
+        output[bucket].append(item)
+
+    return output
+
+
+def fetch_bls_releases(week_window: dict) -> dict:
+    """
+    Fetch CPI/inflation-related and major data-release metadata.
+
+    First tries the existing BLS RSS feeds. If those feeds return 403 or no
+    usable items, falls back to the official BLS release calendar ICS file.
+    """
+
+    output = {
+        "inflation_data": [],
+        "major_data_releases": [],
+        "errors": {},
+        "rss_errors": {},
+        "calendar_source": "BLS RSS feeds"
+    }
+
+    inflation_feeds = [
+        "CPI",
+        "PPI",
+        "IMPORT_EXPORT_PRICES",
+        "REAL_EARNINGS"
+    ]
+
+    major_data_feeds = [
+        "EMPLOYMENT_SITUATION"
+    ]
+
+    for feed_name in inflation_feeds:
+        try:
+            items = fetch_bls_feed(
+                feed_name,
+                BLS_RELEASE_FEEDS[feed_name],
+                week_window,
+                max_items=3
+            )
+
+            output["inflation_data"].extend(items)
+
+        except Exception as error:
+            output["rss_errors"][feed_name] = str(error)
+
+    for feed_name in major_data_feeds:
+        try:
+            items = fetch_bls_feed(
+                feed_name,
+                BLS_RELEASE_FEEDS[feed_name],
+                week_window,
+                max_items=3
+            )
+
+            output["major_data_releases"].extend(items)
+
+        except Exception as error:
+            output["rss_errors"][feed_name] = str(error)
+
+    has_rss_items = bool(output["inflation_data"] or output["major_data_releases"])
+
+    if has_rss_items:
+        output["calendar_source"] = "BLS RSS feeds"
+        output["errors"] = output["rss_errors"]
+        return output
+
+    print("[WARN] BLS RSS produced no usable items. Trying official BLS calendar ICS fallback...")
+
+    calendar_output = fetch_bls_release_calendar(week_window)
+
+    if calendar_output["inflation_data"] or calendar_output["major_data_releases"]:
+        output["inflation_data"] = calendar_output["inflation_data"]
+        output["major_data_releases"] = calendar_output["major_data_releases"]
+        output["calendar_source"] = calendar_output["source"]
+        output["calendar_source_url"] = calendar_output["source_url"]
+        output["errors"] = {}
+        output["rss_errors"] = output["rss_errors"]
+        return output
+
+    output["calendar_source"] = "BLS RSS feeds + BLS release calendar ICS fallback"
+    output["calendar_source_url"] = calendar_output.get("source_url", BLS_RELEASE_CALENDAR_URL)
+    output["errors"] = {
+        **output["rss_errors"],
+        **calendar_output.get("errors", {})
+    }
+    return output
+
+
 def build_macro_record(symbol: str, info: dict, history: list[dict]) -> dict:
     latest = history[-1]
     weekly_change = calculate_weekly_change(history)
@@ -160,19 +663,100 @@ def build_macro_record(symbol: str, info: dict, history: list[dict]) -> dict:
     }
 
 
+def build_markdown_output(output: dict) -> str:
+    watch = output.get("fed_and_data_watch", {})
+    week_commencing = watch.get("week_commencing", "Unknown")
+    week_ending = watch.get("week_ending", "Unknown")
+
+    fed_speakers = watch.get("fed_speakers", [])
+    inflation_data = watch.get("inflation_data", [])
+    major_data_releases = watch.get("major_data_releases", [])
+
+    lines = []
+
+    lines.append("# R4 Macro Agent — Fed + Data Watch")
+    lines.append("")
+    lines.append(f"**Week commencing:** {week_commencing}")
+    lines.append(f"**Week ending:** {week_ending}")
+    lines.append("")
+    lines.append("## Fed Speakers")
+    lines.append("")
+
+    if fed_speakers:
+        for speech in fed_speakers:
+            lines.append(f"- **Speaker hint:** {speech.get('speaker_hint', 'Unknown')}")
+            lines.append(f"  - Title: {speech.get('title', '')}")
+            lines.append(f"  - Published: {speech.get('published_at', '')}")
+            lines.append(f"  - Tone hint: {speech.get('tone_hint', '')}")
+            lines.append(f"  - Source: {speech.get('source_url', '')}")
+            lines.append("")
+    else:
+        lines.append("- No recent Fed speeches found in the collector window.")
+        lines.append("")
+
+    lines.append("## CPI / Inflation-Related Releases")
+    lines.append("")
+
+    if inflation_data:
+        for item in inflation_data:
+            lines.append(f"- **{item.get('feed', '')}:** {item.get('title', '')}")
+            lines.append(f"  - Published: {item.get('published_at', '')}")
+            lines.append(f"  - Source: {item.get('source_url', '')}")
+            lines.append("")
+    else:
+        lines.append("- No recent CPI/inflation-related BLS releases found in the collector window.")
+        lines.append("")
+
+    lines.append("## Major Data Releases")
+    lines.append("")
+
+    if major_data_releases:
+        for item in major_data_releases:
+            lines.append(f"- **{item.get('feed', '')}:** {item.get('title', '')}")
+            lines.append(f"  - Published: {item.get('published_at', '')}")
+            lines.append(f"  - Source: {item.get('source_url', '')}")
+            lines.append("")
+    else:
+        lines.append("- No major BLS data releases found in the collector window.")
+        lines.append("")
+
+    lines.append("## R4 Interpretation Placeholder")
+    lines.append("")
+    lines.append("- Fed speaker tone: To be reviewed by R4.")
+    lines.append("- Inflation/data impact: To be reviewed by R4.")
+    lines.append("- Macro risk level: To be reviewed by R4.")
+    lines.append("")
+
+    return "\n".join(lines)
+
+
 def main() -> None:
     project_root = get_project_root()
+    week_window = get_week_window()
 
     output = {
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "collector": "Macro Collector",
         "agent_input_for": "Macro Agent",
-        "data_source": "Yahoo Finance via yfinance",
+        "data_source": {
+            "market_data": "Yahoo Finance via yfinance",
+            "fed_speakers": "Federal Reserve speeches RSS feed",
+            "economic_data_releases": "BLS RSS feeds with BLS release calendar ICS fallback"
+        },
         "note": (
-            "This collector only gathers automatic macro market data. "
-            "Fed probability, earnings, economic calendar, and news are not collected here."
+            "This collector gathers automatic macro market data and Fed + Data Watch metadata. "
+            "FedWatch probability is not collected here."
         ),
-        "macro_market_data": {}
+        "macro_market_data": {},
+        "fed_and_data_watch": {
+            "week_commencing": week_window["week_commencing"],
+            "week_ending": week_window["week_ending"],
+            "fed_speakers": [],
+            "fed_speaker_count": 0,
+            "inflation_data": [],
+            "major_data_releases": [],
+            "data_release_errors": {}
+        }
     }
 
     print("Fetching macro data...")
@@ -214,8 +798,44 @@ def main() -> None:
 
             print(f"[ERROR] Failed to collect {symbol}: {error}")
 
+    print("Fetching Fed speakers...")
+
+    try:
+        fed_speakers = fetch_fed_speeches(
+            week_window=week_window,
+            max_items=10
+        )
+
+        output["fed_and_data_watch"]["fed_speakers"] = fed_speakers
+        output["fed_and_data_watch"]["fed_speaker_count"] = len(fed_speakers)
+
+        print(f"[OK] Fed speeches collected: {len(fed_speakers)}")
+
+    except Exception as error:
+        output["fed_and_data_watch"]["fed_speaker_error"] = str(error)
+        print(f"[ERROR] Failed to collect Fed speakers: {error}")
+
+    print("Fetching BLS data releases...")
+
+    bls_releases = fetch_bls_releases(week_window)
+
+    output["fed_and_data_watch"]["inflation_data"] = bls_releases["inflation_data"]
+    output["fed_and_data_watch"]["major_data_releases"] = bls_releases["major_data_releases"]
+    output["fed_and_data_watch"]["data_release_errors"] = bls_releases["errors"]
+    output["fed_and_data_watch"]["rss_errors"] = bls_releases.get("rss_errors", {})
+    output["fed_and_data_watch"]["calendar_source"] = bls_releases.get("calendar_source", "Unknown")
+    output["fed_and_data_watch"]["calendar_source_url"] = bls_releases.get("calendar_source_url", "")
+
+    print(f"[OK] BLS calendar source used: {bls_releases.get('calendar_source', 'Unknown')}")
+    print(f"[OK] Inflation releases collected: {len(bls_releases['inflation_data'])}")
+    print(f"[OK] Major data releases collected: {len(bls_releases['major_data_releases'])}")
+
     output_path = project_root / "data" / "macro" / "macro_collector_output.json"
     save_json(output, output_path)
+
+    markdown_path = project_root / "data" / "macro" / "macro_data_watch.md"
+    markdown_output = build_markdown_output(output)
+    save_text(markdown_output, markdown_path)
 
     print("Macro collection complete.")
 

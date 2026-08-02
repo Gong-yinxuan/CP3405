@@ -2,10 +2,29 @@ name: Update Market Data
 
 on:
   schedule:
+    # Monday 8:00 AM Singapore time
+    # Runs R3/R4/R5 agent collectors + chart builder + report builders
+    - cron: "0 0 * * 1"
+
     # Saturday 6:00 AM Singapore time
+    # Runs R6 actuals collector after US Friday close
     - cron: "0 22 * * 5"
 
+    # 1st of each month, 8:00 AM Singapore time
+    # Refreshes long-run monthly seasonality stats (slow-changing, no need weekly)
+    - cron: "0 0 1 * *"
+
   workflow_dispatch:
+    inputs:
+      target_week:
+        description: "Force a specific Week folder number, e.g. 8. Leave blank to auto-detect the next week."
+        required: false
+        default: ""
+
+      target_release:
+        description: "Force a specific Prism release, e.g. vW30. Leave blank to auto-detect from output.json date."
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -30,34 +49,216 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r prism/requirements.txt
 
-      - name: Run main market data collector
+      # -----------------------------
+      # R6 ACTUALS COLLECTOR
+      # Runs Saturday 6:00 AM SGT
+      # -----------------------------
+
+      - name: Run R6 actuals collector
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 22 * * 5'
         run: |
           python prism/src/data_collector.py
 
+      - name: Determine R6 release
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 22 * * 5'
+        id: actuals_release
+        shell: bash
+        env:
+          TARGET_RELEASE: ${{ github.event.inputs.target_release }}
+        run: |
+          if [ -n "$TARGET_RELEASE" ]; then
+            RELEASE="$TARGET_RELEASE"
+            echo "Using manually specified release: $RELEASE"
+          else
+            RELEASE=$(python - <<'PY'
+          import json
+          from pathlib import Path
+          from datetime import date
+
+          output_path = Path("prism/data/output.json")
+          data = json.loads(output_path.read_text(encoding="utf-8"))
+
+          output_date = date.fromisoformat(data["date"])
+          week_number = output_date.isocalendar().week
+
+          print(f"vW{week_number}")
+          PY
+          )
+            echo "Detected release from output.json: $RELEASE"
+          fi
+
+          echo "release=$RELEASE" >> "$GITHUB_OUTPUT"
+
+      - name: Save R6 actuals snapshot
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 22 * * 5'
+        shell: bash
+        run: |
+          RELEASE="${{ steps.actuals_release.outputs.release }}"
+
+          echo "Saving actuals for release: $RELEASE"
+          python prism/src/save_actuals.py "$RELEASE" --overwrite
+
+      - name: Run R6/R10 calibration if prediction exists
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 22 * * 5'
+        shell: bash
+        run: |
+          RELEASE="${{ steps.actuals_release.outputs.release }}"
+          PREDICTION_FILE="prism/data/predictions/${RELEASE}_prediction.json"
+
+          echo "Checking prediction file: $PREDICTION_FILE"
+
+          if [ -f "$PREDICTION_FILE" ]; then
+            echo "Prediction file found. Running calibration for $RELEASE"
+            python prism/src/calibration_runner.py "$RELEASE"
+          else
+            echo "Prediction file not found. Skipping calibration for $RELEASE"
+            echo "Actuals were still saved successfully."
+          fi
+
+      # -----------------------------
+      # MONTHLY SEASONALITY COLLECTOR
+      # Runs 1st of each month -- slow-changing historical stats
+      # -----------------------------
+
+      - name: Run monthly seasonality collector
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 0 1 * *'
+        run: |
+          python prism/src/collectors/seasonality_collector.py
+
+      # -----------------------------
+      # R3/R4/R5 AGENT COLLECTORS
+      # Runs Monday 8:00 AM SGT
+      # -----------------------------
+
       - name: Run technical collector
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 0 * * 1'
         run: |
           python prism/src/collectors/technical_collector.py
 
       - name: Run macro collector
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 0 * * 1'
         run: |
           python prism/src/collectors/macro_collector.py
 
       - name: Run almanac collector
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 0 * * 1'
         run: |
           python prism/src/collectors/almanac_collector.py
 
+      - name: Build agent charts
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 0 * * 1'
+        run: |
+          python prism/src/chart_builder.py
+
+      # -----------------------------
+      # REPORT BUILDERS
+      # Auto-fill Week{N}/R{3,4,5}_.../*_agent_W{NN}.md from each
+      # collector's JSON output. Week number is computed ONCE here and
+      # passed explicitly to all three, so they can't drift onto
+      # different week numbers.
+      # -----------------------------
+
+      - name: Determine week number
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 0 * * 1'
+        id: week
+        shell: bash
+        env:
+          TARGET_WEEK: ${{ github.event.inputs.target_week }}
+        run: |
+          if [ -n "$TARGET_WEEK" ]; then
+            WEEK_NUMBER="$TARGET_WEEK"
+            echo "Using manually specified week number: $WEEK_NUMBER"
+          else
+            WEEK_NUMBER=$(python -c "import sys; sys.path.insert(0, 'prism/src/report_builders'); from pathlib import Path; from week_utils import detect_next_week_number; print(detect_next_week_number(Path('.')))")
+            echo "Detected week number: $WEEK_NUMBER"
+          fi
+
+          echo "number=$WEEK_NUMBER" >> "$GITHUB_OUTPUT"
+
+      - name: Build almanac agent report (R3)
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 0 * * 1'
+        run: |
+          python prism/src/report_builders/generate_almanac.py \
+            prism/data/almanac/almanac_collector_output.json \
+            ${{ steps.week.outputs.number }} \
+            --out-root . \
+            --seasonality-json prism/data/almanac/monthly_seasonality.json \
+            --charts-dir prism/data/almanac/charts
+
+      - name: Build macro agent report (R4)
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 0 * * 1'
+        run: |
+          python prism/src/report_builders/generate_macro.py \
+            prism/data/macro/macro_collector_output.json \
+            ${{ steps.week.outputs.number }} \
+            --out-root . \
+            --charts-dir prism/data/macro/charts
+
+      - name: Build technical agent report (R5)
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 0 * * 1'
+        run: |
+          python prism/src/report_builders/generate_technical.py \
+            prism/data/technical/technical_collector_output.json \
+            ${{ steps.week.outputs.number }} \
+            --out-root . \
+            --charts-dir prism/data/technical/charts
+
+      - name: Run multi-LLM consensus synthesis matrix
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 0 * * 1'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: |
+          # 2nd argument (30) is this sprint's release/tag number (vW30) — it is a
+          # separate counter from the Week{N} folder number above, so it must be
+          # bumped by hand every sprint (vW31 next sprint, and so on).
+          python prism/src/llm_synthesis.py "Week${{ steps.week.outputs.number }}" 30
+
+      # Manual runs keep generated files as a downloadable artifact.
+      # Nothing is committed or pushed.
+      - name: Upload manual run output
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: prism-manual-output-${{ github.run_number }}
+          path: |
+            prism/data/
+            Week*/
+            delta_*.md
+          if-no-files-found: warn
+          retention-days: 7
+
+      # Only automatic scheduled runs commit and push files.
       - name: Commit and push generated data
+        if: github.event_name == 'schedule'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add prism/data
+          echo "Git status before staging:"
+          git status --short
+
+          git add -A prism/data
+          git add -A Week* || true
+          git add -A delta_*.md || true
+
+          echo "Git status after staging:"
+          git status --short
 
           if git diff --cached --quiet; then
             echo "No generated data changes to commit"
           else
-            git commit -m "chore: update Prism agent data $(date +'%Y-%m-%d')"
+            git commit -m "chore: update Prism data $(date +'%Y-%m-%d')"
           fi
 
-          git pull --rebase origin main
-          git push origin main
+          echo "Git status after commit:"
+          git status --short
+
+          CURRENT_BRANCH="${GITHUB_REF_NAME}"
+
+          echo "Current branch: $CURRENT_BRANCH"
+
+          git pull --rebase --autostash origin "$CURRENT_BRANCH"
+          git push origin "HEAD:$CURRENT_BRANCH"

@@ -1,0 +1,31 @@
+{
+  "weekly_regime": "Bearish continuation with potential for shallow recovery in late week due to sector rotation into healthcare and staples, but technical weakness persists across all indices. Geopolitical risks and unresolved macroeconomic data gaps amplify uncertainty.",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "-3.0% to -1.0%",
+  "ndx_pct_estimate": "-5.0% to -2.0%",
+  "iwm_pct_estimate": "-2.5% to -0.5%",
+  "top_supporting_reason": "Technical indicators show all three indices in Zone 3 Bearish with prices below both EMAs, supported by historical seasonal weakness in August for the S&P 500 and Nasdaq.",
+  "top_contradiction_cited": "Midterm election year dynamics historically boost small caps (IWM) but large caps (SPX/NDX) face mixed signals from post-election year volatility patterns.",
+  "invalidation_condition": "SPX closing above 7450 (21 EMA) or NDX above 28750 (21 EMA)",
+  "tone_caveat_language": "Avoid long exposure until midweek data clarity; prioritize defensive sectors with options hedges.",
+  "consensus_bias": "BEARISH",
+  "consensus_read_summary": "Technical indicators align with bearish bias, but live research reveals missing inflation data and geopolitical risks that could accelerate declines. Sector strength in healthcare and staples offers limited upside potential.",
+  "point_of_maximum_divergence": "IWM's historical midterm year strength vs. current technical bearishness creates conflicting signals for small-cap performance.",
+  "key_supporting_factors": [
+    "Technical bias: All indices in Zone 3 Bearish with prices below EMAs",
+    "Live geopolitical risks: Escalating Middle East tensions impacting energy markets",
+    "Sector rotation: Healthcare (XLV) and staples (XLP) outperform as safe havens"
+  ],
+  "main_contradiction_risk": "Unexpectedly strong CPI data release could trigger short-covering rally despite technical weakness",
+  "invalidation_summary": "Break above 21 EMA levels would negate bearish technical setup",
+  "pipeline_omissions_discovered": [
+    "Missing BLS inflation data releases (CPI, PPI) due to API access errors",
+    "Unscheduled Fed speaker events not captured in economic calendar",
+    "Geopolitical risk updates from Middle East conflict developments"
+  ],
+  "r7_human_score_question": "How should the team weigh technical bearish signals against potential midterm year outperformance for IWM given unresolved macroeconomic data gaps?",
+  "r6_slide_bullet_1": "Technical indicators confirm bearish bias across all indices with prices below key EMAs",
+  "r6_slide_bullet_2": "Healthcare and staples sectors show relative strength but face headwinds from missing inflation data",
+  "r6_slide_bullet_3": "Geopolitical risks and unresolved macroeconomic data create elevated volatility potential for Nasdaq",
+  "_fallback_warning": "Claude connection dropped. Swapped automatically with openrouter/free."
+}
