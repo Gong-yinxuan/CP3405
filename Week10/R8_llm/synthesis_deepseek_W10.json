@@ -1,0 +1,28 @@
+{
+  "weekly_regime": "Neutral to slightly bullish with mixed technical signals and seasonal headwinds in August, supported by strong Consumer Discretionary and Communication Services sectors but tempered by midterm year historical weakness and neutral EMA conditions",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "0.5% to 1.5%",
+  "ndx_pct_estimate": "0.0% to 1.0%",
+  "iwm_pct_estimate": "-0.5% to 0.5%",
+  "top_supporting_reason": "Leading sectors (XLY, XLC) show strong momentum, and SPX/NDX remain above key EMAs despite mixed conditions",
+  "top_contradiction_cited": "Midterm year August historical weakness (avg -1.27% for DJIA, -2.08% for NDX) and lack of major catalysts this week",
+  "invalidation_condition": "SPX closing below 7313 (20D low) or NDX below 27176 (20D low)",
+  "tone_caveat_language": "Neutral exposure with selective overweight in leading sectors (XLY, XLC), avoiding laggards (XLU, XLRE)",
+  "consensus_bias": "MIXED",
+  "consensus_read_summary": "Technical indicators show neutral bias with mixed EMA conditions, while seasonality suggests August weakness. Leading sectors outperform, but midterm year historical data and lack of major catalysts temper optimism.",
+  "point_of_maximum_divergence": "Aggressive views focus on sector momentum (XLY +6.11%), while defensive views highlight midterm year August historical weakness and neutral technicals.",
+  "key_supporting_factors": [
+    "Consumer Discretionary (XLY) +6.11% weekly performance",
+    "SPX/NDX remain above 8EMA despite mixed conditions"
+  ],
+  "main_contradiction_risk": "Midterm year August historical weakness (avg -1.27% for DJIA, -2.08% for NDX) and neutral technical bias across indices",
+  "invalidation_summary": "Break below 20D lows (SPX 7313, NDX 27176) would invalidate neutral/bullish view and signal bearish momentum.",
+  "pipeline_omissions_discovered": [
+    "No Fed speakers scheduled (confirmed via independent search)",
+    "No major economic data releases this week (confirmed via independent search)"
+  ],
+  "r7_human_score_question": "Does sector momentum (XLY +6.11%) outweigh midterm year August historical weakness and neutral technicals?",
+  "r6_slide_bullet_1": "Neutral to slightly bullish outlook with SPX +0.5-1.5%, NDX +0.0-1.0%, IWM -0.5-0.5%",
+  "r6_slide_bullet_2": "Leading sectors (XLY +6.11%, XLC +1.83%) support upside, but midterm year August historical weakness (-1.27% DJIA) tempers gains",
+  "r6_slide_bullet_3": "Watch 20D lows (SPX 7313, NDX 27176) as invalidation levels; neutral technical bias suggests limited directional conviction"
+}

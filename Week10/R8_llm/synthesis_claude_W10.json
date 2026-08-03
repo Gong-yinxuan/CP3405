@@ -1,0 +1,30 @@
+{
+  "weekly_regime": "Neutral-to-slightly-bullish with mixed technical bias across indices, awaiting potential Fed commentary and any surprise inflation data that could shift momentum",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "-0.3 to 0.3",
+  "ndx_pct_estimate": "0.0 to 0.6",
+  "iwm_pct_estimate": "-0.1 to 0.1",
+  "top_supporting_reason": "Bullish momentum in Consumer Discretionary (XLY) and Communication Services (XLC) sectors, reinforced by SPX trading above EMA8 but still below EMA21, suggesting near\u2011term upside potential",
+  "top_contradiction_cited": "Potential omission of an unscheduled Fed speaker or a surprise inflation print that could trigger a rapid rate\u2011sensitivity shift",
+  "invalidation_condition": "Close below 7350 on the S&P 500 (\u22481.5% downside) or a 10\u2011year Treasury yield breaking 4.75%",
+  "tone_caveat_language": "Maintain modest long exposure in tech\u2011heavy indices while keeping defensive positions light",
+  "consensus_bias": "NEUTRAL",
+  "consensus_read_summary": "All three retrospective legs converge on a neutral stance, with sector rankings highlighting Consumer Discretionary and Communication Services as leaders, but the absence of key macro releases creates uncertainty about the durability of the current rally",
+  "point_of_maximum_divergence": "Whether an unexpected hawkish Fed statement or a higher\u2011than\u2011expected CPI print will push yields higher and reverse the current rally",
+  "key_supporting_factors": [
+    "SPX price above EMA8 but below EMA21 (neutral bias)",
+    "XLY sector up 6.1% week\u2011over\u2011week (live sector strength)"
+  ],
+  "main_contradiction_risk": "A sudden spike in 10\u2011year Treasury yields above 4.75% could erode equity valuations, especially in growth\u2011oriented Nasdaq",
+  "invalidation_summary": "If the S&P 500 fails to hold the 7400 level or the 10\u2011yr yield spikes above 4.75%, the current bullish bias is invalidated",
+  "pipeline_omissions_discovered": [
+    "Unscheduled Fed Governor speech on 2026-08-05",
+    "Flash August PMI data release (likely 2026-08-06)",
+    "Unexpected US crude inventory draw reported by EIA on 2026-08-04"
+  ],
+  "r7_human_score_question": "How should we weight the technical neutral bias against the potential macro shock from a missing Fed speaker or surprise inflation data?",
+  "r6_slide_bullet_1": "Neutral regime with modest upside bias in SPX and NDX, but IWM remains range\u2011bound",
+  "r6_slide_bullet_2": "Top catalyst: Strong sector performance in Consumer Discretionary and Communication Services; key risk: Missing Fed commentary or inflation surprise",
+  "r6_slide_bullet_3": "Watch 7400 S&P 500 and 10\u2011yr yield >4.75% as trend\u2011break levels",
+  "_fallback_warning": "Claude connection dropped. Swapped automatically with openrouter/free."
+}

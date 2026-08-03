@@ -1,0 +1,36 @@
+{
+  "weekly_regime": "The market is poised for a volatile and potentially range-bound week, leaning towards a bearish bias driven by significant historical August weakness, especially pronounced in a midterm year. While large-cap indices like SPX and NDX show mixed technicals, small caps (IWM) exhibit a clearly bearish EMA setup. Strong performance in Consumer Discretionary (XLY) and Communication Services (XLC) presents a counter-narrative of consumer resilience, but this strength is likely to be tested by critical, uncaptured inflation and consumer spending data due this week.",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "-0.5% to +0.5%",
+  "ndx_pct_estimate": "-0.7% to +0.3%",
+  "iwm_pct_estimate": "-1.5% to -0.5%",
+  "top_supporting_reason": "Historical August midterm year seasonality points to significant market weakness, particularly for small-cap indices like IWM, which also display bearish technical indicators.",
+  "top_contradiction_cited": "The robust outperformance of the Consumer Discretionary (XLY) and Communication Services (XLC) sectors suggests pockets of underlying economic resilience and consumer strength.",
+  "invalidation_condition": "A weekly closing price for the S&P 500 above its resistance candidate of 7581.5, or a surprisingly benign July CPI reading below consensus expectations.",
+  "tone_caveat_language": "A cautious stance is advised. The market is likely to be sensitive to incoming economic data, which our local pipeline critically missed, creating potential for unexpected reactions. Focus on tactical trading rather than strong directional bets.",
+  "consensus_bias": "BEARISH",
+  "consensus_read_summary": "The consensus leans bearish for the upcoming week, primarily due to the strong historical precedent of August weakness in midterm years, significantly impacting all major indices but especially small caps. While pockets of strength in consumer-facing sectors suggest resilience, the substantial gap in our pipeline's economic calendar for critical inflation and consumer data introduces unquantifiable risk and potential for market surprises.",
+  "point_of_maximum_divergence": "The biggest disagreement point lies between the observed strength in consumer discretionary and communication services, hinting at underlying economic resilience, versus the overwhelming historical August seasonality in a midterm year, which signals broad market fragility and significant downside risk, particularly with crucial economic data yet to be released.",
+  "key_supporting_factors": [
+    "August is historically the second weakest month for the S&P 500 and the weakest for NASDAQ and IWM in a midterm election year.",
+    "The Russell 2000 (IWM) exhibits a 'Zone 3 Bearish' EMA condition, indicating technical weakness.",
+    "Lagging performance in defensive sectors (Utilities, Real Estate) and cyclicals (Materials, Industrials) suggests broader risk aversion.",
+    "Upcoming July CPI and PPI data are critical for assessing inflation trajectory and potential Fed actions."
+  ],
+  "main_contradiction_risk": "Continued strong performance in Consumer Discretionary (XLY) and Communication Services (XLC) could signal a more robust underlying economy, capable of defying historical seasonal headwinds, especially if upcoming retail sales data surprises positively.",
+  "invalidation_summary": "The bearish consensus would be invalidated if the S&P 500 registers a weekly close above its 20-day high of 7581.5, or if the July CPI and PPI figures, once released, come in significantly below current (simulated) consensus estimates, thereby reducing inflation concerns and potentially sparking a relief rally.",
+  "pipeline_omissions_discovered": [
+    "July Consumer Price Index (CPI) data",
+    "July Producer Price Index (PPI) data",
+    "July Retail Sales report",
+    "August Flash PMI (Manufacturing and Services) data",
+    "Weekly Jobless Claims figures",
+    "Any scheduled or unscheduled Federal Reserve speeches or announcements for the week of August 10-14, 2026",
+    "July International Trade Data",
+    "August Consumer Sentiment (preliminary reading)"
+  ],
+  "r7_human_score_question": "To what extent will the recent strength in consumer-facing sectors (XLY, XLC) be able to defy the historically strong August midterm year seasonality, especially given the incoming crucial inflation and consumer spending data that our pipeline missed?",
+  "r6_slide_bullet_1": "August midterm year seasonality forecasts significant market weakness, particularly impacting small caps, despite mixed signals from large-cap technicals.",
+  "r6_slide_bullet_2": "Strong performance in Consumer Discretionary and Communication Services offers a counterpoint, highlighting potential consumer resilience amidst broader market fragility.",
+  "r6_slide_bullet_3": "Critical missing economic calendar data (July CPI, PPI, Retail Sales) from our pipeline presents unpriced risks and volatility potential for the upcoming week."
+}
