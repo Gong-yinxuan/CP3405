@@ -1,0 +1,42 @@
+{
+  "weekly_regime": "Cautiously Bullish with Elevated Macro Risk \u2013 technicals point higher but August seasonal weakness and upcoming Fed speech create a mixed backdrop.",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "+0.5% to +1.5%",
+  "ndx_pct_estimate": "+0.8% to +2.0%",
+  "iwm_pct_estimate": "+0.6% to +1.8%",
+  "top_supporting_reason": "Strong technical bullish alignment (price above EMA8/21, proximity to resistance) combined with robust energy sector momentum and an anticipated Q2 GDP beat.",
+  "top_contradiction_cited": "Potential hawkish Fed Governor Bowman speech and mixed ISM PMI prints could trigger a risk\u2011off reversal if data undershoots expectations.",
+  "invalidation_condition": "SPX closing below 7,750 or NDX below 29,800 would invalidate the bullish outlook.",
+  "tone_caveat_language": "Maintain bullish exposure overall but keep defensive buffers around Fed speech day due to heightened policy uncertainty.",
+  "consensus_bias": "BULLISH",
+  "consensus_read_summary": "All three legs (technical, seasonal, sector) point to a modestly higher week, yet the missing high\u2011impact calendar (ISM, ADP, Fed speeches) introduces a divergence that could swing sentiment. The consensus leans bullish but remains cautious given August\u2019s historic weakness and upcoming macro noise.",
+  "point_of_maximum_divergence": "Aggressive view expects a GDP\u2011driven continuation; defensive view fears a Fed\u2011driven pullback if PMI or speeches signal tightening.",
+  "key_supporting_factors": [
+    "Live factor from local data: SPX above EMA8/21 and near 20\u2011day resistance at 7,816.7; NDX and IWM also above key EMAs.",
+    "Macro driver or missed calendar event surfaced via independent search: Upcoming Q2 GDP second estimate and strong energy sector momentum."
+  ],
+  "main_contradiction_risk": "A hawkish Fed commentary combined with softer-than\u2011expected ISM PMI prints could trigger a corrective move toward support levels.",
+  "invalidation_summary": "Break of SPX 7,750 (or NDX 29,800) would invalidate the bullish consensus.",
+  "pipeline_omissions_discovered": [
+    "ISM Manufacturing PMI (Aug 24) \u2013 high\u2011impact macro indicator",
+    "ISM Services PMI (Aug 26) \u2013 high\u2011impact macro indicator",
+    "ADP Employment Change (Aug 27) \u2013 labor market gauge",
+    "Q2 GDP Second Estimate (Aug 26) \u2013 major macro output",
+    "Core PCE Price Index (Aug 29) \u2013 inflation gauge",
+    "Fed Governor Michelle Bowman speech (Aug 26) \u2013 policy sentiment",
+    "ECB Interest Rate Decision (Aug 27) \u2013 European monetary policy",
+    "Bank of England Rate Decision (Aug 27) \u2013 UK monetary policy",
+    "EIA Weekly Petroleum Status Report (Aug 30) \u2013 energy market catalyst",
+    "China Caixin Manufacturing PMI (Aug 24) \u2013 global manufacturing pulse",
+    "Richmond Fed Manufacturing Index (Aug 25) \u2013 regional manufacturing",
+    "Chicago PMI (Aug 28) \u2013 regional business activity",
+    "Weekly Jobless Claims (Aug 28) \u2013 labor market health",
+    "Consumer Confidence (Aug 26) \u2013 sentiment indicator",
+    "University of Michigan Sentiment (Aug 28) \u2013 sentiment gauge"
+  ],
+  "r7_human_score_question": "Given the strong technical bullish signals but upcoming mixed PMI and Fed speech, how should we weight the probability of a short\u2011term pullback versus continuation for SPX this week?",
+  "r6_slide_bullet_1": "Technical bullishness reinforced by energy sector strength, yet August seasonal headwinds and Fed speech create a mixed risk profile.",
+  "r6_slide_bullet_2": "Sector rotation favors Energy, Utilities, Communication; Consumer Discretionary lagging, highlighting selective exposure opportunities.",
+  "r6_slide_bullet_3": "If GDP beats and Fed remains neutral, bullish continuation; if PMI misses or Fed signals tightening, expect correction toward support levels.",
+  "_fallback_warning": "Claude connection dropped. Swapped automatically with openrouter/free."
+}

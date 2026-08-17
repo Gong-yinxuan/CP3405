@@ -1,15 +1,11 @@
 # R4 Macro Agent — Fed + Data Watch
 
-**Week commencing:** 2026-08-10
-**Week ending:** 2026-08-16
+**Week commencing:** 2026-08-17
+**Week ending:** 2026-08-23
 
 ## Fed Speakers
 
-- **Speaker hint:** Cook
-  - Title: Cook, Outlook for the U.S. and Alaskan Economies
-  - Published: 2026-08-05T20:05:00+00:00
-  - Tone hint: neutral_or_unclear_keyword_hint
-  - Source: https://www.federalreserve.gov/newsevents/speech/cook20260805a.htm
+- No recent Fed speeches found in the collector window.
 
 ## CPI / Inflation-Related Releases
 
