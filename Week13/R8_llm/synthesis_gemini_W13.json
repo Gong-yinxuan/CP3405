@@ -1,0 +1,35 @@
+{
+  "weekly_regime": "The market is likely entering a period of elevated volatility and cautious trading. Technicals indicate a 'Zone 2 Pullback' across major indices, compounded by historically weak August seasonality for midterm years, particularly evident in the tech-heavy Nasdaq and small-caps. Independent research reveals critical omissions in the local economic calendar, with the highly anticipated Jackson Hole Economic Symposium (Aug 24-26) and key inflation/employment data (PCE, Non-Farm Payrolls in the forecast week of Aug 31-Sep 4) looming. This confluence of negative technical momentum, adverse seasonality, and high-impact macro catalysts sets the stage for defensive positioning and potential downside pressure.",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "-1.0% to 0.0%",
+  "ndx_pct_estimate": "-1.5% to -0.5%",
+  "iwm_pct_estimate": "-0.8% to 0.2%",
+  "top_supporting_reason": "Severe historical August weakness for all major indices during midterm election years (-1.27% to -2.87% average returns) coinciding with current technical 'Zone 2 Pullback' and significant rotation out of growth sectors.",
+  "top_contradiction_cited": "An unexpectedly dovish or optimistic tone from central bank officials at the Jackson Hole Symposium could provide a sentiment boost, counteracting the prevailing technical and seasonal headwinds.",
+  "invalidation_condition": "A sustained close above the 8-day EMA and a decisive break above the recent 20-day high resistance levels (e.g., SPX > 7816.7, NDX > 30195.72, IWM > 305.18).",
+  "tone_caveat_language": "Maintain a cautionary stance with a bias towards defensive sectors and assets, given the confluence of weak seasonality and high-impact, potentially market-moving economic data releases. Expect increased intraday volatility.",
+  "consensus_bias": "MIXED",
+  "consensus_read_summary": "Model alignment suggests a challenging week ahead, characterized by negative technical indicators and strong historical precedents for August weakness in a midterm year. Our independent real-time search highlighted critical missing economic events, specifically the Jackson Hole Symposium and key labor/inflation data, which are expected to drive sentiment and increase market uncertainty. This combination points to a higher probability of further downside or consolidation rather than a strong recovery.",
+  "point_of_maximum_divergence": "The market's interpretation of central bank forward guidance from the Jackson Hole Symposium regarding the future path of monetary policy (hawkish vs. dovish outlook).",
+  "key_supporting_factors": [
+    "All major indices (SPX, NDX, IWM) are in a 'Zone 2 Pullback' and closed below their 8-day EMAs last week, indicating short-term weakness.",
+    "Midterm year August seasonality is historically the weakest month for NASDAQ and Russell 2000, and second weakest for S&P 500 and Dow.",
+    "Significant sector rotation away from Technology (XLK, -3.53%) and Utilities (XLU, -3.48%) towards Healthcare (XLV, +4.33%) and Energy (XLE, +2.79%) suggests a defensive shift.",
+    "The Jackson Hole Economic Symposium (Aug 24-26) is a critical, uncaptured event that will heavily influence central bank expectations for the coming months.",
+    "Key economic reports for the forecast week, including ISM Manufacturing PMI (Sept 1) and Non-Farm Payrolls (Sept 4), are uncaptured by the pipeline and will be major market movers."
+  ],
+  "main_contradiction_risk": "A 'soft landing' narrative gaining traction due to either unexpectedly resilient economic data or a significantly less hawkish central bank posture than currently anticipated by the market.",
+  "invalidation_summary": "The consensus view of potential weakness is invalidated if indices manage to reclaim and sustain above their immediate resistance candidates, specifically SPX above 7816.7 and NDX above 30195.72, signaling a re-establishment of upward momentum.",
+  "pipeline_omissions_discovered": [
+    "Jackson Hole Economic Symposium (Aug 24-26, 2026): A high-importance unscheduled central bank gathering critical for market outlook.",
+    "Revised Q2 GDP (approx. Aug 27, 2026): A major economic indicator for growth assessment.",
+    "PCE Price Index (approx. Aug 29, 2026): The Fed's preferred inflation gauge, crucial for monetary policy expectations.",
+    "ISM Manufacturing PMI (Sept 1, 2026): Key indicator for manufacturing sector health at the start of the forecast week.",
+    "Non-Farm Payrolls / Employment Situation Report (Sept 4, 2026): The most significant monthly labor market data, critical for Fed policy, affecting the forecast week.",
+    "Consumer Confidence Index (approx. Aug 26, 2026): Measures consumer sentiment, often a precursor to spending trends."
+  ],
+  "r7_human_score_question": "To what extent should the strong historical midterm August seasonality, combined with current technical weakness, be weighted against potential dovish surprises from the Jackson Hole Symposium or unexpected strength in upcoming employment data?",
+  "r6_slide_bullet_1": "Markets face potential for continued weakness due to 'Zone 2 Pullback' technicals and historically negative August seasonality in a midterm year.",
+  "r6_slide_bullet_2": "Crucial, uncaptured macroeconomic catalysts, including Jackson Hole, PCE, and Non-Farm Payrolls, will introduce significant volatility and define the near-term directional bias.",
+  "r6_slide_bullet_3": "Leading sectors have shifted towards defensive plays (Healthcare, Energy), while Technology and Industrials lagged, signaling a cautious market sentiment ahead of key policy signals."
+}

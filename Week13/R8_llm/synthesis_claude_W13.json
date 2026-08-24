@@ -1,0 +1,32 @@
+{
+  "weekly_regime": "Volatile consolidation with bearish bias driven by midterm-year August seasonality, underperforming tech sector, and potential data-driven volatility from missing BLS releases. Technical EMAs suggest pullback stabilization but lack momentum confirmation.",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "-1.0% to -2.0%",
+  "ndx_pct_estimate": "-2.0% to -3.5%",
+  "iwm_pct_estimate": "-1.0% to -2.5%",
+  "top_supporting_reason": "Historical August weakness in midterm years (-1.27% S&P 500 avg) combined with tech sector's -3.53% weekly decline and neutral EMA pullback dynamics",
+  "top_contradiction_cited": "Missing BLS economic calendar data (CPI, PPI, Employment) creating volatility vacuum for unscheduled macro catalysts or geopolitical shocks",
+  "invalidation_condition": "Unexpected CPI/PPI surprise >0.5% MoM or dovish Fed communication breaking 7700 SPX support",
+  "tone_caveat_language": "Defensive underweight tech/Industrials/Utilities tilt with selective long healthcare/energy via sector strength divergence",
+  "consensus_bias": "BEARISH",
+  "consensus_read_summary": "Technical neutral EMAs align with seasonal bearish August midterm patterns, but sector rotation (healthcare/energy outperforming tech) and missing economic data create asymmetric risk-reward. Independent research confirms structural weakness in rate-sensitive sectors amid election-year uncertainty.",
+  "point_of_maximum_divergence": "Aggressive view sees EMA bounce at 7654-7697 SPX zone as buying opportunity; defensive view treats this as failed recovery precursor to 7313-7350 breakdown given midterm August historical bias",
+  "key_supporting_factors": [
+    "Local data: SPX/NDX/IWM all below 8EMA with neutral EMA crossover (Zone 2 Pullback)",
+    "Independent research: Midterm August historical underperformance (-1.27% S&P 500 avg) with tech sector (-3.53%) leading laggard cohort"
+  ],
+  "main_contradiction_risk": "Missing BLS economic releases (CPI/PPI/Employment) creating volatility vacuum for unscheduled macro shocks or geopolitical escalation",
+  "invalidation_summary": "Positive CPI/PPI surprise >0.5% MoM or hawkish Fed communication breaking 7700 SPX / 29482 NDX / 300.61 IWM key EMAs",
+  "pipeline_omissions_discovered": [
+    "Missing BLS CPI release (scheduled 8/15/2026) - 403 error blocking critical inflation data",
+    "Missing BLS PPI release (scheduled 8/14/2026) - 403 error blocking producer price data",
+    "Missing BLS Employment Situation (scheduled 8/15/2026) - 403 error blocking NFP/micromiss data",
+    "Missing BLS Real Earnings (scheduled 8/14/2026) - 403 error blocking wage growth proxy",
+    "Missing BLS Import/Export Prices (scheduled 8/14/2026) - 403 error blocking trade cost data"
+  ],
+  "r7_human_score_question": "How should we weight the historical August midterm weakness (-1.27%) against the current technical neutral EMA pullback setup when positioning for a week with zero scheduled macro data but elevated geopolitical risk?",
+  "r6_slide_bullet_1": "Midterm August seasonality (-1.27% S&P 500 avg) + tech underperformance (-3.53%) = structural bearish bias despite neutral EMAs",
+  "r6_slide_bullet_2": "Critical BLS data vacuum (CPI/PPI/Employment) creates volatility trap - unscheduled releases or shocks could trigger 1-2% intraday whipsaws",
+  "r6_slide_bullet_3": "Sector rotation divergence: Healthcare (+4.33%) and Energy (+2.79%) outperform laggards Tech (-3.53%), Utilities (-3.48%) - defensive tilt warranted",
+  "_fallback_warning": "Claude connection dropped. Swapped automatically with openrouter/free."
+}

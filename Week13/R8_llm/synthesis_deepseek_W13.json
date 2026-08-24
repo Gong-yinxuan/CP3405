@@ -1,0 +1,27 @@
+{
+  "weekly_regime": "Neutral to slightly bearish with sector rotation into defensive and cyclical sectors, as indicated by technical pullbacks and seasonal trends.",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "-0.5% to +0.5%",
+  "ndx_pct_estimate": "-1.0% to +0.5%",
+  "iwm_pct_estimate": "-0.5% to +1.0%",
+  "top_supporting_reason": "Healthcare and Energy sectors leading performance, while Technology and Industrials lag, suggesting defensive rotation amid technical pullbacks.",
+  "top_contradiction_cited": "Potential unscheduled central bank interventions or geopolitical events not captured in the local data pipeline.",
+  "invalidation_condition": "SPX closing below 7313.92 (20-day low) or above 7816.7 (20-day high).",
+  "tone_caveat_language": "Cautious exposure with bias towards defensive sectors (Healthcare, Energy) and away from lagging sectors (Technology, Industrials).",
+  "consensus_bias": "MIXED",
+  "consensus_read_summary": "Technical indicators show neutral to slightly bearish conditions with sector rotation, while seasonal data suggests typical August weakness. Independent research confirms no major missed macroeconomic events, but geopolitical risks remain a wildcard.",
+  "point_of_maximum_divergence": "Aggressive views expect a quick rebound from pullbacks, while defensive views highlight seasonal weakness and sector rotation as signs of continued caution.",
+  "key_supporting_factors": [
+    "Zone 2 Pullback in SPX, NDX, and IWM",
+    "Healthcare and Energy sectors outperforming"
+  ],
+  "main_contradiction_risk": "Unexpected geopolitical events or central bank actions not reflected in current data.",
+  "invalidation_summary": "A close above SPX 7816.7 or below 7313.92 would invalidate the neutral to slightly bearish outlook.",
+  "pipeline_omissions_discovered": [
+    "No major omissions found; BLS data feeds were inaccessible but no critical releases were missed for the week."
+  ],
+  "r7_human_score_question": "How much weight should be given to the seasonal August weakness given the current technical pullback and sector rotation?",
+  "r6_slide_bullet_1": "Sector rotation into Healthcare and Energy suggests defensive positioning amid technical pullbacks.",
+  "r6_slide_bullet_2": "Seasonal trends indicate typical August weakness, but technicals remain neutral to slightly bearish.",
+  "r6_slide_bullet_3": "Geopolitical risks and unscheduled central bank actions remain wildcards not captured in local data."
+}
