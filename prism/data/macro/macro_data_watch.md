@@ -1,11 +1,15 @@
 # R4 Macro Agent — Fed + Data Watch
 
-**Week commencing:** 2026-08-24
-**Week ending:** 2026-08-30
+**Week commencing:** 2026-08-31
+**Week ending:** 2026-09-06
 
 ## Fed Speakers
 
-- No recent Fed speeches found in the collector window.
+- **Speaker hint:** Warsh
+  - Title: Warsh, In Our Time
+  - Published: 2026-08-28T14:00:00+00:00
+  - Tone hint: neutral_or_unclear_keyword_hint
+  - Source: https://www.federalreserve.gov/newsevents/speech/warsh20260828a.htm
 
 ## CPI / Inflation-Related Releases
 

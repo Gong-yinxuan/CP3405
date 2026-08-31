@@ -1,0 +1,30 @@
+{
+  "weekly_regime": "Risk-on continuation with defensive pockets. SPX and NDX remain structurally bullish above their 8/21 EMAs with expanding gaps, while IWM is consolidating near a neutral zone. Independent research confirms no major macro shocks or unscheduled central bank activity for the week of Sep 8-12, 2026, supporting the technical momentum. However, September seasonality (historically the weakest month, rank 12/12 for SPX) and a midterm-year flag introduce caution, especially for rate-sensitive and small-cap segments.",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "+0.3% to +1.1%",
+  "ndx_pct_estimate": "+0.5% to +1.4%",
+  "iwm_pct_estimate": "-0.8% to +0.6%",
+  "top_supporting_reason": "SPX and NDX are trading above both EMA-8 and EMA-21 with positive EMA gaps, confirming bullish Zone 1 momentum, while XLK and XLC (Tech/Comm Services) posted strong weekly gains of 1.3% and 1.43%, reinforcing the growth-led regime.",
+  "top_contradiction_cited": "September is historically the worst-performing month for equities (SPX avg -0.9%, rank 12/12), and the midterm-year flag increases volatility risk, particularly for IWM which is already showing weakness (-1.4% weekly).",
+  "invalidation_condition": "SPX closing below 7504.78 (20-day low) or NDX below 28196.88 would signal trend exhaustion; a break below IWM 292.40 confirms bearish small-cap underperformance.",
+  "tone_caveat_language": "Maintain overweight in Tech/Comm Services (XLK, XLC) and Financials (XLF) while underweighting Healthcare (XLV) and Energy (XLE). IWM exposure should be tactical and capped pending a confirmed breakout above 305.18.",
+  "consensus_bias": "BULLISH",
+  "consensus_read_summary": "All three local data legs (technical, almanac, economic calendar) align on a bullish technical posture for SPX and NDX, supported by strong sector leadership in Tech and Comm Services. Independent live research found no missing high-impact calendar events for the upcoming week, but confirmed the structural seasonal headwind of September and midterm-year volatility, which tempers conviction to Medium confidence.",
+  "point_of_maximum_divergence": "Aggressive bulls cite the clean technical structure and sector rotation into growth, while defensive bears emphasize September seasonality and midterm-year weakness as overriding forces that could cap gains or trigger a late-month drawdown.",
+  "key_supporting_factors": [
+    "SPX and NDX above EMA-8/EMA-21 with positive EMA gaps (Zone 1 Bullish)",
+    "XLK +1.3% and XLC +1.43% weekly performance signals sustained Tech/Comm Services leadership"
+  ],
+  "main_contradiction_risk": "September seasonality (SPX avg -0.9%, rank 12/12) combined with midterm-year volatility could overwhelm technical momentum, especially if IWM fails to stabilize above 292.40.",
+  "invalidation_summary": "A close below SPX 7504.78 or NDX 28196.88 breaks the bullish regime; IWM below 292.40 confirms small-cap bearishness.",
+  "pipeline_omissions_discovered": [
+    "No major unscheduled Fed speakers or emergency data releases found for Sep 8-12, 2026 via independent calendar audit",
+    "Flash PMI (Markit) for September not captured in local calendar - typically released first business day of month",
+    "Treasury auction schedule for Sep 8-12 not included in local pipeline - could impact yield curve and risk sentiment"
+  ],
+  "r7_human_score_question": "Given that September is historically the weakest month and we are in a midterm year, should the human team overweight defensive sectors (Utilities, Staples) or trust the current technical momentum in Tech/Comm Services?",
+  "r6_slide_bullet_1": "SPX/NDX bullish above EMAs with Tech/Comm Services leading - but September seasonality (rank 12/12) and midterm-year volatility cap upside conviction.",
+  "r6_slide_bullet_2": "IWM is the weak link: -1.4% weekly, trading below EMA-8, and facing historical Sep/midterm headwinds - avoid broad small-cap exposure until confirmed breakout above 305.18.",
+  "r6_slide_bullet_3": "Independent audit found no missing high-impact events for Sep 8-12, but Flash PMI and Treasury auction schedule were absent from local pipeline - monitor these for yield curve and sentiment shifts.",
+  "_fallback_warning": "Claude connection dropped. Swapped automatically with openrouter/free."
+}

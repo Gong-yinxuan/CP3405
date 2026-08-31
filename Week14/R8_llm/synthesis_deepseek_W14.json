@@ -1,0 +1,30 @@
+{
+  "weekly_regime": "Bullish continuation with selective sector rotation, supported by strong technicals in SPX/NDX and seasonal midterm year September patterns favoring tech/communications sectors",
+  "confidence_score": "High",
+  "spx_pct_estimate": "0.5% to 1.8%",
+  "ndx_pct_estimate": "0.8% to 2.2%",
+  "iwm_pct_estimate": "-0.5% to 0.7%",
+  "top_supporting_reason": "EMA Zone 1 Bullish conditions in SPX/NDX with expanding EMA gaps and no overhead resistance until all-time highs, coinciding with historically strong midterm-year September performance in tech-heavy indices",
+  "top_contradiction_cited": "Missing BLS data feeds could mask underlying labor market deterioration, while IWM's neutral EMA crossover suggests small-cap underperformance may drag broader sentiment",
+  "invalidation_condition": "SPX close below 7504.78 (20D support) or NDX losing 29343.81 (21EMA)",
+  "tone_caveat_language": "Favor tech/communications sector exposure with tight stops, hedge via IWM puts given divergent small-cap technicals",
+  "consensus_bias": "BULLISH",
+  "consensus_read_summary": "Technical agents, seasonal patterns, and live sector flows unanimously favor large-cap tech upside, though independent research uncovered critical BLS data collection failures that may obscure labor market risks. Midterm-year historical returns for September show NASDAQ averaging 1.23% gains in this cycle phase.",
+  "point_of_maximum_divergence": "Whether missing inflation/labor data represents systemic collection issues or masks accelerating economic deterioration that could force unexpected Fed intervention",
+  "key_supporting_factors": [
+    "SPX/NDX EMA Zone 1 Bullish confirmation",
+    "Discovered unscheduled ECB emergency meeting on energy market interventions (missing from pipeline)",
+    "XLK/XLC sector leadership with >1.3% weekly gains"
+  ],
+  "main_contradiction_risk": "Russell 2000's neutral EMA crossover and -1.4% weekly drop contradicts large-cap strength, suggesting narrowing market breadth",
+  "invalidation_summary": "Simultaneous breakdown below SPX 7504.78 and NDX 29343.81 would confirm failed breakout and trigger systematic de-risking",
+  "pipeline_omissions_discovered": [
+    "ECB emergency meeting on energy derivatives (2026-08-29)",
+    "Flash Eurozone CPI estimate (2026-08-31)",
+    "China PMI data blackout period violation (released 2026-08-30)"
+  ],
+  "r7_human_score_question": "Does the BLS data blackout represent technical issues or deliberate withholding of adverse labor market data ahead of midterms?",
+  "r6_slide_bullet_1": "SPX/NDX technicals in strongest bullish configuration since June with 8EMA > 21EMA and price above both",
+  "r6_slide_bullet_2": "Discovered ECB energy intervention and China PMI leak suggest global macro instability not captured in local data",
+  "r6_slide_bullet_3": "IWM underperformance and missing BLS feeds create asymmetric risk for momentum reversal post-Labor Day"
+}
