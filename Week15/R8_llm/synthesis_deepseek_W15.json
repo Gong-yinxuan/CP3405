@@ -1,0 +1,29 @@
+{
+  "weekly_regime": "Bullish with cautious optimism, driven by strong technical indicators and sector performance, but tempered by geopolitical uncertainties and potential macroeconomic surprises.",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "0.5% to 1.5%",
+  "ndx_pct_estimate": "1.0% to 2.0%",
+  "iwm_pct_estimate": "0.0% to 0.5%",
+  "top_supporting_reason": "Strong bullish technical bias in SPX and NDX, supported by leading sectors like Energy and Technology.",
+  "top_contradiction_cited": "Potential geopolitical shifts or unscheduled central bank updates could introduce volatility.",
+  "invalidation_condition": "SPX closing below 7611.2 or NDX closing below 28875.96.",
+  "tone_caveat_language": "Exposure should align with bullish sectors but remain cautious of geopolitical risks.",
+  "consensus_bias": "BULLISH",
+  "consensus_read_summary": "Model alignment suggests a bullish trend driven by technical indicators and sector performance, but independent research highlights potential geopolitical risks and missing macroeconomic data.",
+  "point_of_maximum_divergence": "The biggest disagreement lies in the impact of geopolitical risks versus the strength of technical indicators.",
+  "key_supporting_factors": [
+    "Bullish EMA conditions in SPX and NDX",
+    "Leading sectors: Energy and Technology"
+  ],
+  "main_contradiction_risk": "Geopolitical uncertainties and potential unscheduled central bank updates.",
+  "invalidation_summary": "A close below key support levels (SPX: 7611.2, NDX: 28875.96) would invalidate the bullish outlook.",
+  "pipeline_omissions_discovered": [
+    "Unscheduled central bank updates",
+    "Flash PMI data",
+    "Emergency macroeconomic updates"
+  ],
+  "r7_human_score_question": "How should geopolitical risks be weighted against the strong technical indicators in the current market environment?",
+  "r6_slide_bullet_1": "Bullish technical indicators in SPX and NDX support a positive outlook.",
+  "r6_slide_bullet_2": "Leading sectors: Energy and Technology drive market momentum.",
+  "r6_slide_bullet_3": "Geopolitical risks and potential macroeconomic surprises remain key concerns."
+}
