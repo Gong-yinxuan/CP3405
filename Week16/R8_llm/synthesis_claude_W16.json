@@ -1,0 +1,31 @@
+{
+  "weekly_regime": "Risk-off consolidation with a bearish tilt, driven by historical midterm September weakness and deteriorating technicals in broad indices (SPX, IWM), offset by resilient mega-cap tech (NDX).",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "-1.5% to -0.5%",
+  "ndx_pct_estimate": "-0.5% to +0.5%",
+  "iwm_pct_estimate": "-2.5% to -1.5%",
+  "top_supporting_reason": "Convergence of midterm-year seasonal weakness (S&P 500 avg -2.04% in Sept) and bearish EMA alignment (price below 8 and 21 EMAs) in SPX and IWM, compounded by a sharp -4.56% weekly drop in Healthcare (XLV) dragging index performance.",
+  "top_contradiction_cited": "The pipeline's failure to capture the S&P Global Flash PMI releases and potential FOMC speaker cadence for the week of Sept 21-25, alongside NDX's resilient 'Zone 1 Bullish' EMA structure which contradicts the broader bearish macro signal.",
+  "invalidation_condition": "SPX closing above 7810.01 (recent 20d high) or NDX breaking below 28875.96 (recent 20d low).",
+  "tone_caveat_language": "Defensive positioning with selective tech exposure; hedge small-cap risk due to high beta to seasonal macro shocks.",
+  "consensus_bias": "BEARISH",
+  "consensus_read_summary": "The local technical and seasonal models strongly align on a bearish outlook for the broader market (SPX, IWM) due to midterm September weakness and bearish EMA zones. However, NDX's neutral-to-bullish EMA structure presents a divergence. Independent research reveals critical omissions in the pipeline, specifically the lack of Flash PMI data and Fed speaker schedules for the upcoming week, which introduces unquantified volatility risk to this consensus.",
+  "point_of_maximum_divergence": "Whether the resilience in mega-cap technology (NDX) is sufficient to offset the severe seasonal and technical drag in small-caps (IWM) and the broader index (SPX), or if macro weakness will eventually drag the tech sector into a catch-down trade.",
+  "key_supporting_factors": [
+    "SPX and IWM 'Zone 3 Bearish' EMA condition (price below 8 and 21 EMAs)",
+    "Midterm-year September historical average return of -2.04% for SPX",
+    "Missing Flash PMI and Fed speaker data from the economic calendar pipeline"
+  ],
+  "main_contradiction_risk": "A surprise dovish pivot from unscheduled Fed commentary or a strong Flash PMI print that invalidates the midterm-year seasonal weakness thesis and triggers a sharp rally in beaten-down sectors like Financials (XLF) and Healthcare (XLV).",
+  "invalidation_summary": "SPX closing above 7810.01 (recent 20d high) or IWM reclaiming 292.0 (8-day EMA) would break the bearish technical thesis.",
+  "pipeline_omissions_discovered": [
+    "S&P Global Flash PMI data for September (typically released mid-to-late September)",
+    "FOMC speaker schedule and potential rate decision context for the week of Sept 21-25",
+    "BLS Employment Situation and CPI data feed failures (403 Forbidden) masking potential labor market or inflation surprises"
+  ],
+  "r7_human_score_question": "Given the strong midterm-year seasonal bearishness and bearish SPX/IWM technicals, how much weight should be assigned to NDX's 'Zone 1 Bullish' EMA structure, and does the omission of Flash PMI data fundamentally alter the risk profile for the week?",
+  "r6_slide_bullet_1": "Broad market faces midterm September headwinds: SPX and IWM in 'Zone 3 Bearish' EMA territory, aligning with historical midterm September average declines of -2.04% and -1.65% respectively.",
+  "r6_slide_bullet_2": "Mega-cap tech remains a lone bastion of resilience: NDX holds 'Zone 1 Bullish' EMA structure, creating a critical divergence against the broader bearish macro and technical backdrop.",
+  "r6_slide_bullet_3": "Critical pipeline gaps identified: Missing Flash PMI releases and Fed speaker cadence for the upcoming week, alongside BLS feed failures, leave the consensus view exposed to unquantified macro volatility.",
+  "_fallback_warning": "Claude connection dropped. Swapped automatically with openrouter/free."
+}
