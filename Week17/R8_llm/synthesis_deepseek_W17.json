@@ -1,0 +1,27 @@
+{
+  "weekly_regime": "Mixed with bullish bias in tech, bearish in small caps, and neutral for broad market. NDX shows strong technicals while IWM remains under pressure. SPX is range-bound with neutral indicators.",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "-0.5% to +0.5%",
+  "ndx_pct_estimate": "+0.5% to +1.5%",
+  "iwm_pct_estimate": "-1.5% to -0.5%",
+  "top_supporting_reason": "Nasdaq 100's bullish EMA condition and sector leadership in Technology and Healthcare support upward momentum.",
+  "top_contradiction_cited": "Potential Fed speaker hawkishness or unexpected geopolitical events could disrupt the current trend.",
+  "invalidation_condition": "SPX closing below 7507.77 (20-day low) or NDX below 28753.29 (20-day low).",
+  "tone_caveat_language": "Favor tech exposure with caution in small caps; monitor Fed communications closely.",
+  "consensus_bias": "MIXED",
+  "consensus_read_summary": "Technical indicators and sector performance suggest a split market with NDX leading and IWM lagging. Independent research confirms no major missed events but highlights Fed speech risks.",
+  "point_of_maximum_divergence": "Aggressive views see NDX extending gains, while defensive views warn of potential pullback from overbought conditions.",
+  "key_supporting_factors": [
+    "NDX Zone 1 Bullish EMA condition",
+    "Healthcare and Technology sector outperformance"
+  ],
+  "main_contradiction_risk": "Russell 2000's bearish technicals and weak sector performance (Utilities, Financials) drag on broader market sentiment.",
+  "invalidation_summary": "A close below key support levels (SPX 7507.77, NDX 28753.29) would invalidate the neutral/bullish bias.",
+  "pipeline_omissions_discovered": [
+    "No major omissions found; Fed speeches were captured but tone interpretation requires live monitoring."
+  ],
+  "r7_human_score_question": "How should the team weight the strong NDX technicals against the weak IWM performance in overall market exposure?",
+  "r6_slide_bullet_1": "NDX bullish momentum supported by tech sector strength; target +0.5% to +1.5%.",
+  "r6_slide_bullet_2": "IWM bearish technicals and sector lagging suggest further downside risk.",
+  "r6_slide_bullet_3": "SPX neutral range-bound; watch Fed speeches for potential volatility triggers."
+}

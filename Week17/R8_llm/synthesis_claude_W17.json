@@ -1,0 +1,37 @@
+{
+  "weekly_regime": "Cautiously optimistic with a bullish tilt toward week\u2011end driven by midterm\u2011year October strength and tech leadership, but vulnerable to geopolitical shocks and softer\u2011than\u2011expected manufacturing data early in the week.",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "-0.2% to +0.3%",
+  "ndx_pct_estimate": "+0.3% to +0.8%",
+  "iwm_pct_estimate": "-0.5% to 0.0%",
+  "top_supporting_reason": "Confluence of midterm\u2011year seasonal October strength (historically +3.38% avg) and leading technology sector performance (XLK +1.03%) providing upward bias for the latter half of the week.",
+  "top_contradiction_cited": "Risk of escalating Middle\u2011East tensions or weaker\u2011than\u2011expected ISM Manufacturing PMI that could trigger a risk\u2011off move early in the week.",
+  "invalidation_condition": "SPX closes below the 20\u2011day support candidate of 7,507.77 (or NDX below its 20\u2011day support of 28,753.29), signalling a break of the near\u2011term bullish structure.",
+  "tone_caveat_language": "Optimism is conditional on absence of geopolitical shocks and on data releases meeting or exceeding consensus estimates.",
+  "consensus_bias": "MIXED",
+  "consensus_read_summary": "The technical layer shows a neutral SPX, bullish NDX, and bearish IWM, while the seasonal layer points to a weak September but a strong October start in a midterm year. Live research highlights upcoming ISM/PMI data, ADP jobs, and potential geopolitical flashpoints as the key swing factors that could align or diverge from the model\u2019s bias.",
+  "point_of_maximum_divergence": "Whether the anticipated tech\u2011sector strength and October seasonal tailwind will outweigh early\u2011week manufacturing weakness and geopolitical risk, determining if the week ends net positive or negative.",
+  "key_supporting_factors": [
+    "Technical: NDX above both 8\u2011 and 21\u2011day EMAs (Zone 1 Bullish)",
+    "Live research: Upcoming ISM Services PMI (Oct 2) expected to show expansion (>55), supporting services\u2011sector resilience"
+  ],
+  "main_contradiction_risk": "Geopolitical tension in the Red Sea disrupting oil supplies, weighing on energy markets and broader risk sentiment.",
+  "invalidation_summary": "A decisive break of SPX below 7,500 support (or NDX below 28,750) would invalidate the bullish week\u2011end bias and shift the regime to risk\u2011off.",
+  "pipeline_omissions_discovered": [
+    "ISM Manufacturing PMI (Sep 30)",
+    "ISM Services PMI (Oct 2)",
+    "ADP National Employment Report (Sep 30)",
+    "Initial Jobless Claims (weekly, Sep 24 & Oct 1)",
+    "U.S. PCE Price Index (Sep 30)",
+    "Fed Governor Christopher Waller speech (Sep 29)",
+    "ECB monetary policy accounts release (Oct 1)",
+    "OPEC+ monthly output announcement (Sep 28)",
+    "U.S. Treasury 10\u2011year auction results (Sep 30)",
+    "China Caixin Manufacturing PMI (Sep 30)"
+  ],
+  "r7_human_score_question": "Given the mixed technical signals and seasonal October strength, how should we weight geopolitical risk versus economic data surprises in positioning for the week?",
+  "r6_slide_bullet_1": "Midterm year seasonal pattern points to a weak September but a strong October start, providing a bullish bias for the latter half of the week.",
+  "r6_slide_bullet_2": "Technical indicators show bullish momentum in the Nasdaq 100 (above both EMAs) while the Russell 2000 remains bearish, suggesting sector\u2011driven leadership.",
+  "r6_slide_bullet_3": "Live research highlights upcoming ISM services and manufacturing PMIs, ADP jobs data, and potential geopolitical flashpoints as key catalysts that could swing the market either way.",
+  "_fallback_warning": "Claude connection dropped. Swapped automatically with openrouter/free."
+}

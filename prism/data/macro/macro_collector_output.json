@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-09-14T03:43:58Z",
+    "generated_at": "2026-09-21T03:41:48Z",
     "collector": "Macro Collector",
     "agent_input_for": "Macro Agent",
     "data_source": {
@@ -14,10 +14,10 @@
             "yahoo_ticker": "^TNX",
             "name": "US 10-Year Treasury Yield",
             "category": "yield",
-            "latest_trading_date": "2026-09-11",
-            "close": 0.4975,
-            "weekly_change_pct": 4.47,
-            "change_5d": 0.0213,
+            "latest_trading_date": "2026-09-18",
+            "close": 0.4998,
+            "weekly_change_pct": 0.46,
+            "change_5d": 0.0023,
             "direction_5d": "Up",
             "history_file": "macro/history/US_10Y_YIELD.json"
         },
@@ -26,11 +26,11 @@
             "yahoo_ticker": "^TYX",
             "name": "US 30-Year Treasury Yield",
             "category": "yield",
-            "latest_trading_date": "2026-09-11",
-            "close": 0.5354,
-            "weekly_change_pct": 2.12,
-            "change_5d": 0.0111,
-            "direction_5d": "Up",
+            "latest_trading_date": "2026-09-18",
+            "close": 0.5331,
+            "weekly_change_pct": -0.43,
+            "change_5d": -0.0023,
+            "direction_5d": "Down",
             "history_file": "macro/history/US_30Y_YIELD.json"
         },
         "WTI": {
@@ -38,11 +38,11 @@
             "yahoo_ticker": "CL=F",
             "name": "Crude Oil WTI Futures",
             "category": "commodity",
-            "latest_trading_date": "2026-09-13",
-            "close": 103.33,
-            "weekly_change_pct": 12.95,
-            "change_5d": 11.85,
-            "direction_5d": "Up",
+            "latest_trading_date": "2026-09-20",
+            "close": 93.97,
+            "weekly_change_pct": -7.32,
+            "change_5d": -7.42,
+            "direction_5d": "Down",
             "history_file": "macro/history/WTI.json"
         },
         "GOLD": {
@@ -50,11 +50,11 @@
             "yahoo_ticker": "GC=F",
             "name": "Gold Futures",
             "category": "commodity",
-            "latest_trading_date": "2026-09-13",
-            "close": 4371.2002,
-            "weekly_change_pct": -1.32,
-            "change_5d": -58.5996,
-            "direction_5d": "Down",
+            "latest_trading_date": "2026-09-20",
+            "close": 4399.2002,
+            "weekly_change_pct": 1.09,
+            "change_5d": 47.3003,
+            "direction_5d": "Up",
             "history_file": "macro/history/GOLD.json"
         },
         "DXY": {
@@ -62,10 +62,10 @@
             "yahoo_ticker": "DX-Y.NYB",
             "name": "US Dollar Index",
             "category": "currency_index",
-            "latest_trading_date": "2026-09-13",
-            "close": 99.314,
-            "weekly_change_pct": 0.16,
-            "change_5d": 0.154,
+            "latest_trading_date": "2026-09-20",
+            "close": 100.296,
+            "weekly_change_pct": 0.84,
+            "change_5d": 0.836,
             "direction_5d": "Up",
             "history_file": "macro/history/DXY.json"
         },
@@ -74,11 +74,11 @@
             "yahoo_ticker": "^VIX",
             "name": "CBOE Volatility Index",
             "category": "volatility",
-            "latest_trading_date": "2026-09-11",
-            "close": 15.84,
-            "weekly_change_pct": 9.02,
-            "change_5d": 1.31,
-            "direction_5d": "Up",
+            "latest_trading_date": "2026-09-18",
+            "close": 14.81,
+            "weekly_change_pct": -6.5,
+            "change_5d": -1.03,
+            "direction_5d": "Down",
             "history_file": "macro/history/VIX.json"
         },
         "BTC": {
@@ -86,19 +86,38 @@
             "yahoo_ticker": "BTC-USD",
             "name": "Bitcoin USD",
             "category": "crypto",
-            "latest_trading_date": "2026-09-14",
-            "close": 77516.0469,
-            "weekly_change_pct": -1.18,
-            "change_5d": -922.5312,
-            "direction_5d": "Down",
+            "latest_trading_date": "2026-09-21",
+            "close": 81449.1562,
+            "weekly_change_pct": 7.72,
+            "change_5d": 5836.6484,
+            "direction_5d": "Up",
             "history_file": "macro/history/BTC.json"
         }
     },
     "fed_and_data_watch": {
-        "week_commencing": "2026-09-14",
-        "week_ending": "2026-09-20",
-        "fed_speakers": [],
-        "fed_speaker_count": 0,
+        "week_commencing": "2026-09-21",
+        "week_ending": "2026-09-27",
+        "fed_speakers": [
+            {
+                "speaker_hint": "Bowman",
+                "title": "Bowman, Initial Findings from Independent Review of Silicon Valley Bank",
+                "published_at": "2026-09-18T13:30:00+00:00",
+                "source_url": "https://www.federalreserve.gov/newsevents/speech/bowman20260918b.htm",
+                "summary": "Speech At the Luncheon of the Lord Mayor City of London at Mansion House, London, United Kingdom",
+                "tone_hint": "neutral_or_unclear_keyword_hint",
+                "r4_note": "Keyword hint only. R4 should verify the actual Fed speaker message."
+            },
+            {
+                "speaker_hint": "Bowman",
+                "title": "Bowman, The Final Chapter on Modernizing Bank Regulatory Stress Testing",
+                "published_at": "2026-09-18T13:30:00+00:00",
+                "source_url": "https://www.federalreserve.gov/newsevents/speech/bowman20260918a.htm",
+                "summary": "Speech At the Luncheon of the Lord Mayor City of London at Mansion House, London, United Kingdom",
+                "tone_hint": "neutral_or_unclear_keyword_hint",
+                "r4_note": "Keyword hint only. R4 should verify the actual Fed speaker message."
+            }
+        ],
+        "fed_speaker_count": 2,
         "inflation_data": [],
         "major_data_releases": [],
         "data_release_errors": {
