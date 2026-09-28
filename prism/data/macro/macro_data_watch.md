@@ -1,21 +1,21 @@
 # R4 Macro Agent — Fed + Data Watch
 
-**Week commencing:** 2026-09-21
-**Week ending:** 2026-09-27
+**Week commencing:** 2026-09-28
+**Week ending:** 2026-10-04
 
 ## Fed Speakers
 
-- **Speaker hint:** Bowman
-  - Title: Bowman, Initial Findings from Independent Review of Silicon Valley Bank
-  - Published: 2026-09-18T13:30:00+00:00
+- **Speaker hint:** Barr
+  - Title: Barr, A Long-Term View on the Costs of Shelter
+  - Published: 2026-09-23T14:05:00+00:00
   - Tone hint: neutral_or_unclear_keyword_hint
-  - Source: https://www.federalreserve.gov/newsevents/speech/bowman20260918b.htm
+  - Source: https://www.federalreserve.gov/newsevents/speech/barr20260923a.htm
 
-- **Speaker hint:** Bowman
-  - Title: Bowman, The Final Chapter on Modernizing Bank Regulatory Stress Testing
-  - Published: 2026-09-18T13:30:00+00:00
+- **Speaker hint:** Jefferson
+  - Title: Jefferson, Discount Window Modernization and Treasury Market Functioning
+  - Published: 2026-09-22T14:20:00+00:00
   - Tone hint: neutral_or_unclear_keyword_hint
-  - Source: https://www.federalreserve.gov/newsevents/speech/bowman20260918a.htm
+  - Source: https://www.federalreserve.gov/newsevents/speech/jefferson20260922a.htm
 
 ## CPI / Inflation-Related Releases
 
