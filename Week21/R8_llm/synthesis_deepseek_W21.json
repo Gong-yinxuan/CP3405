@@ -1,0 +1,28 @@
+{
+  "weekly_regime": "Bearish with potential for short-term stabilization due to oversold conditions in key indices. Independent research highlights geopolitical tensions and unexpected central bank commentary as primary drivers.",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "-1.0% to +0.5%",
+  "ndx_pct_estimate": "-2.0% to +0.5%",
+  "iwm_pct_estimate": "-1.5% to +0.5%",
+  "top_supporting_reason": "Geopolitical tensions in the Middle East and unexpected hawkish remarks from Fed speakers are driving risk-off sentiment.",
+  "top_contradiction_cited": "Missing flash PMI data and unscheduled central bank updates could introduce volatility.",
+  "invalidation_condition": "SPX closing above 7800 or NDX above 30000 would invalidate the bearish outlook.",
+  "tone_caveat_language": "Caution advised due to mixed signals from technical indicators and geopolitical risks.",
+  "consensus_bias": "BEARISH",
+  "consensus_read_summary": "Technical indicators and macroeconomic data suggest a bearish bias, with geopolitical risks and central bank commentary reinforcing this view. Independent research uncovered missed flash PMI data and unscheduled central bank updates, which could introduce volatility.",
+  "point_of_maximum_divergence": "The impact of unscheduled central bank updates on market sentiment.",
+  "key_supporting_factors": [
+    "Bearish EMA conditions in NDX and IWM",
+    "Geopolitical tensions and hawkish Fed commentary"
+  ],
+  "main_contradiction_risk": "Potential for unexpected positive economic data or dovish central bank commentary.",
+  "invalidation_summary": "A close above key resistance levels in SPX or NDX would invalidate the bearish outlook.",
+  "pipeline_omissions_discovered": [
+    "Flash PMI data",
+    "Unscheduled central bank updates"
+  ],
+  "r7_human_score_question": "How significant are the geopolitical risks and central bank commentary in driving the bearish sentiment?",
+  "r6_slide_bullet_1": "Bearish technical indicators and geopolitical tensions drive risk-off sentiment.",
+  "r6_slide_bullet_2": "Independent research uncovered missed flash PMI data and unscheduled central bank updates.",
+  "r6_slide_bullet_3": "Caution advised due to mixed signals and potential for unexpected volatility."
+}
