@@ -1,0 +1,12 @@
+{
+  "weekly_regime": "Automated recovery substitution active for Claude.",
+  "confidence_score": "Low",
+  "spx_pct_estimate": "N/A",
+  "ndx_pct_estimate": "N/A",
+  "iwm_pct_estimate": "N/A",
+  "top_supporting_reason": "Execution dropped into safe fallback rail. Error: Primary failure: Messages.create() got an unexpected keyword argument 'temperature'. Backup auto-router free space limits exhausted.",
+  "top_contradiction_cited": "Connection interface drop recorded.",
+  "invalidation_condition": "Check active run parameters.",
+  "tone_caveat_language": "N/A",
+  "_fallback_warning": "Generated via error recovery protocol due to termination of primary model Claude."
+}

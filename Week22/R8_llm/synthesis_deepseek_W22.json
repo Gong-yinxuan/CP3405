@@ -1,0 +1,28 @@
+{
+  "weekly_regime": "Bearish with potential for short-term stabilization, driven by technical indicators and mixed macroeconomic signals. Independent research highlights geopolitical tensions and missed central bank updates as key volatility drivers.",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "-1.0% to +0.5%",
+  "ndx_pct_estimate": "-1.5% to +0.3%",
+  "iwm_pct_estimate": "-0.5% to +1.0%",
+  "top_supporting_reason": "Bearish EMA conditions and geopolitical tensions are pressuring indices, while Energy and Healthcare sectors show resilience.",
+  "top_contradiction_cited": "Missed central bank updates and unscheduled geopolitical events could introduce unexpected volatility.",
+  "invalidation_condition": "SPX closing above 7844.52 or NDX closing above 31361.37",
+  "tone_caveat_language": "Caution advised due to mixed technical signals and potential geopolitical risks.",
+  "consensus_bias": "BEARISH",
+  "consensus_read_summary": "Technical indicators and sector performance suggest a bearish bias, but independent research highlights missed central bank updates and geopolitical tensions as potential disruptors. Mixed signals from Energy and Healthcare sectors add complexity.",
+  "point_of_maximum_divergence": "The impact of unscheduled geopolitical events versus technical bearish indicators.",
+  "key_supporting_factors": [
+    "Bearish EMA conditions",
+    "Geopolitical tensions surfaced via independent search"
+  ],
+  "main_contradiction_risk": "Unscheduled central bank updates and geopolitical events could reverse bearish trends.",
+  "invalidation_summary": "SPX closing above 7844.52 or NDX closing above 31361.37 would invalidate the bearish outlook.",
+  "pipeline_omissions_discovered": [
+    "Unscheduled central bank updates",
+    "Geopolitical tensions"
+  ],
+  "r7_human_score_question": "How should geopolitical tensions and missed central bank updates be weighted against technical bearish indicators?",
+  "r6_slide_bullet_1": "Bearish EMA conditions and geopolitical tensions drive a cautious market outlook.",
+  "r6_slide_bullet_2": "Energy and Healthcare sectors show resilience, adding complexity to the bearish trend.",
+  "r6_slide_bullet_3": "Unscheduled central bank updates and geopolitical events pose significant upside risks."
+}

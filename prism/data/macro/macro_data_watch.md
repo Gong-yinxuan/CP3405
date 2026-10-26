@@ -1,15 +1,11 @@
 # R4 Macro Agent — Fed + Data Watch
 
-**Week commencing:** 2026-10-19
-**Week ending:** 2026-10-25
+**Week commencing:** 2026-10-26
+**Week ending:** 2026-11-01
 
 ## Fed Speakers
 
-- **Speaker hint:** Bowman
-  - Title: Bowman, Supervisory Modernization After Silicon Valley Bank
-  - Published: 2026-10-15T02:55:00+00:00
-  - Tone hint: neutral_or_unclear_keyword_hint
-  - Source: https://www.federalreserve.gov/newsevents/speech/bowman20261014a.htm
+- No recent Fed speeches found in the collector window.
 
 ## CPI / Inflation-Related Releases
 
