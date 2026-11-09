@@ -1,0 +1,35 @@
+{
+  "weekly_regime": "Volatile mean-reversion regime: Zone 3 bearish technical structure across SPX/NDX/IWM conflicts with historically strong midterm-year November seasonality and November 20 options-expiry pin risk, suggesting choppy two-way trade with a downward bias until support holds.",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "-1.5% to +2.5%",
+  "ndx_pct_estimate": "-2.5% to +1.5%",
+  "iwm_pct_estimate": "0.0% to +3.0%",
+  "top_supporting_reason": "Midterm-year November ranks in the top two for average returns across SPX, DJIA, NASDAQ, and Russell 2000, providing a seasonal tailwind that could drive a relief rally into the Nov 20 options expiry despite current Zone 3 bearish alignment.",
+  "top_contradiction_cited": "The local pipeline captured zero economic data (BLS CPI, PPI, Employment, and related feeds all returned 403 Forbidden), so an unanticipated inflation or labor-data shock is not priced into the outlook.",
+  "invalidation_condition": "SPX weekly close below 7350.35 (20-day low/support) or NDX weekly close below 26606.43 invalidates the bounce thesis and confirms continuation of the Zone 3 bearish trend.",
+  "tone_caveat_language": "Maintain a defensive tilt; favor leading sectors (Communication Services, Real Estate, Consumer Discretionary) over lagging Technology and Energy until options expiry clears.",
+  "consensus_bias": "MIXED",
+  "consensus_read_summary": "All three technical legs agree on Zone 3 bearish structure with prices below declining 8/21 EMAs, while seasonality data shows November as a top-ranked midterm-year month; the pipeline's total failure to capture BLS macro data means the consensus rests on price action and calendar pin risk rather than fresh fundamental confirmation.",
+  "point_of_maximum_divergence": "Whether options-expiry gamma pin and seasonal strength can trigger a mean-reversion bounce, or whether the unresolved macro data void and sustained EMA breakdown trigger a resumption of the tech-led selloff.",
+  "key_supporting_factors": [
+    "SPX, NDX, and IWM all print Zone 3 Bearish with price below both 8EMA and 21EMA",
+    "Midterm-year November historical returns rank #1 or #2 for S&P 500, Dow, Nasdaq, and Russell 2000"
+  ],
+  "main_contradiction_risk": "Total absence of CPI, PPI, and employment data from the local collector leaves the week exposed to an unanticipated macro shock that could override seasonal bullishness.",
+  "invalidation_summary": "A weekly close below SPX 7350.35 / NDX 26606.43 / IWM 269.88 support breaks the mean-reversion case and extends the bearish Zone 3 trend.",
+  "pipeline_omissions_discovered": [
+    "BLS CPI release (403 Forbidden)",
+    "BLS PPI release (403 Forbidden)",
+    "BLS Employment Situation report (403 Forbidden)",
+    "BLS Import/Export Prices (403 Forbidden)",
+    "BLS Real Earnings (403 Forbidden)",
+    "Fed speaker schedule for week of Nov 16-20",
+    "November 2026 options expiration (2026-11-20) gamma/expiry pin risk",
+    "Flash PMI or GDP revisions not captured by local pipeline"
+  ],
+  "r7_human_score_question": "Can historically strong midterm-year November seasonality and November 20 options-expiry pin override concurrent Zone 3 bearish technical alignment across all three indices given the complete absence of live inflation and labor data?",
+  "r6_slide_bullet_1": "Bearish Zone 3 technicals across SPX/NDX/IWM clash with bullish midterm-year November seasonality ahead of Nov 20 options expiry.",
+  "r6_slide_bullet_2": "Local pipeline missed all BLS macro data (CPI, PPI, Employment) due to 403 errors, creating a major fundamental blind spot.",
+  "r6_slide_bullet_3": "SPX 7350.35 is the critical support level; a weekly close below it invalidates the bounce thesis and extends the distribution.",
+  "_fallback_warning": "Claude connection dropped. Swapped automatically with openrouter/free."
+}

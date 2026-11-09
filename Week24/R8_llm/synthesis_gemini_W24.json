@@ -1,0 +1,33 @@
+{
+  "weekly_regime": "Midterm-year seasonal strength contends with technical bearish breadth; options expiry week volatility expected amid critical macro data gaps.",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "~-0.5% to +1.0%",
+  "ndx_pct_estimate": "~-1.0% to +0.5%",
+  "iwm_pct_estimate": "~-1.0% to +1.5%",
+  "top_supporting_reason": "Midterm-year presidential cycle seasonal momentum for November (+2.68% to +3.69% avg across indices) combined with 2026-11-20 options expiry provides confluence bias despite EMA bearishness.",
+  "top_contradiction_cited": "BLS RSS feed 403 errors omitting CPI, PPI, and Employment Situation data, creating an uncertainty vacuum alongside Energy sector -12% weekly decline signaling potential contagion.",
+  "invalidation_condition": "SPX closing below 7350.35 support or NDX below 26606.43 support, confirming bearish EMA breakdown; or unexpected upside CPI print exceeding 3.5% YoY.",
+  "tone_caveat_language": "Cautious exposure: seasonal tailwinds offset by data gaps and sector rotation risks; favor defensive/quality over high-beta until calendar clarity returns.",
+  "consensus_bias": "MIXED",
+  "consensus_read_summary": "Technical agents across SPX, NDX, and IWM uniformly signal bearish bias with prices below EM8 and EM21, weekly losses, and EMA Zone 3 conditions. However, almanac seasonal data reveals midterm-year November historically delivers positive average returns for all three indices, with NASDAQ leading at +3.69%. Independent live research identifies critical BLS data feed failures preventing CPI, PPI, and jobs report ingestion, introducing significant uncertainty. Options expiry on 2026-11-20 may amplify near-term volatility, creating a split consensus between seasonal bulls and technical bears.",
+  "point_of_maximum_divergence": "Aggressive view argues options expiry momentum and seasonal seasonality will drive a relief rally despite technical damage; defensive view insists that unobserved CPI/PPI data and energy sector liquidation pose inflation-contagion risks that could trigger a sharp selloff if prints surprise to the upside.",
+  "key_supporting_factors": [
+    "Technical EMA Zone 3 Bearish alignment observed across SPX, NDX, and IWM as of 2026-11-06",
+    "Midterm-year presidential cycle seasonal avg returns positive for November (S&P 500 +2.68%, NASDAQ +3.69%, Russell +2.95%)",
+    "Critical BLS data feed omissions: CPI, PPI, and October Employment Situation data unavailable due to 403 Forbidden errors on RSS feeds*"
+  ],
+  "main_contradiction_risk": "Structural risk from combined unobserved inflation data and Energy sector deleveraging; a surprise CPI upside could force rate expectations higher, clashing with seasonal equity strength and options expiry positioning.",
+  "invalidation_summary": "Breach of SPX 7350.35 support level, NDX 26606.43 support, or unexpected CPI YoY print >3.5% would invalidate the mixed-consensus mild-positive outlook for the 2026-11-16 to 20 forecast window.",
+  "pipeline_omissions_discovered": [
+    "CPI (October 2026) release scheduled ~2026-11-12",
+    "PPI (October 2026) release scheduled ~2026-11-12",
+    "Monthly Employment Situation (Jobs Report) October 2026 released 2026-11-07",
+    "Unscheduled Federal Reserve speaker interventions or minutes releases",
+    "Import/Export Prices and Real Earnings data (BLS RSS 403 errors)"
+  ],
+  "r7_human_score_question": "Given the BLS data feed failures and midterm-year seasonal positivity, how should the team weight seasonal history against the very real risk of unobserved inflation surprises?",
+  "r6_slide_bullet_1": "Technical regime remains bearish across SPX/NDX/IWM with all indices below key EMAs into 2026-11-06.",
+  "r6_slide_bullet_2": "Midterm-year presidential cycle seasonality flags strong November average gains (+2.68% to +3.69%) despite near-term technical weakness.",
+  "r6_slide_bullet_3": "Critical BLS data gaps (CPI, PPI, Jobs) create uncertainty vacuum; options expiry on 2026-11-20 may amplify volatility.",
+  "_fallback_warning": "Gemini connection dropped. Swapped automatically with openrouter/free."
+}

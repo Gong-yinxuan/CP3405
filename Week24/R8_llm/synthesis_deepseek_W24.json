@@ -1,0 +1,27 @@
+{
+  "weekly_regime": "Bearish momentum expected to persist due to technical indicators showing strong bearish signals across SPX, NDX, and IWM, compounded by weak sector performance in Technology and Energy. Independent research confirms no significant macroeconomic catalysts to reverse the trend.",
+  "confidence_score": "High",
+  "spx_pct_estimate": "-2.0% to -3.5%",
+  "ndx_pct_estimate": "-3.5% to -5.0%",
+  "iwm_pct_estimate": "-1.5% to -2.5%",
+  "top_supporting_reason": "Technical indicators across major indices are in Zone 3 Bearish, with prices below key EMAs and significant gaps from support levels.",
+  "top_contradiction_cited": "Options expiry week could introduce volatility, potentially disrupting the bearish trend.",
+  "invalidation_condition": "SPX closing above 7500, NDX above 27500, or IWM above 280.",
+  "tone_caveat_language": "Maintain defensive exposure, focusing on sectors showing relative strength like Communication Services and Real Estate.",
+  "consensus_bias": "BEARISH",
+  "consensus_read_summary": "Technical indicators, sector performance, and historical seasonality all align towards a bearish outlook. Independent research confirms no missed macroeconomic catalysts that could reverse the trend.",
+  "point_of_maximum_divergence": "The potential impact of options expiry week volatility on the bearish trend.",
+  "key_supporting_factors": [
+    "Technical indicators in Zone 3 Bearish",
+    "Weak sector performance in Technology and Energy"
+  ],
+  "main_contradiction_risk": "Options expiry week introducing unexpected volatility.",
+  "invalidation_summary": "SPX closing above 7500, NDX above 27500, or IWM above 280.",
+  "pipeline_omissions_discovered": [
+    "No significant omissions found; independent research confirms local data capture is comprehensive."
+  ],
+  "r7_human_score_question": "How might options expiry week volatility disrupt the current bearish trend, and what defensive measures should be prioritized?",
+  "r6_slide_bullet_1": "Bearish momentum expected to persist across SPX, NDX, and IWM due to strong technical indicators and weak sector performance.",
+  "r6_slide_bullet_2": "Options expiry week introduces potential volatility, posing a risk to the bearish trend.",
+  "r6_slide_bullet_3": "Defensive exposure recommended, focusing on sectors showing relative strength like Communication Services and Real Estate."
+}

@@ -1,0 +1,27 @@
+{
+  "weekly_regime": "The market is expected to remain in a bearish regime as technical indicators show significant downward momentum across major indices, compounded by recent sector performance declines, particularly in technology and energy. The absence of major economic data releases this week further supports a cautious outlook.",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "-2% to -3%",
+  "ndx_pct_estimate": "-4% to -5%",
+  "iwm_pct_estimate": "-1% to -2%",
+  "top_supporting_reason": "Technical indicators across major indices indicate a strong bearish bias with significant distance from key EMAs.",
+  "top_contradiction_cited": "The lack of scheduled high-impact economic data releases this week could lead to unexpected volatility if any geopolitical or macroeconomic news emerges.",
+  "invalid_condition": "SPX closing above 7535.14, NDX above 27979.6, or IWM above 277.26.",
+  "tone_caveat_language": "Investors should maintain a cautious stance given the potential for sudden market shifts due to external macroeconomic factors.",
+  "consensus_bias": "BEARISH",
+  "consensus_read_summary": "Current model alignment indicates a bearish outlook supported by technical indicators and sector performance. However, the absence of significant economic data releases this week raises concerns about potential volatility from unforeseen events.",
+  "point_of_maximum_divergence": "The potential for unexpected geopolitical events or macroeconomic news that could disrupt the current bearish trend.",
+  "key_supporting_factors": [
+    "Technical indicators show bearish momentum across SPX, NDX, and IWM.",
+    "The absence of major economic data releases this week could lead to increased market volatility."
+  ],
+  "main_contradiction_risk": "The risk of sudden geopolitical developments or unexpected macroeconomic announcements that could reverse current bearish sentiment.",
+  "invalidity_summary": "A close above the specified EMA levels would invalidate the bearish outlook.",
+  "pipeline_omissions_discovered": [
+    "No major economic data releases scheduled for the week, including CPI, PPI, and employment situation data."
+  ],
+  "r7_human_score_question": "How should we weigh the bearish technical indicators against the potential for unexpected macroeconomic catalysts this week?",
+  "r6_slide_bullet_1": "Bearish momentum persists across major indices with significant distance from EMAs.",
+  "r6_slide_bullet_2": "Sector performance shows notable declines, particularly in technology and energy.",
+  "r6_slide_bullet_3": "Absence of scheduled economic data releases raises concerns about potential volatility."
+}
