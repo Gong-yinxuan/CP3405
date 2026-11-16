@@ -1,11 +1,33 @@
 # R4 Macro Agent — Fed + Data Watch
 
-**Week commencing:** 2026-11-09
-**Week ending:** 2026-11-15
+**Week commencing:** 2026-11-16
+**Week ending:** 2026-11-22
 
 ## Fed Speakers
 
-- No recent Fed speeches found in the collector window.
+- **Speaker hint:** Jefferson
+  - Title: Jefferson, New Technology, Old Questions: Productivity Puzzles and the Macroeconomy
+  - Published: 2026-11-14T00:00:00+00:00
+  - Tone hint: neutral_or_unclear_keyword_hint
+  - Source: https://www.federalreserve.gov/newsevents/speech/jefferson20261113a.htm
+
+- **Speaker hint:** Barr
+  - Title: Barr, American Inequality and the Future of AI
+  - Published: 2026-11-12T15:00:00+00:00
+  - Tone hint: neutral_or_unclear_keyword_hint
+  - Source: https://www.federalreserve.gov/newsevents/speech/barr20261112a.htm
+
+- **Speaker hint:** Bowman
+  - Title: Bowman, The U.S. Economy and Considerations for Monetary Policy
+  - Published: 2026-11-10T20:30:00+00:00
+  - Tone hint: neutral_or_unclear_keyword_hint
+  - Source: https://www.federalreserve.gov/newsevents/speech/bowman20261110a.htm
+
+- **Speaker hint:** Waller
+  - Title: Waller, The Economic Outlook and Some Thoughts on Labor Market Dynamism
+  - Published: 2026-11-10T09:00:00+00:00
+  - Tone hint: hawkish_keyword_hint
+  - Source: https://www.federalreserve.gov/newsevents/speech/waller20261110a.htm
 
 ## CPI / Inflation-Related Releases
 

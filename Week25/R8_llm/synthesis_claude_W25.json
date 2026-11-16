@@ -1,0 +1,36 @@
+{
+  "weekly_regime": "Constructive but fragile holiday-week regime: strong November and midterm-year seasonality plus broad sector participation support a cautiously positive bias, but SPX and NDX remain below key EMAs, BLS calendar feeds are blocked, and Thanksgiving holiday/early-close liquidity risks are not properly flagged.",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "-0.8% to +1.6%",
+  "ndx_pct_estimate": "-1.2% to +2.0%",
+  "iwm_pct_estimate": "-1.0% to +1.4%",
+  "top_supporting_reason": "November is historically one of the strongest months for SPX, NDX, and IWM, especially in midterm years, and the latest weekly action showed broad participation led by Energy, Industrials, and Communication Services.",
+  "top_contradiction_cited": "SPX and NDX remain below their 8-day and 21-day EMAs while the pipeline missed BLS inflation and labor calendar data and failed to flag the Thanksgiving holiday and likely early close.",
+  "invalidation_condition": "A weekly close below SPX 7,350.35 or NDX 26,606.43 would invalidate the constructive seasonal setup.",
+  "tone_caveat_language": "Cautiously constructive; keep beta neutral until SPX reclaims 7,603.60 and holiday liquidity plus missing macro calendar risks clear.",
+  "consensus_bias": "MIXED",
+  "consensus_read_summary": "The technical and almanac legs agree that November seasonality and recent breadth are supportive, but they disagree on trend quality because SPX and NDX remain below key EMAs. Independent live research could not verify unscheduled macro catalysts because BLS feeds were blocked and live retrieval was constrained, making the missing calendar and Thanksgiving liquidity the main swing factors.",
+  "point_of_maximum_divergence": "Aggressive seasonal bulls expect post-expiration holiday drift to remain bid, while defensive technicians warn that failure to reclaim the 21-day EMA in thin holiday liquidity can trigger a fast mean-reversion.",
+  "key_supporting_factors": [
+    "SPX rose 2.51%, NDX rose 3.53%, and IWM rose 1.41% in the latest completed week, with 8 of 11 tracked sectors gaining more than 2%.",
+    "November seasonality is strong: SPX averages +1.91%, NDX +2.18%, and IWM +2.24%, with midterm-year November ranks of 2, 1, and 1 respectively.",
+    "Energy, Industrials, and Communication Services led the tape, suggesting risk appetite is broader than a single mega-cap technology theme.",
+    "Independent live audit did not surface a verifiable unscheduled central-bank or geopolitical catalyst in accessible public sources, but BLS access failures leave the macro calendar incomplete.",
+    "Thanksgiving holiday and early-close risks are not reflected in the almanac flags, creating a low-liquidity event gap for the forecast window."
+  ],
+  "main_contradiction_risk": "Thanksgiving holiday and early-close conditions combined with missing BLS inflation and labor calendar data can produce low-volume whipsaws or surprise repricing if any delayed macro release is hawkish.",
+  "invalidation_summary": "A close below SPX 7,350.35 or NDX 26,606.43, or a hawkish macro surprise that pushes yields higher, breaks the consensus view.",
+  "pipeline_omissions_discovered": [
+    "BLS CPI, PPI, import/export prices, real earnings, employment situation, and BLS calendar ICS feeds all returned 403 errors, leaving major U.S. inflation and labor release timing absent from the pipeline.",
+    "Thanksgiving holiday on 2026-11-26 and the likely early close on 2026-11-27 were not flagged in calendar_flags for the 2026-11-23 to 2026-11-27 forecast window.",
+    "The 2026-11-20 options expiry was not flagged as an expiry-week positioning risk for the following week, despite potential dealer gamma effects into 2026-11-23.",
+    "Fed speaker tone is only keyword-hinted; Waller's hawkish hint and the other Fed speeches were not verified against full transcripts.",
+    "No flash PMI, global manufacturing, inventory, or unscheduled central-bank/geopolitical event capture is present, and independent live retrieval could not be completed in this runtime.",
+    "Energy leadership is not accompanied by a captured supply, inventory, or geopolitical catalyst, leaving the XLE move directionally unverified."
+  ],
+  "r7_human_score_question": "How should the team weight strong November and midterm-year seasonality against the bearish EMA structure and unverified holiday-week macro calendar when setting exposure?",
+  "r6_slide_bullet_1": "Seasonality and breadth favor a constructive holiday week, but SPX and NDX still need to reclaim their 8-day and 21-day EMAs to confirm trend repair.",
+  "r6_slide_bullet_2": "Pipeline omissions are material: BLS feeds are blocked, Thanksgiving holiday and early-close flags are missing, and Fed speaker tone remains unverified.",
+  "r6_slide_bullet_3": "Risk management should assume low liquidity and event gaps; the key invalidation levels are SPX below 7,350.35 or NDX below 26,606.43.",
+  "_fallback_warning": "Claude connection dropped. Swapped automatically with openrouter/free."
+}

@@ -1,0 +1,35 @@
+{
+  "weekly_regime": "Constructive but unconfirmed post-rebound regime: strong prior-week gains and November midterm seasonality support a modest upward drift, but holiday-shortened Thanksgiving liquidity and indices still below key EMAs argue for range-bound, headline-sensitive trading.",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "+0.3% to +1.2%",
+  "ndx_pct_estimate": "+0.1% to +1.4%",
+  "iwm_pct_estimate": "-0.4% to +0.9%",
+  "top_supporting_reason": "November midterm seasonality remains a powerful tailwind, and the prior week's broad index rebound with Energy and Industrials leadership suggests dip-buying can persist into the Thanksgiving week.",
+  "top_contradiction_cited": "The pipeline missed the Thanksgiving market holiday on 2026-11-26 and the likely early close on 2026-11-27, creating a low-liquidity week where technical signals can be distorted.",
+  "invalidation_condition": "A weekly close below SPX 7,350.35 or NDX 26,606.43 would invalidate the constructive drift.",
+  "tone_caveat_language": "Use measured long exposure, avoid chasing low-volume breakouts, and reduce size around the holiday session and early close.",
+  "consensus_bias": "MIXED",
+  "consensus_read_summary": "The technical and seasonality legs agree that the market has a constructive bias but lacks full trend confirmation because SPX and NDX remain below their 8- and 21-day EMAs. Independent calendar research adds a major omission: Thanksgiving falls inside the forecast window, implying thin liquidity and potential gap risk. The consensus is therefore cautiously positive but low-conviction, with missing BLS and Fed calendar data increasing uncertainty.",
+  "point_of_maximum_divergence": "Aggressive seasonal bulls expect thin holiday volume to amplify an upward drift, while defensive technicians fear the same illiquidity will produce false breakouts and sharp reversals if yields or macro headlines turn.",
+  "key_supporting_factors": [
+    "SPX and NDX rebounded strongly last week (+2.51% and +3.53%) but remain below their 8- and 21-day EMAs, keeping the setup constructive yet unconfirmed.",
+    "November is historically the strongest month for SPX and NDX, and midterm-year November also ranks highly, providing a seasonal tailwind.",
+    "Energy led the prior week (+5.42%), with Industrials and Communication Services also strong, suggesting risk appetite is not collapsing.",
+    "Independent calendar audit found Thanksgiving on 2026-11-26 and an early close on 2026-11-27 missing from the pipeline, which is a key liquidity and volatility factor."
+  ],
+  "main_contradiction_risk": "Thanksgiving-week thin liquidity, combined with missing BLS data and potential hawkish Fed repricing, could cause erratic moves and undermine the seasonal upward drift.",
+  "invalidation_summary": "The consensus breaks if SPX closes below 7,350.35 or NDX closes below 26,606.43, or if a sharp rise in Treasury yields forces a broad risk-off rotation.",
+  "pipeline_omissions_discovered": [
+    "Thanksgiving market holiday on 2026-11-26 and likely early close on 2026-11-27 were not flagged; the almanac incorrectly shows no holiday in the forecast window.",
+    "BLS RSS and calendar feeds returned 403 errors, leaving CPI, PPI, import/export prices, real earnings, employment situation, and the BLS release calendar missing.",
+    "The forecast-week Fed speaker calendar was not populated; the pipeline only lists prior-week speeches, leaving uncertainty over pre-holiday FOMC messaging.",
+    "Potential FOMC minutes from the October 2026 meeting were not captured; the standard three-week lag places them around 2026-11-18, before the forecast week but still market-moving.",
+    "Thanksgiving-week macro releases likely missing include Conference Board Consumer Confidence, Case-Shiller home prices, new home sales, durable goods, and jobless claims.",
+    "Energy-relevant EIA petroleum inventory data and OPEC+ supply commentary were not included despite Energy leading the prior week."
+  ],
+  "r7_human_score_question": "How should the team weigh a strong November seasonal tailwind against a holiday-shortened, data-gap week where the pipeline missed Thanksgiving and key BLS releases?",
+  "r6_slide_bullet_1": "Thanksgiving week is likely low-liquidity and data-light; the pipeline missed the 2026-11-26 holiday and early close, so position sizing should reflect gap risk.",
+  "r6_slide_bullet_2": "Seasonality and the prior-week rebound support a modest upside drift, but SPX and NDX remain below key EMAs, so confirmation requires reclaiming 7,603.6 and 28,562.8 respectively.",
+  "r6_slide_bullet_3": "Energy and Industrials leadership favor risk appetite, but missing BLS/Fed calendar items and potential hawkish repricing are the main contradiction risks.",
+  "_fallback_warning": "Gemini connection dropped. Swapped automatically with openrouter/free."
+}

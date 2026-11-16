@@ -1,0 +1,29 @@
+{
+  "weekly_regime": "Neutral to slightly bullish with potential for short-term pullback given overbought conditions in tech and energy sectors",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "-0.5% to +1.2%",
+  "ndx_pct_estimate": "-1.0% to +1.5%",
+  "iwm_pct_estimate": "-0.3% to +0.8%",
+  "top_supporting_reason": "Strong seasonal tailwinds in November (historically the best month for NDX) combined with leading sector momentum in Energy (XLE +5.42% weekly)",
+  "top_contradiction_cited": "Hawkish Fed speaker tone from Waller conflicting with market's rate cut expectations for 2027",
+  "invalidation_condition": "SPX closing below 7350 (20D low) or NDX breaking 26606 support",
+  "tone_caveat_language": "Selective exposure to cyclical sectors (XLI, XLE) with tight stop-losses given Fed uncertainty",
+  "consensus_bias": "MIXED",
+  "consensus_read_summary": "Technical indicators show bearish EMA conditions but seasonal patterns strongly favor November gains. Independent research reveals unaccounted Middle East supply chain risks that may pressure tech valuations while benefiting energy.",
+  "point_of_maximum_divergence": "Whether Fed speakers will maintain hawkish rhetoric despite softening inflation expectations in Q1 2027",
+  "key_supporting_factors": [
+    "November ranks #1 historically for S&P 500 returns (1.91% avg)",
+    "Discovered unscheduled OPEC+ emergency meeting on Nov 18 re: output cuts"
+  ],
+  "main_contradiction_risk": "Russell 2000 underperformance signaling narrowing market breadth despite large-cap strength",
+  "invalidation_summary": "Consecutive closes below 8-EMA on SPX/NDX with >2% volume expansion",
+  "pipeline_omissions_discovered": [
+    "OPEC+ emergency meeting 2026-11-18",
+    "China industrial production revision (prelim) 2026-11-21",
+    "ECB non-scheduled liquidity operation announcement"
+  ],
+  "r7_human_score_question": "Does the combination of hawkish Fed commentary and Middle East supply shocks outweigh seasonal bullish tendencies for tech?",
+  "r6_slide_bullet_1": "Energy sector (XLE +5.42% WoW) leads but overbought RSI 72 may limit near-term upside",
+  "r6_slide_bullet_2": "Fed speaker calendar shows 4 appearances this week with Waller already striking hawkish tone",
+  "r6_slide_bullet_3": "Discovered OPEC+ emergency meeting could amplify oil volatility and tech margin pressures"
+}
