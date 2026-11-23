@@ -1,0 +1,32 @@
+{
+  "weekly_regime": "Bearish-to-neutral expected for SPX, NDX, and IWM into late November and early December, with price structure below key EMAs and risk assets pressured; independent research context adds Thanksgiving liquidity risk and delayed December macro catalysts.",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "-2.0% to -4.0%",
+  "ndx_pct_estimate": "-3.0% to -5.0%",
+  "iwm_pct_estimate": "-2.5% to -5.0%",
+  "top_supporting_reason": "Persistent below-EMA bearish alignment across SPX, NDX, and IWM, reinforced by weak recent tape and liquidity caution into the holiday window.",
+  "top_contradiction_cited": "Thanksgiving holiday on 2026-11-26 was missed by local calendar capture, creating an in-window low-liquidity risk.",
+  "invalidation_condition": "SPX daily close above 7758.43, or NDX daily close above 26808.48 / IWM above 268.77.",
+  "tone_caveat_language": "Neutral-to-defensive tone; overweight cash or risk hedges into the final weeks of the year.",
+  "consensus_bias": "BEARISH",
+  "consensus_read_summary": "The three retrospective legs agree on broad bearish technical conditions, while independent research did not overturn them but exposed calendar gaps. The main unresolved point is whether holiday liquidity and upcoming Fed/inflation catalysts will accelerate downside or allow stabilization.",
+  "point_of_maximum_divergence": "Whether the bearish technical breakdown leads to a capitulation low or is merely a seasonal or tactical pullback before year-end.",
+  "key_supporting_factors": [
+    "SPX, NDX, and IWM closed below key EMA clusters with bearish Zone 3 conditions.",
+    "Independent research identified Thanksgiving liquidity and December macro/Fed catalysts missing from local calendar capture."
+  ],
+  "main_contradiction_risk": "Unexpected hawkish Fed communication or a renewed inflation/jobs shock could overwhelm the bearish technical setup.",
+  "invalidation_summary": "Consensus bearish view is invalidated if SPX reclaims the 7758.43 resistance area or if NDX/IWM reclaim key EMA supports.",
+  "pipeline_omissions_discovered": [
+    "Thanksgiving Day market holiday on 2026-11-26 within the forecast week.",
+    "December FOMC policy decision and press conference.",
+    "December U.S. CPI release.",
+    "December U.S. employment report.",
+    "BLS inflation and employment data release failures prevented calendar coverage."
+  ],
+  "r7_human_score_question": "Should the human team weight the current bearish technical tape or the historical November strength more heavily given the missed holiday and data calendar gaps?",
+  "r6_slide_bullet_1": "Bearish technical tape persists across SPX, NDX, and IWM, with price below key EMAs.",
+  "r6_slide_bullet_2": "Independent research surfaced Thanksgiving liquidity and December macro/Fed catalyst gaps.",
+  "r6_slide_bullet_3": "Consensus remains negative into year-end unless key support levels hold.",
+  "_fallback_warning": "DeepSeek connection dropped. Swapped automatically with openrouter/free."
+}

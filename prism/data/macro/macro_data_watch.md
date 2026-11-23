@@ -1,33 +1,51 @@
 # R4 Macro Agent — Fed + Data Watch
 
-**Week commencing:** 2026-11-16
-**Week ending:** 2026-11-22
+**Week commencing:** 2026-11-23
+**Week ending:** 2026-11-29
 
 ## Fed Speakers
 
-- **Speaker hint:** Jefferson
-  - Title: Jefferson, New Technology, Old Questions: Productivity Puzzles and the Macroeconomy
-  - Published: 2026-11-14T00:00:00+00:00
+- **Speaker hint:** Cook
+  - Title: Cook, The U.S. Economy in Global Context
+  - Published: 2026-11-20T17:15:00+00:00
   - Tone hint: neutral_or_unclear_keyword_hint
-  - Source: https://www.federalreserve.gov/newsevents/speech/jefferson20261113a.htm
-
-- **Speaker hint:** Barr
-  - Title: Barr, American Inequality and the Future of AI
-  - Published: 2026-11-12T15:00:00+00:00
-  - Tone hint: neutral_or_unclear_keyword_hint
-  - Source: https://www.federalreserve.gov/newsevents/speech/barr20261112a.htm
-
-- **Speaker hint:** Bowman
-  - Title: Bowman, The U.S. Economy and Considerations for Monetary Policy
-  - Published: 2026-11-10T20:30:00+00:00
-  - Tone hint: neutral_or_unclear_keyword_hint
-  - Source: https://www.federalreserve.gov/newsevents/speech/bowman20261110a.htm
+  - Source: https://www.federalreserve.gov/newsevents/speech/cook20261120a.htm
 
 - **Speaker hint:** Waller
-  - Title: Waller, The Economic Outlook and Some Thoughts on Labor Market Dynamism
-  - Published: 2026-11-10T09:00:00+00:00
+  - Title: Waller, Opening Remarks
+  - Published: 2026-11-20T13:25:00+00:00
+  - Tone hint: neutral_or_unclear_keyword_hint
+  - Source: https://www.federalreserve.gov/newsevents/speech/waller20261120a.htm
+
+- **Speaker hint:** Jefferson
+  - Title: Jefferson, Monetary Policy amid Frequent and Complex Shocks
+  - Published: 2026-11-19T14:25:00+00:00
   - Tone hint: hawkish_keyword_hint
-  - Source: https://www.federalreserve.gov/newsevents/speech/waller20261110a.htm
+  - Source: https://www.federalreserve.gov/newsevents/speech/jefferson20261119a.htm
+
+- **Speaker hint:** Barr
+  - Title: Barr, Investing in America’s Underserved Communities
+  - Published: 2026-11-18T18:35:00+00:00
+  - Tone hint: neutral_or_unclear_keyword_hint
+  - Source: https://www.federalreserve.gov/newsevents/speech/barr20261118a.htm
+
+- **Speaker hint:** Waller
+  - Title: Waller, Considerations at the Intersection of Payments and Tokenized Markets
+  - Published: 2026-11-17T14:10:00+00:00
+  - Tone hint: neutral_or_unclear_keyword_hint
+  - Source: https://www.federalreserve.gov/newsevents/speech/waller20261117a.htm
+
+- **Speaker hint:** Warsh
+  - Title: Warsh, Opening Remarks
+  - Published: 2026-11-16T17:00:00+00:00
+  - Tone hint: neutral_or_unclear_keyword_hint
+  - Source: https://www.federalreserve.gov/newsevents/speech/warsh20261116a.htm
+
+- **Speaker hint:** Barr
+  - Title: Barr, Some Potential Financial Stability Implications of Artificial Intelligence
+  - Published: 2026-11-16T10:00:00+00:00
+  - Tone hint: neutral_or_unclear_keyword_hint
+  - Source: https://www.federalreserve.gov/newsevents/speech/barr20261116a.htm
 
 ## CPI / Inflation-Related Releases
 

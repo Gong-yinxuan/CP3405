@@ -1,0 +1,32 @@
+{
+  "weekly_regime": "Expected regime is high-volatility, data-dependent mean reversion inside a primary downtrend. Pipeline telemetry shows severe weekly losses, all three indices below their 8EMA and 21EMA, and Zone 3 Bearish technical conditions. Independent calendar audit highlights missing BLS/ISM event coverage and a hawkish Fed speaker hint as the main swing factors. November midterm seasonality offers a counter-trend bid, but early-December midterm weakness and potential hot labor data cap upside.",
+  "confidence_score": "Medium",
+  "spx_pct_estimate": "-2.5% to +1.5%",
+  "ndx_pct_estimate": "-3.5% to +2.0%",
+  "iwm_pct_estimate": "-3.0% to +1.5%",
+  "top_supporting_reason": "The market is deeply oversold into historically strong midterm-November seasonality, with defensive sectors leading and SPX pressing the 6882.66 support shelf.",
+  "top_contradiction_cited": "The pipeline BLS outage hides the first-Friday Employment Situation and ISM Manufacturing windows, creating binary event risk that can invalidate a seasonal bounce.",
+  "invalidation_condition": "SPX closing below 6882.66 or NDX closing below 24910.48; a sustained move above 4.50% on the US 10-year yield would also break the thesis.",
+  "tone_caveat_language": "Neutral-to-defensive into data; avoid adding beta until SPX reclaims the 8EMA or holds support on a closing basis.",
+  "consensus_bias": "MIXED",
+  "consensus_read_summary": "The technical leg is uniformly bearish with SPX, NDX, and IWM below their 8EMA and 21EMA in Zone 3 conditions, while the seasonality leg is constructive for November but cautious for early December in midterm years. The main missing development is the blocked BLS calendar, which leaves jobs and ISM as unpriced binary catalysts. Independent calendar review suggests these data gaps are the dominant near-term risk to any mean-reversion trade.",
+  "point_of_maximum_divergence": "Aggressive seasonalists see an oversold midterm-November relief rally, while defensive technicians see bear-market continuation if SPX 6882.66 and NDX 24910.48 fail.",
+  "key_supporting_factors": [
+    "Local technical telemetry: SPX, NDX, and IWM all closed below 8EMA and 21EMA with Zone 3 Bearish conditions; XLP, XLU, and XLRE led while XLK fell 12.49% for the week.",
+    "Independent calendar audit: BLS RSS/ICS 403 errors omitted high-importance Employment Situation and ISM Manufacturing windows; Fed speaker hints include a hawkish Jefferson reference."
+  ],
+  "main_contradiction_risk": "Hot labor or inflation data, or hawkish Fed messaging, could force yields higher and accelerate the technical breakdown.",
+  "invalidation_summary": "A daily close below SPX 6882.66 or NDX 24910.48, or a US 10-year yield above 4.50%, breaks the consensus bounce/base case.",
+  "pipeline_omissions_discovered": [
+    "BLS Employment Situation release likely in the 2026-12-04 first-Friday slot was not ingested due 403 errors.",
+    "ISM Manufacturing PMI likely in the 2026-12-01 window was not captured; no ISM collector is present.",
+    "BLS CPI, PPI, real earnings, and import/export price feeds were blocked, preventing inflation trend verification.",
+    "Fed speaker transcripts were only keyword-hinted; actual hawkish or dovish nuance was not audited.",
+    "Consensus estimates for upcoming jobs, PMI, and any unscheduled central-bank updates were not available from local collectors."
+  ],
+  "r7_human_score_question": "How should the team weight a historically strong midterm-November seasonal tailwind against a fully bearish technical regime when the key jobs and ISM catalysts are missing from the automated calendar?",
+  "r6_slide_bullet_1": "Technical regime is bearish: SPX, NDX, and IWM are below their 8EMA and 21EMA, defensives are leading, and XLK fell 12.49% for the week.",
+  "r6_slide_bullet_2": "Seasonality is mixed: November midterm averages are positive, but early-December midterm weakness and missing BLS/ISM data create event risk.",
+  "r6_slide_bullet_3": "Trade plan: stay neutral-to-defensive until SPX holds 6882.66 or reclaims the 8EMA; hot jobs/ISM data or a 10-year yield above 4.50% would confirm breakdown.",
+  "_fallback_warning": "Gemini connection dropped. Swapped automatically with openrouter/free."
+}
